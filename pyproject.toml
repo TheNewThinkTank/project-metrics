@@ -5,7 +5,6 @@ description = "Overview of projects and their health"
 authors = ["Your Name <you@example.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "project_metrics"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"

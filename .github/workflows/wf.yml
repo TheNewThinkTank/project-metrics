@@ -36,4 +36,4 @@ jobs:
 
       - name: get metrics
         run: |
-          python3 project_metrics.py
+          poetry run python project_metrics.py

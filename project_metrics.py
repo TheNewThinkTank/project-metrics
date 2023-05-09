@@ -1,8 +1,10 @@
 """_summary_
 """
 
-import requests
 import datetime
+import os
+
+import requests
 
 
 # Define a function to get the information for a single repository
@@ -113,24 +115,24 @@ def main() -> None:
 
     # Define variables for the repositories you want to collect information on
     repos = [
-        {"name": "repo1", "owner": "username1", "platform": "github"},
-        {"name": "repo2", "owner": "username2", "platform": "gitlab"},
-        {"name": "repo3", "owner": "username3", "platform": "bitbucket"}
+        {"name": "Fitness-Tracker", "owner": "TheNewThinkTank", "platform": "github"},
+        # {"name": "repo2", "owner": "username2", "platform": "gitlab"},
+        # {"name": "repo3", "owner": "username3", "platform": "bitbucket"},
     ]
 
     # Define the API endpoints and access tokens for each platform
     platforms = {
         "github": {
             "api_url": "https://api.github.com/repos/{owner}/{repo}",
-            "access_token": "your_github_access_token"
+            "access_token": os.getenv("GITHUB_ACCESS_TOKEN")
         },
         "gitlab": {
             "api_url": "https://gitlab.com/api/v4/projects/{owner}%2F{repo}",
-            "access_token": "your_gitlab_access_token"
+            "access_token": os.getenv("GITLAB_ACCESS_TOKEN")
         },
         "bitbucket": {
             "api_url": "https://api.bitbucket.org/2.0/repositories/{owner}/{repo}",
-            "access_token": "your_bitbucket_access_token"
+            "access_token": os.getenv("BITBUCKET_ACCESS_TOKEN")
         }
     }
 

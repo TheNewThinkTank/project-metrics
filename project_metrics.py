@@ -3,6 +3,7 @@
 
 import datetime
 import os
+from pprint import pprint as pp
 
 import requests
 
@@ -27,6 +28,7 @@ def get_repo_info(platforms, repo) -> dict:
     # Make API requests to get the information for the repository
     response = requests.get(api_url, headers=headers)
     data = response.json()
+    pp(data)
 
     # Parse the information from the API response
     try:

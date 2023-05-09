@@ -1,0 +1,25 @@
+---
+name: Project Metrics Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Get-Metrics:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+          cache: pip
+
+      - name: get metrics
+        run: |
+          python3 project_metrics.py

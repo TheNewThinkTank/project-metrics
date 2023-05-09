@@ -20,6 +20,20 @@ jobs:
           python-version: 3.11
           cache: pip
 
+      - name: Install poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+  
+      - name: Cache poetry dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
+  
+      - name: Install Dependencies
+        run: poetry install
+
       - name: get metrics
         run: |
           python3 project_metrics.py

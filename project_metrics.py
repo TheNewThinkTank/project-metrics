@@ -78,10 +78,14 @@ def get_repo_info(platforms, repo) -> dict:
 
     # DEBUG
     pp(data)
-    pp(data.keys())
-    print(type((data)))
-    print("name" in data.keys())
-    print(data["name"])
+
+    for k in sorted(data.keys()):
+        print(k)
+
+    # pp(data.keys())
+    # print(type((data)))
+    # print("name" in data.keys())
+    # print(data["name"])
 
     # Parse the information from the API response
     try:
@@ -90,11 +94,11 @@ def get_repo_info(platforms, repo) -> dict:
 
         info = {
             "name": data["name"],
-            "owner": data["owner"]["login"],
+            # "owner": data["owner"]["login"],
             "platform": repo["platform"],
-            "url": data["html_url"],
+            "url": data.get("html_url", "no html_url key exist !!!"),
             "description": data["description"],
-            "stars": data["stargazers_count"],
+            "stars": data.get("stargazers_count", "no stargazers_count key exist !!!"),
             "creation_date": datetime.datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%SZ"),
             "commits": 0,
             "open_issues": 0,

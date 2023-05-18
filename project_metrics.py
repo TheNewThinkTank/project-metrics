@@ -190,7 +190,7 @@ def get_all_repos():
 
 def get_repos_wo_desc(platforms, all_repos):
 
-    # print("  ####################     Repos missing descriptions:     ####################  ")
+    print("  ####################     Repos missing descriptions:     ####################  ")
 
     repos_wo_desc = []
 
@@ -201,6 +201,20 @@ def get_repos_wo_desc(platforms, all_repos):
             repos_wo_desc.append(repo_info)
 
     return repos_wo_desc
+
+
+def get_popular_repos(platforms, all_repos):
+
+    print("  ####################     Popular repos:     ####################  ")
+
+    popular_repos = []
+
+    for repo in all_repos:
+        repo_info = get_repo_info(platforms, repo)
+        if repo_info["stars"] > 1:
+            popular_repos.append(repo_info)
+
+    return popular_repos
 
 
 def main() -> None:
@@ -249,7 +263,12 @@ def main() -> None:
     #     print()
 
     repos_wo_desc = get_repos_wo_desc(platforms, all_repos)
-    pp(repos_wo_desc)
+    for repo in repos_wo_desc:
+        print(repo)
+
+    popular_repos = get_popular_repos(platforms, all_repos)
+    for repo in popular_repos:
+        print(repo)
 
 
 if __name__ == "__main__":

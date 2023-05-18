@@ -76,6 +76,7 @@ def get_repo_info(platforms, repo) -> dict:
     response = requests.get(api_url, headers=headers)
     data = response.json()
     pp(data)
+    pp(data.keys())
     print(type((data)))
 
     # Parse the information from the API response
@@ -208,10 +209,10 @@ def main() -> None:
         # print_repo_info(repo_info)
         # print()
 
-    for repo in gh_repos:
-        repo_info = get_repo_info(platforms, repo)
-        print_repo_info(repo_info)
-        print()
+    # for repo in gh_repos:
+    #     repo_info = get_repo_info(platforms, repo)
+    #     print_repo_info(repo_info)
+    #     print()
 
     # for repo in all_repos:
     #     repo_info = get_repo_info(platforms, repo)

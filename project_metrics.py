@@ -195,7 +195,7 @@ def main() -> None:
         },
         # "bitbucket": {
         #     "api_url": "https://api.bitbucket.org/2.0/repositories/{owner}/{repo}",
-        #     "access_token": os.environ["PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN"] 
+        #     "access_token": os.environ["PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN"]
         # },
     }
 

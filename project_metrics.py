@@ -207,8 +207,8 @@ def main() -> None:
     for repo in gl_repos:
         repo_info = get_repo_info(platforms, repo)
         pp(repo_info)
-        print()
-        print(repo_info["name"])
+        # print()
+        # print(repo_info["name"])
         # print_repo_info(repo_info)
         # print()
 

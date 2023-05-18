@@ -1,7 +1,8 @@
 """_summary_
 """
 
-import datetime
+# import datetime
+from operator import itemgetter
 import os
 from pprint import pprint as pp
 
@@ -214,7 +215,9 @@ def get_popular_repos(platforms, all_repos):
         if repo_info["stars"] > 1:
             popular_repos.append(repo_info)
 
-    return popular_repos
+    popular_repos_descending = sorted(popular_repos, key=itemgetter('stars'), reverse=True)
+
+    return popular_repos_descending
 
 
 def main() -> None:

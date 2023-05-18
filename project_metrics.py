@@ -8,9 +8,24 @@ from pprint import pprint as pp
 import requests
 
 
-# Define a function to get the information for a single repository
+def get_gh_repos():
+    username = "TheNewThinkTank"
+    url = f"https://api.github.com/users/{username}/repos"
+
+    response = requests.get(url)
+    repos = response.json()
+
+    # for repo in repos:
+    #     print(repo["name"])
+
+    return [
+            {"name": repo["name"], "owner": username, "platform": "github"}
+            for repo in repos
+            ]
+
+
 def get_repo_info(platforms, repo) -> dict:
-    """_summary_
+    """Get the information for a single repository.
 
     :param platforms: _description_
     :type platforms: _type_
@@ -118,11 +133,15 @@ def main() -> None:
     """
 
     # Define variables for the repositories you want to collect information on
-    repos = [
-        {"name": "Fitness-Tracker", "owner": "TheNewThinkTank", "platform": "github"},
-        # {"name": "repo2", "owner": "username2", "platform": "gitlab"},
-        # {"name": "repo3", "owner": "username3", "platform": "bitbucket"},
-    ]
+    # repos = [
+    #     {"name": "Fitness-Tracker", "owner": "TheNewThinkTank", "platform": "github"},
+    #     # {"name": "repo2", "owner": "username2", "platform": "gitlab"},
+    #     # {"name": "repo3", "owner": "username3", "platform": "bitbucket"},
+    # ]
+
+    gh_repos = get_gh_repos()
+
+    # all_repos = gh_repos | gl_repos | bb_repos
 
     # Define the API endpoints and access tokens for each platform
     platforms = {
@@ -141,7 +160,7 @@ def main() -> None:
     }
 
     # Iterate through the repositories and print their information
-    for repo in repos:
+    for repo in gh_repos:
         repo_info = get_repo_info(platforms, repo)
         print_repo_info(repo_info)
         print()  # Print a blank line to separate the output for each repository

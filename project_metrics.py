@@ -75,9 +75,13 @@ def get_repo_info(platforms, repo) -> dict:
     # Make API requests to get the information for the repository
     response = requests.get(api_url, headers=headers)
     data = response.json()
+
+    # DEBUG
     pp(data)
     pp(data.keys())
     print(type((data)))
+    print("name" in data.keys())
+    print(data["name"])
 
     # Parse the information from the API response
     try:
@@ -171,12 +175,12 @@ def main() -> None:
 
     gh_repos = get_gh_repos()
     gl_repos = get_gl_repos()
-    bb_repos = get_bb_repos()
+    # bb_repos = get_bb_repos()
 
-    all_repos = []
-    all_repos.extend(gh_repos)
-    all_repos.extend(gl_repos)
-    all_repos.extend(bb_repos)
+    # all_repos = []
+    # all_repos.extend(gh_repos)
+    # all_repos.extend(gl_repos)
+    # all_repos.extend(bb_repos)
 
     # Define the API endpoints and access tokens for each platform
     platforms = {

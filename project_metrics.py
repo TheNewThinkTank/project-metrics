@@ -128,15 +128,15 @@ def main() -> None:
     platforms = {
         "github": {
             "api_url": "https://api.github.com/repos/{owner}/{repo}",
-            "access_token": os.getenv("PROJECT_METRICS_GITHUB_ACCESS_TOKEN")
+            "access_token": os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
         },
         # "gitlab": {
         #     "api_url": "https://gitlab.com/api/v4/projects/{owner}%2F{repo}",
-        #     "access_token": os.getenv("GITLAB_ACCESS_TOKEN")
+        #     "access_token": os.environ["PROJECT_METRICS_GITLAB_ACCESS_TOKEN"]
         # },
         # "bitbucket": {
         #     "api_url": "https://api.bitbucket.org/2.0/repositories/{owner}/{repo}",
-        #     "access_token": os.getenv("BITBUCKET_ACCESS_TOKEN")
+        #     "access_token": os.environ["PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN"]
         # }
     }
 

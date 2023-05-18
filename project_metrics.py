@@ -76,6 +76,7 @@ def get_repo_info(platforms, repo) -> dict:
     response = requests.get(api_url, headers=headers)
     data = response.json()
     pp(data)
+    print(type((data)))
 
     # Parse the information from the API response
     try:
@@ -199,11 +200,6 @@ def main() -> None:
     #     print_repo_info(repo_info)
     #     print()  # Print a blank line to separate the output for each repository
 
-    # for repo in gh_repos:
-    #     repo_info = get_repo_info(platforms, repo)
-    #     print_repo_info(repo_info)
-    #     print()
-
     for repo in gl_repos:
         repo_info = get_repo_info(platforms, repo)
         pp(repo_info)
@@ -211,6 +207,11 @@ def main() -> None:
         # print(repo_info["name"])
         # print_repo_info(repo_info)
         # print()
+
+    for repo in gh_repos:
+        repo_info = get_repo_info(platforms, repo)
+        print_repo_info(repo_info)
+        print()
 
     # for repo in all_repos:
     #     repo_info = get_repo_info(platforms, repo)

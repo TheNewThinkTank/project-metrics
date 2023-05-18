@@ -164,13 +164,6 @@ def main() -> None:
     """_summary_
     """
 
-    # Define variables for the repositories you want to collect information on
-    # repos = [
-    #     {"name": "Fitness-Tracker", "owner": "TheNewThinkTank", "platform": "github"},
-    #     # {"name": "repo2", "owner": "username2", "platform": "gitlab"},
-    #     # {"name": "repo3", "owner": "username3", "platform": "bitbucket"},
-    # ]
-
     # print(get_gl_repos())
     # get_bb_repos()
 
@@ -213,8 +206,9 @@ def main() -> None:
 
     for repo in gl_repos:
         repo_info = get_repo_info(platforms, repo)
-        print_repo_info(repo_info)
-        print()
+        pp(repo_info)
+        # print_repo_info(repo_info)
+        # print()
 
     # for repo in all_repos:
     #     repo_info = get_repo_info(platforms, repo)

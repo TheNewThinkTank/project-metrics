@@ -77,21 +77,17 @@ def get_repo_info(platforms, repo) -> dict:
     data = response.json()
 
     # DEBUG
-    pp(data)
-
-    for k in sorted(data.keys()):
-        print(k)
+    # pp(data)
+    # for k in sorted(data.keys()):
+    #     print(k)
 
     # pp(data.keys())
     # print(type((data)))
     # print("name" in data.keys())
     # print(data["name"])
 
-    # Parse the information from the API response
     try:
-
-        print("Parsing the information from the API response")
-
+        # print("Parsing the information from the API response")
         info = {
             "name": data["name"],
             # "owner": data["owner"]["login"],
@@ -154,7 +150,7 @@ def print_repo_info(repo_info) -> None:
     """
 
     print(f"Name: {repo_info['name']}")
-    print(f"Owner: {repo_info['owner']}")
+    # print(f"Owner: {repo_info['owner']}")
     print(f"Platform: {repo_info['platform']}")
     print(f"URL: {repo_info['url']}")
     print(f"Description: {repo_info['description']}")
@@ -177,13 +173,13 @@ def main() -> None:
     # print(get_gl_repos())
     # get_bb_repos()
 
-    # gh_repos = get_gh_repos()
+    gh_repos = get_gh_repos()
     gl_repos = get_gl_repos()
     # bb_repos = get_bb_repos()
 
-    # all_repos = []
-    # all_repos.extend(gh_repos)
-    # all_repos.extend(gl_repos)
+    all_repos = []
+    all_repos.extend(gh_repos)
+    all_repos.extend(gl_repos)
     # all_repos.extend(bb_repos)
 
     # Define the API endpoints and access tokens for each platform
@@ -215,23 +211,20 @@ def main() -> None:
     #     print_repo_info(repo_info)
     #     print()  # Print a blank line to separate the output for each repository
 
-    for repo in gl_repos:
-        repo_info = get_repo_info(platforms, repo)
-        pp(repo_info)
-        # print()
-        # print(repo_info["name"])
-        # print_repo_info(repo_info)
-        # print()
+    # for repo in gl_repos:
+    #     repo_info = get_repo_info(platforms, repo)
+    #     print_repo_info(repo_info)
+    #     print()
 
     # for repo in gh_repos:
     #     repo_info = get_repo_info(platforms, repo)
     #     print_repo_info(repo_info)
     #     print()
 
-    # for repo in all_repos:
-    #     repo_info = get_repo_info(platforms, repo)
-    #     print_repo_info(repo_info)
-    #     print()
+    for repo in all_repos:
+        repo_info = get_repo_info(platforms, repo)
+        print_repo_info(repo_info)
+        print()
 
 
 if __name__ == "__main__":

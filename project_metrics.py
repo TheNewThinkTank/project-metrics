@@ -227,10 +227,10 @@ def main() -> None:
     #     print_repo_info(repo_info)
     #     print()
 
+    print("Repos missing descriptions:")
     for repo in all_repos:
         repo_info = get_repo_info(platforms, repo)
         # print_repo_info(repo_info)
-        print("Repos missing descriptions:")
         if repo_missing_descriptions(repo_info):
             print_repo_info(repo_info)
         print()

@@ -32,6 +32,9 @@ def get_repo_info(platforms, repo) -> dict:
 
     # Parse the information from the API response
     try:
+
+        print("Parsing the information from the API response")
+
         info = {
             "name": data["name"],
             "owner": data["owner"]["login"],
@@ -51,38 +54,37 @@ def get_repo_info(platforms, repo) -> dict:
         print(f"Error: could not get information for repository {repo}")
         return None
 
+    # if repo["platform"] == "github":
+    #     info["commits"] = data["default_branch"]
+    #     issues_url = api_url + "/issues?state=all"
+    # elif repo["platform"] == "gitlab":
+    #     info["commits"] = data["default_branch"]
+    #     issues_url = api_url + "/issues?state=all"
+    # elif repo["platform"] == "bitbucket":
+    #     response = requests.get(data["links"]["branches"]["href"], headers=headers)
+    #     branch_data = response.json()
+    #     default_branch = branch_data["values"][0]["name"]
+    #     info["commits"] = default_branch
+    #     issues_url = api_url + "/issues?q=state%20in%20(%22new%22,%22open%22,%22resolved%22,%22on_hold%22,%22invalid%22,%22duplicate%22)&fields=-votes,-watchers_count"
 
-    if repo["platform"] == "github":
-        info["commits"] = data["default_branch"]
-        issues_url = api_url + "/issues?state=all"
-    elif repo["platform"] == "gitlab":
-        info["commits"] = data["default_branch"]
-        issues_url = api_url + "/issues?state=all"
-    elif repo["platform"] == "bitbucket":
-        response = requests.get(data["links"]["branches"]["href"], headers=headers)
-        branch_data = response.json()
-        default_branch = branch_data["values"][0]["name"]
-        info["commits"] = default_branch
-        issues_url = api_url + "/issues?q=state%20in%20(%22new%22,%22open%22,%22resolved%22,%22on_hold%22,%22invalid%22,%22duplicate%22)&fields=-votes,-watchers_count"
+    # response = requests.get(issues_url, headers=headers)
+    # data = response.json()
+    # info["open_issues"] = data["size"]
+    # info["closed_issues"] = len([issue for issue in data["values"] if issue["state"] == "closed"])
 
-    response = requests.get(issues_url, headers=headers)
-    data = response.json()
-    info["open_issues"] = data["size"]
-    info["closed_issues"] = len([issue for issue in data["values"] if issue["state"] == "closed"])
+    # # Calculate the health status of the repository based on the number of open issues
+    # if info["open_issues"] == 0:
+    #     info["health_status"] = "good"
+    # elif info["open_issues"] < 10:
+    #     info["health_status"] = "fair"
+    # else:
+    #     info["health_status"] = "poor"
 
-    # Calculate the health status of the repository based on the number of open issues
-    if info["open_issues"] == 0:
-        info["health_status"] = "good"
-    elif info["open_issues"] < 10:
-        info["health_status"] = "fair"
-    else:
-        info["health_status"] = "poor"
-
-    # Get the languages used in the repository
-    response = requests.get(api_url + "/languages", headers=headers)
-    data = response.json()
-    for language, bytes_of_code in data.items():
-        info["languages"].append({"name": language, "bytes_of_code": bytes_of_code})
+    # # Get the languages used in the repository
+    # response = requests.get(api_url + "/languages", headers=headers)
+    # data = response.json()
+    # for language, bytes_of_code in data.items():
+    #     info["languages"].append({"name": language, "bytes_of_code": bytes_of_code})
 
     return info
 
@@ -101,14 +103,14 @@ def print_repo_info(repo_info) -> None:
     print(f"Description: {repo_info['description']}")
     print(f"Stars: {repo_info['stars']}")
     print(f"Creation Date: {repo_info['creation_date']}")
-    print(f"Commits: {repo_info['commits']}")
-    print(f"Open Issues: {repo_info['open_issues']}")
-    print(f"Closed Issues: {repo_info['closed_issues']}")
-    print(f"Repo Size: {repo_info['repo_size']} bytes")
-    print(f"Health Status: {repo_info['health_status']}")
-    print("Languages:")
-    for language in repo_info["languages"]:
-        print(f"\t{language['name']}: {language['bytes_of_code']} bytes")
+    # print(f"Commits: {repo_info['commits']}")
+    # print(f"Open Issues: {repo_info['open_issues']}")
+    # print(f"Closed Issues: {repo_info['closed_issues']}")
+    # print(f"Repo Size: {repo_info['repo_size']} bytes")
+    # print(f"Health Status: {repo_info['health_status']}")
+    # print("Languages:")
+    # for language in repo_info["languages"]:
+    #     print(f"\t{language['name']}: {language['bytes_of_code']} bytes")
 
 
 def main() -> None:

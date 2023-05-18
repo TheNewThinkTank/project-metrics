@@ -172,10 +172,7 @@ def repo_missing_descriptions(repo_info):
     return False
 
 
-def main() -> None:
-    """_summary_
-    """
-
+def get_all_repos():
     # print(get_gl_repos())
     # get_bb_repos()
 
@@ -187,6 +184,30 @@ def main() -> None:
     all_repos.extend(gh_repos)
     all_repos.extend(gl_repos)
     # all_repos.extend(bb_repos)
+
+    return all_repos
+
+
+def get_repos_wo_desc(platforms, all_repos):
+
+    # print("  ####################     Repos missing descriptions:     ####################  ")
+
+    repos_wo_desc = []
+
+    for repo in all_repos:
+        repo_info = get_repo_info(platforms, repo)
+        if repo_missing_descriptions(repo_info):
+            # print_repo_info(repo_info)
+            repos_wo_desc.append(repo_info)
+
+    return repos_wo_desc
+
+
+def main() -> None:
+    """_summary_
+    """
+
+    all_repos = get_all_repos()
 
     # Define the API endpoints and access tokens for each platform
     platforms = {
@@ -227,11 +248,8 @@ def main() -> None:
     #     print_repo_info(repo_info)
     #     print()
 
-    print("  ####################     Repos missing descriptions:     ####################  ")
-    for repo in all_repos:
-        repo_info = get_repo_info(platforms, repo)
-        if repo_missing_descriptions(repo_info):
-            print_repo_info(repo_info)
+    repos_wo_desc = get_repos_wo_desc(platforms, all_repos)
+    pp(repos_wo_desc)
 
 
 if __name__ == "__main__":

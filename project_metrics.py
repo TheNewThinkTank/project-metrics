@@ -169,7 +169,7 @@ def print_repo_info(repo_info) -> None:
 def get_repos_without_descriptions(repo_info):
     if not repo_info["description"]:
         return repo_info
-    return
+    # return
 
 
 def main() -> None:

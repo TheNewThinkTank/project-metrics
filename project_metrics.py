@@ -166,6 +166,12 @@ def print_repo_info(repo_info) -> None:
     #     print(f"\t{language['name']}: {language['bytes_of_code']} bytes")
 
 
+def get_repos_without_descriptions(repo_info):
+    if not repo_info["description"]:
+        return repo_info
+    return
+
+
 def main() -> None:
     """_summary_
     """
@@ -223,7 +229,8 @@ def main() -> None:
 
     for repo in all_repos:
         repo_info = get_repo_info(platforms, repo)
-        print_repo_info(repo_info)
+        # print_repo_info(repo_info)
+        print(get_repos_without_descriptions(repo_info))
         print()
 
 

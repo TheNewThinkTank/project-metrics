@@ -96,16 +96,16 @@ def get_repo_info(platforms, repo) -> dict:
             "name": data["name"],
             # "owner": data["owner"]["login"],
             "platform": repo["platform"],
-            "url": data.get("html_url", "no html_url key exist !!!"),
+            "url": data[platform["url"]],
             "description": data["description"],
-            "stars": data.get("stargazers_count", "no stargazers_count key exist !!!"),
-            "creation_date": datetime.datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%SZ"),
-            "commits": 0,
-            "open_issues": 0,
-            "closed_issues": 0,
-            "repo_size": data["size"],
-            "health_status": "",
-            "languages": []
+            "stars": data[platform["stars"]],
+            "creation_date": data["created_at"],  # datetime.datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%SZ"),
+            # "commits": 0,
+            # "open_issues": 0,
+            # "closed_issues": 0,
+            # "repo_size": data["size"],
+            # "health_status": "",
+            # "languages": []
         }
     except KeyError:
         print(f"Error: could not get information for repository {repo}")
@@ -177,7 +177,7 @@ def main() -> None:
     # print(get_gl_repos())
     # get_bb_repos()
 
-    gh_repos = get_gh_repos()
+    # gh_repos = get_gh_repos()
     gl_repos = get_gl_repos()
     # bb_repos = get_bb_repos()
 
@@ -190,15 +190,21 @@ def main() -> None:
     platforms = {
         "github": {
             "api_url": "https://api.github.com/repos/{owner}/{repo}",
-            "access_token": os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
+            "access_token": os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"],
+            "stars": "stargazers_count",
+            "url": "html_url"
         },
         "gitlab": {
             "api_url": "https://gitlab.com/api/v4/projects/{owner}%2F{repo}",
-            "access_token": os.environ["PROJECT_METRICS_GITLAB_ACCESS_TOKEN"]
+            "access_token": os.environ["PROJECT_METRICS_GITLAB_ACCESS_TOKEN"],
+            "stars": "star_count",
+            "url": "web_url"
         },
         # "bitbucket": {
         #     "api_url": "https://api.bitbucket.org/2.0/repositories/{owner}/{repo}",
-        #     "access_token": os.environ["PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN"]
+        #     "access_token": os.environ["PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN"],
+        #     "stars": "",
+        #     "url": ""
         # },
     }
 

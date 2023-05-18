@@ -8,6 +8,22 @@ from pprint import pprint as pp
 import requests
 
 
+def get_bb_repos():
+    username = "Gustav_Collin_Rasmussen"
+    url = f"https://api.bitbucket.org/2.0/repositories/{username}"
+
+    response = requests.get(url)
+    repos = response.json()["values"]
+
+    # for repo in repos:
+    #     print(repo["name"])
+
+    return [
+        {"name": repo["name"], "owner": username, "platform": "bitbucket"}
+        for repo in repos
+        ]
+
+
 def get_gh_repos():
     username = "TheNewThinkTank"
     url = f"https://api.github.com/users/{username}/repos"
@@ -20,6 +36,22 @@ def get_gh_repos():
 
     return [
             {"name": repo["name"], "owner": username, "platform": "github"}
+            for repo in repos
+            ]
+
+
+def get_gl_repos():
+    username = "TheNewThinkTank"
+    url = f"https://gitlab.com/api/v4/users/{username}/projects?owned=true&visibility=public"
+
+    response = requests.get(url)
+    repos = response.json()
+
+    # for repo in repos:
+    #     print(repo["name"])
+
+    return [
+            {"name": repo["name"], "owner": username, "platform": "gitlab"}
             for repo in repos
             ]
 
@@ -139,9 +171,17 @@ def main() -> None:
     #     # {"name": "repo3", "owner": "username3", "platform": "bitbucket"},
     # ]
 
-    gh_repos = get_gh_repos()
+    # print(get_gl_repos())
+    # get_bb_repos()
 
-    # all_repos = gh_repos | gl_repos | bb_repos
+    gh_repos = get_gh_repos()
+    gl_repos = get_gl_repos()
+    bb_repos = get_bb_repos()
+
+    all_repos = []
+    all_repos.extend(gh_repos)
+    all_repos.extend(gl_repos)
+    all_repos.extend(bb_repos)
 
     # Define the API endpoints and access tokens for each platform
     platforms = {
@@ -149,21 +189,32 @@ def main() -> None:
             "api_url": "https://api.github.com/repos/{owner}/{repo}",
             "access_token": os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
         },
-        # "gitlab": {
-        #     "api_url": "https://gitlab.com/api/v4/projects/{owner}%2F{repo}",
-        #     "access_token": os.environ["PROJECT_METRICS_GITLAB_ACCESS_TOKEN"]
-        # },
+        "gitlab": {
+            "api_url": "https://gitlab.com/api/v4/projects/{owner}%2F{repo}",
+            "access_token": os.environ["PROJECT_METRICS_GITLAB_ACCESS_TOKEN"]
+        },
         # "bitbucket": {
         #     "api_url": "https://api.bitbucket.org/2.0/repositories/{owner}/{repo}",
         #     "access_token": os.environ["PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN"]
-        # }
+        # },
     }
 
     # Iterate through the repositories and print their information
-    for repo in gh_repos:
+
+    # for repo in get_bb_repos():
+    #     repo_info = get_repo_info(platforms, repo)
+    #     print_repo_info(repo_info)
+    #     print()  # Print a blank line to separate the output for each repository
+
+    # for repo in gh_repos:
+    #     repo_info = get_repo_info(platforms, repo)
+    #     print_repo_info(repo_info)
+    #     print()
+
+    for repo in all_repos:
         repo_info = get_repo_info(platforms, repo)
         print_repo_info(repo_info)
-        print()  # Print a blank line to separate the output for each repository
+        print()
 
 
 if __name__ == "__main__":

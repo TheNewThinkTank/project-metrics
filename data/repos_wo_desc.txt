@@ -1,0 +1,6 @@
+{"name": "DHC", "platform": "github", "url": "https://github.com/TheNewThinkTank/DHC", "description": "", "stars": 1, "creation_date": "2021-09-14T20:40:12Z"}
+{"name": "interactive-musicology", "platform": "github", "url": "https://github.com/TheNewThinkTank/interactive-musicology", "description": "", "stars": 0, "creation_date": "2023-04-09T17:19:20Z"}
+{"name": "scrape-and-notify", "platform": "github", "url": "https://github.com/TheNewThinkTank/scrape-and-notify", "description": "", "stars": 1, "creation_date": "2020-03-22T14:09:45Z"}
+{"name": "TheNewThinkTank", "platform": "github", "url": "https://github.com/TheNewThinkTank/TheNewThinkTank", "description": "", "stars": 0, "creation_date": "2020-08-21T18:08:59Z"}
+{"name": "twitter-novo", "platform": "github", "url": "https://github.com/TheNewThinkTank/twitter-novo", "description": "", "stars": 1, "creation_date": "2020-08-26T19:10:18Z"}
+{"name": "dojo", "platform": "gitlab", "url": "https://gitlab.com/TheNewThinkTank/dojo", "description": "", "stars": 1, "creation_date": "2022-10-09T11:40:43.986Z"}

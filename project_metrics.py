@@ -57,7 +57,7 @@ def get_gl_repos():
             ]
 
 
-def get_repo_info(platforms, repo) -> dict:
+def get_repo_info(platforms, repo) -> dict | None:
     """Get the information for a single repository.
 
     :param platforms: _description_
@@ -266,8 +266,10 @@ def main() -> None:
     #     print()
 
     repos_wo_desc = get_repos_wo_desc(platforms, all_repos)
-    for repo in repos_wo_desc:
-        print(repo)
+    with open("testfile.txt", "w") as wf:
+        for repo in repos_wo_desc:
+            # print(repo)
+            wf.write(repo)
 
     popular_repos = get_popular_repos(platforms, all_repos)
     for repo in popular_repos:

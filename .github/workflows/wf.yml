@@ -52,4 +52,4 @@ jobs:
 
       - name: get metrics
         run: |
-          poetry run python project_metrics.py
+          poetry run python src/project_metrics.py

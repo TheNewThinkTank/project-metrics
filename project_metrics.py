@@ -273,9 +273,9 @@ def main() -> None:
     for repo in popular_repos:
         print(repo)
     
-    with open("popular_repos.json", "w") as wf:
-        for repo in popular_repos:
-            wf.write(repo)
+    # with open("popular_repos.json", "w") as wf:
+    #     for repo in popular_repos:
+    #         wf.write(repo)
 
 
 if __name__ == "__main__":

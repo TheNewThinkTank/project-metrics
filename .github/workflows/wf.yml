@@ -57,11 +57,11 @@ jobs:
         run: |
           poetry run python src/project_metrics.py
 
-      - name: Commit and push if changed
-        run: |-
-          git diff
-          git config --global user.name "project-metrics-bot"
-          git config --global user.email "project-metrics-bot@hotmail.com"
-          git add -A
-          git commit -m "chore: project-metrics-bot updated repos info" || exit 0
-          git push
+      # - name: Commit and push if changed
+      #   run: |-
+      #     git diff
+      #     git config --global user.name "project-metrics-bot"
+      #     git config --global user.email "project-metrics-bot@hotmail.com"
+      #     git add -A
+      #     git commit -m "chore: project-metrics-bot updated repos info" || exit 0
+      #     git push

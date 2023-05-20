@@ -269,7 +269,7 @@ def main() -> None:
     with open("testfile.txt", "w") as wf:
         for repo in repos_wo_desc:
             # print(repo)
-            wf.write(repo)
+            wf.write(str(repo))
 
     popular_repos = get_popular_repos(platforms, all_repos)
     for repo in popular_repos:

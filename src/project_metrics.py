@@ -224,7 +224,7 @@ def main() -> None:
     """_summary_
     """
 
-    all_repos = get_all_repos()
+    all_repos = get_all_repos(platforms)
 
     # Define the API endpoints and access tokens for each platform
     platforms = {

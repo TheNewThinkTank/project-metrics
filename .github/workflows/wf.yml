@@ -58,9 +58,13 @@ jobs:
       #   run: |
       #     poetry run python src/project_metrics.py
 
-      - name: Run GitHub GraphQL API request
+      - name: GitHub GraphQL most popular repos
         run: |
-          poetry run python src/fetch_gh_graphql.py
+          poetry run python src/gh_graphql_get_popular_repos.py
+
+      - name: GitHub GraphQL largest repos
+        run: |
+            poetry run python src/gh_graphql_get_largest_repos.py
 
       # - name: Commit and push if changed
       #   run: |-

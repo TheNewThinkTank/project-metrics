@@ -10,6 +10,7 @@ on:
     - cron:  '0 0 * * *'
 
 env:
+  GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}  # General, fine-grained token
   PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
   PROJECT_METRICS_GITLAB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITLAB_ACCESS_TOKEN }}
   # PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN }}
@@ -56,6 +57,10 @@ jobs:
       - name: get metrics
         run: |
           poetry run python src/project_metrics.py
+
+      - name: Run GitHub GraphQL API request
+        run: |
+          poetry run python src/fetch_gh_graphql.py
 
       # - name: Commit and push if changed
       #   run: |-

@@ -4,14 +4,16 @@
 # import datetime
 from operator import itemgetter
 import os
-from pprint import pprint as pp
+# from pprint import pprint as pp
 
 import requests
 
 
-def get_bb_repos():
-    username = "Gustav_Collin_Rasmussen"
-    url = f"https://api.bitbucket.org/2.0/repositories/{username}"
+def get_bb_repos(platforms):
+
+    platform = "bitbucket"
+    username = platforms[platform]["username"]
+    url = platforms[platform]["repos_url"]
 
     response = requests.get(url)
     repos = response.json()["values"]
@@ -20,39 +22,37 @@ def get_bb_repos():
     #     print(repo["name"])
 
     return [
-        {"name": repo["name"], "owner": username, "platform": "bitbucket"}
+        {"name": repo["name"], "owner": username, "platform": platform}
         for repo in repos
         ]
 
 
-def get_gh_repos():
-    username = "TheNewThinkTank"
-    url = f"https://api.github.com/users/{username}/repos"
+def get_gh_repos(platforms):
+
+    platform = "github"
+    username = platforms[platform]["username"]
+    url = platforms[platform]["repos_url"]
 
     response = requests.get(url)
     repos = response.json()
 
-    # for repo in repos:
-    #     print(repo["name"])
-
     return [
-            {"name": repo["name"], "owner": username, "platform": "github"}
+            {"name": repo["name"], "owner": username, "platform": platform}
             for repo in repos
             ]
 
 
-def get_gl_repos():
-    username = "TheNewThinkTank"
-    url = f"https://gitlab.com/api/v4/users/{username}/projects?owned=true&visibility=public"
+def get_gl_repos(platforms):
+
+    platform = "gitlab"
+    username = platforms[platform]["username"]
+    url = platforms[platform]["repos_url"]
 
     response = requests.get(url)
     repos = response.json()
 
-    # for repo in repos:
-    #     print(repo["name"])
-
     return [
-            {"name": repo["name"], "owner": username, "platform": "gitlab"}
+            {"name": repo["name"], "owner": username, "platform": platform}
             for repo in repos
             ]
 
@@ -178,7 +178,7 @@ def get_all_repos():
     # get_bb_repos()
 
     gh_repos = get_gh_repos()
-    gl_repos = get_gl_repos()
+    # gl_repos = get_gl_repos()
     # bb_repos = get_bb_repos()
 
     all_repos = []
@@ -230,7 +230,7 @@ def main() -> None:
     platforms = {
         "github": {
             "username": "TheNewThinkTank",
-            "repos_url": "",
+            "repos_url": f"https://api.github.com/users/{username}/repos",
             "api_url": "https://api.github.com/repos/{owner}/{repo}",
             "access_token": os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"],
             "stars": "stargazers_count",
@@ -238,7 +238,7 @@ def main() -> None:
         },
         "gitlab": {
             "username": "TheNewThinkTank",
-            "repos_url": "",
+            "repos_url": f"https://gitlab.com/api/v4/users/{username}/projects?owned=true&visibility=public",
             "api_url": "https://gitlab.com/api/v4/projects/{owner}%2F{repo}",
             "access_token": os.environ["PROJECT_METRICS_GITLAB_ACCESS_TOKEN"],
             "stars": "star_count",
@@ -246,7 +246,7 @@ def main() -> None:
         },
         # "bitbucket": {
         #     "username": "Gustav_Collin_Rasmussen",
-        #     "repos_url": "",
+        #     "repos_url": f"https://api.bitbucket.org/2.0/repositories/{username}",
         #     "api_url": "https://api.bitbucket.org/2.0/repositories/{owner}/{repo}",
         #     "access_token": os.environ["PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN"],
         #     "stars": "",

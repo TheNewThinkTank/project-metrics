@@ -2,6 +2,14 @@
 import os
 import requests
 
+single_repo_query = '''
+{
+  repository(name: "Fitness-Tracker", owner: "TheNewThinkTank") {
+    diskUsage
+  }
+}
+'''
+
 
 def fetch_largest_repos(username, token):
     url = 'https://api.github.com/graphql'

@@ -178,7 +178,7 @@ def get_all_repos(platforms):
     # get_bb_repos()
 
     gh_repos = get_gh_repos(platforms)
-    # gl_repos = get_gl_repos(platforms)
+    gl_repos = get_gl_repos(platforms)
     # bb_repos = get_bb_repos(platforms)
 
     all_repos = []

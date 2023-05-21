@@ -38,7 +38,7 @@ def fetch_top_repos(username, token):
 
 
 def main():
-  token = os.environ["GITHUB_ACCESS_TOKEN"]
+  token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
   fetch_top_repos('TheNewThinkTank', token)
 
 

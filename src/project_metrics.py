@@ -274,12 +274,12 @@ def main() -> None:
     repos_wo_desc = get_repos_wo_desc(platforms, all_repos)
     with open("testfile.txt", "w") as wf:
         for repo in repos_wo_desc:
-            # print(repo)
+            print(repo)
             wf.write(str(repo))
 
-    popular_repos = get_popular_repos(platforms, all_repos)
-    for repo in popular_repos:
-        print(repo)
+    # popular_repos = get_popular_repos(platforms, all_repos)
+    # for repo in popular_repos:
+    #     print(repo)
     
     # with open("popular_repos.json", "w") as wf:
     #     for repo in popular_repos:

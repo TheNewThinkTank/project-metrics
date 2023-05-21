@@ -9,7 +9,7 @@ def fetch_largest_repos(username, token):
     query = '''
     query ($login: String!, $limit: Int!) {
       user(login: $login) {
-        repositories(first: $limit, orderBy: {field: SIZE, direction: DESC}) {
+        repositories(first: $limit, orderBy: {field: DISK_USAGE, direction: DESC}) {
           nodes {
             name
             diskUsage

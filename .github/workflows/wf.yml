@@ -54,9 +54,9 @@ jobs:
       - name: Install Dependencies
         run: poetry install
 
-      - name: get metrics
+      - name: REST repos missing description
         run: |
-          poetry run python src/project_metrics.py
+          poetry run python src/rest_project_metrics.py
 
       - name: GitHub GraphQL most popular repos
         run: |

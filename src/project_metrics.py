@@ -224,8 +224,6 @@ def main() -> None:
     """_summary_
     """
 
-    all_repos = get_all_repos(platforms)
-
     # Define the API endpoints and access tokens for each platform
     platforms = {
         "github": {
@@ -253,6 +251,8 @@ def main() -> None:
         #     "url": ""
         # },
     }
+
+    all_repos = get_all_repos(platforms)
 
     # Iterate through the repositories and print their information
 

@@ -2,6 +2,7 @@
 import os
 import requests
 
+
 def fetch_largest_repos(username, token):
     url = 'https://api.github.com/graphql'
     headers = {'Authorization': f'bearer {token}'}
@@ -9,11 +10,9 @@ def fetch_largest_repos(username, token):
     query ($login: String!, $limit: Int!) {
       user(login: $login) {
         repositories(first: $limit, orderBy: {field: SIZE, direction: DESC}) {
-          edges {
-            node {
-              name
-              diskUsage
-            }
+          nodes {
+            name
+            diskUsage
           }
         }
       }
@@ -24,10 +23,10 @@ def fetch_largest_repos(username, token):
 
     if response.status_code == 200:
         data = response.json()
-        repositories = data['data']['user']['repositories']['edges']
+        repositories = data['data']['user']['repositories']['nodes']
         for repo in repositories:
-            name = repo['node']['name']
-            size = repo['node']['diskUsage']
+            name = repo['name']
+            size = repo['diskUsage']
             print(f'{name} - {size} bytes')
     else:
         print(f'Request failed with status code {response.status_code}')

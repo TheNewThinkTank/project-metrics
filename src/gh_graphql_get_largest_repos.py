@@ -23,11 +23,15 @@ def fetch_largest_repos(username, token):
 
     if response.status_code == 200:
         data = response.json()
-        repositories = data['data']['user']['repositories']['nodes']
-        for repo in repositories:
-            name = repo['name']
-            size = repo['diskUsage']
-            print(f'{name} - {size} bytes')
+        user = data.get('data', {}).get('user')
+        if user:
+            repositories = user['repositories']['nodes']
+            for repo in repositories:
+                name = repo['name']
+                size = repo['diskUsage']
+                print(f'{name} - {size} bytes')
+        else:
+            print('Unable to fetch repositories.')
     else:
         print(f'Request failed with status code {response.status_code}')
         print(response.text)

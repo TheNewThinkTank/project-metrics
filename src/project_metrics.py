@@ -9,7 +9,7 @@ import os
 import requests
 
 
-def get_bb_repos(platforms):
+def get_bb_repos(platforms: dict):
 
     platform = "bitbucket"
     username = platforms[platform]["username"]
@@ -27,7 +27,7 @@ def get_bb_repos(platforms):
         ]
 
 
-def get_gh_repos(platforms):
+def get_gh_repos(platforms: dict):
 
     platform = "github"
     username = platforms[platform]["username"]
@@ -42,7 +42,7 @@ def get_gh_repos(platforms):
             ]
 
 
-def get_gl_repos(platforms):
+def get_gl_repos(platforms: dict):
 
     platform = "gitlab"
     username = platforms[platform]["username"]
@@ -173,13 +173,13 @@ def repo_missing_descriptions(repo_info):
     return False
 
 
-def get_all_repos():
+def get_all_repos(platforms):
     # print(get_gl_repos())
     # get_bb_repos()
 
-    gh_repos = get_gh_repos()
-    # gl_repos = get_gl_repos()
-    # bb_repos = get_bb_repos()
+    gh_repos = get_gh_repos(platforms)
+    # gl_repos = get_gl_repos(platforms)
+    # bb_repos = get_bb_repos(platforms)
 
     all_repos = []
     all_repos.extend(gh_repos)

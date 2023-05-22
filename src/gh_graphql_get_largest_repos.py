@@ -10,6 +10,35 @@ single_repo_query = '''
 }
 '''
 
+'''
+{
+  repositoryOwner(login: "TheNewThinkTank") {
+    repositories(first: 10, orderBy: {field: UPDATED_AT, direction: DESC}, privacy: PUBLIC, isFork: false) {
+      totalCount
+      totalDiskUsage
+      nodes {
+        name
+        diskUsage
+      }
+    }
+  }
+}
+'''
+
+'''
+{
+  search(query: "user:TheNewThinkTank size:>1000 is:public fork:false", type: REPOSITORY, first: 10) {
+    repositoryCount
+    nodes {
+      ... on Repository {
+        name
+        diskUsage
+      }
+    }
+  }
+}
+'''
+
 
 def fetch_largest_repos(username, token):
     url = 'https://api.github.com/graphql'

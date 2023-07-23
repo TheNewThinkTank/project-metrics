@@ -54,7 +54,7 @@ print(f"{size = }")
 
 contents = repo.get_contents("README.md", ref="master")
 
-repo.update_file(contents.path, "Chore: update README", size, contents.sha, branch="master")
+repo.update_file(contents.path, "Chore: update README", str(size), contents.sha, branch="master")
 
 
 # with open(os.path.join(repo_path, 'README.md'), 'r') as rf:

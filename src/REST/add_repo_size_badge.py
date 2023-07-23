@@ -31,6 +31,8 @@ user = g.get_user(username)
 repositories = user.get_repos()
 
 
+###################  Test on a single repo before rolling out changes to all repos  ###################
+
 # repo = repositories[0]
 # repository = repo.name
 # print(f'Processing repository: {repository}')
@@ -44,6 +46,8 @@ repositories = user.get_repos()
 # content = contents.decoded_content.decode()
 # if size_badge not in content:
 #     repo.update_file(contents.path, "Chore: update README", size_badge + contents, contents.sha, branch="master")
+
+###################  Test on a single repo before rolling out changes to all repos  ###################
 
 
 # def update_readme(repo, size):
@@ -77,7 +81,8 @@ repositories = user.get_repos()
 for repo in repositories:
     repository = repo.name
 
-    if repository == "TheNewThinkTank":
+    # Skip the profile page
+    if repository == username:
         continue
 
     print(f'Processing repository: {repository}')
@@ -85,10 +90,6 @@ for repo in repositories:
     os.system(f'git clone https://github.com/{username}/{repository}.git')
     # Get the local path of the repository
     repo_path = os.path.join(os.getcwd(), repository)
-
-    os.system(f'ls {repo_path} | grep README.md')
-
-    os.system(f'ls {repo_path} | grep README.rst')
 
     # Check if README.md exists and update it
     readme_md_path = Path(repo_path + '/README.md')
@@ -104,11 +105,8 @@ for repo in repositories:
     readme_rst_path = Path(repo_path + '/README.rst')
     if readme_rst_path.exists():
 
-
-        # TODO: fix badge in rst file
         size_badge = f""".. image:: https://img.shields.io/github/repo-size/TheNewThinkTank/{repository}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size
                                :target: https://github.com/TheNewThinkTank/{repository}/archive/refs/heads/main.zip)"""
-
 
         # update_readme_rst(repo, size)
         contents = repo.get_contents("README.rst", ref=repo.default_branch)

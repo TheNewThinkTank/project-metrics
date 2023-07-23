@@ -51,48 +51,54 @@ print(f"{repo_path = }")
 size = get_repo_size(username, repository)
 print(f"{size = }")
 
+
+contents = repo.get_contents("README.md", ref="test")
+
+repo.update_file(contents.path, size, size, contents.sha, branch="test")
+
+
 # with open(os.path.join(repo_path, 'README.md'), 'r') as rf:
 #     text = rf.read()
 #     print("README before adding size: \n")
 #     print(text)
 
-update_readme(os.path.join(repo_path, 'README.md'), size)
+# update_readme(os.path.join(repo_path, 'README.md'), size)
 
-with open(os.path.join(repo_path, 'README.md'), 'r') as rf:
-    text = rf.read()
-    print("README after adding size: \n")
-    print(text)
-
-
-print("git config:\n")
-
-print("git config --global user.email 'ProjectMetricsGHAagent@example.com':")
-os.system(f"git config --global user.email 'ProjectMetricsGHAagent@example.com'")
-
-print("git config --global user.name 'ProjectMetricsGHAagent':")
-os.system(f"git config --global user.name 'ProjectMetricsGHAagent'")
+# with open(os.path.join(repo_path, 'README.md'), 'r') as rf:
+#     text = rf.read()
+#     print("README after adding size: \n")
+#     print(text)
 
 
-print("git status:")
-os.system(f"git status")
+# print("git config:\n")
 
-print(f"git add .:")
-os.system(f"git add .")
+# print("git config --global user.email 'ProjectMetricsGHAagent@example.com':")
+# os.system(f"git config --global user.email 'ProjectMetricsGHAagent@example.com'")
 
-print("git status:")
-os.system(f"git status")
+# print("git config --global user.name 'ProjectMetricsGHAagent':")
+# os.system(f"git config --global user.name 'ProjectMetricsGHAagent'")
 
-print("git commit -m 'update README':")
-os.system(f"git commit -m 'update README'")
 
-print("git status:")
-os.system(f"git status")
+# print("git status:")
+# os.system(f"git status")
 
-print("git push")
-os.system(f"git push")
+# print(f"git add .:")
+# os.system(f"git add .")
 
-print("remove local clone of repo")
-os.system(f'rm -rf {repo_path}')
+# print("git status:")
+# os.system(f"git status")
+
+# print("git commit -m 'update README':")
+# os.system(f"git commit -m 'update README'")
+
+# print("git status:")
+# os.system(f"git status")
+
+# print("git push")
+# os.system(f"git push")
+
+# print("remove local clone of repo")
+# os.system(f'rm -rf {repo_path}')
 
 ########## Testing ###################
 

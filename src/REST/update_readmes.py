@@ -1,6 +1,9 @@
 
 # from github import Github
 
+from config import platforms
+from get_repos import get_all_repos
+
 # # Authenticate yourself 
 # g = Github("yourusername", "yourauthtoken")
 
@@ -15,6 +18,7 @@
 # repo.update_file("README.md", "commit message", content, file.sha)
 
 
+# all_repos = get_all_repos()
 
 
 def add_repo_size_badge_to_readme(repo_name: str) -> None:

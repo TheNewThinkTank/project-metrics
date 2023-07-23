@@ -1,13 +1,11 @@
 """_summary_
 """
 
-from operator import itemgetter
+# from operator import itemgetter
 from pprint import pprint as pp
 
-# import requests
-
 from config import platforms
-from get_repos import get_all_repos, get_repo_info  # , get_repos, print_repo_info
+from get_repos import get_all_repos, get_repo_info
 
 
 def repo_missing_descriptions(repo_info: dict) -> bool:
@@ -46,36 +44,36 @@ def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:
     return repos_wo_desc
 
 
-def get_popular_repos(platforms: dict[str, dict], all_repos: list) -> list:
-    """_summary_
+# def get_popular_repos(platforms: dict[str, dict], all_repos: list) -> list:
+#     """_summary_
 
-    :param platforms: _description_
-    :type platforms: dict[str, dict]
-    :param all_repos: _description_
-    :type all_repos: list
-    :return: _description_
-    :rtype: list
-    """
+#     :param platforms: _description_
+#     :type platforms: dict[str, dict]
+#     :param all_repos: _description_
+#     :type all_repos: list
+#     :return: _description_
+#     :rtype: list
+#     """
 
-    print("  ####################     Popular repos:     ####################  ")
+#     print("  ####################     Popular repos:     ####################  ")
 
-    popular_repos = []
+#     popular_repos = []
 
-    for repo in all_repos:
-        repo_info = get_repo_info(platforms, repo)
-        if repo_info["stars"] > 1:
-            popular_repos.append(repo_info)
+#     for repo in all_repos:
+#         repo_info = get_repo_info(platforms, repo)
+#         if repo_info["stars"] > 1:
+#             popular_repos.append(repo_info)
 
-    popular_repos_descending = sorted(popular_repos, key=itemgetter('stars'), reverse=True)
+#     popular_repos_descending = sorted(popular_repos, key=itemgetter('stars'), reverse=True)
 
-    return popular_repos_descending
+#     return popular_repos_descending
 
 
 def main() -> None:
     """_summary_
     """
 
-    all_repos = get_all_repos()  # platforms)
+    all_repos = get_all_repos()
 
     # for repo in bb_repos:
     #     repo_info = get_repo_info(platforms, repo)

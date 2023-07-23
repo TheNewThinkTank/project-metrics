@@ -43,7 +43,7 @@ repositories = user.get_repos()
 # if size_badge not in content:
 #     repo.update_file(contents.path, "Chore: update README", size_badge + contents, contents.sha, branch="master")
 
-for repo in repositories[:3]:
+for repo in repositories[:4]:
     repository = repo.name
     print(f'Processing repository: {repository}')
 
@@ -60,4 +60,4 @@ for repo in repositories[:3]:
     content = contents.decoded_content.decode()
 
     if size_badge not in content:
-        repo.update_file(contents.path, "Chore: update README", size_badge + "<br>" + content, contents.sha, branch=repo.default_branch)
+        repo.update_file(contents.path, "Chore: update README", size_badge + "\n" + content, contents.sha, branch=repo.default_branch)

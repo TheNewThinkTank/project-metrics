@@ -1,28 +1,13 @@
 """_summary_
 """
 
-# import datetime
 from operator import itemgetter
-import os
-# from pprint import pprint as pp
+from pprint import pprint as pp
 
 import requests
 
 from config import platforms
 from get_repos import get_repos
-
-
-# def get_repos(platform: str) -> list[dict]:
-#     username = platforms[platform]["username"]
-#     url = platforms[platform]["repos_url"]
-
-#     response = requests.get(url)
-#     repos = response.json()["values"] if platform == "bitbucket" else response.json()
-
-#     return [
-#         {"name": repo["name"], "owner": username, "platform": platform}
-#         for repo in repos
-#         ]
 
 
 def get_repo_info(platforms, repo) -> dict | None:
@@ -213,7 +198,7 @@ def main() -> None:
     repos_wo_desc = get_repos_wo_desc(platforms, all_repos)
     with open("testfile.txt", "w") as wf:
         for repo in repos_wo_desc:
-            print(repo)
+            pp(repo)
             wf.write(str(repo))
 
     # popular_repos = get_popular_repos(platforms, all_repos)

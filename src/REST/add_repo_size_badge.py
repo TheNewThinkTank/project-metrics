@@ -38,15 +38,39 @@ user = g.get_user(username)
 repositories = user.get_repos()
 
 
+########## Testing ###################
 
 repo = repositories[0]
 repository = repo.name
+
 print(f'Processing repository: {repository}')
+
 os.system(f'git clone https://github.com/{username}/{repository}.git')
+
 repo_path = os.path.join(os.getcwd(), repository)
+
+print(f"{repo_path = }")
+
 size = get_repo_size(username, repository)
+
+print(f"{size = }")
+
+
+with open(os.path.join(repo_path, 'README.md'), 'r') as rf:
+    text = rf.read()
+    print("README before adding size: \n")
+    print(text)
+
+
 update_readme(os.path.join(repo_path, 'README.md'), size)
 
+
+with open(os.path.join(repo_path, 'README.md'), 'r') as rf:
+    text = rf.read()
+    print("README after adding size: \n")
+    print(text)
+
+########## Testing ###################
 
 
 

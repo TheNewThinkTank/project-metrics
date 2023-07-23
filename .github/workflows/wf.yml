@@ -54,6 +54,10 @@ jobs:
       - name: Install Dependencies
         run: poetry install
 
+      - name: update repos
+        run: |
+          poetry run python src/REST/add_repo_size_badge.py
+
       - name: REST repos missing description
         run: |
           poetry run python src/REST/project_metrics.py

@@ -61,4 +61,4 @@ for repo in repositories[:2]:
     content = contents.decoded_content.decode()
 
     if size_badge not in content:
-        repo.update_file(contents.path, "Chore: update README", size_badge + contents, contents.sha, branch=repo.default_branch)
+        repo.update_file(contents.path, "Chore: update README", size_badge + content, contents.sha, branch=repo.default_branch)

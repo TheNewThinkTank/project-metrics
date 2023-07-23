@@ -70,6 +70,16 @@ with open(os.path.join(repo_path, 'README.md'), 'r') as rf:
     print("README after adding size: \n")
     print(text)
 
+os.system(f"git status")
+
+# TODO: commit
+os.system(f"git commit -m 'update README'")
+
+os.system(f"git status")
+
+# TODO: push
+# os.system(f"git push -m 'update README'")
+
 ########## Testing ###################
 
 

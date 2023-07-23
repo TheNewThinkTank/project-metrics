@@ -48,13 +48,10 @@ os.system(f'git clone https://github.com/{username}/{repository}.git')
 
 repo_path = os.path.join(os.getcwd(), repository)
 print(f"{repo_path = }")
-size = get_repo_size(username, repository)
-print(f"{size = }")
-
+# size = get_repo_size(username, repository)
+# print(f"{size = }")
 
 size_badge = f"[![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/{repository}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/{repository}/archive/refs/heads/main.zip)"
-
-
 
 contents = repo.get_contents("README.md", ref="master")
 
@@ -76,9 +73,8 @@ filtered by most represented countries (here US is shown). These plots are gener
 ![](img/obesity_us.png)
 """
 
-
-
-repo.update_file(contents.path, "Chore: update README", size_badge + tmp, contents.sha, branch="master")
+if size_badge not in contents:
+    repo.update_file(contents.path, "Chore: update README", size_badge + contents, contents.sha, branch="master")
 
 
 # with open(os.path.join(repo_path, 'README.md'), 'r') as rf:

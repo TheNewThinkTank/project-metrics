@@ -43,28 +43,20 @@ repositories = user.get_repos()
 
 repo = repositories[0]
 repository = repo.name
-
 print(f'Processing repository: {repository}')
-
 os.system(f'git clone https://github.com/{username}/{repository}.git')
 
 repo_path = os.path.join(os.getcwd(), repository)
-
 print(f"{repo_path = }")
-
 size = get_repo_size(username, repository)
-
 print(f"{size = }")
 
-
-with open(os.path.join(repo_path, 'README.md'), 'r') as rf:
-    text = rf.read()
-    print("README before adding size: \n")
-    print(text)
-
+# with open(os.path.join(repo_path, 'README.md'), 'r') as rf:
+#     text = rf.read()
+#     print("README before adding size: \n")
+#     print(text)
 
 update_readme(os.path.join(repo_path, 'README.md'), size)
-
 
 with open(os.path.join(repo_path, 'README.md'), 'r') as rf:
     text = rf.read()
@@ -72,14 +64,14 @@ with open(os.path.join(repo_path, 'README.md'), 'r') as rf:
     print(text)
 
 
+print("git config:\n")
 
-# print("git config:\n")
+print("git config --global user.email 'ProjectMetricsGHAagent@example.com':")
+os.system(f"git config --global user.email 'ProjectMetricsGHAagent@example.com'")
 
-# print("git config --global user.email 'ProjectMetricsGHAagent@example.com':")
-# os.system(f"git config --global user.email 'ProjectMetricsGHAagent@example.com'")
+print("git config --global user.name 'ProjectMetricsGHAagent':")
+os.system(f"git config --global user.name 'ProjectMetricsGHAagent'")
 
-# print("git config --global user.name 'ProjectMetricsGHAagent':")
-# os.system(f"git config --global user.name 'ProjectMetricsGHAagent'")
 
 print("git status:")
 os.system(f"git status")
@@ -90,7 +82,6 @@ os.system(f"git add .")
 print("git status:")
 os.system(f"git status")
 
-# TODO: commit
 print("git commit -m 'update README':")
 os.system(f"git commit -m 'update README'")
 

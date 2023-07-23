@@ -1,6 +1,6 @@
 import os
 import requests
-from github import Github
+from github import Auth, Github
 
 
 def get_repo_size(username, repository):
@@ -28,10 +28,11 @@ def update_readme(repo_path, size):
 
 # Your GitHub credentials
 username = 'TheNewThinkTank'
-access_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
 
+access_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
+auth = Auth.Token(access_token)
 # Initialize the GitHub API client
-g = Github(access_token)
+g = Github(auth=auth)  # access_token)
 
 # Fetch all repositories for the given user
 user = g.get_user(username)
@@ -70,11 +71,30 @@ with open(os.path.join(repo_path, 'README.md'), 'r') as rf:
     print("README after adding size: \n")
     print(text)
 
+
+
+# print("git config:\n")
+
+# print("git config --global user.email 'ProjectMetricsGHAagent@example.com':")
+# os.system(f"git config --global user.email 'ProjectMetricsGHAagent@example.com'")
+
+# print("git config --global user.name 'ProjectMetricsGHAagent':")
+# os.system(f"git config --global user.name 'ProjectMetricsGHAagent'")
+
+print("git status:")
+os.system(f"git status")
+
+print(f"git add .:")
+os.system(f"git add .")
+
+print("git status:")
 os.system(f"git status")
 
 # TODO: commit
+print("git commit -m 'update README':")
 os.system(f"git commit -m 'update README'")
 
+print("git status:")
 os.system(f"git status")
 
 # TODO: push

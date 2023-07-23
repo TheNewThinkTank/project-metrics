@@ -42,7 +42,8 @@ def get_bb_repos(platforms: dict):
     #     for repo in repos
     #     ]
 
-    get_repos("bitbucket")
+    # get_repos("bitbucket")
+    ...
 
 
 def get_gh_repos(platforms: dict):
@@ -59,7 +60,8 @@ def get_gh_repos(platforms: dict):
     #         for repo in repos
     #         ]
 
-    get_repos("github")
+    # get_repos("github")
+    ...
 
 
 def get_gl_repos(platforms: dict):
@@ -76,7 +78,9 @@ def get_gl_repos(platforms: dict):
     #         for repo in repos
     #         ]
 
-    get_repos("gitlab")
+    # get_repos("gitlab")
+
+    ...
 
 
 def get_repo_info(platforms, repo) -> dict | None:
@@ -199,9 +203,9 @@ def get_all_repos(platforms):
     # print(get_gl_repos())
     # get_bb_repos()
 
-    gh_repos = get_gh_repos(platforms)
-    gl_repos = get_gl_repos(platforms)
-    # bb_repos = get_bb_repos(platforms)
+    gh_repos = get_repos("github")  # get_gh_repos(platforms)
+    gl_repos = get_repos("gitlab")  # get_gl_repos(platforms)
+    # bb_repos = get_repos("bitbucket")  # get_bb_repos(platforms)
 
     all_repos = []
     all_repos.extend(gh_repos)

@@ -76,14 +76,15 @@ repositories = user.get_repos()
 
 for repo in repositories:
     repository = repo.name
+
+    if repository == "TheNewThinkTank":
+        continue
+
     print(f'Processing repository: {repository}')
     # Clone the repository locally
     os.system(f'git clone https://github.com/{username}/{repository}.git')
     # Get the local path of the repository
     repo_path = os.path.join(os.getcwd(), repository)
-    size_badge = f"[![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/{repository}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/{repository}/archive/refs/heads/main.zip)"
-
-    # TODO: Dynamically check if README is md or rst format
 
     os.system(f'ls {repo_path} | grep README.md')
 
@@ -92,6 +93,7 @@ for repo in repositories:
     # Check if README.md exists and update it
     readme_md_path = Path(repo_path + '/README.md')
     if readme_md_path.exists():
+        size_badge = f"[![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/{repository}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/{repository}/archive/refs/heads/main.zip)"
         # update_readme(repo, size)
         contents = repo.get_contents("README.md", ref=repo.default_branch)
         content = contents.decoded_content.decode()
@@ -101,6 +103,13 @@ for repo in repositories:
     # Check if README.rst exists and update it
     readme_rst_path = Path(repo_path + '/README.rst')
     if readme_rst_path.exists():
+
+
+        # TODO: fix badge in rst file
+        size_badge = f""".. image:: https://img.shields.io/github/repo-size/TheNewThinkTank/{repository}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size
+                               :target: https://github.com/TheNewThinkTank/{repository}/archive/refs/heads/main.zip)"""
+
+
         # update_readme_rst(repo, size)
         contents = repo.get_contents("README.rst", ref=repo.default_branch)
         content = contents.decoded_content.decode()

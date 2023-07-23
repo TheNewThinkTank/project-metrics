@@ -74,7 +74,7 @@ filtered by most represented countries (here US is shown). These plots are gener
 ![](img/obesity_us.png)
 """
 
-if size_badge not in contents:
+if size_badge not in content:
     repo.update_file(contents.path, "Chore: update README", size_badge + contents, contents.sha, branch="master")
 
 

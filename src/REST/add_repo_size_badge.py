@@ -1,6 +1,6 @@
 import os
 import requests
-from github import Github  # pip install PyGithub
+from github import Github
 
 
 def get_repo_size(username, repository):
@@ -37,25 +37,40 @@ g = Github(access_token)
 user = g.get_user(username)
 repositories = user.get_repos()
 
+
+
+repo = repositories[0]
+repository = repo.name
+print(f'Processing repository: {repository}')
+os.system(f'git clone https://github.com/{username}/{repository}.git')
+repo_path = os.path.join(os.getcwd(), repository)
+size = get_repo_size(username, repository)
+update_readme(os.path.join(repo_path, 'README.md'), size)
+
+
+
+
+'''
 # Process each repository
 for repo in repositories:
 
-    print(f"{user = }")
+    # print(f"{user = }")
 
     repository = repo.name
     print(f'Processing repository: {repository}')
 
     # Clone the repository locally
-    # os.system(f'git clone https://github.com/{username}/{repository}.git')
+    os.system(f'git clone https://github.com/{username}/{repository}.git')
 
     # Get the local path of the repository
-    # repo_path = os.path.join(os.getcwd(), repository)
+    repo_path = os.path.join(os.getcwd(), repository)
 
     # Fetch the repository size using the GitHub API
-    # size = get_repo_size(username, repository)
+    size = get_repo_size(username, repository)
 
     # Update the README.md file with the badge if it's not already present
-    # update_readme(os.path.join(repo_path, 'README.md'), size)
+    update_readme(os.path.join(repo_path, 'README.md'), size)
 
     # Clean up by removing the local clone
     # os.system(f'rm -rf {repo_path}')
+'''

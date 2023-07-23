@@ -14,16 +14,16 @@ def get_repo_size(username, repository):
     return None
 
 
-def update_readme(repo_path, size):
-    """Function to update the README.md file"""
+# def update_readme(repo_path, size):
+#     """Function to update the README.md file"""
 
-    with open(repo_path, 'r') as f:
-        content = f.read()
-        if 'repo-size.svg' not in content:
-            badge = f'![Repo Size](https://img.shields.io/github/repo-size/{username}/{repository})'
-            new_content = badge + '\n' + content
-            with open(repo_path, 'w') as f:
-                f.write(new_content)
+#     with open(repo_path, 'r') as f:
+#         content = f.read()
+#         if 'repo-size.svg' not in content:
+#             badge = f'![Repo Size](https://img.shields.io/github/repo-size/{username}/{repository})'
+#             new_content = badge + '\n' + content
+#             with open(repo_path, 'w') as f:
+#                 f.write(new_content)
 
 
 # Your GitHub credentials
@@ -54,7 +54,7 @@ print(f"{size = }")
 
 contents = repo.get_contents("README.md", ref="master")
 
-repo.update_file(contents.path, size, size, contents.sha, branch="master")
+repo.update_file(contents.path, "Chore: update README", size, contents.sha, branch="master")
 
 
 # with open(os.path.join(repo_path, 'README.md'), 'r') as rf:

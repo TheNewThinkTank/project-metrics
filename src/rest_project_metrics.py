@@ -4,7 +4,7 @@
 from operator import itemgetter
 from pprint import pprint as pp
 
-import requests
+# import requests
 
 from config import platforms
 from get_repos import get_all_repos, get_repo_info  # , get_repos, print_repo_info
@@ -75,7 +75,7 @@ def main() -> None:
     """_summary_
     """
 
-    all_repos = get_all_repos(platforms)
+    all_repos = get_all_repos()  # platforms)
 
     # for repo in bb_repos:
     #     repo_info = get_repo_info(platforms, repo)

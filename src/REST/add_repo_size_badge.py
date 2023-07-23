@@ -85,8 +85,12 @@ for repo in repositories:
 
     # TODO: Dynamically check if README is md or rst format
 
+    os.system(f'ls {repo_path} | grep README.md')
+
+    os.system(f'ls {repo_path} | grep README.rst')
+
     # Check if README.md exists and update it
-    readme_md_path = Path('README.md')
+    readme_md_path = Path(repo_path + '/README.md')
     if readme_md_path.exists():
         # update_readme(repo, size)
         contents = repo.get_contents("README.md", ref=repo.default_branch)
@@ -95,7 +99,7 @@ for repo in repositories:
             repo.update_file(contents.path, "Chore: update README", size_badge + "\n" + content, contents.sha, branch=repo.default_branch)
 
     # Check if README.rst exists and update it
-    readme_rst_path = Path('README.rst')
+    readme_rst_path = Path(repo_path + '/README.rst')
     if readme_rst_path.exists():
         # update_readme_rst(repo, size)
         contents = repo.get_contents("README.rst", ref=repo.default_branch)

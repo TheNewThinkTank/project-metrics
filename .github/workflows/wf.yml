@@ -56,11 +56,11 @@ jobs:
 
       - name: REST repos missing description
         run: |
-          poetry run python src/REST/rest_project_metrics.py
+          poetry run python src/REST/project_metrics.py
 
       - name: GitHub GraphQL most popular repos
         run: |
-          poetry run python src/GraphQL/gh_graphql_get_popular_repos.py
+          poetry run python src/GraphQL/gh_get_popular_repos.py
 
       # - name: GitHub GraphQL largest repos
       #   run: |

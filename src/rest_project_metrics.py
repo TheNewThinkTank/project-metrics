@@ -9,78 +9,20 @@ import os
 import requests
 
 from config import platforms
+from get_repos import get_repos
 
 
-def get_repos(platform: str) -> list[dict]:
-    username = platforms[platform]["username"]
-    url = platforms[platform]["repos_url"]
+# def get_repos(platform: str) -> list[dict]:
+#     username = platforms[platform]["username"]
+#     url = platforms[platform]["repos_url"]
 
-    response = requests.get(url)
-    repos = response.json()["values"] if platform == "bitbucket" else response.json()
+#     response = requests.get(url)
+#     repos = response.json()["values"] if platform == "bitbucket" else response.json()
 
-    return [
-        {"name": repo["name"], "owner": username, "platform": platform}
-        for repo in repos
-        ]
-
-
-def get_bb_repos(platforms: dict):
-
-    # platform = "bitbucket"
-
-    # username = platforms[platform]["username"]
-    # url = platforms[platform]["repos_url"]
-
-    # response = requests.get(url)
-    # repos = response.json()["values"]
-
-    # # for repo in repos:
-    # #     print(repo["name"])
-
-    # return [
-    #     {"name": repo["name"], "owner": username, "platform": platform}
-    #     for repo in repos
-    #     ]
-
-    # get_repos("bitbucket")
-    ...
-
-
-def get_gh_repos(platforms: dict):
-
-    # platform = "github"
-    # username = platforms[platform]["username"]
-    # url = platforms[platform]["repos_url"]
-
-    # response = requests.get(url)
-    # repos = response.json()
-
-    # return [
-    #         {"name": repo["name"], "owner": username, "platform": platform}
-    #         for repo in repos
-    #         ]
-
-    # get_repos("github")
-    ...
-
-
-def get_gl_repos(platforms: dict):
-
-    # platform = "gitlab"
-    # username = platforms[platform]["username"]
-    # url = platforms[platform]["repos_url"]
-
-    # response = requests.get(url)
-    # repos = response.json()
-
-    # return [
-    #         {"name": repo["name"], "owner": username, "platform": platform}
-    #         for repo in repos
-    #         ]
-
-    # get_repos("gitlab")
-
-    ...
+#     return [
+#         {"name": repo["name"], "owner": username, "platform": platform}
+#         for repo in repos
+#         ]
 
 
 def get_repo_info(platforms, repo) -> dict | None:
@@ -199,13 +141,14 @@ def repo_missing_descriptions(repo_info):
     return False
 
 
-def get_all_repos(platforms):
+def get_all_repos(platforms: dict) -> list:
+
     # print(get_gl_repos())
     # get_bb_repos()
 
-    gh_repos = get_repos("github")  # get_gh_repos(platforms)
-    gl_repos = get_repos("gitlab")  # get_gl_repos(platforms)
-    # bb_repos = get_repos("bitbucket")  # get_bb_repos(platforms)
+    gh_repos = get_repos("github")
+    gl_repos = get_repos("gitlab")
+    # bb_repos = get_repos("bitbucket")
 
     all_repos = []
     all_repos.extend(gh_repos)
@@ -252,9 +195,7 @@ def main() -> None:
 
     all_repos = get_all_repos(platforms)
 
-    # Iterate through the repositories and print their information
-
-    # for repo in get_bb_repos():
+    # for repo in bb_repos:
     #     repo_info = get_repo_info(platforms, repo)
     #     print_repo_info(repo_info)
     #     print()  # Print a blank line to separate the output for each repository

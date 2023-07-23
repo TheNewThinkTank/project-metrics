@@ -96,11 +96,11 @@ def get_repo_info(platforms, repo) -> dict | None:
     return info
 
 
-def print_repo_info(repo_info) -> None:
+def print_repo_info(repo_info: dict) -> None:
     """_summary_
 
     :param repo_info: _description_
-    :type repo_info: _type_
+    :type repo_info: dict
     """
 
     print(f"Name: {repo_info['name']}")
@@ -121,9 +121,11 @@ def print_repo_info(repo_info) -> None:
 
 
 def repo_missing_descriptions(repo_info):
-    if not repo_info["description"]:
-        return True
-    return False
+    # if not repo_info["description"]:
+    #     return True
+    # return False
+
+    return False if repo_info["description"] else True
 
 
 def get_all_repos(platforms: dict) -> list:

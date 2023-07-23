@@ -52,9 +52,9 @@ size = get_repo_size(username, repository)
 print(f"{size = }")
 
 
-contents = repo.get_contents("README.md", ref="test")
+contents = repo.get_contents("README.md", ref="master")
 
-repo.update_file(contents.path, size, size, contents.sha, branch="main")
+repo.update_file(contents.path, size, size, contents.sha, branch="master")
 
 
 # with open(os.path.join(repo_path, 'README.md'), 'r') as rf:

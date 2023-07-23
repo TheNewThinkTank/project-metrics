@@ -54,6 +54,7 @@ print(f"{repo_path = }")
 size_badge = f"[![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/{repository}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/{repository}/archive/refs/heads/main.zip)"
 
 contents = repo.get_contents("README.md", ref="master")
+content = contents.decoded_content.decode()
 
 tmp = """
 # AACT-Analysis

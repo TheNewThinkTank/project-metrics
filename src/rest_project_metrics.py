@@ -8,18 +8,15 @@ import os
 
 import requests
 
+from config import platforms
 
-def get_bb_repos(platforms: dict):
 
-    platform = "bitbucket"
+def get_repos(platform: str) -> list[dict]:
     username = platforms[platform]["username"]
     url = platforms[platform]["repos_url"]
 
     response = requests.get(url)
-    repos = response.json()["values"]
-
-    # for repo in repos:
-    #     print(repo["name"])
+    repos = response.json()["values"] if platform == "bitbucket" else response.json()
 
     return [
         {"name": repo["name"], "owner": username, "platform": platform}
@@ -27,34 +24,59 @@ def get_bb_repos(platforms: dict):
         ]
 
 
+def get_bb_repos(platforms: dict):
+
+    # platform = "bitbucket"
+
+    # username = platforms[platform]["username"]
+    # url = platforms[platform]["repos_url"]
+
+    # response = requests.get(url)
+    # repos = response.json()["values"]
+
+    # # for repo in repos:
+    # #     print(repo["name"])
+
+    # return [
+    #     {"name": repo["name"], "owner": username, "platform": platform}
+    #     for repo in repos
+    #     ]
+
+    get_repos("bitbucket")
+
+
 def get_gh_repos(platforms: dict):
 
-    platform = "github"
-    username = platforms[platform]["username"]
-    url = platforms[platform]["repos_url"]
+    # platform = "github"
+    # username = platforms[platform]["username"]
+    # url = platforms[platform]["repos_url"]
 
-    response = requests.get(url)
-    repos = response.json()
+    # response = requests.get(url)
+    # repos = response.json()
 
-    return [
-            {"name": repo["name"], "owner": username, "platform": platform}
-            for repo in repos
-            ]
+    # return [
+    #         {"name": repo["name"], "owner": username, "platform": platform}
+    #         for repo in repos
+    #         ]
+
+    get_repos("github")
 
 
 def get_gl_repos(platforms: dict):
 
-    platform = "gitlab"
-    username = platforms[platform]["username"]
-    url = platforms[platform]["repos_url"]
+    # platform = "gitlab"
+    # username = platforms[platform]["username"]
+    # url = platforms[platform]["repos_url"]
 
-    response = requests.get(url)
-    repos = response.json()
+    # response = requests.get(url)
+    # repos = response.json()
 
-    return [
-            {"name": repo["name"], "owner": username, "platform": platform}
-            for repo in repos
-            ]
+    # return [
+    #         {"name": repo["name"], "owner": username, "platform": platform}
+    #         for repo in repos
+    #         ]
+
+    get_repos("gitlab")
 
 
 def get_repo_info(platforms, repo) -> dict | None:
@@ -223,34 +245,6 @@ def get_popular_repos(platforms, all_repos):
 def main() -> None:
     """_summary_
     """
-
-    # Define the API endpoints and access tokens for each platform
-    platforms = {
-        "github": {
-            "username": "TheNewThinkTank",
-            "repos_url": "https://api.github.com/users/TheNewThinkTank/repos",
-            "api_url": "https://api.github.com/repos/{owner}/{repo}",
-            "access_token": os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"],
-            "stars": "stargazers_count",
-            "url": "html_url"
-        },
-        "gitlab": {
-            "username": "TheNewThinkTank",
-            "repos_url": "https://gitlab.com/api/v4/users/TheNewThinkTank/projects?owned=true&visibility=public",
-            "api_url": "https://gitlab.com/api/v4/projects/{owner}%2F{repo}",
-            "access_token": os.environ["PROJECT_METRICS_GITLAB_ACCESS_TOKEN"],
-            "stars": "star_count",
-            "url": "web_url"
-        },
-        # "bitbucket": {
-        #     "username": "Gustav_Collin_Rasmussen",
-        #     "repos_url": "https://api.bitbucket.org/2.0/repositories/Gustav_Collin_Rasmussen",
-        #     "api_url": "https://api.bitbucket.org/2.0/repositories/{owner}/{repo}",
-        #     "access_token": os.environ["PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN"],
-        #     "stars": "",
-        #     "url": ""
-        # },
-    }
 
     all_repos = get_all_repos(platforms)
 

@@ -88,8 +88,11 @@ os.system(f"git commit -m 'update README'")
 print("git status:")
 os.system(f"git status")
 
-# TODO: push
-# os.system(f"git push -m 'update README'")
+print("git push")
+os.system(f"git push")
+
+print("remove local clone of repo")
+os.system(f'rm -rf {repo_path}')
 
 ########## Testing ###################
 

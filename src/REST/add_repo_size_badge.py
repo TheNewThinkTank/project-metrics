@@ -54,7 +54,7 @@ print(f"{size = }")
 
 contents = repo.get_contents("README.md", ref="test")
 
-repo.update_file(contents.path, size, size, contents.sha, branch="test")
+repo.update_file(contents.path, size, size, contents.sha, branch="main")
 
 
 # with open(os.path.join(repo_path, 'README.md'), 'r') as rf:

@@ -10,7 +10,7 @@ from config import platforms
 from get_repos import get_repos
 
 
-def get_repo_info(platforms, repo) -> dict | None:
+def get_repo_info(platforms: dict, repo) -> dict | None:
     """Get the information for a single repository.
 
     :param platforms: _description_
@@ -30,7 +30,6 @@ def get_repo_info(platforms, repo) -> dict | None:
     response = requests.get(api_url, headers=headers)
     data = response.json()
 
-    # DEBUG
     # pp(data)
     # for k in sorted(data.keys()):
     #     print(k)
@@ -120,10 +119,14 @@ def print_repo_info(repo_info: dict) -> None:
     #     print(f"\t{language['name']}: {language['bytes_of_code']} bytes")
 
 
-def repo_missing_descriptions(repo_info):
-    # if not repo_info["description"]:
-    #     return True
-    # return False
+def repo_missing_descriptions(repo_info: dict) -> bool:
+    """_summary_
+
+    :param repo_info: _description_
+    :type repo_info: dict
+    :return: _description_
+    :rtype: bool
+    """
 
     return False if repo_info["description"] else True
 
@@ -145,7 +148,16 @@ def get_all_repos(platforms: dict) -> list:
     return all_repos
 
 
-def get_repos_wo_desc(platforms, all_repos):
+def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:
+    """_summary_
+
+    :param platforms: _description_
+    :type platforms: dict
+    :param all_repos: _description_
+    :type all_repos: list
+    :return: _description_
+    :rtype: list
+    """
 
     print("  ####################     Repos missing descriptions:     ####################  ")
 
@@ -160,7 +172,16 @@ def get_repos_wo_desc(platforms, all_repos):
     return repos_wo_desc
 
 
-def get_popular_repos(platforms, all_repos):
+def get_popular_repos(platforms: dict[str, dict], all_repos: list) -> list:
+    """_summary_
+
+    :param platforms: _description_
+    :type platforms: dict[str, dict]
+    :param all_repos: _description_
+    :type all_repos: list
+    :return: _description_
+    :rtype: list
+    """
 
     print("  ####################     Popular repos:     ####################  ")
 

@@ -18,25 +18,6 @@ def get_repo_size(username: str, repository: str) -> str | None:
     return None
 
 
-###################  Test on a single repo before rolling out changes to all repos  ###################
-
-# repo = repositories[0]
-# repository = repo.name
-# print(f'Processing repository: {repository}')
-# os.system(f'git clone https://github.com/{username}/{repository}.git')
-# repo_path = os.path.join(os.getcwd(), repository)
-# print(f"{repo_path = }")
-# # size = get_repo_size(username, repository)
-# # print(f"{size = }")
-# size_badge = f"[![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/{repository}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/{repository}/archive/refs/heads/main.zip)"
-# contents = repo.get_contents("README.md", ref="master")
-# content = contents.decoded_content.decode()
-# if size_badge not in content:
-#     repo.update_file(contents.path, "Chore: update README", size_badge + contents, contents.sha, branch="master")
-
-###################  Test on a single repo before rolling out changes to all repos  ###################
-
-
 def update_readme(repo):
 
     size_badge = f"[![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/{repo.name}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/{repo.name}/archive/refs/heads/main.zip)"

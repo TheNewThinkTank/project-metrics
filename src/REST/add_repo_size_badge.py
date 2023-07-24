@@ -18,17 +18,6 @@ def get_repo_size(username: str, repository: str) -> str | None:
     return None
 
 
-# GitHub credentials
-username = 'TheNewThinkTank'
-access_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
-auth = Auth.Token(access_token)
-# Initialize the GitHub API client
-g = Github(auth=auth)
-# Fetch all repositories for the given user
-user = g.get_user(username)
-repositories = user.get_repos()
-
-
 ###################  Test on a single repo before rolling out changes to all repos  ###################
 
 # repo = repositories[0]
@@ -52,11 +41,11 @@ def update_readme(repo):
 
     size_badge = f"[![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/{repo.name}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/{repo.name}/archive/refs/heads/main.zip)"
 
-    repo_contents = repo.get_contents("README.md", ref=repo.default_branc)
+    repo_contents = repo.get_contents("README.md", ref=repo.default_branch)
     content = repo_contents.decoded_content.decode()
     if size_badge not in content:
         updated_content = size_badge + '\n' + content
-        repo.update_file(repo_contents.path, "chore: update README.md", updated_content.encode(), repo_contents.sha, branch=repo.default_branc)
+        repo.update_file(repo_contents.path, "chore: update README.md", updated_content.encode(), repo_contents.sha, branch=repo.default_branch)
 
 
 def update_readme_rst(repo):
@@ -64,14 +53,14 @@ def update_readme_rst(repo):
     size_badge = f""".. image:: https://img.shields.io/github/repo-size/TheNewThinkTank/{repo.name}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size
                             :target: https://github.com/TheNewThinkTank/{repo.name}/archive/refs/heads/main.zip)"""
 
-    repo_contents = repo.get_contents("README.rst", ref=repo.default_branc)
+    repo_contents = repo.get_contents("README.rst", ref=repo.default_branch)
     content = repo_contents.decoded_content.decode()
     if size_badge not in content:
         updated_content = size_badge + '\n\n' + content
-        repo.update_file(repo_contents.path, "chore: update README.rst", updated_content.encode(), repo_contents.sha, branch=repo.default_branc)
+        repo.update_file(repo_contents.path, "chore: update README.rst", updated_content.encode(), repo_contents.sha, branch=repo.default_branch)
 
 
-for repo in repositories:
+def update_repo(username, repo):
     repository = repo.name
     # Skip the profile page
     if repository == username:
@@ -91,3 +80,27 @@ for repo in repositories:
     readme_rst_path = Path(repo_path + '/README.rst')
     if readme_rst_path.exists():
         update_readme_rst(repo)
+
+
+def update_all_repos(username, repositories):
+    for repo in repositories:
+        update_repo(username, repo)
+
+
+def main():
+
+    # GitHub credentials
+    username = 'TheNewThinkTank'
+    access_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
+    auth = Auth.Token(access_token)
+    # Initialize the GitHub API client
+    g = Github(auth=auth)
+    # Fetch all repositories for the given user
+    user = g.get_user(username)
+    repositories = user.get_repos()
+
+    update_all_repos(username, repositories)
+
+
+if __name__ == "__main__":
+    main()

@@ -42,15 +42,11 @@ def update_readme_rst(repo):
 
 
 def update_repo(username, repo):
-    repository = repo.name
-    # Skip the profile page
-    if repository == username:
-        continue
-    print(f'Processing repository: {repository}')
+    print(f'Processing repository: {repo.name}')
     # Clone the repository locally
-    os.system(f'git clone https://github.com/{username}/{repository}.git')
+    os.system(f'git clone https://github.com/{username}/{repo.name}.git')
     # Get the local path of the repository
-    repo_path = os.path.join(os.getcwd(), repository)
+    repo_path = os.path.join(os.getcwd(), repo.name)
 
     # Check if README.md exists and update it
     readme_md_path = Path(repo_path + '/README.md')
@@ -65,6 +61,11 @@ def update_repo(username, repo):
 
 def update_all_repos(username, repositories):
     for repo in repositories:
+
+        # Skip the profile page
+        if repo.name == username:
+            continue
+
         update_repo(username, repo)
 
 

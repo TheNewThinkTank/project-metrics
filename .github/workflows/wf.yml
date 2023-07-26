@@ -1,7 +1,7 @@
 ---
 name: Project Metrics Workflow
 
-on:
+on:  # Only set manual trigger, as the wf will otherwise recursively keep invoking itself
   # push:
   #   branches:
   #     - main

@@ -2,6 +2,8 @@
 import os
 import requests
 
+from save_file_to_github import save_file_to_github
+
 
 def fetch_top_repos(username, token):
     url = 'https://api.github.com/graphql'
@@ -40,6 +42,8 @@ def fetch_top_repos(username, token):
 def main():
   token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
   fetch_top_repos('TheNewThinkTank', token)
+
+  # TODO: write top_repos to file, and push file to repo
 
 
 if __name__ == "__main__":

@@ -112,10 +112,10 @@ def main() -> None:
             # Get the existing file (if it exists)
             file = repo.get_contents(file_path, ref=branch_name)
             # Update the file
-            repo.update_file(file_path, "Updating file", file_content, file.sha, branch=branch_name)
+            repo.update_file(file_path, "Updating file", *file_content, file.sha, branch=branch_name)
         except Exception as e:
             # If the file doesn't exist, create it
-            repo.create_file(file_path, "Creating file", file_content, branch=branch_name)
+            repo.create_file(file_path, "Creating file", *file_content, branch=branch_name)
 
     repo_name = 'project-metrics'
     file_path = 'testfile.txt'

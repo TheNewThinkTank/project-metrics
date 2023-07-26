@@ -351,6 +351,18 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "tomark"
+version = "0.1.4"
+description = "Convert a list of dictionaries to a markdown formatted table."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "tomark-0.1.4-py3-none-any.whl", hash = "sha256:e0b18f3cc7e1d6312ec3efa5d032b2a48bd24b079a5e91439a37e27c9c9b1455"},
+    {file = "tomark-0.1.4.tar.gz", hash = "sha256:437f36f72621bdeb0897d655dd0f319520c39973977314b848de2491eaf2e740"},
+]
+
+[[package]]
 name = "urllib3"
 version = "2.0.4"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -456,4 +468,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "45b8bd7f5c1b986e820f8f6f521d0f145326d5807fda207a6925839b7bd35563"
+content-hash = "3b5727c07b4549a6584120e025424f19b59c0768c7f71c7193300ca9ef538a79"

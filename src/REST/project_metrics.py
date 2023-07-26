@@ -6,6 +6,7 @@ import os
 from pprint import pprint as pp
 
 from github import Github
+from tomark import Tomark
 
 from config import platforms
 from get_repos import get_all_repos, get_repo_info
@@ -120,8 +121,11 @@ def main() -> None:
     repo_name = 'project-metrics'
     file_path = 'testfile.txt'
 
-    dict_strings = [str(d) for d in repos_wo_desc]
-    file_content = '\n'.join(dict_strings)
+    # dict_strings = [str(d) for d in repos_wo_desc]
+    # file_content = '\n'.join(dict_strings)
+
+    file_content = Tomark.table(repos_wo_desc)
+    print(file_content)
 
     github_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
     save_file_to_github(repo_name, file_path, file_content, github_token)

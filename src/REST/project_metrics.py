@@ -119,7 +119,7 @@ def main() -> None:
             repo.create_file(file_path, "Creating file", file_content, branch=branch_name)
 
     repo_name = 'project-metrics'
-    file_path = 'testfile.txt'
+    file_path = 'testfile.md'  # 'testfile.txt'
 
     # dict_strings = [str(d) for d in repos_wo_desc]
     # file_content = '\n'.join(dict_strings)

@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import requests
+from typing import Literal
 
 from github import Auth, Github
 
@@ -18,7 +19,7 @@ def get_repo_size(username: str, repository: str) -> str | None:
     return None
 
 
-def update_readme(repo, format):
+def update_readme(repo, format: Literal['md', 'rst']):
 
     if format == 'md':
         size_badge = f"[![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/{repo.name}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/{repo.name}/archive/refs/heads/main.zip)"

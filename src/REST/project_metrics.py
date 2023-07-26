@@ -2,7 +2,10 @@
 """
 
 # from operator import itemgetter
+import os
 from pprint import pprint as pp
+
+from github import Github
 
 from config import platforms
 from get_repos import get_all_repos, get_repo_info
@@ -95,6 +98,31 @@ def main() -> None:
         for repo in repos_wo_desc:
             pp(repo)
             wf.write(str(repo))
+
+    # TODO: git push testfile.txt
+
+
+    def save_file_to_github(repo_name, file_path, file_content, github_token):
+        g = Github(github_token)
+        repo = g.get_user().get_repo(repo_name)
+
+        branch_name = repo.default_branch  # 'main'
+
+        try:
+            # Get the existing file (if it exists)
+            file = repo.get_contents(file_path, ref=branch_name)
+            # Update the file
+            repo.update_file(file_path, "Updating file", file_content, file.sha, branch=branch_name)
+        except Exception as e:
+            # If the file doesn't exist, create it
+            repo.create_file(file_path, "Creating file", file_content, branch=branch_name)
+
+    repo_name = 'project-metrics'
+    file_path = 'testfile.txt'
+    file_content = repos_wo_desc
+    github_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
+
+    save_file_to_github(repo_name, file_path, file_content, github_token)
 
     # popular_repos = get_popular_repos(platforms, all_repos)
     # for repo in popular_repos:

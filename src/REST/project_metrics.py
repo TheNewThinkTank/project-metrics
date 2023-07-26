@@ -10,7 +10,7 @@ from tomark import Tomark
 
 from config import platforms
 from get_repos import get_all_repos, get_repo_info
-from src.save_file_to_github import save_file_to_github
+import src.save_file_to_github
 
 
 def repo_missing_descriptions(repo_info: dict) -> bool:

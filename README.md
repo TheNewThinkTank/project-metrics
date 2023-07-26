@@ -2,7 +2,7 @@
 # project-metrics
 Overview of projects and their health
 
-[popular repos](data/popular_repos.md)
+[popular repos](popular_repos.md)
 
 [repos without description](repos_wo_desc.md)
 

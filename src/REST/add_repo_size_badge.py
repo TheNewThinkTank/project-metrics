@@ -18,27 +18,21 @@ def get_repo_size(username: str, repository: str) -> str | None:
     return None
 
 
-def update_readme(repo):
+def update_readme(repo, format):
 
-    size_badge = f"[![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/{repo.name}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/{repo.name}/archive/refs/heads/main.zip)"
+    if format == 'md':
+        size_badge = f"[![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/{repo.name}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/{repo.name}/archive/refs/heads/main.zip)"
+        newline = '\n'
+    elif format == 'rst':
+        size_badge = f""".. image:: https://img.shields.io/github/repo-size/TheNewThinkTank/{repo.name}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size
+                                :target: https://github.com/TheNewThinkTank/{repo.name}/archive/refs/heads/main.zip)"""
+        newline = '\n\n'
 
-    repo_contents = repo.get_contents("README.md", ref=repo.default_branch)
+    repo_contents = repo.get_contents(f"README.{format}", ref=repo.default_branch)
     content = repo_contents.decoded_content.decode()
     if size_badge not in content:
-        updated_content = size_badge + '\n' + content
-        repo.update_file(repo_contents.path, "chore: update README.md", updated_content.encode(), repo_contents.sha, branch=repo.default_branch)
-
-
-def update_readme_rst(repo):
-
-    size_badge = f""".. image:: https://img.shields.io/github/repo-size/TheNewThinkTank/{repo.name}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size
-                            :target: https://github.com/TheNewThinkTank/{repo.name}/archive/refs/heads/main.zip)"""
-
-    repo_contents = repo.get_contents("README.rst", ref=repo.default_branch)
-    content = repo_contents.decoded_content.decode()
-    if size_badge not in content:
-        updated_content = size_badge + '\n\n' + content
-        repo.update_file(repo_contents.path, "chore: update README.rst", updated_content.encode(), repo_contents.sha, branch=repo.default_branch)
+        updated_content = size_badge + newline + content
+        repo.update_file(repo_contents.path, f"chore: update README.{format}", updated_content.encode(), repo_contents.sha, branch=repo.default_branch)
 
 
 def update_repo(username, repo):
@@ -51,12 +45,12 @@ def update_repo(username, repo):
     # Check if README.md exists and update it
     readme_md_path = Path(repo_path + '/README.md')
     if readme_md_path.exists():
-        update_readme(repo)
+        update_readme(repo, 'md')
 
     # Check if README.rst exists and update it
     readme_rst_path = Path(repo_path + '/README.rst')
     if readme_rst_path.exists():
-        update_readme_rst(repo)
+        update_readme(repo, 'rst')
 
 
 def update_all_repos(username, repositories):

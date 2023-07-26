@@ -117,7 +117,7 @@ def main() -> None:
     #         wf.write(str(repo))
 
     repo_name = 'project-metrics'
-    file_path = 'testfile.md'  # 'testfile.txt'
+    file_path = 'repos_wo_desc.md'
 
     # dict_strings = [str(d) for d in repos_wo_desc]
     # file_content = '\n'.join(dict_strings)

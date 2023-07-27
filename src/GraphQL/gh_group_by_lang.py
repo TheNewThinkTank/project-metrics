@@ -2,9 +2,10 @@
 import os
 import requests
 
-from tomark import Tomark
+# from tomark import Tomark
 
 from save_file_to_github import save_file_to_github
+from make_md_table import table
 
 
 def group_repos_by_language(username: str, token: str) -> list:
@@ -47,7 +48,9 @@ def group_repos_by_language(username: str, token: str) -> list:
             for repo in repos:
                 print(f'- {repo}')
             print()
+
         return [language_groups]
+
     else:
         print(f'Request failed with status code {response.status_code}')
         print(response.text)
@@ -57,6 +60,6 @@ def group_repos_by_language(username: str, token: str) -> list:
 repo_name = 'project-metrics'
 lang_repos = group_repos_by_language('TheNewThinkTank', os.environ["FG_GITHUB_ACCESS_TOKEN"])
 file_path = 'query-results/group_by_lang.md'
-file_content = Tomark.table(lang_repos)
+file_content = table(lang_repos)  # Tomark.table(lang_repos)
 
 save_file_to_github(repo_name, file_path, file_content)

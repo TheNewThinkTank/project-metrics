@@ -6,9 +6,17 @@ Overview of projects and their health
 [repos without description](query-results/repos_wo_desc.md)<br>
 [repos grouped by language](query-results/group_by_lang.md)
 
+## Current features
+- GitHub Actions workflow.<br>NB: as the repo updates itself, the only trigger should be `workflow_dispatch` to avoid recursive workflow invocation.
+- GitHub Actions updates this repo's README (links above) with following projects metrics:
+  - top 10 most popular GitHub repos, by star count
+  - repos lacking any description, across GitHub and GitLab
+  - repos grouped by programming language
+- All GitHub repos (including this one) get a repo size badge on top of their README<br>
+  NB: does not affect the GitHub profile page, which is a special repo.
+  - support for both `.md` and `.rst` files
+
 ## Upcoming features
-- GitHub Actions to update README with projects metrics
 - group by category (using tags), e.g. health (nutrition, fitness, athlete profiler)
 - group by repo size, display largest and smallest repos
-- group by language and tech
 - group by created_at, display newest and oldest repos

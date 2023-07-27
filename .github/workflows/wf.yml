@@ -65,17 +65,13 @@ jobs:
       # - name: check path
       #   run: poetry run python -c "import sys; print(sys.path)"
 
-      - name: echo github workspace
-        run: |
-          echo ${{ github.workspace }}
-
-      - name: update repos
-        run: |
-          poetry run python src/REST/add_repo_size_badge.py
+      # - name: echo github workspace
+      #   run: |
+      #     echo ${{ github.workspace }}  # /home/runner/work/project-metrics/project-metrics
 
       - name: REST repos missing description
         env:
-          PYTHONPATH: ${{ github.workspace }}/project-metrics/src
+          PYTHONPATH: ${{ github.workspace }}/src
           # /home/runner/work/project-metrics/project-metrics/src
         run: |
           poetry run python src/REST/project_metrics.py
@@ -84,8 +80,14 @@ jobs:
         run: poetry run python -c "import sys; print(sys.path)"
 
       - name: GitHub GraphQL most popular repos
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
         run: |
           poetry run python src/GraphQL/gh_get_popular_repos.py
+
+      - name: update repos
+        run: |
+          poetry run python src/REST/add_repo_size_badge.py
 
       # - name: GitHub GraphQL largest repos
       #   run: |

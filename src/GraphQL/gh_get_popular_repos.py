@@ -2,10 +2,6 @@
 import os
 import requests
 
-# import sys
-# sys.path.append(".")
-# sys.path.append("..")
-
 from tomark import Tomark
 
 from save_file_to_github import save_file_to_github
@@ -62,7 +58,6 @@ def main():
   file_path = 'popular_repos.md'
 
   file_content = Tomark.table(popular_repos)
-  # print(file_content)
   github_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
   save_file_to_github(repo_name, file_path, file_content, github_token)
 

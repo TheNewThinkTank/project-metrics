@@ -3,8 +3,7 @@ import os
 from pprint import pprint as pp
 import requests
 
-from tomark import Tomark
-
+from make_md_table import table
 from save_file_to_github import save_file_to_github
 
 
@@ -56,7 +55,7 @@ def main():
   popular_repos = fetch_top_repos('TheNewThinkTank', token)
   repo_name = 'project-metrics'
   file_path = 'query-results/popular_repos.md'
-  file_content = Tomark.table(popular_repos)
+  file_content = table(popular_repos)
   save_file_to_github(repo_name, file_path, file_content)
 
 

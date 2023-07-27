@@ -3,12 +3,10 @@
 
 # from operator import itemgetter
 
-from tomark import Tomark
-
 from config import platforms
 from get_repos import get_all_repos, get_repo_info, print_repo_info
-
 from save_file_to_github import save_file_to_github
+from make_md_table import table
 
 
 def repo_missing_descriptions(repo_info: dict) -> bool:
@@ -88,7 +86,7 @@ def main() -> None:
 
     repo_name = 'project-metrics'
     file_path = 'query-results/repos_wo_desc.md'
-    file_content = Tomark.table(repos_wo_desc)
+    file_content = table(repos_wo_desc)
     save_file_to_github(repo_name, file_path, file_content)
 
     # popular_repos = get_popular_repos(platforms, all_repos)

@@ -54,6 +54,9 @@ jobs:
       - name: Install Dependencies
         run: poetry install
 
+      - name: check path
+        run: poetry run python -c "import sys; print(sys.path)"
+
       - name: update repos
         run: |
           poetry run python src/REST/add_repo_size_badge.py

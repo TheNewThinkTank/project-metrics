@@ -2,7 +2,10 @@
 import os
 import requests
 
-import src.save_file_to_github
+import sys
+sys.path.append("..")
+
+from save_file_to_github import save_file_to_github
 
 
 def fetch_top_repos(username, token):

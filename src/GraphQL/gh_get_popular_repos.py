@@ -3,6 +3,7 @@ import os
 import requests
 
 import sys
+sys.path.append(".")
 sys.path.append("..")
 
 from save_file_to_github import save_file_to_github

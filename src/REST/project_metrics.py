@@ -12,6 +12,7 @@ from config import platforms
 from get_repos import get_all_repos, get_repo_info
 
 import sys
+sys.path.append(".")
 sys.path.append("..")
 
 from save_file_to_github import save_file_to_github

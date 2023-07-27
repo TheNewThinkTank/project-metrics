@@ -20,17 +20,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-    # - uses: actions/checkout@v3
-    # - uses: actions/setup-python@v4
-    #   with:
-    #     python-version: 3.11
-    # - uses: snok/install-poetry@v1
-    #   with:
-    #     version: 1.2.0
-    # - name: Install dependencies
-    #    run: poetry install
-
       - name: Check out repository code
         uses: actions/checkout@v3
 
@@ -54,36 +43,23 @@ jobs:
       - name: Install Dependencies
         run: poetry install
 
-      - name: check path
-        run: poetry run python -c "import sys; print(sys.path)"
-
-      # echo 'src/save_file_to_github.py' > /home/runner/.cache/pypoetry/virtualenvs/project-metrics-bF0Fupif-py3.11/lib/python3.11/site-packages/project.pth
-      # - name: set pythonpath
-      #   run: |
-      #     echo “::add-path::src”
-
-      # - name: check path
-      #   run: poetry run python -c "import sys; print(sys.path)"
-
-      # - name: echo github workspace
-      #   run: |
-      #     echo ${{ github.workspace }}  # /home/runner/work/project-metrics/project-metrics
-
       - name: REST repos missing description
         env:
           PYTHONPATH: ${{ github.workspace }}/src
-          # /home/runner/work/project-metrics/project-metrics/src
         run: |
           poetry run python src/REST/project_metrics.py
 
-      - name: check path
-        run: poetry run python -c "import sys; print(sys.path)"
-
-      - name: GitHub GraphQL most popular repos
+      - name: GH GraphQL most popular repos
         env:
           PYTHONPATH: ${{ github.workspace }}/src
         run: |
           poetry run python src/GraphQL/gh_get_popular_repos.py
+
+      - name: GH GraphQL repos by lang
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
+        run: |
+          poetry run python src/GraphQL/gh_group_by_lang.py
 
       - name: update repos
         run: |
@@ -92,12 +68,3 @@ jobs:
       # - name: GitHub GraphQL largest repos
       #   run: |
       #       poetry run python src/gh_graphql_get_largest_repos.py
-
-      # - name: Commit and push if changed
-      #   run: |-
-      #     git diff
-      #     git config --global user.name "project-metrics-bot"
-      #     git config --global user.email "project-metrics-bot@hotmail.com"
-      #     git add -A
-      #     git commit -m "chore: project-metrics-bot updated repos info" || exit 0
-      #     git push

@@ -88,12 +88,7 @@ def main() -> None:
 
     repo_name = 'project-metrics'
     file_path = 'query-results/repos_wo_desc.md'
-
-    # dict_strings = [str(d) for d in repos_wo_desc]
-    # file_content = '\n'.join(dict_strings)
-
     file_content = Tomark.table(repos_wo_desc)
-    # print(file_content)
     save_file_to_github(repo_name, file_path, file_content)
 
     # popular_repos = get_popular_repos(platforms, all_repos)

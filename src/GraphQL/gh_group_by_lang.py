@@ -1,6 +1,13 @@
+
+import os
 import requests
 
-def group_repos_by_language(username, token):
+from tomark import Tomark
+
+from save_file_to_github import save_file_to_github
+
+
+def group_repos_by_language(username: str, token: str) -> list:
     url = 'https://api.github.com/graphql'
     headers = {'Authorization': f'bearer {token}'}
     query = '''
@@ -40,9 +47,16 @@ def group_repos_by_language(username, token):
             for repo in repos:
                 print(f'- {repo}')
             print()
+        return [language_groups]
     else:
         print(f'Request failed with status code {response.status_code}')
         print(response.text)
+        return []
 
-# Replace 'YOUR_USERNAME' and 'YOUR_TOKEN' with your GitHub username and personal access token
-group_repos_by_language('YOUR_USERNAME', 'YOUR_TOKEN')
+
+repo_name = 'project-metrics'
+lang_repos = group_repos_by_language('TheNewThinkTank', os.environ["FG_GITHUB_ACCESS_TOKEN"])
+file_path = 'query-results/group_by_lang.md'
+file_content = Tomark.table(lang_repos)
+
+save_file_to_github(repo_name, file_path, file_content)

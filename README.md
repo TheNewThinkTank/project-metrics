@@ -3,7 +3,8 @@
 Overview of projects and their health
 
 [popular repos](query-results/popular_repos.md)<br>
-[repos without description](query-results/repos_wo_desc.md)
+[repos without description](query-results/repos_wo_desc.md)<br>
+[repos grouped by language](query-results/group_by_lang.md)
 
 ## Upcoming features
 - GitHub Actions to update README with projects metrics

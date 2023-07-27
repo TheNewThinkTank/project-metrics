@@ -21,6 +21,7 @@ def table(data: list[dict]) -> str:
         md_row = ""
         for _, v in row.items():
             if isinstance(v, list):
+
                 lang = v if v else []
                 lang += [''] * (max_lang - len(lang))
                 md_row += '| ' + '\n'.join(map(str, lang)) + ' '

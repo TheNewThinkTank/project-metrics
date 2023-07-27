@@ -1,8 +1,10 @@
 
+import os
+
 from github import Github
 
 
-def save_file_to_github(repo_name: str, file_path: str, file_content, github_token):
+def save_file_to_github(repo_name: str, file_path: str, file_content) -> None:
     """_summary_
 
     :param repo_name: _description_
@@ -11,13 +13,10 @@ def save_file_to_github(repo_name: str, file_path: str, file_content, github_tok
     :type file_path: _type_
     :param file_content: _description_
     :type file_content: _type_
-    :param github_token: _description_
-    :type github_token: _type_
     """
 
-    g = Github(github_token)
+    g = Github(os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"])
     repo = g.get_user().get_repo(repo_name)
-
     branch_name = repo.default_branch
 
     try:

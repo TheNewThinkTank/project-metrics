@@ -2,7 +2,6 @@
 """
 
 # from operator import itemgetter
-import os
 
 from tomark import Tomark
 
@@ -95,8 +94,7 @@ def main() -> None:
 
     file_content = Tomark.table(repos_wo_desc)
     # print(file_content)
-    github_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
-    save_file_to_github(repo_name, file_path, file_content, github_token)
+    save_file_to_github(repo_name, file_path, file_content)
 
     # popular_repos = get_popular_repos(platforms, all_repos)
     # for repo in popular_repos:

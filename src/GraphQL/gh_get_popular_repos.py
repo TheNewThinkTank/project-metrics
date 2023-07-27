@@ -1,5 +1,6 @@
 
 import os
+from pprint import pprint as pp
 import requests
 
 from tomark import Tomark
@@ -7,9 +8,11 @@ from tomark import Tomark
 from save_file_to_github import save_file_to_github
 
 
-def fetch_top_repos(username, token):
+def fetch_top_repos(username: str, token: str) -> list:
+
     url = 'https://api.github.com/graphql'
     headers = {'Authorization': f'bearer {token}'}
+
     query = '''
     query ($login: String!, $limit: Int!) {
       user(login: $login) {
@@ -26,40 +29,35 @@ def fetch_top_repos(username, token):
       }
     }
     '''
+
     variables = {'login': username, 'limit': 10}
     response = requests.post(url, json={'query': query, 'variables': variables}, headers=headers)
     
     if response.status_code == 200:
         data = response.json()
         repositories = data['data']['user']['repositories']['edges']
-        for repo in repositories:
-            name = repo['node']['name']
-            stargazers = repo['node']['stargazers']['totalCount']
-            print(f'{name} - {stargazers} stargazers')
-
-        return [
+        popular_repos = [
             {
                 "name": repo['node']['name'],
                 "stars": repo['node']['stargazers']['totalCount']
             }
             for repo in repositories
             ]
-
+        pp(popular_repos)
+        return popular_repos
     else:
         print(f'Request failed with status code {response.status_code}')
         print(response.text)
+        return []
 
 
 def main():
   token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
   popular_repos = fetch_top_repos('TheNewThinkTank', token)
-  
   repo_name = 'project-metrics'
   file_path = 'popular_repos.md'
-
   file_content = Tomark.table(popular_repos)
-  github_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
-  save_file_to_github(repo_name, file_path, file_content, github_token)
+  save_file_to_github(repo_name, file_path, file_content)
 
 
 if __name__ == "__main__":

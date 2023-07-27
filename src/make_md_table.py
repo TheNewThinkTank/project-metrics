@@ -15,6 +15,7 @@ def table(data: list[dict]) -> str:
     md_table += md_header + '\n'
     md_table += md_header_sep + '\n'
 
+
     max_lang = max(len(row.get('Python', [])) for row in data)
 
     for row in data:
@@ -23,8 +24,12 @@ def table(data: list[dict]) -> str:
             if isinstance(v, list):
 
                 lang = v if v else []
-                lang += [''] * (max_lang - len(lang))
-                md_row += '| ' + '\n'.join(map(str, lang)) + ' '
+
+                sorted_lang = sorted(lang, key=lambda x: x != "")
+
+                sorted_lang += [''] * (max_lang - len(sorted_lang))
+
+                md_row += '| ' + '\n'.join(map(str, sorted_lang)) + ' '
             else:
                 md_row += '| ' + str(v) + ' '
         md_table += md_row + '|' + '\n'

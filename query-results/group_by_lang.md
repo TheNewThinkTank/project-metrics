@@ -18,9 +18,25 @@ scrape-and-notify
 security-scanner
 socials
 sqlite-app
-world-maps | aws-cdk-eventdriven-sfn
+world-maps | 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aws-cdk-eventdriven-sfn
 chess-explorer
-ts-snippets
+ts-snippets | 
 
 
 
@@ -36,25 +52,9 @@ ts-snippets
 
 
 
- | AWS-recipes
+AWS-recipes
 local-configs
-private-nn-dominodatalab
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- | code-vault
+private-nn-dominodatalab | 
 
 
 
@@ -72,26 +72,25 @@ private-nn-dominodatalab
 
 
 
- | Computation-Optimizations
+code-vault | 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Computation-Optimizations
 Coursera-Data-Science-Foundations-using-R-Specialization
-wearable-computing
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- | DHC
-web-application-jquery-and-bootstrap
+wearable-computing | 
 
 
 
@@ -108,25 +107,26 @@ web-application-jquery-and-bootstrap
 
 
 
- | hypothesis-testing
+DHC
+web-application-jquery-and-bootstrap | 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hypothesis-testing
 Machine-Learning-101
 mnist-classifyer
-twitter-novo
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- | performance
+twitter-novo | 
 
 
 
@@ -144,7 +144,7 @@ twitter-novo
 
 
 
- | workout-generator
+performance | 
 
 
 
@@ -162,4 +162,4 @@ twitter-novo
 
 
 
- |
+workout-generator |

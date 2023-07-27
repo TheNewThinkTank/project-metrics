@@ -15,7 +15,6 @@ def table(data: list[dict]) -> str:
     md_table += md_header + '\n'
     md_table += md_header_sep + '\n'
 
-
     max_lang = max(len(row.get('Python', [])) for row in data)
 
     for row in data:

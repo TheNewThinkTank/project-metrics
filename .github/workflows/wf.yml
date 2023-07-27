@@ -65,13 +65,18 @@ jobs:
       # - name: check path
       #   run: poetry run python -c "import sys; print(sys.path)"
 
+      - name: echo github workspace
+        run: |
+          echo ${{ github.workspace }}
+
       - name: update repos
         run: |
           poetry run python src/REST/add_repo_size_badge.py
 
       - name: REST repos missing description
         env:
-          PYTHONPATH: ${{ github.workspace }}/src
+          PYTHONPATH: ${{ github.workspace }}/project-metrics/src
+          # /home/runner/work/project-metrics/project-metrics/src
         run: |
           poetry run python src/REST/project_metrics.py
 

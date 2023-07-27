@@ -57,6 +57,22 @@ jobs:
       - name: check path
         run: poetry run python -c "import sys; print(sys.path)"
 
+
+
+
+
+
+      # echo 'src/save_file_to_github.py' > /home/runner/.cache/pypoetry/virtualenvs/project-metrics-bF0Fupif-py3.11/lib/python3.11/site-packages/project.pth
+      - name: set pythonpath
+        run: |
+          echo “::add-path::src”
+
+
+
+
+      - name: check path
+        run: poetry run python -c "import sys; print(sys.path)"
+
       - name: update repos
         run: |
           poetry run python src/REST/add_repo_size_badge.py

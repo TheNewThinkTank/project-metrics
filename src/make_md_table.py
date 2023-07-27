@@ -16,9 +16,19 @@ def table(data: list[dict]) -> str:
     md_table += md_header_sep + '\n'
 
     for row in data:
+
         md_row = ""
-        for _, col in row.items():
-            md_row += '| ' + str(col) + ' '
+
+        for _, v in row.items():
+
+            if type(v) == list:
+
+                for elem in v:
+                    md_row += '| ' + str(elem) + ' '
+           
+            else:
+                md_row += '| ' + str(v) + ' '
+
         md_table += md_row + '|' + '\n'
 
     return md_table

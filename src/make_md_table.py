@@ -25,9 +25,9 @@ def table(data: list[dict]) -> str:
 
                 lang = v if v else []
 
-                sorted_lang = sorted(lang, key=lambda x: x != "")
+                lang += [''] * (max_lang - len(lang))
 
-                sorted_lang += [''] * (max_lang - len(sorted_lang))
+                sorted_lang = sorted(lang, key=lambda x: x != "")
 
                 md_row += '| ' + '\n'.join(map(str, sorted_lang)) + ' '
             else:

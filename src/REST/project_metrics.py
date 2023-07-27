@@ -87,7 +87,7 @@ def main() -> None:
     repos_wo_desc = get_repos_wo_desc(platforms, all_repos)
 
     repo_name = 'project-metrics'
-    file_path = 'repos_wo_desc.md'
+    file_path = 'query-results/repos_wo_desc.md'
 
     # dict_strings = [str(d) for d in repos_wo_desc]
     # file_content = '\n'.join(dict_strings)

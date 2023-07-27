@@ -9,7 +9,7 @@ from github import Github
 from tomark import Tomark
 
 from config import platforms
-from get_repos import get_all_repos, get_repo_info
+from get_repos import get_all_repos, get_repo_info, print_repo_info
 
 import sys
 sys.path.append(".")
@@ -47,7 +47,7 @@ def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:
     for repo in all_repos:
         repo_info = get_repo_info(platforms, repo)
         if repo_missing_descriptions(repo_info):
-            # print_repo_info(repo_info)
+            print_repo_info(repo_info)
             repos_wo_desc.append(repo_info)
     return repos_wo_desc
 

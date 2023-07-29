@@ -46,6 +46,11 @@ jobs:
       - name: Run unit tests
         run: poetry run pytest  # test/test_make_md_table.py
 
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
       - name: REST repos missing description
         env:
           PYTHONPATH: ${{ github.workspace }}/src

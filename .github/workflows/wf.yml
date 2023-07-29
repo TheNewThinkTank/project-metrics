@@ -16,6 +16,41 @@ env:
   # PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN }}
 
 jobs:
+  Qualify-Code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: pip
+
+      - name: Install poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+  
+      - name: Cache poetry dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
+
+      - name: Run unit tests and make coverage report
+        run: poetry run pytest --cov=./ --cov-report xml:cov.xml
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: ./cov.xml
+          verbose: true
+
   Get-Metrics:
     runs-on: ubuntu-latest
 
@@ -43,24 +78,15 @@ jobs:
       - name: Install Dependencies
         run: poetry install
 
-      - name: Run unit tests and make coverage report
-        run: poetry run pytest --cov=./ --cov-report xml:cov.xml
+      # - name: GitHub GraphQL largest repos
+      #   run: |
+      #       poetry run python src/gh_graphql_get_largest_repos.py
 
-      # - uses: codecov/codecov-action@v3
-      #   with:
-      #     # files: ./coverage1.xml,./coverage2.xml  # optional
-      #     # flags: unittests  # optional
-      #     name: codecov-umbrella # optional
-      #     # fail_ci_if_error: true
-      #     verbose: true
+      # TODO: repos have tests (true/false, grouped. e.g. test or tests folder exist and contains at least 1 non-empty file)
+      # TODO: if repo has tests, setup codecov badge on it's README
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        with:
-          files: ./cov.xml
-          verbose: true
+      # TODO: repos have GH Actions wf (true/false, grouped. e.g. .github/workflows/ exist and contains at least 1 non-empty yaml/yml file)
+      # TODO: if repo has tests, setup CI badge on it's README
 
       - name: REST repos missing description
         env:
@@ -83,7 +109,3 @@ jobs:
       - name: update repos
         run: |
           poetry run python src/REST/add_repo_size_badge.py
-
-      # - name: GitHub GraphQL largest repos
-      #   run: |
-      #       poetry run python src/gh_graphql_get_largest_repos.py

@@ -1,5 +1,11 @@
 [![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/project-metrics?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/project-metrics/archive/refs/heads/main.zip)
 # project-metrics
+
+![CI](https://github.com/TheNewThinkTank/project-metrics/actions/workflows/wf.yml/badge.svg)
+
+<!-- [![codecov](https://codecov.io/gh/TheNewThinkTank/project-metrics/branch/main/graph/badge.svg?token=CKAX4A3JQF)](https://codecov.io/gh/TheNewThinkTank/project-metrics) -->
+
+
 Overview of projects and their health
 
 [popular repos](query-results/popular_repos.md)<br>

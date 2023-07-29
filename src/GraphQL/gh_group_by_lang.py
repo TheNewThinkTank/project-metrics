@@ -1,5 +1,6 @@
 
 import os
+from pprint import pprint as pp
 import requests
 
 from save_file_to_github import save_file_to_github
@@ -41,11 +42,13 @@ def group_repos_by_language(username: str, token: str) -> list:
                 else:
                     language_groups[language_name] = [name]
 
-        for language, repos in language_groups.items():
-            print(f'Language: {language}')
-            for repo in repos:
-                print(f'- {repo}')
-            print()
+        # for language, repos in language_groups.items():
+        #     print(f'Language: {language}')
+        #     for repo in repos:
+        #         print(f'- {repo}')
+        #     print()
+
+        pp(language_groups)
 
         return [language_groups]
 

@@ -47,3 +47,11 @@ def table(data: list[dict]) -> str:
     #     md_table += md_row + '|' + '\n'
 
     return md_table
+
+
+# def tests():
+#     ...
+
+
+# if __name__ == "__main__":
+#     tests()

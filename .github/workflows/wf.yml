@@ -43,6 +43,9 @@ jobs:
       - name: Install Dependencies
         run: poetry install
 
+      - name: Run unit tests
+        run: poetry run pytest
+
       - name: REST repos missing description
         env:
           PYTHONPATH: ${{ github.workspace }}/src

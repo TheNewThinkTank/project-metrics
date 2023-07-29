@@ -30,7 +30,20 @@ def table(data: list[dict]) -> str:
     return md_table
 
 
-def table_from_nested(data: list[dict[str, list[str]]]) -> str:
+def table_from_nested(data: list[dict[str, list[str]]], debug=False) -> str | pd.DataFrame:
+    """_summary_
+
+    :param data: _description_
+    :type data: list[dict[str, list[str]]]
+    :param debug: _description_, defaults to False
+    :type debug: bool, optional
+    :return: _description_
+    :rtype: str | pd.DataFrame
+    """
+
+    if not data:
+        return pd.DataFrame()
+
     flattened_data = {}
 
     for item in data:
@@ -45,5 +58,8 @@ def table_from_nested(data: list[dict[str, list[str]]]) -> str:
         projects.extend([''] * (max_length - len(projects)))
 
     df = pd.DataFrame(flattened_data)
+
+    if debug:
+        return df
 
     return df.to_markdown()

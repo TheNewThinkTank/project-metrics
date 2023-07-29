@@ -3,7 +3,7 @@
 
 ![CI](https://github.com/TheNewThinkTank/project-metrics/actions/workflows/wf.yml/badge.svg)
 
-[![codecov](https://codecov.io/gh/TheNewThinkTank/project-metrics/branch/main/graph/badge.svg?token=CKAX4A3JQF)](https://codecov.io/gh/TheNewThinkTank/project-metrics)
+[![codecov](https://codecov.io/gh/TheNewThinkTank/project-metrics/branch/main/graph/badge.svg)](https://codecov.io/gh/TheNewThinkTank/project-metrics)
 
 
 Overview of projects and their health

@@ -44,7 +44,7 @@ jobs:
         run: poetry install
 
       - name: Run unit tests
-        run: poetry run pytest test/test_make_md_table.py
+        run: poetry run pytest  # test/test_make_md_table.py
 
       - name: REST repos missing description
         env:

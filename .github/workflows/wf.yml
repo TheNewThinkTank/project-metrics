@@ -37,7 +37,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}-test
           restore-keys: ${{ runner.os }}-poetry-
 
       - name: Run unit tests and make coverage report
@@ -74,7 +74,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}-test
           restore-keys: ${{ runner.os }}-poetry-
   
       - name: Install Dependencies

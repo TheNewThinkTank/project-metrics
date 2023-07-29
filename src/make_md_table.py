@@ -1,4 +1,6 @@
 
+import pandas as pd
+
 
 def table(data: list[dict]) -> str:
     """Transform a list of dicts into a md table.
@@ -15,43 +17,33 @@ def table(data: list[dict]) -> str:
     md_table += md_header + '\n'
     md_table += md_header_sep + '\n'
 
-    max_lang = max(len(row.get('Python', [])) for row in data)
-
     for row in data:
         md_row = ""
         for _, v in row.items():
-            if isinstance(v, list):
-
-                lang = v if v else []
-
-                lang += [''] * (max_lang - len(lang))
-
-                sorted_lang = sorted(lang, key=lambda x: x != "")
-
-                md_row += '| ' + '\n'.join(map(str, sorted_lang)) + ' '
-            else:
-                md_row += '| ' + str(v) + ' '
+            # if isinstance(v, list):
+            #     repos = v if v else []            
+            #     md_row += '| ' + ', '.join(map(str, repos)) + ' '
+            # else:
+            md_row += '| ' + str(v) + ' '
         md_table += md_row + '|' + '\n'
-
-    # for row in data:
-    #     md_row = ""
-    #     for _, v in row.items():
-    #         if isinstance(v, list):
-    #             if v:
-    #                 # Join list elements with '\n' as the delimiter
-    #                 md_row += '| ' + '\n'.join(map(str, v)) + ' '
-    #             else:
-    #                 md_row += '| '  # Empty cell for an empty list
-    #         else:
-    #             md_row += '| ' + str(v) + ' '
-    #     md_table += md_row + '|' + '\n'
 
     return md_table
 
 
-# def tests():
-#     ...
+def table_from_nested(data: list[dict[str, list[str]]]) -> str:
+    flattened_data = {}
 
+    for item in data:
+        for language, projects in item.items():
+            flattened_data.setdefault(language, []).extend(projects)
 
-# if __name__ == "__main__":
-#     tests()
+    # Find the maximum length of projects across all languages
+    max_length = max(len(projects) for projects in flattened_data.values())
+
+    # Fill shorter project lists with empty strings to match the maximum length
+    for projects in flattened_data.values():
+        projects.extend([''] * (max_length - len(projects)))
+
+    df = pd.DataFrame(flattened_data)
+
+    return df.to_markdown()

@@ -4,7 +4,7 @@ from pprint import pprint as pp
 import requests
 
 from save_file_to_github import save_file_to_github
-from make_md_table import table
+from make_md_table import table_from_nested
 
 
 def group_repos_by_language(username: str, token: str) -> list:
@@ -42,12 +42,6 @@ def group_repos_by_language(username: str, token: str) -> list:
                 else:
                     language_groups[language_name] = [name]
 
-        # for language, repos in language_groups.items():
-        #     print(f'Language: {language}')
-        #     for repo in repos:
-        #         print(f'- {repo}')
-        #     print()
-
         pp(language_groups)
 
         return [language_groups]
@@ -61,6 +55,6 @@ def group_repos_by_language(username: str, token: str) -> list:
 repo_name = 'project-metrics'
 lang_repos = group_repos_by_language('TheNewThinkTank', os.environ["FG_GITHUB_ACCESS_TOKEN"])
 file_path = 'query-results/group_by_lang.md'
-file_content = table(lang_repos)
+file_content = table_from_nested(lang_repos)
 
 save_file_to_github(repo_name, file_path, file_content)

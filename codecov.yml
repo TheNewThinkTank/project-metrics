@@ -1,7 +1,7 @@
 ---
 
-fixes:
-  - "/home/runner/work/project-metrics/project-metrics::"
+# fixes:
+#   - "/home/runner/work/project-metrics/project-metrics::"
 
 coverage:
   range: 20..60

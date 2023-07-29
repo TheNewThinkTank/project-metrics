@@ -46,10 +46,6 @@ jobs:
       - name: Run unit tests and make coverage report
         run: poetry run pytest --cov=./ --cov-report xml:cov.xml
 
-      # - name: Run unittests and make coverage report
-      #   run: |
-      #     poetry run pytest --cov=./ --cov-report=xml
-
       # - uses: codecov/codecov-action@v3
       #   with:
       #     # files: ./coverage1.xml,./coverage2.xml  # optional
@@ -62,6 +58,9 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: ./cov.xml
+          verbose: true
 
       - name: REST repos missing description
         env:

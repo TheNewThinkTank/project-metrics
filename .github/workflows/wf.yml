@@ -32,13 +32,16 @@ jobs:
       - name: Install poetry
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
-  
-      - name: Cache poetry dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}-test
-          restore-keys: ${{ runner.os }}-poetry-
+
+      - name: poetry install
+        run: poetry install
+
+      # - name: Cache poetry dependencies
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ~/.cache/pypoetry/virtualenvs
+      #     key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+      #     restore-keys: ${{ runner.os }}-poetry-
 
       - name: Run unit tests and make coverage report
         run: poetry run pytest --cov=./ --cov-report xml:cov.xml
@@ -70,12 +73,15 @@ jobs:
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
   
-      - name: Cache poetry dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}-test
-          restore-keys: ${{ runner.os }}-poetry-
+      - name: poetry install
+        run: poetry install
+
+      # - name: Cache poetry dependencies
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ~/.cache/pypoetry/virtualenvs
+      #     key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+      #     restore-keys: ${{ runner.os }}-poetry-
   
       - name: Install Dependencies
         run: poetry install

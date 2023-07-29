@@ -43,8 +43,8 @@ jobs:
       - name: Install Dependencies
         run: poetry install
 
-      - name: Run unit tests
-        run: poetry run pytest
+      - name: Run unit tests and make coverage report
+        run: poetry run pytest --cov-report xml:cov.xml
 
       # - name: Run unittests and make coverage report
       #   run: |

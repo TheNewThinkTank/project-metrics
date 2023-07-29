@@ -1,165 +1,21 @@
-| Python | TypeScript | Shell | Dockerfile | R | JavaScript | Jupyter Notebook | PowerShell | HTML |
-|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| AACT-Analysis
-advent-of-code
-athlete
-career-planner
-dark-matter-attractor
-fitness-tracker
-Illustris-zoom-simulation
-IllustrisTNG
-image-models
-N-body-simulations
-nutrition-planner
-personal-finance
-polylang
-project-metrics
-scrape-and-notify
-security-scanner
-socials
-sqlite-app
-world-maps | 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-aws-cdk-eventdriven-sfn
-chess-explorer
-ts-snippets | 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-AWS-recipes
-local-configs
-private-nn-dominodatalab | 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-code-vault | 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Computation-Optimizations
-Coursera-Data-Science-Foundations-using-R-Specialization
-wearable-computing | 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-DHC
-web-application-jquery-and-bootstrap | 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-hypothesis-testing
-Machine-Learning-101
-mnist-classifyer
-twitter-novo | 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-performance | 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-workout-generator |
+|    | Python                    | TypeScript              | Shell                    | Dockerfile   | R                                                        | JavaScript                           | Jupyter Notebook     | PowerShell   | HTML              |
+|---:|:--------------------------|:------------------------|:-------------------------|:-------------|:---------------------------------------------------------|:-------------------------------------|:---------------------|:-------------|:------------------|
+|  0 | AACT-Analysis             | aws-cdk-eventdriven-sfn | AWS-recipes              | code-vault   | Computation-Optimizations                                | DHC                                  | hypothesis-testing   | performance  | workout-generator |
+|  1 | advent-of-code            | chess-explorer          | local-configs            |              | Coursera-Data-Science-Foundations-using-R-Specialization | web-application-jquery-and-bootstrap | Machine-Learning-101 |              |                   |
+|  2 | athlete                   | ts-snippets             | private-nn-dominodatalab |              | wearable-computing                                       |                                      | mnist-classifyer     |              |                   |
+|  3 | career-planner            |                         |                          |              |                                                          |                                      | twitter-novo         |              |                   |
+|  4 | dark-matter-attractor     |                         |                          |              |                                                          |                                      |                      |              |                   |
+|  5 | fitness-tracker           |                         |                          |              |                                                          |                                      |                      |              |                   |
+|  6 | Illustris-zoom-simulation |                         |                          |              |                                                          |                                      |                      |              |                   |
+|  7 | IllustrisTNG              |                         |                          |              |                                                          |                                      |                      |              |                   |
+|  8 | image-models              |                         |                          |              |                                                          |                                      |                      |              |                   |
+|  9 | N-body-simulations        |                         |                          |              |                                                          |                                      |                      |              |                   |
+| 10 | nutrition-planner         |                         |                          |              |                                                          |                                      |                      |              |                   |
+| 11 | personal-finance          |                         |                          |              |                                                          |                                      |                      |              |                   |
+| 12 | polylang                  |                         |                          |              |                                                          |                                      |                      |              |                   |
+| 13 | project-metrics           |                         |                          |              |                                                          |                                      |                      |              |                   |
+| 14 | scrape-and-notify         |                         |                          |              |                                                          |                                      |                      |              |                   |
+| 15 | security-scanner          |                         |                          |              |                                                          |                                      |                      |              |                   |
+| 16 | socials                   |                         |                          |              |                                                          |                                      |                      |              |                   |
+| 17 | sqlite-app                |                         |                          |              |                                                          |                                      |                      |              |                   |
+| 18 | world-maps                |                         |                          |              |                                                          |                                      |                      |              |                   |

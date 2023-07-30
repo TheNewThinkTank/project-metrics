@@ -1,18 +1,17 @@
 ---
 name: Project Metrics Workflow
 
-# TODO: automatically check if actions have newer versions available, using dependabot
-
-on:  # Only set manual trigger, as the wf will otherwise recursively keep invoking itself
+# Only set manual trigger, as the wf will otherwise recursively keep invoking itself
+on:
   # push:
   #   branches:
   #     - main
-  workflow_dispatch:
+  workflow_dispatch
   # schedule:
   #   - cron:  '0 0 * * *'
 
 env:
-  FG_GITHUB_ACCESS_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}  # General, fine-grained token
+  FG_GITHUB_ACCESS_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}  # fine-grained
   PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
   PROJECT_METRICS_GITLAB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITLAB_ACCESS_TOKEN }}
   # PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN }}
@@ -73,6 +72,7 @@ jobs:
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: .  # "./codecov.yml"
+          config_file: .yamllint.yml
 
       - uses: rojopolis/spellcheck-github-actions@0.33.1
         name: Spellcheck README
@@ -117,7 +117,7 @@ jobs:
           path: ~/.cache/pypoetry/virtualenvs
           key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
           restore-keys: ${{ runner.os }}-poetry-
-  
+
       - name: Install Dependencies
         run: poetry install
 
@@ -125,10 +125,15 @@ jobs:
       #   run: |
       #       poetry run python src/gh_graphql_get_largest_repos.py
 
-      # TODO: repos have tests (true/false, grouped. e.g. test or tests folder exist and contains at least 1 non-empty file)
+      # TODO: repos have tests (true/false, grouped.
+      # e.g. test or tests folder exist and contains at least 1 non-empty file)
+
       # TODO: if repo has tests, setup codecov badge on it's README
 
-      # TODO: repos have GH Actions wf (true/false, grouped. e.g. .github/workflows/ exist and contains at least 1 non-empty yaml/yml file)
+
+      # TODO: repos have GH Actions wf (true/false, grouped.
+      # e.g. .github/workflows/ exist and contains at least 1 non-empty yaml/yml file)
+
       # TODO: if repo has tests, setup CI badge on it's README
 
       - name: REST repos missing description

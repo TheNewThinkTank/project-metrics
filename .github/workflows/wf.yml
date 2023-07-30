@@ -69,10 +69,10 @@ jobs:
       # - name: Run ShellCheck
       #   uses: ludeeus/action-shellcheck@master
 
-      - name: lint codecov.yml  # yaml
+      - name: lint yaml
         uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: "./codecov.yml"
+          file_or_dir: .  # "./codecov.yml"
 
       - uses: rojopolis/spellcheck-github-actions@0.33.1
         name: Spellcheck README

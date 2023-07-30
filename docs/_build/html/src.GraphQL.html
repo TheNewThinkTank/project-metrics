@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>src.GraphQL package &#8212; project-metrics 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=af2ce170"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="src.REST package" href="src.REST.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="src-graphql-package">
+<h1>src.GraphQL package<a class="headerlink" href="#src-graphql-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-src.GraphQL.gh_get_largest_repos">
+<span id="src-graphql-gh-get-largest-repos-module"></span><h2>src.GraphQL.gh_get_largest_repos module<a class="headerlink" href="#module-src.GraphQL.gh_get_largest_repos" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.GraphQL.gh_get_largest_repos.fetch_largest_repos">
+<span class="sig-prename descclassname"><span class="pre">src.GraphQL.gh_get_largest_repos.</span></span><span class="sig-name descname"><span class="pre">fetch_largest_repos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/GraphQL/gh_get_largest_repos.html#fetch_largest_repos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.GraphQL.gh_get_largest_repos.fetch_largest_repos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.GraphQL.gh_get_largest_repos.main">
+<span class="sig-prename descclassname"><span class="pre">src.GraphQL.gh_get_largest_repos.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/GraphQL/gh_get_largest_repos.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.GraphQL.gh_get_largest_repos.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="src.GraphQL.gh_get_largest_repos.single_repo_query">
+<span class="sig-prename descclassname"><span class="pre">src.GraphQL.gh_get_largest_repos.</span></span><span class="sig-name descname"><span class="pre">single_repo_query</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n{\n</span>&#160; <span class="pre">repository(name:</span> <span class="pre">&quot;Fitness-Tracker&quot;,</span> <span class="pre">owner:</span> <span class="pre">&quot;TheNewThinkTank&quot;)</span> <span class="pre">{\n</span>&#160;&#160;&#160; <span class="pre">diskUsage\n</span>&#160; <span class="pre">}\n}\n'</span></em><a class="headerlink" href="#src.GraphQL.gh_get_largest_repos.single_repo_query" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt>{</dt><dd><dl>
+<dt>repositoryOwner(login: “TheNewThinkTank”) {</dt><dd><dl>
+<dt>repositories(first: 10, orderBy: {field: UPDATED_AT, direction: DESC}, privacy: PUBLIC, isFork: false) {</dt><dd><p>totalCount
+totalDiskUsage
+nodes {</p>
+<blockquote>
+<div><p>name
+diskUsage</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+<p>}</p>
+</dd></dl>
+
+</section>
+<section id="src-graphql-gh-get-popular-repos-module">
+<h2>src.GraphQL.gh_get_popular_repos module<a class="headerlink" href="#src-graphql-gh-get-popular-repos-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="src-graphql-gh-group-by-lang-module">
+<h2>src.GraphQL.gh_group_by_lang module<a class="headerlink" href="#src-graphql-gh-group-by-lang-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-src.GraphQL">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.GraphQL" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">project-metrics</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="src.html">src package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.REST.html">src.REST package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">src.GraphQL package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.GraphQL.gh_get_largest_repos">src.GraphQL.gh_get_largest_repos module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.GraphQL.gh_get_largest_repos.fetch_largest_repos"><code class="docutils literal notranslate"><span class="pre">fetch_largest_repos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.GraphQL.gh_get_largest_repos.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.GraphQL.gh_get_largest_repos.single_repo_query"><code class="docutils literal notranslate"><span class="pre">single_repo_query</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#src-graphql-gh-get-popular-repos-module">src.GraphQL.gh_get_popular_repos module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src-graphql-gh-group-by-lang-module">src.GraphQL.gh_group_by_lang module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.GraphQL">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">src</a><ul>
+      <li>Previous: <a href="src.REST.html" title="previous chapter">src.REST package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Gustav Collin Rasmussen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/src.GraphQL.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

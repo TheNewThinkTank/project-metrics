@@ -2,9 +2,9 @@ import csv
 
 
 def csv_to_md(in_file: str) -> None:
-    """_summary_
+    """Create a Markdown file from a csv file.
 
-    :param in_file: _description_
+    :param in_file: path to csv file
     :type in_file: str
     """
 

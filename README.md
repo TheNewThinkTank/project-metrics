@@ -13,16 +13,41 @@ Overview of projects and their health
 [repos grouped by language](query-results/group_by_lang.md)
 
 ## Current features
+
+- CI health badge
+
+- Automatically checking for updates using `Dependabot`:
+  - `pip` (monthly)
+  - `GitHub Actions` (weekly)
+
 - GitHub Actions workflow.<br>NB: as the repo updates itself, the only trigger should be `workflow_dispatch` to avoid recursive workflow invocation.
-- GitHub Actions updates this repo's README (links above) with following projects metrics:
-  - top 10 most popular GitHub repos, by star count
-  - repos lacking any description, across GitHub and GitLab
-  - repos grouped by programming language
-- All GitHub repos (including this one) get a repo size badge on top of their README<br>
-  NB: does not affect the GitHub profile page, which is a special repo.
-  - support for both `.md` and `.rst` files
+- The workflow contains two jobs:
+  - `Qualify-Code`:
+    - static type checking with `mypy`
+    - code linting with `flake8` and `ruff`
+    - spell checking of README
+    - linting of YAML files
+    - software complexity metrics with `wily`
+    - unit tests with `pytest`
+    - code coverage reporting
+    - caching of `poetry` and `mypy` dependencies
+
+  - `Get-Metrics`, updates this repo's README (links above) with following projects metrics:
+    - top 10 most popular GitHub repos, by star count
+    - repos lacking any description, across `GitHub` and `GitLab`
+    - repos grouped by programming language
+    - All GitHub repos (including this one) get a repo size badge on top of their README<br>
+      NB: does not affect the GitHub profile page, which is a special repo.
+    - support for both `.md` and `.rst` files
 
 ## Upcoming features
+- alphabetic sorting of words in `config/.wordlist.txt`
 - group by category (using tags), e.g. health (nutrition, fitness, athlete profiler)
 - group by repo size, display largest and smallest repos
 - group by created_at, display newest and oldest repos
+- check if repos have tests
+- if so, setup codecov badge on their README's
+- if not, set up pytest, perhaps using `cookiecutter` / `cruft` or custom template
+- check if repos have GitHub Actions workflow
+- if so, setup CI badge on their README's
+- if not, set up workflow, using custom template

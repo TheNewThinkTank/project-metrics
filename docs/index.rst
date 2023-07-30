@@ -7,7 +7,7 @@ Welcome to project-metrics's documentation!
 ===========================================
 
 .. toctree::
-   :maxdepth: 10
+   :maxdepth: 2
    :caption: Contents:
 
    modules

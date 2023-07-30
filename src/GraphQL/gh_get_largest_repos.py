@@ -75,8 +75,8 @@ def fetch_largest_repos(username, token):
 
 
 def main():
-  token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
-  fetch_largest_repos('TheNewThinkTank', token)
+    token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
+    fetch_largest_repos('TheNewThinkTank', token)
 
 
 if __name__ == "__main__":

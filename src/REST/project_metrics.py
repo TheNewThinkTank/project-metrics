@@ -92,7 +92,7 @@ def main() -> None:
     # popular_repos = get_popular_repos(platforms, all_repos)
     # for repo in popular_repos:
     #     print(repo)
-    
+
     # with open("popular_repos.json", "w") as wf:
     #     for repo in popular_repos:
     #         wf.write(repo)

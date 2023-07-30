@@ -31,7 +31,7 @@ def fetch_top_repos(username: str, token: str) -> list:
 
     variables = {'login': username, 'limit': 10}
     response = requests.post(url, json={'query': query, 'variables': variables}, headers=headers)
-    
+
     if response.status_code == 200:
         data = response.json()
         repositories = data['data']['user']['repositories']['edges']
@@ -51,12 +51,12 @@ def fetch_top_repos(username: str, token: str) -> list:
 
 
 def main():
-  token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
-  popular_repos = fetch_top_repos('TheNewThinkTank', token)
-  repo_name = 'project-metrics'
-  file_path = 'query-results/popular_repos.md'
-  file_content = table(popular_repos)
-  save_file_to_github(repo_name, file_path, file_content)
+    token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
+    popular_repos = fetch_top_repos('TheNewThinkTank', token)
+    repo_name = 'project-metrics'
+    file_path = 'query-results/popular_repos.md'
+    file_content = table(popular_repos)
+    save_file_to_github(repo_name, file_path, file_content)
 
 
 if __name__ == "__main__":

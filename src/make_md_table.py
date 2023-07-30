@@ -21,7 +21,7 @@ def table(data: list[dict]) -> str:
         md_row = ""
         for _, v in row.items():
             # if isinstance(v, list):
-            #     repos = v if v else []            
+            #     repos = v if v else []
             #     md_row += '| ' + ', '.join(map(str, repos)) + ' '
             # else:
             md_row += '| ' + str(v) + ' '

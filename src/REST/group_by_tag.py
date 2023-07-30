@@ -1,5 +1,6 @@
 import requests
 
+
 def group_repos_by_tag(username, token):
     url = f'https://api.github.com/users/{username}/repos'
     headers = {'Authorization': f'token {token}'}
@@ -31,6 +32,7 @@ def group_repos_by_tag(username, token):
     else:
         print(f'Request failed with status code {response.status_code}')
         print(response.text)
+
 
 # Replace 'YOUR_USERNAME' and 'YOUR_TOKEN' with your GitHub username and personal access token
 group_repos_by_tag('YOUR_USERNAME', 'YOUR_TOKEN')

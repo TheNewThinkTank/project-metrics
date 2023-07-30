@@ -1,4 +1,5 @@
-import requests
+
+import requests  # type: ignore
 
 
 def group_repos_by_tag(username, token):

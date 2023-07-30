@@ -1,7 +1,7 @@
 
-import requests
+import requests  # type: ignore
 
-from config import platforms
+from config import platforms  # type: ignore
 
 
 def get_repos(platform: str) -> list[dict]:

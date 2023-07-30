@@ -3,10 +3,10 @@
 
 # from operator import itemgetter
 
-from config import platforms
-from get_repos import get_all_repos, get_repo_info, print_repo_info
-from save_file_to_github import save_file_to_github
-from make_md_table import table
+from config import platforms  # type: ignore
+from get_repos import get_all_repos, get_repo_info, print_repo_info  # type: ignore
+from save_file_to_github import save_file_to_github  # type: ignore
+from make_md_table import table  # type: ignore
 
 
 def repo_missing_descriptions(repo_info: dict) -> bool:

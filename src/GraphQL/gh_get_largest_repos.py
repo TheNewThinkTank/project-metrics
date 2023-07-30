@@ -1,6 +1,6 @@
 
 import os
-import requests
+import requests  # type: ignore
 
 single_repo_query = '''
 {

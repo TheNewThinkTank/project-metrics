@@ -1,6 +1,6 @@
 
 import json
-import pandas as pd
+import pandas as pd  # type: ignore
 
 # TODO: replace single with double quotes
 # TODO: replace None values with double quotes

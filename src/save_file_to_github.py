@@ -23,7 +23,7 @@ def save_file_to_github(repo_name: str, file_path: str, file_content) -> None:
         # Get the existing file (if it exists)
         file = repo.get_contents(file_path, ref=branch_name)
         # Update the file
-        repo.update_file(file_path, "Updating file", file_content, file.sha, branch=branch_name)
+        repo.update_file(file_path, "Updating file", file_content, file.sha, branch=branch_name)  # type: ignore
     except Exception:
         # If the file doesn't exist, create it
         repo.create_file(file_path, "Creating file", file_content, branch=branch_name)

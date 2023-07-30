@@ -1,10 +1,10 @@
 
 import os
 from pprint import pprint as pp
-import requests
+import requests  # type: ignore
 
-from make_md_table import table
-from save_file_to_github import save_file_to_github
+from make_md_table import table  # type: ignore
+from save_file_to_github import save_file_to_github  # type: ignore
 
 
 def fetch_top_repos(username: str, token: str) -> list:

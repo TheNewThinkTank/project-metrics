@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-import requests
+import requests  # type: ignore
 from typing import Literal
 
 from github import Auth, Github

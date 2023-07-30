@@ -1,5 +1,5 @@
 
-import pandas as pd
+import pandas as pd  # type: ignore
 
 
 def table(data: list[dict]) -> str:

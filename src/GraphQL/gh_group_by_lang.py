@@ -1,10 +1,10 @@
 
 import os
 from pprint import pprint as pp
-import requests
+import requests  # type: ignore
 
-from save_file_to_github import save_file_to_github
-from make_md_table import table_from_nested
+from save_file_to_github import save_file_to_github  # type: ignore
+from make_md_table import table_from_nested  # type: ignore
 
 
 def group_repos_by_language(username: str, token: str) -> list:

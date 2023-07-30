@@ -41,6 +41,7 @@ Overview of projects and their health
     - support for both `.md` and `.rst` files
 
 ## Upcoming features
+- Sphinx auto doc, with doc hosting on readthedocs
 - alphabetic sorting of words in `config/.wordlist.txt`
 - group by category (using tags), e.g. health (nutrition, fitness, athlete profiler)
 - group by repo size, display largest and smallest repos

@@ -2,6 +2,11 @@ import csv
 
 
 def csv_to_md(in_file: str) -> None:
+    """_summary_
+
+    :param in_file: _description_
+    :type in_file: str
+    """
 
     out_file = in_file.replace(".csv", ".md")
     csv_dict = csv.DictReader(open(in_file, encoding="UTF-8"), delimiter=",")
@@ -29,6 +34,11 @@ def csv_to_md(in_file: str) -> None:
         wf.write(md_string)
 
 
+def main():
+    # csv_to_md("data/popular_repos.csv")
+    # csv_to_md("data/repos_wo_desc.csv")
+    ...
+
+
 if __name__ == "__main__":
-    csv_to_md("data/popular_repos.csv")
-    csv_to_md("data/repos_wo_desc.csv")
+    main()

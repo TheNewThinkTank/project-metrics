@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import requests  # type: ignore
-from typing import Literal
+from typing import Iterable, Literal
 
 from github import Auth, Github
 
@@ -9,7 +9,15 @@ from github import Auth, Github
 
 
 def get_repo_size(username: str, repository: str) -> str | None:
-    """fetch the size of a repository"""
+    """Fetch the size of a repository.
+
+    :param username: _description_
+    :type username: str
+    :param repository: _description_
+    :type repository: str
+    :return: _description_
+    :rtype: str | None
+    """
 
     url = f'https://api.github.com/repos/{username}/{repository}'
     response = requests.get(url)
@@ -19,7 +27,7 @@ def get_repo_size(username: str, repository: str) -> str | None:
     return None
 
 
-def update_readme(repo, format: Literal['md', 'rst']):
+def update_readme(repo, format: Literal['md', 'rst']) -> None:
 
     if format == 'md':
         size_badge = f"[![GitHub repo size](https://img.shields.io/github/repo-size/TheNewThinkTank/{repo.name}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size)](https://github.com/TheNewThinkTank/{repo.name}/archive/refs/heads/main.zip)"
@@ -36,7 +44,15 @@ def update_readme(repo, format: Literal['md', 'rst']):
         repo.update_file(repo_contents.path, f"chore: update README.{format}", updated_content.encode(), repo_contents.sha, branch=repo.default_branch)
 
 
-def update_repo(username, repo):
+def update_repo(username: str, repo) -> None:
+    """_summary_
+
+    :param username: _description_
+    :type username: str
+    :param repo: _description_
+    :type repo: _type_
+    """
+
     print(f'Processing repository: {repo.name}')
     # Clone the repository locally
     os.system(f'git clone https://github.com/{username}/{repo.name}.git')
@@ -54,7 +70,15 @@ def update_repo(username, repo):
         update_readme(repo, 'rst')
 
 
-def update_all_repos(username, repositories):
+def update_all_repos(username: str, repositories: Iterable) -> None:
+    """_summary_
+
+    :param username: _description_
+    :type username: str
+    :param repositories: _description_
+    :type repositories: Iterable
+    """
+
     for repo in repositories:
 
         # Skip the profile page
@@ -64,8 +88,7 @@ def update_all_repos(username, repositories):
         update_repo(username, repo)
 
 
-def main():
-
+def main() -> None:
     # GitHub credentials
     username = 'TheNewThinkTank'
     access_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]

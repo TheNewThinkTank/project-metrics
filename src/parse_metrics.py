@@ -7,13 +7,17 @@ import pandas as pd  # type: ignore
 
 
 def txt_to_csv(in_file: str) -> None:
+    """Create csv file from txt using Pandas
+
+    :param in_file: txt file with comma-delimited values
+    :type in_file: str
+    """
 
     with open(in_file) as f:
         data = f.readlines()
 
     data = [json.loads(d) for d in data]
     df = pd.DataFrame.from_dict(data)
-    # print(df)
 
     df.to_csv(in_file.split('.')[0] + '.csv',
               index=False
@@ -21,8 +25,9 @@ def txt_to_csv(in_file: str) -> None:
 
 
 def main():
-    txt_to_csv('data/popular_repos.txt')
-    txt_to_csv('data/repos_wo_desc.txt')
+    # txt_to_csv('data/popular_repos.txt')
+    # txt_to_csv('data/repos_wo_desc.txt')
+    ...
 
 
 if __name__ == "__main__":

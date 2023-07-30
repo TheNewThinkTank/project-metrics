@@ -1,7 +1,10 @@
-
+codecov
 GitLab
 profiler
+pytest
 README
+README's
 repo
 repos
 repo's
+YAML

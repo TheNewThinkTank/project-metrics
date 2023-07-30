@@ -4,6 +4,7 @@ profiler
 pytest
 README
 README's
+readthedocs
 repo
 repos
 repo's

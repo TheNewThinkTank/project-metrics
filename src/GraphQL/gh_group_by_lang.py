@@ -30,7 +30,7 @@ def group_repos_by_language(username: str, token: str) -> list:
     if response.status_code == 200:
         data = response.json()
         repositories = data['data']['user']['repositories']['nodes']
-        language_groups = {}
+        language_groups = dict()  # type: ignore
 
         for repo in repositories:
             name = repo['name']

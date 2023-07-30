@@ -10,8 +10,8 @@ mkdir docs && cd docs
 # Project_name="project-metrics"
 # Author_name="Gustav Collin Rasmussen"
 # Project_release="1.0.0"
-sphinx-quickstart
+# sphinx-quickstart
 
 # make clean
-# sphinx-apidoc -o ./source ../src
+# sphinx-apidoc -o ./ ../src
 # make html

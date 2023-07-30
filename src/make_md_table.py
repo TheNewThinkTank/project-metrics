@@ -44,7 +44,7 @@ def table_from_nested(data: list[dict[str, list[str]]], debug=False) -> str | pd
     if not data:
         return pd.DataFrame()
 
-    flattened_data = dict()
+    flattened_data = dict()  # type: ignore
 
     for item in data:
         for language, projects in item.items():

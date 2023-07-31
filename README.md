@@ -44,6 +44,8 @@ Overview of projects and their health
     - support for both `.md` and `.rst` files
 
 ## Upcoming features
+- get codecov at least above 50 %, ideally above 80 %
+- improve documentation on `readthedocs`
 - alphabetic sorting of words in `config/.wordlist.txt`
 - group by category (using tags), e.g. health (nutrition, fitness, athlete profiler)
 - group by repo size, display largest and smallest repos

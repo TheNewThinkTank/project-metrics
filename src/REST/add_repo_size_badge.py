@@ -83,6 +83,7 @@ def update_all_repos(username: str, repositories: Iterable) -> None:
 
         # Skip the profile page
         if repo.name == username:
+            print(f"datatype of repository: {type(repo)}")
             continue
 
         update_repo(username, repo)
@@ -98,6 +99,8 @@ def main() -> None:
     # Fetch all repositories for the given user
     user = g.get_user(username)
     repositories = user.get_repos()
+
+    print(f"datatype of repositories: {type(repositories)}")
 
     update_all_repos(username, repositories)
 

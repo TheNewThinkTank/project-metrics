@@ -170,6 +170,10 @@ jobs:
         run: |
           poetry run python src/GraphQL/gh_group_by_lang.py
 
-      - name: update repos
+      - name: update repos with README size badge
         run: |
           poetry run python src/REST/add_repo_size_badge.py
+
+      - name: add GitHub Actions workflow to Python-based repos
+        run: |
+          poetry run python src/add_gha_wf.py

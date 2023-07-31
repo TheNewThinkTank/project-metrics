@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import requests  # type: ignore
-from typing import Literal  # Iterable
+from typing import Literal
 
 from github import Auth, Github, Repository, PaginatedList
 
@@ -38,10 +38,15 @@ def update_readme(repo: Repository.Repository, format: Literal['md', 'rst']) -> 
         newline = '\n\n'
 
     repo_contents = repo.get_contents(f"README.{format}", ref=repo.default_branch)
-    content = repo_contents.decoded_content.decode()
+    content = repo_contents.decoded_content.decode()  # type: ignore
     if size_badge not in content:
         updated_content = size_badge + newline + content
-        repo.update_file(repo_contents.path, f"chore: update README.{format}", updated_content.encode(), repo_contents.sha, branch=repo.default_branch)
+        repo.update_file(repo_contents.path,  # type: ignore
+                         f"chore: update README.{format}",
+                         updated_content.encode(),
+                         repo_contents.sha,  # type: ignore
+                         branch=repo.default_branch
+                         )
 
 
 def update_repo(username: str, repo: Repository.Repository) -> None:

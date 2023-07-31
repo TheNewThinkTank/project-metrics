@@ -30,7 +30,7 @@ def has_actions_workflow(repo: Repository.Repository) -> bool:
 
 def create_workflow(repo: Repository.Repository,
                     file_content: str,
-                    file_path: str=".github/workflows/wf.yml"
+                    file_path: str = ".github/workflows/wf.yml"
                     ) -> None:
     branch = repo.default_branch
 
@@ -59,6 +59,54 @@ def create_workflow(repo: Repository.Repository,
     repo.get_git_ref(f"heads/{branch}").edit(new_commit.sha)
 
 
+def make_gha_file_content(repo: Repository.Repository) -> str:
+
+    return f"""
+    ---
+    name: {repo.name} Workflow
+    on:
+        push:
+        branches: {repo.default_branch}
+        workflow_dispatch
+
+    jobs:
+        Qualify-Code:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Check out code
+            uses: actions/checkout@v3
+            - name: Setup Python
+            uses: actions/setup-python@v4
+            with:
+                python-version: 3.11
+                cache: pip
+
+            - name: Install and cache poetry
+            run: |
+                curl -sSL https://install.python-poetry.org | python3 -
+            if: steps.cache.outputs.cache-hit != 'true'
+
+            - name: Cache poetry dependencies
+            id: cache
+            uses: actions/cache@v3
+            with:
+                path: ~/.cache/pypoetry/virtualenvs
+                key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+                restore-keys: ${{ runner.os }}-poetry-
+
+            - name: Install dependencies with poetry
+            run: poetry install
+            env:
+                POETRY_VIRTUALENVS_IN_PROJECT: true
+            if: steps.cache.outputs.cache-hit != 'true'
+
+            - name: Lint with ruff
+            run: poetry add ruff && poetry run ruff
+
+    """
+
+
 def main():
     username = 'TheNewThinkTank'
     access_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
@@ -66,53 +114,6 @@ def main():
     g = Github(auth=auth)
     user = g.get_user(username)
     repositories = user.get_repos()
-
-    
-    def make_gha_file_content(repo):
-        return f"""
-        ---
-        name: {repo.name} Workflow
-        on:
-          push:
-            branches: {repo.default_branch}
-          workflow_dispatch
-
-        jobs:
-          Qualify-Code:
-            runs-on: ubuntu-latest
-
-            steps:
-              - name: Check out code
-                uses: actions/checkout@v3
-              - name: Setup Python
-                uses: actions/setup-python@v4
-                with:
-                  python-version: 3.11
-                  cache: pip
-
-              - name: Install and cache poetry
-                run: |
-                  curl -sSL https://install.python-poetry.org | python3 -
-                if: steps.cache.outputs.cache-hit != 'true'
-
-              - name: Cache poetry dependencies
-                id: cache
-                uses: actions/cache@v3
-                with:
-                  path: ~/.cache/pypoetry/virtualenvs
-                  key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-                  restore-keys: ${{ runner.os }}-poetry-
-
-              - name: Install dependencies with poetry
-                run: poetry install
-                env:
-                  POETRY_VIRTUALENVS_IN_PROJECT: true
-                if: steps.cache.outputs.cache-hit != 'true'
-
-              - name: Lint with ruff
-                run: poetry add ruff && poetry run ruff 
-
-        """
 
     # test on just two repos first
     python_repos_encountered = 0
@@ -124,7 +125,7 @@ def main():
             continue
 
         print(f"Processing repo: {repo.name}")
-        
+
         file_content = make_gha_file_content(repo)
         create_workflow(repo, file_content)
 

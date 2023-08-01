@@ -110,14 +110,14 @@ def main():
         except Exception:
             repo.create_file(file_path, "chore: add pyproject.toml", file_content, branch=repo.default_branch)
 
+        # TODO: add CI badge if not exists
+        update_repo(username, repo, badge_name="ci_badge")
+
         if has_actions_workflow(repo):
             continue
 
         file_content = make_gha_file_content(repo)
         create_workflow(repo, file_content)
-
-        # TODO: add CI badge if not exists
-        update_repo(username, repo, badge_name="ci_badge")
 
         python_repos_encountered += 1
         if python_repos_encountered >= 1:

@@ -8,7 +8,7 @@ import os
 
 from github import Auth, Github, Repository, InputGitTreeElement
 
-from REST.add_repo_size_badge import update_repo
+from REST.add_repo_size_badge import update_repo  # type: ignore
 
 
 def has_python_code(repo: Repository.Repository) -> bool:

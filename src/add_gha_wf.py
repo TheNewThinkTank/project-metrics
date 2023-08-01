@@ -89,7 +89,7 @@ def main():
     user = g.get_user(username)
     repositories = user.get_repos()
 
-    # test on just one repo first
+    # test on just a few repos first
     python_repos_encountered = 0
 
     for repo in repositories:
@@ -110,7 +110,6 @@ def main():
         except Exception:
             repo.create_file(file_path, "chore: add pyproject.toml", file_content, branch=repo.default_branch)
 
-        # TODO: add CI badge if not exists
         update_repo(username, repo, badge_name="ci_badge")
 
         if has_actions_workflow(repo):
@@ -120,7 +119,7 @@ def main():
         create_workflow(repo, file_content)
 
         python_repos_encountered += 1
-        if python_repos_encountered >= 1:
+        if python_repos_encountered >= 2:
             print("has processed 1 python based repos now.\nquitting ...\n")
             break
 

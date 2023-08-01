@@ -1,14 +1,16 @@
+"""_summary_
+"""
 
 import requests  # type: ignore
 
 
-def group_repos_by_tag(username: str, token) -> None:
+def group_repos_by_tag(username: str, token: str) -> None:
     """_summary_
 
     :param username: _description_
     :type username: str
     :param token: _description_
-    :type token: _type_
+    :type token: str
     """
 
     url = f'https://api.github.com/users/{username}/repos'
@@ -18,7 +20,7 @@ def group_repos_by_tag(username: str, token) -> None:
     if response.status_code == 200:
         repositories = response.json()
 
-        tag_groups = {}
+        tag_groups = dict()  # type: ignore
 
         for repo in repositories:
             name = repo['name']
@@ -43,5 +45,5 @@ def group_repos_by_tag(username: str, token) -> None:
         print(response.text)
 
 
-# Replace 'YOUR_USERNAME' and 'YOUR_TOKEN' with your GitHub username and personal access token
-group_repos_by_tag('YOUR_USERNAME', 'YOUR_TOKEN')
+if __name__ == "__main__":
+    group_repos_by_tag('USERNAME', 'TOKEN')

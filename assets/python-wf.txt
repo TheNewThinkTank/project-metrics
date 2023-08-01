@@ -4,7 +4,7 @@ name: {repo_name} Workflow
 on:
   push:
     branches: {repo_branch}
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   Qualify-Code:

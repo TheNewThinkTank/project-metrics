@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 # import requests  # type: ignore
-from typing import Literal
+from typing import Any, Literal
 
 from github import Auth, Github, Repository, PaginatedList
 
@@ -27,7 +27,7 @@ from github import Auth, Github, Repository, PaginatedList
 #     return None
 
 
-def get_badge(repo: Repository.Repository, badge_name: str) -> dict:
+def get_badge(repo: Repository.Repository, badge_name: str) -> dict[Any, Any]:
     """_summary_
 
     :param badge: _description_

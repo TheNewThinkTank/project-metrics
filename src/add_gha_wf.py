@@ -115,8 +115,11 @@ def main():
         if has_actions_workflow(repo):
             continue
 
+        print(f"creating file content for {repo.name}")
         file_content = make_gha_file_content(repo)
+        print(f"creating workflow for {repo.name}")
         create_workflow(repo, file_content)
+        print(f"created workflow for {repo.name}")
 
         python_repos_encountered += 1
         if python_repos_encountered >= 2:

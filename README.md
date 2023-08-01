@@ -35,16 +35,22 @@ Overview of projects and their health
     - code coverage reporting
     - caching of `poetry` and `mypy` dependencies
 
-  - `Get-Metrics`, updates this repo's README (links above) with following projects metrics:
-    - top 10 most popular GitHub repos, by star count
-    - repos lacking any description, across `GitHub` and `GitLab`
-    - repos grouped by programming language
-    - All GitHub repos (including this one) get a repo size badge on top of their README<br>
-      NB: does not affect the GitHub profile page, which is a special repo.
-    - support for both `.md` and `.rst` files
+  - `Get-Metrics`:
+    - updates *this* repo's README (links above) with following projects metrics:
+      - top 10 most popular GitHub repos, by star count
+      - repos lacking any description, across `GitHub` and `GitLab`
+      - repos grouped by programming language
+    - updates *all* GitHub repos:
+      - All GitHub repos (including this one) get a repo size badge on top of their README<br>
+        NB: does not affect the GitHub profile page, which is a special repo.
+      - support for both `.md` and `.rst` files
+      - All GitHub Python repos gets a GitHub Actions `.github/workflows/wf.yml`,
+        as well as a *CI* badge on their README
 
 ## Upcoming features
-- get codecov at least above 50 %, ideally above 80 %
+- security scannings with *bandit* (searching for API keys etc.)
+- filter repos by number of users, descendingly
+- get codecov at least above 50 % for this repo, ideally above 80 %
 - improve documentation on `readthedocs`
 - alphabetic sorting of words in `config/.wordlist.txt`
 - group by category (using tags), e.g. health (nutrition, fitness, athlete profiler)

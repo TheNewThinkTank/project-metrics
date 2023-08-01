@@ -123,7 +123,7 @@ def main():
 
         python_repos_encountered += 1
         if python_repos_encountered >= 2:
-            print("has processed 1 python based repos now.\nquitting ...\n")
+            print("has processed 2 python based repos now.\nquitting ...\n")
             break
 
 

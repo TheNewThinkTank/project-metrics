@@ -4,6 +4,7 @@ otherwise, add wf with Qualify-Code job, with linting etc.
 """
 
 import os
+import textwrap
 
 from github import Auth, Github, Repository, InputGitTreeElement
 
@@ -60,62 +61,61 @@ def create_workflow(repo: Repository.Repository,
 
 
 def make_gha_file_content(repo: Repository.Repository) -> str:
+    return textwrap.dedent(
+        f"""---
+            name: {repo.name} Workflow
+            on:
+              push:
+                branches: {repo.default_branch}
+              workflow_dispatch
 
-    return f"""
-    ---
-    name: {repo.name} Workflow
-    on:
-        push:
-        branches: {repo.default_branch}
-        workflow_dispatch
+            jobs:
+              Qualify-Code:
+                runs-on: ubuntu-latest
 
-    jobs:
-        Qualify-Code:
-        runs-on: ubuntu-latest
+                steps:
+                  - name: Check out code
+                    uses: actions/checkout@v3
 
-        steps:
-            - name: Check out code
-            uses: actions/checkout@v3
-            - name: Setup Python
-            uses: actions/setup-python@v4
-            with:
-                python-version: 3.11
-                cache: pip
+                  - name: Setup Python
+                    uses: actions/setup-python@v4
+                    with:
+                      python-version: 3.11
+                      cache: pip
 
-            - name: Install and cache poetry
-            run: |
-                curl -sSL https://install.python-poetry.org | python3 -
-            if: steps.cache.outputs.cache-hit != 'true'
+                  - name: Install and cache poetry
+                    run: |
+                      curl -sSL https://install.python-poetry.org | python3 -
+                    if: steps.cache.outputs.cache-hit != 'true'
 
-            - name: Cache poetry dependencies
-            id: cache
-            uses: actions/cache@v3
-            with:
-                path: ~/.cache/pypoetry/virtualenvs
-                key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-                restore-keys: ${{ runner.os }}-poetry-
+                  - name: Cache poetry dependencies
+                    id: cache
+                    uses: actions/cache@v3
+                    with:
+                      path: ~/.cache/pypoetry/virtualenvs
+                      key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+                      restore-keys: ${{ runner.os }}-poetry-
 
-            - name: Install dependencies with poetry
-            run: poetry install
-            env:
-                POETRY_VIRTUALENVS_IN_PROJECT: true
-            if: steps.cache.outputs.cache-hit != 'true'
+                  - name: Install dependencies with poetry
+                    run: poetry install
+                    env:
+                      POETRY_VIRTUALENVS_IN_PROJECT: true
+                    if: steps.cache.outputs.cache-hit != 'true'
 
-            - name: Lint with ruff
-            run: poetry add ruff && poetry run ruff
-
-    """
+                  - name: Lint with ruff
+                    run: poetry add ruff && poetry run ruff
+        """)
 
 
 def main():
     username = 'TheNewThinkTank'
-    access_token = os.environ["PROJECT_METRICS_GITHUB_PAT"]  # os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
+    access_token = os.environ["PROJECT_METRICS_GITHUB_PAT"]
     auth = Auth.Token(access_token)
     g = Github(auth=auth)
     user = g.get_user(username)
     repositories = user.get_repos()
 
-    # test on just two repos first
+    # test on just one repo first
     python_repos_encountered = 0
 
     for repo in repositories:
@@ -130,8 +130,8 @@ def main():
         create_workflow(repo, file_content)
 
         python_repos_encountered += 1
-        if python_repos_encountered >= 2:
-            print("has processed 2 python based repos now.\nquitting ...\n")
+        if python_repos_encountered >= 1:
+            print("has processed 1 python based repos now.\nquitting ...\n")
             break
 
 

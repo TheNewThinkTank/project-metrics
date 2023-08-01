@@ -8,6 +8,8 @@ import os
 
 from github import Auth, Github, Repository, InputGitTreeElement
 
+from src.REST.add_repo_size_badge import update_repo
+
 
 def has_python_code(repo: Repository.Repository) -> bool:
 
@@ -113,6 +115,9 @@ def main():
 
         file_content = make_gha_file_content(repo)
         create_workflow(repo, file_content)
+
+        # TODO: add CI badge if not exists
+        update_repo(username, repo, badge_name="ci_badge")
 
         python_repos_encountered += 1
         if python_repos_encountered >= 1:

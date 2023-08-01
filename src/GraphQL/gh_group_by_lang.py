@@ -19,7 +19,7 @@ def group_repos_by_language(username: str, token: str) -> list:
     :return: _description_
     :rtype: list
     """
-  
+
     url = 'https://api.github.com/graphql'
     headers = {'Authorization': f'bearer {token}'}
     query = '''

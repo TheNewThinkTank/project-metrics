@@ -121,9 +121,8 @@ def main() -> None:
     repositories = user.get_repos()
 
     # test on just a few repos first
-    num_python_repos_to_update = 2
-
-    python_repos_encountered = 0
+    # num_python_repos_to_update = 2
+    # python_repos_encountered = 0
 
     for repo in repositories:
         if not has_python_code(repo):
@@ -154,10 +153,10 @@ def main() -> None:
         create_workflow(repo, file_content)
         print(f"created workflow for {repo.name}")
 
-        python_repos_encountered += 1
-        if python_repos_encountered >= num_python_repos_to_update:
-            print(f"has processed {num_python_repos_to_update} python based repos now.\nquitting ...\n")
-            break
+        # python_repos_encountered += 1
+        # if python_repos_encountered >= num_python_repos_to_update:
+        #     print(f"has processed {num_python_repos_to_update} python based repos now.\nquitting ...\n")
+        #     break
 
 
 if __name__ == "__main__":

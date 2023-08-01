@@ -109,7 +109,7 @@ def make_gha_file_content(repo: Repository.Repository) -> str:
 
 def main():
     username = 'TheNewThinkTank'
-    access_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
+    access_token = os.environ["PROJECT_METRICS_GITHUB_PAT"]  # os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
     auth = Auth.Token(access_token)
     g = Github(auth=auth)
     user = g.get_user(username)

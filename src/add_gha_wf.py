@@ -70,7 +70,7 @@ def make_gha_file_content(repo: Repository.Repository) -> str:
     """
 
     with open("assets/python-wf.txt", "r") as rf:
-        wf = rf.read().replace("repo_name", repo.name).replace("repo_branch", repo.default_branch)
+        wf = rf.read().replace("{repo_name}", repo.name).replace("{repo_branch}", repo.default_branch)
 
     return wf
 

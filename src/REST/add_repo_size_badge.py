@@ -27,7 +27,7 @@ from github import Auth, Github, Repository, PaginatedList
 #     return None
 
 
-def get_badge(repo: Repository.Repository, badge_name: str) -> dict[Any, Any]:
+def get_badge(repo: Repository.Repository, badge_name: str):
     """_summary_
 
     :param badge: _description_

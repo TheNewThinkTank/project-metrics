@@ -20,12 +20,21 @@ def get_repos(platform: str) -> list[dict]:
     repos = response.json()["values"] if platform == "bitbucket" else response.json()
 
     return [
-        {"name": repo["name"], "owner": username, "platform": platform}
+        {
+            "name": repo["name"],
+             "owner": username,
+             "platform": platform
+         }
         for repo in repos
         ]
 
 
 def get_all_repos() -> list:
+    """_summary_
+
+    :return: _description_
+    :rtype: list
+    """
 
     # print(get_gl_repos())
     # get_bb_repos()

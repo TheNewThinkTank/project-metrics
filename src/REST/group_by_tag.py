@@ -2,7 +2,15 @@
 import requests  # type: ignore
 
 
-def group_repos_by_tag(username, token):
+def group_repos_by_tag(username: str, token) -> None:
+    """_summary_
+
+    :param username: _description_
+    :type username: str
+    :param token: _description_
+    :type token: _type_
+    """
+
     url = f'https://api.github.com/users/{username}/repos'
     headers = {'Authorization': f'token {token}'}
     response = requests.get(url, headers=headers)

@@ -34,7 +34,7 @@ def csv_to_md(in_file: str) -> None:
         wf.write(md_string)
 
 
-def main():
+def main() -> None:
     # csv_to_md("data/popular_repos.csv")
     # csv_to_md("data/repos_wo_desc.csv")
     ...

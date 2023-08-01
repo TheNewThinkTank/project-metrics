@@ -24,7 +24,7 @@ def txt_to_csv(in_file: str) -> None:
               )
 
 
-def main():
+def main() -> None:
     # txt_to_csv('data/popular_repos.txt')
     # txt_to_csv('data/repos_wo_desc.txt')
     ...

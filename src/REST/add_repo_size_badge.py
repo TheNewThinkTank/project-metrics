@@ -60,7 +60,10 @@ def get_badge(repo: Repository.Repository, badge_name: str):
     return badges[badge_name]
 
 
-def update_readme(repo: Repository.Repository, format: Literal['md', 'rst'], badge_name: str) -> None:
+def update_readme(repo: Repository.Repository,
+                  format: Literal['md', 'rst'],
+                  badge_name: str
+                  ) -> None:
 
     badge = get_badge(repo, badge_name)
 
@@ -96,6 +99,15 @@ def update_readme(repo: Repository.Repository, format: Literal['md', 'rst'], bad
 
 
 def update_repo(username: str, repo: Repository.Repository, badge_name: str) -> None:
+    """_summary_
+
+    :param username: _description_
+    :type username: str
+    :param repo: _description_
+    :type repo: Repository.Repository
+    :param badge_name: _description_
+    :type badge_name: str
+    """
 
     print(f'Processing repository: {repo.name}')
     # Clone the repository locally
@@ -114,7 +126,9 @@ def update_repo(username: str, repo: Repository.Repository, badge_name: str) -> 
         update_readme(repo, 'rst', badge_name)
 
 
-def update_all_repos(username: str, repositories: PaginatedList.PaginatedList[Repository.Repository]) -> None:
+def update_all_repos(username: str,
+                     repositories: PaginatedList.PaginatedList[Repository.Repository]
+                     ) -> None:
     """_summary_
 
     :param username: _description_

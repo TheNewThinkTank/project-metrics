@@ -1,3 +1,5 @@
+"""_summary_
+"""
 
 import os
 from pprint import pprint as pp
@@ -8,6 +10,15 @@ from save_file_to_github import save_file_to_github  # type: ignore
 
 
 def fetch_top_repos(username: str, token: str) -> list:
+    """_summary_
+
+    :param username: _description_
+    :type username: str
+    :param token: _description_
+    :type token: str
+    :return: _description_
+    :rtype: list
+    """
 
     url = 'https://api.github.com/graphql'
     headers = {'Authorization': f'bearer {token}'}
@@ -50,7 +61,7 @@ def fetch_top_repos(username: str, token: str) -> list:
         return []
 
 
-def main():
+def main() -> None:
     token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
     popular_repos = fetch_top_repos('TheNewThinkTank', token)
     repo_name = 'project-metrics'

@@ -4,7 +4,6 @@ otherwise, add wf with Qualify-Code job, with linting etc.
 """
 
 import os
-# import textwrap
 
 from github import Auth, Github, Repository, InputGitTreeElement
 
@@ -12,6 +11,13 @@ from REST.add_repo_size_badge import update_repo  # type: ignore
 
 
 def has_python_code(repo: Repository.Repository) -> bool:
+    """_summary_
+
+    :param repo: _description_
+    :type repo: Repository.Repository
+    :return: _description_
+    :rtype: bool
+    """
 
     languages = repo.get_languages()
 
@@ -21,6 +27,13 @@ def has_python_code(repo: Repository.Repository) -> bool:
 
 
 def has_actions_workflow(repo: Repository.Repository) -> bool:
+    """_summary_
+
+    :param repo: _description_
+    :type repo: Repository.Repository
+    :return: _description_
+    :rtype: bool
+    """
 
     workflows = repo.get_workflows()
 
@@ -35,6 +48,16 @@ def create_workflow(repo: Repository.Repository,
                     file_content: str,
                     file_path: str = ".github/workflows/wf.yml"
                     ) -> None:
+    """_summary_
+
+    :param repo: _description_
+    :type repo: Repository.Repository
+    :param file_content: _description_
+    :type file_content: str
+    :param file_path: _description_, defaults to ".github/workflows/wf.yml"
+    :type file_path: str, optional
+    """
+
     branch = repo.default_branch
 
     # Get the branch reference
@@ -77,11 +100,19 @@ def make_gha_file_content(repo: Repository.Repository) -> str:
     return wf
 
 
-def get_readme_format(repo: Repository.Repository):
+def get_readme_format(repo: Repository.Repository) -> str:
+    """_summary_
+
+    :param repo: _description_
+    :type repo: Repository.Repository
+    :return: _description_
+    :rtype: str
+    """
+
     return repo.get_readme().name.split(".")[-1]
 
 
-def main():
+def main() -> None:
     username = 'TheNewThinkTank'
     access_token = os.environ["PROJECT_METRICS_GITHUB_PAT"]
     auth = Auth.Token(access_token)

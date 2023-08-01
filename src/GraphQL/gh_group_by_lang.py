@@ -1,3 +1,5 @@
+"""_summary_
+"""
 
 import os
 from pprint import pprint as pp
@@ -8,6 +10,16 @@ from make_md_table import table_from_nested  # type: ignore
 
 
 def group_repos_by_language(username: str, token: str) -> list:
+    """_summary_
+
+    :param username: _description_
+    :type username: str
+    :param token: _description_
+    :type token: str
+    :return: _description_
+    :rtype: list
+    """
+  
     url = 'https://api.github.com/graphql'
     headers = {'Authorization': f'bearer {token}'}
     query = '''
@@ -52,9 +64,16 @@ def group_repos_by_language(username: str, token: str) -> list:
         return []
 
 
-repo_name = 'project-metrics'
-lang_repos = group_repos_by_language('TheNewThinkTank', os.environ["FG_GITHUB_ACCESS_TOKEN"])
-file_path = 'query-results/group_by_lang.md'
-file_content = table_from_nested(lang_repos)
+def main() -> None:
+    repo_name = 'project-metrics'
+    lang_repos = group_repos_by_language('TheNewThinkTank',
+                                         os.environ["FG_GITHUB_ACCESS_TOKEN"]
+                                         )
+    file_path = 'query-results/group_by_lang.md'
+    file_content = table_from_nested(lang_repos)
 
-save_file_to_github(repo_name, file_path, file_content)
+    save_file_to_github(repo_name, file_path, file_content)
+
+
+if __name__ == "__main__":
+    main()

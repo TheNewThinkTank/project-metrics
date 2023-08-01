@@ -40,7 +40,15 @@ single_repo_query = '''
 '''
 
 
-def fetch_largest_repos(username, token):
+def fetch_largest_repos(username: str, token) -> None:
+    """_summary_
+
+    :param username: _description_
+    :type username: str
+    :param token: _description_
+    :type token: _type_
+    """
+
     url = 'https://api.github.com/graphql'
     headers = {'Authorization': f'bearer {token}'}
     query = '''
@@ -74,7 +82,7 @@ def fetch_largest_repos(username, token):
         print(response.text)
 
 
-def main():
+def main() -> None:
     token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
     fetch_largest_repos('TheNewThinkTank', token)
 

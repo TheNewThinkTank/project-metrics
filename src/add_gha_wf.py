@@ -90,6 +90,8 @@ def main():
     repositories = user.get_repos()
 
     # test on just a few repos first
+    num_python_repos_to_update = 2
+
     python_repos_encountered = 0
 
     for repo in repositories:
@@ -122,8 +124,8 @@ def main():
         print(f"created workflow for {repo.name}")
 
         python_repos_encountered += 1
-        if python_repos_encountered >= 2:
-            print("has processed 2 python based repos now.\nquitting ...\n")
+        if python_repos_encountered >= num_python_repos_to_update:
+            print(f"has processed {num_python_repos_to_update} python based repos now.\nquitting ...\n")
             break
 
 

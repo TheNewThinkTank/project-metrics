@@ -43,4 +43,4 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Lint with ruff
-        run: poetry run ruff
+        run: poetry run ruff .

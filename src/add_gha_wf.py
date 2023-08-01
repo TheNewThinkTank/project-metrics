@@ -4,7 +4,7 @@ otherwise, add wf with Qualify-Code job, with linting etc.
 """
 
 import os
-import textwrap
+# import textwrap
 
 from github import Auth, Github, Repository, InputGitTreeElement
 
@@ -61,50 +61,18 @@ def create_workflow(repo: Repository.Repository,
 
 
 def make_gha_file_content(repo: Repository.Repository) -> str:
-    return textwrap.dedent(
-        f"""---
-            name: {repo.name} Workflow
-            on:
-              push:
-                branches: {repo.default_branch}
-              workflow_dispatch
+    """_summary_
 
-            jobs:
-              Qualify-Code:
-                runs-on: ubuntu-latest
+    :param repo: _description_
+    :type repo: Repository.Repository
+    :return: _description_
+    :rtype: str
+    """
 
-                steps:
-                  - name: Check out code
-                    uses: actions/checkout@v3
+    with open("assets/python-wf.txt", "r") as rf:
+        wf = rf.read().replace("repo_name", repo.name).replace("repo_branch", repo.default_branch)
 
-                  - name: Setup Python
-                    uses: actions/setup-python@v4
-                    with:
-                      python-version: 3.11
-                      cache: pip
-
-                  - name: Install and cache poetry
-                    run: |
-                      curl -sSL https://install.python-poetry.org | python3 -
-                    if: steps.cache.outputs.cache-hit != 'true'
-
-                  - name: Cache poetry dependencies
-                    id: cache
-                    uses: actions/cache@v3
-                    with:
-                      path: ~/.cache/pypoetry/virtualenvs
-                      key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-                      restore-keys: ${{ runner.os }}-poetry-
-
-                  - name: Install dependencies with poetry
-                    run: poetry install
-                    env:
-                      POETRY_VIRTUALENVS_IN_PROJECT: true
-                    if: steps.cache.outputs.cache-hit != 'true'
-
-                  - name: Lint with ruff
-                    run: poetry add ruff && poetry run ruff
-        """)
+    return wf
 
 
 def main():

@@ -75,6 +75,10 @@ def make_gha_file_content(repo: Repository.Repository) -> str:
     return wf
 
 
+def get_readme_format(repo: Repository.Repository):
+    return repo.get_readme().name.split(".")[-1]
+
+
 def main():
     username = 'TheNewThinkTank'
     access_token = os.environ["PROJECT_METRICS_GITHUB_PAT"]
@@ -91,8 +95,19 @@ def main():
             continue
         if has_actions_workflow(repo):
             continue
-
         print(f"Processing repo: {repo.name}")
+
+        # Add pyproject.toml to repo, from assets
+        file_path = "pyproject.toml"
+        with open("assets/pyproject.txt", "r") as rf:
+            file_content = rf.read().replace("{project-name}", repo.name)
+            file_content = file_content.replace("{description}", repo.description)
+            file_content = file_content.replace("{readme-format}", get_readme_format(repo))
+        try:
+            file = repo.get_contents(file_path, ref=repo.default_branch)
+            repo.update_file(file_path, "Updating file", file_content, file.sha, branch=repo.default_branch)  # type: ignore
+        except Exception:
+            repo.create_file(file_path, "Creating file", file_content, branch=repo.default_branch)
 
         file_content = make_gha_file_content(repo)
         create_workflow(repo, file_content)

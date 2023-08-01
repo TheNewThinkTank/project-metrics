@@ -20,27 +20,27 @@ jobs:
           python-version: 3.11
           cache: pip
 
-      - name: install ruff and lint python code
-        run: pip install ruff && ruff check .
+      # - name: install ruff and lint python code
+      #   run: pip install ruff && ruff check .
 
-      #- name: Install and cache poetry
-      #  run: |
-      #    curl -sSL https://install.python-poetry.org | python3 -
-      #  if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install and cache poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+        if: steps.cache.outputs.cache-hit != 'true'
 
-      #- name: Cache poetry dependencies
-      #  id: cache
-      #  uses: actions/cache@v3
-      #  with:
-      #    path: ~/.cache/pypoetry/virtualenvs
-      #    key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-      #    restore-keys: ${{ runner.os }}-poetry-
+      - name: Cache poetry dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
 
-      #- name: Install dependencies with poetry
-      #  run: poetry install
-      #  env:
-      #    POETRY_VIRTUALENVS_IN_PROJECT: true
-      #  if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install dependencies with poetry
+        run: poetry install
+        env:
+          POETRY_VIRTUALENVS_IN_PROJECT: true
+        if: steps.cache.outputs.cache-hit != 'true'
 
-      #- name: Lint with ruff
-      #  run: poetry add ruff && poetry run ruff
+      - name: Lint with ruff
+        run: poetry run ruff

@@ -132,9 +132,12 @@ def main() -> None:
 
         # Add pyproject.toml to repo if it doesn't exist already
         file_path = "pyproject.toml"
+
+        repo_description = repo.description if repo.description is not None else ""
+
         with open("assets/pyproject.txt", "r") as rf:
             file_content = rf.read().replace("{project-name}", repo.name)
-            file_content = file_content.replace("{description}", repo.description)
+            file_content = file_content.replace("{description}", repo_description)
             file_content = file_content.replace("{readme-format}", get_readme_format(repo))
         try:
             repo.get_contents(file_path)

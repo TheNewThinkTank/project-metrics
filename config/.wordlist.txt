@@ -1,4 +1,5 @@
 codecov
+descendingly
 GitLab
 profiler
 pytest
@@ -8,4 +9,5 @@ readthedocs
 repo
 repos
 repo's
+scannings
 YAML

@@ -27,3 +27,25 @@ platforms = {
     #     "url": ""
     # },
 }
+
+# GitHub badges
+gh_badges = {
+    "size_badge": {
+        "label": "GitHub repo size",
+        "value": [
+            "https://img.shields.io/github/repo-size/TheNewThinkTank/{repo}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size",
+            "https://github.com/TheNewThinkTank/{repo}/archive/refs/heads/main.zip",
+        ]
+    },
+    "ci_badge": {
+        "label": "CI",
+        "value": "https://github.com/TheNewThinkTank/{repo}/actions/workflows/wf.yml/badge.svg",
+    },
+    "codecov_badge": {
+        "label": "codecov",
+        "value": [
+            "https://codecov.io/gh/TheNewThinkTank/{repo}/branch/main/graph/badge.svg",
+            "https://codecov.io/gh/TheNewThinkTank/{repo})"
+        ]
+    }
+}

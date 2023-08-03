@@ -1,30 +1,16 @@
+"""_summary_
+
+Docs:
+https://pygithub.readthedocs.io/en/stable/examples/Repository.html
+"""
+
 import os
 from pathlib import Path
-# import requests  # type: ignore
-from typing import Any, Literal
+from typing import Literal
 
 from github import Auth, Github, Repository, PaginatedList
 
-# Docs: https://pygithub.readthedocs.io/en/stable/examples/Repository.html#update-a-file-in-the-repository
-
-
-# def get_repo_size(username: str, repository: str) -> str | None:
-#     """Fetch the size of a repository.
-
-#     :param username: _description_
-#     :type username: str
-#     :param repository: _description_
-#     :type repository: str
-#     :return: _description_
-#     :rtype: str | None
-#     """
-
-#     url = f'https://api.github.com/repos/{username}/{repository}'
-#     response = requests.get(url)
-#     if response.ok:
-#         data = response.json()
-#         return data['size']
-#     return None
+from src.config import gh_badges
 
 
 def get_badge(repo: Repository.Repository, badge_name: str):
@@ -36,28 +22,15 @@ def get_badge(repo: Repository.Repository, badge_name: str):
     :rtype: dict
     """
 
-    badges = {
-        "size_badge": {
-            "label": "GitHub repo size",
-            "value": [
-                f"https://img.shields.io/github/repo-size/TheNewThinkTank/{repo.name}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size",
-                f"https://github.com/TheNewThinkTank/{repo.name}/archive/refs/heads/main.zip",
-            ]
-        },
-        "ci_badge": {
-            "label": "CI",
-            "value": f"https://github.com/TheNewThinkTank/{repo.name}/actions/workflows/wf.yml/badge.svg",
-        },
-        "codecov_badge": {
-            "label": "codecov",
-            "value": [
-                f"https://codecov.io/gh/TheNewThinkTank/{repo.name}/branch/main/graph/badge.svg",
-                f"https://codecov.io/gh/TheNewThinkTank/{repo.name})"
-            ]
-        }
-    }
+    badge = gh_badges[badge_name]
 
-    return badges[badge_name]
+    if isinstance(badge["value"], str):
+        badge["value"] = badge["value"].replace("{repo}", repo.name)
+
+    elif isinstance(badge["value"], list):
+        badge["value"] = [url.replace("{repo}", repo.name) for url in badge["value"]]
+
+    return badge
 
 
 def update_readme(repo: Repository.Repository,
@@ -154,16 +127,12 @@ def update_all_repos(username: str,
 
 
 def main() -> None:
-    # GitHub credentials
     username = 'TheNewThinkTank'
     access_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
     auth = Auth.Token(access_token)
-    # Initialize the GitHub API client
     g = Github(auth=auth)
-    # Fetch all repositories for the given user
     user = g.get_user(username)
     repositories = user.get_repos()
-
     update_all_repos(username, repositories)
 
 

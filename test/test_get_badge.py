@@ -1,4 +1,5 @@
 
+from context import src
 from src.get_badge import get_badge
 
 repo_names = [

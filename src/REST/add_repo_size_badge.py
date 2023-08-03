@@ -24,7 +24,7 @@ def get_badge(repo: Repository.Repository, badge_name: str):
 
     badge = gh_badges[badge_name]
 
-    if isinstance(badge["value"], str):
+    if isinstance(badge["value"], str):  # type: ignore
         badge["value"] = badge["value"].replace("{repo}", repo.name)
 
     elif isinstance(badge["value"], list):

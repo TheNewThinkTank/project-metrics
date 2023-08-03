@@ -10,7 +10,8 @@ from typing import Literal
 
 from github import Auth, Github, Repository, PaginatedList
 
-from src.config import gh_badges
+from config import gh_badges  # type: ignore
+# from src.config import gh_badges
 
 
 def get_badge(repo: Repository.Repository, badge_name: str):

@@ -16,10 +16,10 @@ def get_badge(repo_name: str, badge_name: str):
     badge = gh_badges[badge_name]
 
     if isinstance(badge["value"], str):  # type: ignore
-        badge["value"] = badge["value"].replace("{repo}", repo.name)  # type: ignore
+        badge["value"] = badge["value"].replace("{repo}", repo_name)  # type: ignore
 
     elif isinstance(badge["value"], list):  # type: ignore
-        badge["value"] = [url.replace("{repo}", repo.name)  # type: ignore
+        badge["value"] = [url.replace("{repo}", repo_name)  # type: ignore
                           for url in badge["value"]  # type: ignore
                           ]  # type: ignore
 

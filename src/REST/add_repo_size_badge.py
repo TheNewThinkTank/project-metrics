@@ -18,7 +18,11 @@ def update_readme(repo: Repository.Repository,
                   badge_name: str
                   ) -> None:
 
-    badge = get_badge(repo, badge_name)
+    repo_name = repo.name
+
+    badge = get_badge(repo_name, badge_name)
+
+    print(f"{badge = }")
 
     newlines = {
         'md': '\n',

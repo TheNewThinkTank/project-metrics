@@ -1,6 +1,6 @@
 
-import pandas as pd
-from src.make_md_table import table, table_from_nested
+# import pandas as pd
+from src.make_md_table import table_from_nested  # , table
 
 
 # def test_table_with_strings():

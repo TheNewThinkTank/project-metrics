@@ -1,14 +1,12 @@
 
-from github import Repository
-
 from config import gh_badges  # type: ignore
 
 
-def get_badge(repo: Repository.Repository, badge_name: str):
+def get_badge(repo_name: str, badge_name: str):
     """_summary_
 
     :param repo: _description_
-    :type repo: Repository.Repository
+    :type repo: str
     :param badge_name: _description_
     :type badge_name: str
     :return: _description_

@@ -1,0 +1,28 @@
+
+from github import Repository
+
+from config import gh_badges  # type: ignore
+
+
+def get_badge(repo: Repository.Repository, badge_name: str):
+    """_summary_
+
+    :param repo: _description_
+    :type repo: Repository.Repository
+    :param badge_name: _description_
+    :type badge_name: str
+    :return: _description_
+    :rtype: dict
+    """
+
+    badge = gh_badges[badge_name]
+
+    if isinstance(badge["value"], str):  # type: ignore
+        badge["value"] = badge["value"].replace("{repo}", repo.name)  # type: ignore
+
+    elif isinstance(badge["value"], list):  # type: ignore
+        badge["value"] = [url.replace("{repo}", repo.name)  # type: ignore
+                          for url in badge["value"]  # type: ignore
+                          ]  # type: ignore
+
+    return badge

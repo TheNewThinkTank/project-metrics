@@ -10,30 +10,7 @@ from typing import Literal
 
 from github import Auth, Github, Repository, PaginatedList
 
-from config import gh_badges  # type: ignore
-# from src.config import gh_badges
-
-
-def get_badge(repo: Repository.Repository, badge_name: str):
-    """_summary_
-
-    :param badge: _description_
-    :type badge: str
-    :return: _description_
-    :rtype: dict
-    """
-
-    badge = gh_badges[badge_name]
-
-    if isinstance(badge["value"], str):  # type: ignore
-        badge["value"] = badge["value"].replace("{repo}", repo.name)  # type: ignore
-
-    elif isinstance(badge["value"], list):  # type: ignore
-        badge["value"] = [url.replace("{repo}", repo.name)  # type: ignore
-                          for url in badge["value"]  # type: ignore
-                          ]  # type: ignore
-
-    return badge
+from get_badge import get_badge  # type: ignore
 
 
 def update_readme(repo: Repository.Repository,

@@ -1,7 +1,6 @@
 """_summary_
 """
 
-# import json
 import pandas as pd  # type: ignore
 
 # TODO: replace single with double quotes
@@ -16,11 +15,6 @@ def txt_to_csv(in_file: str, sep: str = ",") -> None:
     :param sep: _description_, defaults to ','
     :type sep: str, optional
     """
-
-    # with open(in_file, 'r') as f:
-    #     data = f.readlines()
-    # data = [json.loads(d) for d in data]
-    # df = pd.DataFrame.from_dict(data)
 
     df = pd.read_csv(in_file, sep=sep)
 

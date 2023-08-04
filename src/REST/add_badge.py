@@ -31,7 +31,7 @@ def update_readme(
 
     badge = get_badge(repo_name, badge_name)
 
-    print(f"{badge = }")
+    # print(f"{badge = }")
 
     newlines = {"md": "\n", "rst": "\n\n"}
     newline = newlines[format]

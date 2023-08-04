@@ -12,7 +12,8 @@ def get_badge(repo_name: str, badge_name: str):
     :rtype: dict
     """
 
-    badge = gh_badges[badge_name]
+    # avoid modifying the original gh_badges dictionary, by making a copy
+    badge = gh_badges[badge_name].copy()
 
     if isinstance(badge["value"], str):  # type: ignore
         badge["value"] = badge["value"].replace("{repo}", repo_name)  # type: ignore
@@ -23,6 +24,6 @@ def get_badge(repo_name: str, badge_name: str):
             for url in badge["value"]  # type: ignore
         ]  # type: ignore
 
-    print(f"badge from get_badge: {badge}")
+    # print(f"badge from get_badge: {badge}")
 
     return badge

@@ -9,7 +9,7 @@ from src.util.get_gh_repos import get_gh_repos
 @patch("src.util.get_gh_repos.Github")
 def test_get_gh_repos_with_default_values(mock_github):
     # Arrange
-    expected_username = "TheNewThinkTank"
+    # expected_username = "TheNewThinkTank"
     # expected_access_token = "mocked_access_token"
     repo_mock = Mock()
     user_mock = Mock()

@@ -7,7 +7,7 @@ from github import Repository, InputGitTreeElement
 
 # TODO: rename, e.g. add_badge.py
 from REST.add_repo_size_badge import update_repo  # type: ignore
-from util.get_gh_repos import get_gh_repos
+from util.get_gh_repos import get_gh_repos  # type: ignore
 
 
 def has_python_code(repo: Repository.Repository) -> bool:

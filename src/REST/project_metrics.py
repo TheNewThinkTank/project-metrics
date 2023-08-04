@@ -6,7 +6,7 @@
 from config import platforms  # type: ignore
 from get_repos import get_all_repos, get_repo_info, print_repo_info  # type: ignore
 from save_file_to_github import save_file_to_github  # type: ignore
-from make_md_table import table  # type: ignore
+from util.make_md_table import table  # type: ignore
 
 
 def repo_missing_descriptions(repo_info: dict) -> bool:
@@ -32,7 +32,9 @@ def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:
     :rtype: list
     """
 
-    print("  ####################     Repos missing descriptions:     ####################  ")
+    print(
+        "  ####################     Repos missing descriptions:     ####################  "
+    )
     repos_wo_desc = []
     for repo in all_repos:
         repo_info = get_repo_info(platforms, repo)
@@ -62,8 +64,7 @@ def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:
 
 
 def main() -> None:
-    """_summary_
-    """
+    """_summary_"""
 
     all_repos = get_all_repos()
 
@@ -84,8 +85,8 @@ def main() -> None:
 
     repos_wo_desc = get_repos_wo_desc(platforms, all_repos)
 
-    repo_name = 'project-metrics'
-    file_path = 'query-results/repos_wo_desc.md'
+    repo_name = "project-metrics"
+    file_path = "query-results/repos_wo_desc.md"
     file_content = table(repos_wo_desc)
     save_file_to_github(repo_name, file_path, file_content)
 

@@ -13,12 +13,11 @@ def get_readme_format(repo: Repository.Repository) -> str:
     :rtype: str
     """
 
-    readme_format = repo.get_readme().name.split(".")[-1]
+    readme = repo.get_readme()
 
-    # try:
-    #     readme_format = repo.get_readme().name.split(".")[-1]
-    # except Exception as e:
-    #     print(e)
-    #     readme_format = ""
+    if readme is None:
+        return ""
+
+    readme_format = readme.name.split(".")[-1]
 
     return readme_format

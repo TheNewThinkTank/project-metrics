@@ -5,25 +5,10 @@ otherwise, add wf with Qualify-Code job, with linting etc.
 
 from github import Repository, InputGitTreeElement
 
-# TODO: rename, e.g. add_badge.py
-from REST.add_repo_size_badge import update_repo  # type: ignore
+from REST.add_badge import update_repo  # type: ignore
 from util.get_gh_repos import get_gh_repos  # type: ignore
-
-
-def has_python_code(repo: Repository.Repository) -> bool:
-    """_summary_
-
-    :param repo: _description_
-    :type repo: Repository.Repository
-    :return: _description_
-    :rtype: bool
-    """
-
-    languages = repo.get_languages()
-
-    if "Python" in languages:
-        return True
-    return False
+from util.get_readme_format import get_readme_format  # type: ignore
+from util.repo_has_lang import repo_has_lang  # type: ignore
 
 
 def has_actions_workflow(repo: Repository.Repository) -> bool:
@@ -42,18 +27,6 @@ def has_actions_workflow(repo: Repository.Repository) -> bool:
         return True
     else:
         return False
-
-
-def get_readme_format(repo: Repository.Repository) -> str:
-    """_summary_
-
-    :param repo: _description_
-    :type repo: Repository.Repository
-    :return: _description_
-    :rtype: str
-    """
-
-    return repo.get_readme().name.split(".")[-1]
 
 
 def make_gha_file_content(repo: Repository.Repository) -> str:
@@ -118,10 +91,34 @@ def create_workflow(
     repo.get_git_ref(f"heads/{branch}").edit(new_commit.sha)
 
 
-def main() -> None:
-    # TODO: main function is too long and has too many responsibilities.
-    # split into smaller functions.
+def create_pyproject_file(repo: Repository.Repository) -> None:
+    """Add pyproject.toml to repo if it doesn't exist already.
 
+    :param repo: _description_
+    :type repo: Repository.Repository
+    """
+
+    file_path = "pyproject.toml"
+    repo_description = repo.description if repo.description is not None else ""
+
+    with open("assets/pyproject.txt", "r") as rf:
+        file_content = rf.read().replace("{project-name}", repo.name)
+        file_content = file_content.replace("{description}", repo_description)
+        file_content = file_content.replace("{readme-format}", get_readme_format(repo))
+
+    try:
+        repo.get_contents(file_path)
+        print(f"File '{file_path}' already exists.")
+    except Exception:
+        repo.create_file(
+            file_path,
+            "chore: add pyproject.toml",
+            file_content,
+            branch=repo.default_branch,
+        )
+
+
+def main() -> None:
     username = "TheNewThinkTank"
     repositories = get_gh_repos()
 
@@ -130,42 +127,19 @@ def main() -> None:
     # python_repos_encountered = 0
 
     for repo in repositories:
-        if not has_python_code(repo):
+        if not repo_has_lang(repo, "Python"):
             continue
 
         print(f"Processing repo: {repo.name}")
 
-        # Add pyproject.toml to repo if it doesn't exist already
-        file_path = "pyproject.toml"
+        create_pyproject_file(repo)
 
-        repo_description = repo.description if repo.description is not None else ""
-
-        with open("assets/pyproject.txt", "r") as rf:
-            file_content = rf.read().replace("{project-name}", repo.name)
-            file_content = file_content.replace("{description}", repo_description)
-            file_content = file_content.replace(
-                "{readme-format}", get_readme_format(repo)
-            )
-        try:
-            repo.get_contents(file_path)
-            print(f"File '{file_path}' already exists.")
-        except Exception:
-            repo.create_file(
-                file_path,
-                "chore: add pyproject.toml",
-                file_content,
-                branch=repo.default_branch,
-            )
-
-        # TODO: refactor into own module
         update_repo(username, repo, badge_name="ci_badge")
 
         if has_actions_workflow(repo):
             continue
 
-        print(f"creating file content for {repo.name}")
         file_content = make_gha_file_content(repo)
-        print(f"creating workflow for {repo.name}")
         create_workflow(repo, file_content)
         print(f"created workflow for {repo.name}")
 

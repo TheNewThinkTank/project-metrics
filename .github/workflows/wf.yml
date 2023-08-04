@@ -170,7 +170,7 @@ jobs:
 
   #     - name: update repos with README size badge
   #       run: |
-  #         poetry run python src/REST/add_repo_size_badge.py
+  #         poetry run python src/REST/add_badge.py
 
   #     - name: add GitHub Actions workflow to Python-based repos
   #       run: |

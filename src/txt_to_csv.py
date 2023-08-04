@@ -1,4 +1,3 @@
-
 import json
 import pandas as pd  # type: ignore
 
@@ -19,14 +18,12 @@ def txt_to_csv(in_file: str) -> None:
     data = [json.loads(d) for d in data]
     df = pd.DataFrame.from_dict(data)
 
-    df.to_csv(in_file.split('.')[0] + '.csv',
-              index=False
-              )
+    df.to_csv(in_file.split(".")[0] + ".csv", index=False)
 
 
 def main() -> None:
-    # txt_to_csv('data/popular_repos.txt')
-    # txt_to_csv('data/repos_wo_desc.txt')
+    # txt_to_csv('popular_repos.txt')
+    # txt_to_csv('repos_wo_desc.txt')
     ...
 
 

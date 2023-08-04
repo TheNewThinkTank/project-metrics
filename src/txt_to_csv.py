@@ -1,22 +1,28 @@
-import json
+"""_summary_
+"""
+
+# import json
 import pandas as pd  # type: ignore
 
 # TODO: replace single with double quotes
 # TODO: replace None values with double quotes
 
 
-def txt_to_csv(in_file: str) -> None:
-    """Create csv file from txt using Pandas
+def txt_to_csv(in_file: str, sep: str = ",") -> None:
+    """Create csv file from txt using Pandas.
 
-    :param in_file: txt file with comma-delimited values
+    :param in_file: name of txt file
     :type in_file: str
+    :param sep: _description_, defaults to ','
+    :type sep: str, optional
     """
 
-    with open(in_file) as f:
-        data = f.readlines()
+    # with open(in_file, 'r') as f:
+    #     data = f.readlines()
+    # data = [json.loads(d) for d in data]
+    # df = pd.DataFrame.from_dict(data)
 
-    data = [json.loads(d) for d in data]
-    df = pd.DataFrame.from_dict(data)
+    df = pd.read_csv(in_file, sep=sep)
 
     df.to_csv(in_file.split(".")[0] + ".csv", index=False)
 

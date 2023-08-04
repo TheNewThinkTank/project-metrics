@@ -123,30 +123,27 @@ def main() -> None:
     repositories = get_gh_repos()
 
     # test on just a few repos first
-    # num_python_repos_to_update = 2
-    # python_repos_encountered = 0
+    num_python_repos_to_update = 2
+    python_repos_encountered = 0
 
     for repo in repositories:
         if not repo_has_lang(repo, "Python"):
             continue
-
         print(f"Processing repo: {repo.name}")
-
         create_pyproject_file(repo)
-
         update_repo(username, repo, badge_name="ci_badge")
-
         if has_actions_workflow(repo):
             continue
-
         file_content = make_gha_file_content(repo)
         create_workflow(repo, file_content)
-        print(f"created workflow for {repo.name}")
+        print(f"\tcreated workflow for {repo.name}")
 
-        # python_repos_encountered += 1
-        # if python_repos_encountered >= num_python_repos_to_update:
-        #     print(f"has processed {num_python_repos_to_update} python based repos now.\nquitting ...\n")
-        #     break
+        python_repos_encountered += 1
+        if python_repos_encountered >= num_python_repos_to_update:
+            print(
+                f"\t\thas processed {num_python_repos_to_update} python-based repos now.\nquitting ...\n"
+            )
+            break
 
 
 if __name__ == "__main__":

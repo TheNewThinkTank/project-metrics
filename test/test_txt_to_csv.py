@@ -10,7 +10,7 @@ def test_txt_to_csv():
     with open(input_file, "w") as f:
         f.write("name\tstars\nfitness-tracker\t14\nN-body-simulations\t5")
 
-    txt_to_csv(input_file)
+    txt_to_csv(input_file, sep="\t")
 
     # Assert that the CSV file is created
     assert os.path.exists("testdata.csv")
@@ -20,6 +20,10 @@ def test_txt_to_csv():
         {"name": ["fitness-tracker", "N-body-simulations"], "stars": [14, 5]}
     )
     actual_df = pd.read_csv("testdata.csv")
+
+    print(expected_df)
+    print(actual_df)
+
     pd.testing.assert_frame_equal(expected_df, actual_df)
 
     # Clean up the test files

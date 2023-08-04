@@ -17,6 +17,16 @@ from util.get_gh_repos import get_gh_repos  # type: ignore
 def update_readme(
     repo: Repository.Repository, format: Literal["md", "rst"], badge_name: str
 ) -> None:
+    """_summary_
+
+    :param repo: _description_
+    :type repo: Repository.Repository
+    :param format: _description_
+    :type format: Literal["md", "rst"]
+    :param badge_name: _description_
+    :type badge_name: str
+    """
+
     repo_name = repo.name
 
     badge = get_badge(repo_name, badge_name)

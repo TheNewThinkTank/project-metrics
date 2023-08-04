@@ -2,7 +2,7 @@ import os
 
 import pandas as pd
 
-from src.txt_to_csv import txt_to_csv
+from src.util.txt_to_csv import txt_to_csv
 
 
 def test_txt_to_csv():

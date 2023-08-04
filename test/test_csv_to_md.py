@@ -1,6 +1,6 @@
 import os
 
-from src.csv_to_md import csv_to_md
+from src.util.csv_to_md import csv_to_md
 
 
 def test_csv_to_md():

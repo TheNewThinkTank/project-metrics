@@ -1,4 +1,3 @@
-
 import pandas as pd  # type: ignore
 
 
@@ -12,10 +11,10 @@ def table(data: list[dict]) -> str:
     """
 
     md_table = ""
-    md_header = '| ' + ' | '.join(map(str, data[0].keys())) + ' |'
-    md_header_sep = '|-----' * len(data[0].keys()) + '|'
-    md_table += md_header + '\n'
-    md_table += md_header_sep + '\n'
+    md_header = "| " + " | ".join(map(str, data[0].keys())) + " |"
+    md_header_sep = "|-----" * len(data[0].keys()) + "|"
+    md_table += md_header + "\n"
+    md_table += md_header_sep + "\n"
 
     for row in data:
         md_row = ""
@@ -24,13 +23,15 @@ def table(data: list[dict]) -> str:
             #     repos = v if v else []
             #     md_row += '| ' + ', '.join(map(str, repos)) + ' '
             # else:
-            md_row += '| ' + str(v) + ' '
-        md_table += md_row + '|' + '\n'
+            md_row += "| " + str(v) + " "
+        md_table += md_row + "|" + "\n"
 
     return md_table
 
 
-def table_from_nested(data: list[dict[str, list[str]]], debug=False) -> str | pd.DataFrame:
+def table_from_nested(
+    data: list[dict[str, list[str]]], debug=False
+) -> str | pd.DataFrame:
     """_summary_
 
     :param data: _description_
@@ -55,7 +56,7 @@ def table_from_nested(data: list[dict[str, list[str]]], debug=False) -> str | pd
 
     # Fill shorter project lists with empty strings to match the maximum length
     for projects in flattened_data.values():
-        projects.extend([''] * (max_length - len(projects)))
+        projects.extend([""] * (max_length - len(projects)))
 
     df = pd.DataFrame(flattened_data)
 

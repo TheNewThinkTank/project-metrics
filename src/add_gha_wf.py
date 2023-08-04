@@ -3,11 +3,11 @@ If so, check if GitHub Actions workflow already exists,
 otherwise, add wf with Qualify-Code job, with linting etc.
 """
 
-import os
+from github import Repository, InputGitTreeElement
 
-from github import Auth, Github, Repository, InputGitTreeElement
-
+# TODO: rename, e.g. add_badge.py
 from REST.add_repo_size_badge import update_repo  # type: ignore
+from util.get_gh_repos import get_gh_repos
 
 
 def has_python_code(repo: Repository.Repository) -> bool:
@@ -21,7 +21,7 @@ def has_python_code(repo: Repository.Repository) -> bool:
 
     languages = repo.get_languages()
 
-    if 'Python' in languages:
+    if "Python" in languages:
         return True
     return False
 
@@ -44,10 +44,42 @@ def has_actions_workflow(repo: Repository.Repository) -> bool:
         return False
 
 
-def create_workflow(repo: Repository.Repository,
-                    file_content: str,
-                    file_path: str = ".github/workflows/wf.yml"
-                    ) -> None:
+def get_readme_format(repo: Repository.Repository) -> str:
+    """_summary_
+
+    :param repo: _description_
+    :type repo: Repository.Repository
+    :return: _description_
+    :rtype: str
+    """
+
+    return repo.get_readme().name.split(".")[-1]
+
+
+def make_gha_file_content(repo: Repository.Repository) -> str:
+    """_summary_
+
+    :param repo: _description_
+    :type repo: Repository.Repository
+    :return: _description_
+    :rtype: str
+    """
+
+    with open("assets/python-wf.txt", "r") as rf:
+        wf = (
+            rf.read()
+            .replace("{repo_name}", repo.name)
+            .replace("{repo_branch}", repo.default_branch)
+        )
+
+    return wf
+
+
+def create_workflow(
+    repo: Repository.Repository,
+    file_content: str,
+    file_path: str = ".github/workflows/wf.yml",
+) -> None:
     """_summary_
 
     :param repo: _description_
@@ -67,15 +99,16 @@ def create_workflow(repo: Repository.Repository,
     latest_commit = repo.get_commit(ref.object.sha)
 
     # Create a new tree with the updated file
-    new_tree = repo.create_git_tree([
-        InputGitTreeElement(file_path, '100644', 'blob', file_content)
-    ], base_tree=latest_commit.commit.tree)
+    new_tree = repo.create_git_tree(
+        [InputGitTreeElement(file_path, "100644", "blob", file_content)],
+        base_tree=latest_commit.commit.tree,
+    )
 
     # Create a new commit
     new_commit = repo.create_git_commit(
         message=f"Add {file_path} via PyGithub from project-metrics",
         tree=new_tree,
-        parents=[latest_commit.commit]
+        parents=[latest_commit.commit],
     )
 
     # Update the branch reference to the new commit
@@ -85,40 +118,12 @@ def create_workflow(repo: Repository.Repository,
     repo.get_git_ref(f"heads/{branch}").edit(new_commit.sha)
 
 
-def make_gha_file_content(repo: Repository.Repository) -> str:
-    """_summary_
-
-    :param repo: _description_
-    :type repo: Repository.Repository
-    :return: _description_
-    :rtype: str
-    """
-
-    with open("assets/python-wf.txt", "r") as rf:
-        wf = rf.read().replace("{repo_name}", repo.name).replace("{repo_branch}", repo.default_branch)
-
-    return wf
-
-
-def get_readme_format(repo: Repository.Repository) -> str:
-    """_summary_
-
-    :param repo: _description_
-    :type repo: Repository.Repository
-    :return: _description_
-    :rtype: str
-    """
-
-    return repo.get_readme().name.split(".")[-1]
-
-
 def main() -> None:
-    username = 'TheNewThinkTank'
-    access_token = os.environ["PROJECT_METRICS_GITHUB_PAT"]
-    auth = Auth.Token(access_token)
-    g = Github(auth=auth)
-    user = g.get_user(username)
-    repositories = user.get_repos()
+    # TODO: main function is too long and has too many responsibilities.
+    # split into smaller functions.
+
+    username = "TheNewThinkTank"
+    repositories = get_gh_repos()
 
     # test on just a few repos first
     # num_python_repos_to_update = 2
@@ -138,13 +143,21 @@ def main() -> None:
         with open("assets/pyproject.txt", "r") as rf:
             file_content = rf.read().replace("{project-name}", repo.name)
             file_content = file_content.replace("{description}", repo_description)
-            file_content = file_content.replace("{readme-format}", get_readme_format(repo))
+            file_content = file_content.replace(
+                "{readme-format}", get_readme_format(repo)
+            )
         try:
             repo.get_contents(file_path)
             print(f"File '{file_path}' already exists.")
         except Exception:
-            repo.create_file(file_path, "chore: add pyproject.toml", file_content, branch=repo.default_branch)
+            repo.create_file(
+                file_path,
+                "chore: add pyproject.toml",
+                file_content,
+                branch=repo.default_branch,
+            )
 
+        # TODO: refactor into own module
         update_repo(username, repo, badge_name="ci_badge")
 
         if has_actions_workflow(repo):

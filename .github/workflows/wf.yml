@@ -164,8 +164,8 @@ jobs:
           poetry run python src/GraphQL/gh_group_by_lang.py
 
   Update-Repos:
-    # needs:
-    #   - Get-Metrics
+    needs:
+      - Get-Metrics
     runs-on: ubuntu-latest
 
     # needed for running some python scripts in src/REST and src/GraphQL dirs

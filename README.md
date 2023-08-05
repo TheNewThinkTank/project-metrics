@@ -52,6 +52,9 @@ Overview of projects and their health:
         as well as a *CI* badge on their README
 
 ## Upcoming features
+- cleanup script: `remove_badge.py`
+- perform all repeated tasks that loops over repos in parallel
+- identify public repos without any README (e.g. 'web-application-jquery-and-bootstrap')
 - security scannings with *bandit* (searching for API keys etc.)
 - filter repos by number of users, descendingly
 - getting codecov above 50 %

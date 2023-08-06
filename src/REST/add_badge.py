@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 from typing import Literal
 
+import concurrent.futures
 from github import Repository, PaginatedList
 
 from get_badge import get_badge  # type: ignore
@@ -103,19 +104,42 @@ def update_all_repos(
     :type repositories: PaginatedList.PaginatedList[Repository.Repository]
     """
 
-    badge_names = [
-        "size_badge",
-        # "ci_badge",
-        # "codecov_badge",
-    ]
+    # badge_names = [
+    #     "size_badge",
+    #     # "ci_badge",
+    #     # "codecov_badge",
+    # ]
+
+    badge_name = "size_badge"
 
     for repo in repositories:
         # Skip the profile page
         if repo.name == username:
             continue
+        update_repo(username, repo, badge_name)
+        # for badge_name in badge_names:
+        #     update_repo(username, repo, badge_name)
 
-        for badge_name in badge_names:
-            update_repo(username, repo, badge_name)
+    # chunk_size = 2
+    # repository_chunks = [
+    #     repositories[i : i + chunk_size]
+    #     for i in range(0, repositories.totalCount, chunk_size)
+    # ]
+
+    # with concurrent.futures.ProcessPoolExecutor(
+    #     max_workers=2
+    # ) as executor:  # Adjust max_workers as needed
+    #     futures = {
+    #         executor.submit(update_repo, username, repo, badge_name): repo_chunk
+    #         for repo_chunk in repository_chunks
+    #     }
+
+    #     for future in concurrent.futures.as_completed(futures):
+    #         repo_chunk = futures[future]
+    #         try:
+    #             future.result()
+    #         except Exception as e:
+    #             print(f"An error occurred while updating {repo_chunk}: {e}")
 
 
 def main() -> None:

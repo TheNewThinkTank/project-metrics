@@ -1,0 +1,47 @@
+name: Update Repos
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update_repos:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        repository: ${{ fromJson(needs.repositories.outputs.repositories) }}
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: pip
+
+      - name: Install and cache poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - name: Cache poetry dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
+
+      - name: Install dependencies with poetry
+        run: poetry install
+        env:
+          POETRY_VIRTUALENVS_IN_PROJECT: true
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      # - name: Update repository
+      #   run: python update_script.py ${{ matrix.repository }}
+
+      - name: echo repository
+        run: echo ${{ matrix.repository }}

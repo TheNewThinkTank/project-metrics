@@ -3,6 +3,9 @@ name: Get gh repos
 on:
   workflow_dispatch:
 
+env:
+  PROJECT_METRICS_GITHUB_PAT: ${{ secrets.PROJECT_METRICS_GITHUB_PAT }}
+
 jobs:
   generate_config:
     runs-on: ubuntu-latest
@@ -41,7 +44,7 @@ jobs:
 
       - name: Get gh repos
         run: |
-          python util/get_gh_repos.py > gh_repos.json
+          poetry run python src/util/get_gh_repos.py > gh_repos.json
 
       - name: Output Configuration
         id: repositories

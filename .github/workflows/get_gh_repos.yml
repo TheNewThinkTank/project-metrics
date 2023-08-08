@@ -63,8 +63,8 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      REPOS: ${{ needs.generate_config.outputs.repos }}
+    # env:
+    #   REPOS: ${{ needs.generate_config.outputs.repos }}
 
     strategy:
       matrix:

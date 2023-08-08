@@ -47,23 +47,19 @@ jobs:
       #   run: |
       #     poetry run python src/util/get_gh_repos.py
 
-      - name: Create gh_repos.json
-        run: |
-          poetry run python src/util/get_gh_repos.py > gh_repos.txt
+      # - name: Create gh_repos.json
+      #   run: |
+      #     poetry run python src/util/get_gh_repos.py > gh_repos.txt
 
-      - name: cat gh repos
-        run: cat gh_repos.txt
-
-      # - name: Output Configuration
-      #   id: repositories
-      #   run: echo "repositories=$(cat gh_repos.txt)" >> $GITHUB_OUTPUT
+      # - name: cat gh repos
+      #   run: cat gh_repos.txt
 
       - name: Output Configuration
         id: repos
         run: |
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "repositories<<$EOF" >> "$GITHUB_OUTPUT"
-          cat gh_repos.txt >> "$GITHUB_OUTPUT"
+          poetry run python src/util/get_gh_repos.py >> "$GITHUB_OUTPUT"
           echo "$EOF" >> "$GITHUB_OUTPUT"
 
       - name: echo repository

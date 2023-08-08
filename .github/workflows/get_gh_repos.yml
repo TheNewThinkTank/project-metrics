@@ -52,6 +52,9 @@ jobs:
         run: echo "repositories=$(cat gh_repos.json)" >> $GITHUB_OUTPUT
 
   update_repos:
+    needs:
+      - generate_config
+
     runs-on: ubuntu-latest
 
     # strategy:
@@ -60,7 +63,7 @@ jobs:
 
     steps:
       - name: echo repository
-        run: echo $GITHUB_OUTPUT  # ${{ matrix.repository }}
+        run: echo "${{ env.repositories }}"  # echo $GITHUB_OUTPUT  # ${{ matrix.repository }}
 
       # - name: Update repository
       #   run: python update_script.py ${{ matrix.repository }}

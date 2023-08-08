@@ -47,9 +47,9 @@ jobs:
         id: repos
         run: |  # Make sure the delimiter used is randomly generated and unique for each run
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          echo "repositories<<$EOF" >> "$GITHUB_OUTPUT"
-          poetry run python src/util/get_gh_repos.py >> "$GITHUB_OUTPUT"
-          echo "$EOF" >> "$GITHUB_OUTPUT"
+          echo "repositories<<$EOF" >> "$GITHUB_ENV"  # "$GITHUB_OUTPUT"
+          poetry run python src/util/get_gh_repos.py >> "$GITHUB_ENV"  # "$GITHUB_OUTPUT"
+          echo "$EOF" >> "$GITHUB_ENV"  # "$GITHUB_OUTPUT"
 
       - name: echo repository
         run: echo "${{ steps.repos.outputs.repositories }}"
@@ -74,12 +74,12 @@ jobs:
       # - name: echo repository
       #   run: echo "${{ steps.repos.outputs.repositories }}"
 
-      - name: echo GITHUB_OUTPUT
+      - name: echo GITHUB_ENV
         run: |
           REPOS=${{ needs.generate_config.outputs.repos }}
           echo "$REPOS"
 
-      - name: echo GITHUB_OUTPUT
+      - name: echo GITHUB_ENV
         run: |
           REPOS=${{ needs.generate_config.outputs.repositories }}
           echo "$REPOS"

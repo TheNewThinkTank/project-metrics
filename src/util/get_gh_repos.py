@@ -28,7 +28,7 @@ def get_gh_repos(
 
     repositories = user.get_repos()
     for repo in repositories:
-        print(repo)
+        print(repo.name)
 
     return repositories
 

@@ -62,8 +62,8 @@ jobs:
         id: repos
         run: |
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          echo "JSON_RESPONSE<<$EOF" >> "$GITHUB_OUTPUT"
-          echo "repositories=$(cat gh_repos.txt)" >> "$GITHUB_OUTPUT"
+          echo "repositories<<$EOF" >> "$GITHUB_OUTPUT"
+          cat gh_repos.txt >> "$GITHUB_OUTPUT"
           echo "$EOF" >> "$GITHUB_OUTPUT"
 
       - name: echo repository

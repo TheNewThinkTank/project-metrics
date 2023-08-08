@@ -2,7 +2,8 @@
 """
 
 import os
-from pprint import pprint as pp
+
+# from pprint import pprint as pp
 
 from github import Auth, Github, PaginatedList, Repository
 
@@ -26,7 +27,8 @@ def get_gh_repos(
     user = g.get_user(username)
 
     repositories = user.get_repos()
-    pp(repositories)
+    for repo in repositories:
+        print(repo)
 
     return repositories
 

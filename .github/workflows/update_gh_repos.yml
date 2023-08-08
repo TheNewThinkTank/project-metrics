@@ -1,15 +1,21 @@
-name: Update Repos
+name: Update GitHub repos
 
 on:
   workflow_dispatch:
 
+env:
+  PROJECT_METRICS_GITHUB_PAT: ${{ secrets.PROJECT_METRICS_GITHUB_PAT }}
+  PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
+
 jobs:
-  update_repos:
+  get_gh_repo_names:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        repository: ${{ fromJson(needs.repositories.outputs.repositories) }}
+    outputs:
+      repos: ${{ steps.repos.outputs.repositories }}
+
+    env:
+      PYTHONPATH: ${{ github.workspace }}/src
 
     steps:
       - name: Check out repository code
@@ -40,8 +46,52 @@ jobs:
           POETRY_VIRTUALENVS_IN_PROJECT: true
         if: steps.cache.outputs.cache-hit != 'true'
 
+      - name: Output Configuration
+        id: repos
+        run: |  # Make sure the delimiter used is randomly generated and unique for each run
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "repositories<<$EOF" >> "$GITHUB_OUTPUT"
+          poetry run python src/util/matrix_repos.py >> "$GITHUB_OUTPUT"
+          echo "$EOF" >> "$GITHUB_OUTPUT"
+
+      - name: echo repository
+        run: echo "${{ steps.repos.outputs.repositories }}"
+
+  update_repos:
+    needs:
+      - get_gh_repo_names
+
+    runs-on: ubuntu-latest
+
+    # env:
+    #   REPOS: ${{ needs.get_gh_repo_names.outputs.repos }}
+
+    strategy:
+      matrix:
+        repository: ${{ fromJson(needs.get_gh_repo_names.outputs.repos) }}
+
+    steps:
+      - name: Matrix => (${{ matrix.repository }})
+        run: |
+          echo "${{ matrix.repository }}"
+
+      # - name: Check out repository code
+      #   uses: actions/checkout@v3
+
+      # - name: echo REPOS
+      #   run: echo "$REPOS"
+
+      # - name: echo repository
+      #   run: echo ${{ matrix.repository }}
+
       # - name: Update repository
       #   run: python update_script.py ${{ matrix.repository }}
 
-      - name: echo repository
-        run: echo ${{ matrix.repository }}
+      # TODO: add repo name to run name dynamically
+      # - name: update repos with README size badge
+      #   run: |
+      #     poetry run python src/REST/add_badge.py ${{ matrix.repository }}
+
+      # - name: add GitHub Actions workflow to Python-based repos
+      #   run: |
+      #     poetry run python src/add_gha_wf.py ${{ matrix.repository }}

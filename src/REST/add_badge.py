@@ -4,11 +4,12 @@ Docs:
 https://pygithub.readthedocs.io/en/stable/examples/Repository.html
 """
 
+import argparse
 import os
 from pathlib import Path
 from typing import Literal
 
-import concurrent.futures
+# import concurrent.futures
 from github import Repository, PaginatedList
 
 from get_badge import get_badge  # type: ignore
@@ -143,8 +144,20 @@ def update_all_repos(
 
 
 def main() -> None:
-    repositories = get_gh_repos()
-    update_all_repos("TheNewThinkTank", repositories)
+    # repositories = get_gh_repos()
+    # update_all_repos("TheNewThinkTank", repositories)
+
+    username = "TheNewThinkTank"
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--repo_name", type=str, required=True)
+    args = parser.parse_args()
+    repo_name = args.repo_name
+
+    if repo_name == username:
+        return
+
+    # update_repo(username, repo, "size_badge")
 
 
 if __name__ == "__main__":

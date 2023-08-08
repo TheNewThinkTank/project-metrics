@@ -67,7 +67,7 @@ jobs:
           echo "$EOF" >> "$GITHUB_OUTPUT"
 
       - name: echo repository
-        run: echo "${{ env.repositories }}"
+        run: echo "${{ steps.repositories.outputs.repositories }}"  # "${{ env.repositories }}"
 
   # update_repos:
   #   needs:

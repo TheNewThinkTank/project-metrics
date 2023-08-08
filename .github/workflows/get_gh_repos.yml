@@ -60,9 +60,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        repository: ${{ needs.generate_config.outputs.repositories }}
+    # strategy:
+    #   matrix:
+    #     repository: ${{ needs.generate_config.outputs.repositories }}
 
     steps:
       - name: echo repository

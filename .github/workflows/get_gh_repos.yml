@@ -47,26 +47,29 @@ jobs:
         run: |
           poetry run python src/util/get_gh_repos.py > gh_repos.json
 
-      - name: Output Configuration
-        id: repositories
-        run: echo "repositories=$(cat gh_repos.json)" >> $GITHUB_OUTPUT
+      - name: cat gh repos
+        run: cat gh_repos.json
 
-      - name: echo repository
-        run: echo "${{ env.repositories }}"
+      # - name: Output Configuration
+      #   id: repositories
+      #   run: echo "repositories=$(cat gh_repos.json)" >> $GITHUB_OUTPUT
 
-  update_repos:
-    needs:
-      - generate_config
+      # - name: echo repository
+      #   run: echo "${{ env.repositories }}"
 
-    runs-on: ubuntu-latest
+  # update_repos:
+  #   needs:
+  #     - generate_config
 
-    # strategy:
-    #   matrix:
-    #     repository: ${{ fromJson(needs.repositories.outputs.repositories) }}
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: echo repository
-        run: echo "${{ env.repositories }}"  # echo $GITHUB_OUTPUT  # ${{ matrix.repository }}
+  #   # strategy:
+  #   #   matrix:
+  #   #     repository: ${{ fromJson(needs.repositories.outputs.repositories) }}
 
-      # - name: Update repository
-      #   run: python update_script.py ${{ matrix.repository }}
+  #   steps:
+  #     - name: echo repository
+  #       run: echo "${{ env.repositories }}"  # echo $GITHUB_OUTPUT  # ${{ matrix.repository }}
+
+  #     # - name: Update repository
+  #     #   run: python update_script.py ${{ matrix.repository }}

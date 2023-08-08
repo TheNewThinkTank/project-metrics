@@ -65,14 +65,24 @@ jobs:
     #     repository: ${{ needs.generate_config.outputs.repositories }}
 
     steps:
-      - name: echo repository
-        run: echo "${{ env.repositories }}"  # echo $GITHUB_OUTPUT  # ${{ matrix.repository }}
+      # - name: echo repository
+      #   run: echo "${{ env.repositories }}"  # echo $GITHUB_OUTPUT  # ${{ matrix.repository }}
 
-      - name: echo repository
-        run: echo "$GITHUB_OUTPUT"
+      # - name: echo repository
+      #   run: echo "$GITHUB_OUTPUT"
 
-      - name: echo repository
-        run: echo "${{ steps.repos.outputs.repositories }}"
+      # - name: echo repository
+      #   run: echo "${{ steps.repos.outputs.repositories }}"
+
+      - name: echo GITHUB_OUTPUT
+        run: |
+          REPOS=${{ needs.generate_config.outputs.repos }}
+          echo "$REPOS"
+
+      - name: echo GITHUB_OUTPUT
+        run: |
+          REPOS=${{ needs.generate_config.outputs.repositories }}
+          echo "$REPOS"
 
   #     # - name: Update repository
   #     #   run: python update_script.py ${{ matrix.repository }}

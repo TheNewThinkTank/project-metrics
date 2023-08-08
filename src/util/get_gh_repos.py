@@ -29,3 +29,7 @@ def get_gh_repos(
     pp(repositories)
 
     return repositories
+
+
+if __name__ == "__main__":
+    get_gh_repos()

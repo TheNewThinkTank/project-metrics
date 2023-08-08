@@ -51,7 +51,7 @@ jobs:
         run: |  # Make sure the delimiter used is randomly generated and unique for each run
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "repositories<<$EOF" >> "$GITHUB_OUTPUT"
-          poetry run python src/util/get_gh_repos.py >> "$GITHUB_OUTPUT"
+          poetry run python src/util/matrix_repositories.py >> "$GITHUB_OUTPUT"
           echo "$EOF" >> "$GITHUB_OUTPUT"
 
       - name: echo repository
@@ -63,16 +63,20 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    # env:
-    #   REPOS: ${{ needs.generate_config.outputs.repos }}
+    env:
+      REPOS: ${{ needs.generate_config.outputs.repos }}
 
     strategy:
       matrix:
-        repository: ${{ needs.generate_config.outputs.repos }}
+        repository: ${{ fromJson(needs.generate_config.outputs.repos) }}
 
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
+      - name: Matrix => (${{ matrix.repository }})
+        run: |
+          echo ${{ matrix.repository }}
+
+      # - name: Check out repository code
+      #   uses: actions/checkout@v3
 
       # - name: echo REPOS
       #   run: echo "$REPOS"

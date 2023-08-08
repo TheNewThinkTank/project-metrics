@@ -43,20 +43,20 @@ jobs:
           POETRY_VIRTUALENVS_IN_PROJECT: true
         if: steps.cache.outputs.cache-hit != 'true'
 
-      - name: Get gh repos
-        run: |
-          poetry run python src/util/get_gh_repos.py
+      # - name: Get gh repos
+      #   run: |
+      #     poetry run python src/util/get_gh_repos.py
 
       - name: Create gh_repos.json
         run: |
-          poetry run python src/util/get_gh_repos.py > gh_repos.json
+          poetry run python src/util/get_gh_repos.py > gh_repos.txt
 
       - name: cat gh repos
-        run: cat gh_repos.json
+        run: cat gh_repos.txt
 
       - name: Output Configuration
         id: repositories
-        run: echo "repositories=$(cat gh_repos.json)" >> $GITHUB_OUTPUT
+        run: echo "repositories=$(cat gh_repos.txt)" >> $GITHUB_OUTPUT
 
       - name: echo repository
         run: echo "${{ env.repositories }}"

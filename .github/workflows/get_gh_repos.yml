@@ -60,31 +60,25 @@ jobs:
   update_repos:
     needs:
       - generate_config
-    runs-on: ubuntu-latest
-    env:
-      REPOS: ${{ needs.generate_config.outputs.repos }}
-    # strategy:
-    #   matrix:
-    #     repository: ${{ needs.generate_config.outputs.repositories }}
-    steps:
-      # - env:
-      #     OUTPUT1: ${{ needs.generate_config.outputs.repos }}
 
+    runs-on: ubuntu-latest
+
+    # env:
+    #   REPOS: ${{ needs.generate_config.outputs.repos }}
+
+    strategy:
+      matrix:
+        repository: ${{ needs.generate_config.outputs.repos }}
+
+    steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      # - name: echo repository
-      #   run: echo "${{ env.repositories }}"  # echo $GITHUB_OUTPUT  # ${{ matrix.repository }}
-      # - name: echo repository
-      #   run: echo "$GITHUB_OUTPUT"
-      # - name: echo repository
-      #   run: echo "${{ steps.repos.outputs.repositories }}"
-      - name: echo REPOS
-        run: echo "$REPOS"
 
-      # - name: echo GITHUB_OUTPUT
-      #   run: |
-      #     repositories=${{ needs.generate_config.outputs.repositories }}
-      #     echo "$REPOS"
+      # - name: echo REPOS
+      #   run: echo "$REPOS"
+
+      - name: echo repository
+        run: echo ${{ matrix.repository }}
 
   #     # - name: Update repository
   #     #   run: python update_script.py ${{ matrix.repository }}

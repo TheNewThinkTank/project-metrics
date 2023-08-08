@@ -63,8 +63,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    # env:
-    #   REPOS: ${{ needs.get_gh_repo_names.outputs.repos }}
+    env:
+      PYTHONPATH: ${{ github.workspace }}/src
+      # REPOS: ${{ needs.get_gh_repo_names.outputs.repos }}
 
     strategy:
       matrix:

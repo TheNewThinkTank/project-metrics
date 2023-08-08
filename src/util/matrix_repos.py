@@ -6,7 +6,7 @@
 
 import os
 
-from github import Auth, Github, PaginatedList, Repository
+from github import Auth, Github  # , PaginatedList, Repository
 
 
 def get_gh_repos(
@@ -30,7 +30,9 @@ def get_gh_repos(
 
     # print([repo.name for repo in repositories])
 
-    return repositories  # [repo.name for repo in repositories]
+    return [
+        repo for repo in repositories
+    ]  # repositories  # [repo.name for repo in repositories]
 
 
 if __name__ == "__main__":

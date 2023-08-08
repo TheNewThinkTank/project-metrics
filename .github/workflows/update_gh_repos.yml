@@ -68,7 +68,7 @@ jobs:
 
     strategy:
       matrix:
-        repository: ${{ needs.get_gh_repo_names.outputs.repos }}  # ${{ fromJson(needs.get_gh_repo_names.outputs.repos) }}
+        repository: ${{ fromJson(needs.get_gh_repo_names.outputs.repos) }}
 
     steps:
       - name: Matrix => (${{ matrix.repository }})

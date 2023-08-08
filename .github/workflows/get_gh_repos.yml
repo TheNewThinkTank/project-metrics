@@ -47,10 +47,20 @@ jobs:
         run: |
           poetry run python src/util/get_gh_repos.py > gh_repos.json
 
-      # - name: Output Configuration
-      #   id: repositories
-      #   run: echo "::set-output name=repositories::$(cat gh_repos.json)"
-
       - name: Output Configuration
         id: repositories
         run: echo "repositories=$(cat gh_repos.json)" >> $GITHUB_OUTPUT
+
+  update_repos:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        repository: ${{ fromJson(needs.repositories.outputs.repositories) }}
+
+    steps:
+      - name: echo repository
+        run: echo ${{ matrix.repository }}
+
+      # - name: Update repository
+      #   run: python update_script.py ${{ matrix.repository }}

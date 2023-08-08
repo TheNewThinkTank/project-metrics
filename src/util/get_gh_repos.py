@@ -3,8 +3,6 @@
 
 import os
 
-# from pprint import pprint as pp
-
 from github import Auth, Github, PaginatedList, Repository
 
 

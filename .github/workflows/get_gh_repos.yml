@@ -47,19 +47,19 @@ jobs:
         run: |
           poetry run python src/util/get_gh_repos.py
 
-      # - name: Get gh repos
-      #   run: |
-      #     poetry run python src/util/get_gh_repos.py > gh_repos.json
+      - name: Create gh_repos.json
+        run: |
+          poetry run python src/util/get_gh_repos.py > gh_repos.json
 
-      # - name: cat gh repos
-      #   run: cat gh_repos.json
+      - name: cat gh repos
+        run: cat gh_repos.json
 
-      # - name: Output Configuration
-      #   id: repositories
-      #   run: echo "repositories=$(cat gh_repos.json)" >> $GITHUB_OUTPUT
+      - name: Output Configuration
+        id: repositories
+        run: echo "repositories=$(cat gh_repos.json)" >> $GITHUB_OUTPUT
 
-      # - name: echo repository
-      #   run: echo "${{ env.repositories }}"
+      - name: echo repository
+        run: echo "${{ env.repositories }}"
 
   # update_repos:
   #   needs:

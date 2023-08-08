@@ -45,10 +45,14 @@ jobs:
 
       - name: Get gh repos
         run: |
-          poetry run python src/util/get_gh_repos.py > gh_repos.json
+          poetry run python src/util/get_gh_repos.py
 
-      - name: cat gh repos
-        run: cat gh_repos.json
+      # - name: Get gh repos
+      #   run: |
+      #     poetry run python src/util/get_gh_repos.py > gh_repos.json
+
+      # - name: cat gh repos
+      #   run: cat gh_repos.json
 
       # - name: Output Configuration
       #   id: repositories

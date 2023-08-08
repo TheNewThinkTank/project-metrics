@@ -76,12 +76,12 @@ jobs:
 
       - name: echo GITHUB_ENV
         run: |
-          REPOS=${{ needs.generate_config.outputs.repos }}
-          echo "$REPOS"
+          repositories=${{ needs.generate_config.outputs.repos }}
+          echo "$repositories"
 
       - name: echo GITHUB_ENV
         run: |
-          REPOS=${{ needs.generate_config.outputs.repositories }}
+          repositories=${{ needs.generate_config.outputs.repositories }}
           echo "$REPOS"
 
   #     # - name: Update repository

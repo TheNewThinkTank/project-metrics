@@ -43,20 +43,9 @@ jobs:
           POETRY_VIRTUALENVS_IN_PROJECT: true
         if: steps.cache.outputs.cache-hit != 'true'
 
-      # - name: Get gh repos
-      #   run: |
-      #     poetry run python src/util/get_gh_repos.py
-
-      # - name: Create gh_repos.json
-      #   run: |
-      #     poetry run python src/util/get_gh_repos.py > gh_repos.txt
-
-      # - name: cat gh repos
-      #   run: cat gh_repos.txt
-
       - name: Output Configuration
         id: repos
-        run: |
+        run: |  # Make sure the delimiter used is randomly generated and unique for each run
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "repositories<<$EOF" >> "$GITHUB_OUTPUT"
           poetry run python src/util/get_gh_repos.py >> "$GITHUB_OUTPUT"
@@ -65,19 +54,19 @@ jobs:
       - name: echo repository
         run: echo "${{ steps.repos.outputs.repositories }}"
 
-  # update_repos:
-  #   needs:
-  #     - generate_config
+  update_repos:
+    needs:
+      - generate_config
 
-  #   runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  #   # strategy:
-  #   #   matrix:
-  #   #     repository: ${{ fromJson(needs.repositories.outputs.repositories) }}
+    strategy:
+      matrix:
+        repository: ${{ needs.generate_config.outputs.repositories }}
 
-  #   steps:
-  #     - name: echo repository
-  #       run: echo "${{ env.repositories }}"  # echo $GITHUB_OUTPUT  # ${{ matrix.repository }}
+    steps:
+      - name: echo repository
+        run: echo "${{ env.repositories }}"  # echo $GITHUB_OUTPUT  # ${{ matrix.repository }}
 
   #     # - name: Update repository
   #     #   run: python update_script.py ${{ matrix.repository }}

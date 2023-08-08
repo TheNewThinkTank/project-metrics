@@ -11,6 +11,9 @@ jobs:
   generate_config:
     runs-on: ubuntu-latest
 
+    outputs:
+      repos: ${{ steps.repos.outputs.repositories }}
+
     env:
       PYTHONPATH: ${{ github.workspace }}/src
 
@@ -47,9 +50,9 @@ jobs:
         id: repos
         run: |  # Make sure the delimiter used is randomly generated and unique for each run
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          echo "repositories<<$EOF" >> "$GITHUB_ENV"  # "$GITHUB_OUTPUT"
-          poetry run python src/util/get_gh_repos.py >> "$GITHUB_ENV"  # "$GITHUB_OUTPUT"
-          echo "$EOF" >> "$GITHUB_ENV"  # "$GITHUB_OUTPUT"
+          echo "repositories<<$EOF" >> "$GITHUB_OUTPUT"
+          poetry run python src/util/get_gh_repos.py >> "$GITHUB_OUTPUT"
+          echo "$EOF" >> "$GITHUB_OUTPUT"
 
       - name: echo repository
         run: echo "${{ steps.repos.outputs.repositories }}"
@@ -58,10 +61,15 @@ jobs:
     needs:
       - generate_config
     runs-on: ubuntu-latest
+    env:
+      REPOS: ${{ needs.generate_config.outputs.repos }}
     # strategy:
     #   matrix:
     #     repository: ${{ needs.generate_config.outputs.repositories }}
     steps:
+      # - env:
+      #     OUTPUT1: ${{ needs.generate_config.outputs.repos }}
+
       - name: Check out repository code
         uses: actions/checkout@v3
       # - name: echo repository
@@ -70,15 +78,13 @@ jobs:
       #   run: echo "$GITHUB_OUTPUT"
       # - name: echo repository
       #   run: echo "${{ steps.repos.outputs.repositories }}"
-      - name: echo GITHUB_ENV
-        run: |
-          repositories=${{ needs.generate_config.outputs.repos }}
-          echo "$repositories"
+      - name: echo REPOS
+        run: echo "$REPOS"
 
-      - name: echo GITHUB_ENV
-        run: |
-          repositories=${{ needs.generate_config.outputs.repositories }}
-          echo "$REPOS"
+      # - name: echo GITHUB_OUTPUT
+      #   run: |
+      #     repositories=${{ needs.generate_config.outputs.repositories }}
+      #     echo "$REPOS"
 
   #     # - name: Update repository
   #     #   run: python update_script.py ${{ matrix.repository }}

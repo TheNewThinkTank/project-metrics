@@ -57,23 +57,19 @@ jobs:
   update_repos:
     needs:
       - generate_config
-
     runs-on: ubuntu-latest
-
     # strategy:
     #   matrix:
     #     repository: ${{ needs.generate_config.outputs.repositories }}
-
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
       # - name: echo repository
       #   run: echo "${{ env.repositories }}"  # echo $GITHUB_OUTPUT  # ${{ matrix.repository }}
-
       # - name: echo repository
       #   run: echo "$GITHUB_OUTPUT"
-
       # - name: echo repository
       #   run: echo "${{ steps.repos.outputs.repositories }}"
-
       - name: echo GITHUB_ENV
         run: |
           repositories=${{ needs.generate_config.outputs.repos }}

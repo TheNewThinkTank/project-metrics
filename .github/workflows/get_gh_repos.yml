@@ -47,6 +47,10 @@ jobs:
         run: |
           poetry run python src/util/get_gh_repos.py > gh_repos.json
 
+      # - name: Output Configuration
+      #   id: repositories
+      #   run: echo "::set-output name=repositories::$(cat gh_repos.json)"
+
       - name: Output Configuration
         id: repositories
-        run: echo "::set-output name=repositories::$(cat gh_repos.json)"
+        run: echo "repositories=$(cat gh_repos.json)" >> $GITHUB_OUTPUT

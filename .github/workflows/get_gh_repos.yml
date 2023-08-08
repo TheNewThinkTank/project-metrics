@@ -51,6 +51,9 @@ jobs:
         id: repositories
         run: echo "repositories=$(cat gh_repos.json)" >> $GITHUB_OUTPUT
 
+      - name: echo repository
+        run: echo "${{ env.repositories }}"
+
   update_repos:
     needs:
       - generate_config

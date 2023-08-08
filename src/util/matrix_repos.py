@@ -28,11 +28,7 @@ def get_gh_repos(
     user = g.get_user(username)
     repositories = user.get_repos()
 
-    # print([repo.name for repo in repositories])
-
-    return [
-        repo for repo in repositories
-    ]  # repositories  # [repo.name for repo in repositories]
+    return [repo.name for repo in repositories]
 
 
 if __name__ == "__main__":

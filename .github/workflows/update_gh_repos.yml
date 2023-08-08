@@ -71,9 +71,9 @@ jobs:
         repository: ${{ fromJson(needs.get_gh_repo_names.outputs.repos) }}
 
     steps:
-      - name: Matrix => (${{ matrix.repository }})
-        run: |
-          echo "${{ matrix.repository }}"
+      # - name: Matrix => (${{ matrix.repository }})
+      #   run: |
+      #     echo "${{ matrix.repository }}"
 
       # - name: Check out repository code
       #   uses: actions/checkout@v3
@@ -87,10 +87,9 @@ jobs:
       # - name: Update repository
       #   run: python update_script.py ${{ matrix.repository }}
 
-      # TODO: add repo name to run name dynamically
-      # - name: update repos with README size badge
-      #   run: |
-      #     poetry run python src/REST/add_badge.py ${{ matrix.repository }}
+      - name: Matrix => (${{ matrix.repository }})
+        run: |
+          poetry run python src/REST/add_badge.py ${{ matrix.repository }}
 
       # - name: add GitHub Actions workflow to Python-based repos
       #   run: |

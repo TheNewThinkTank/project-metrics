@@ -10,10 +10,11 @@ from pathlib import Path
 from typing import Literal
 
 # import concurrent.futures
-from github import Repository, PaginatedList
+from github import Github, Repository, PaginatedList
 
 from get_badge import get_badge  # type: ignore
-from util.get_gh_repos import get_gh_repos  # type: ignore
+
+# from util.get_gh_repos import get_gh_repos  # type: ignore
 
 
 def update_readme(
@@ -157,7 +158,9 @@ def main() -> None:
     if repo_name == username:
         return
 
-    # update_repo(username, repo, "size_badge")
+    g = Github(os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"])
+    repo = g.get_user().get_repo(repo_name)
+    update_repo(username, repo, "size_badge")
 
 
 if __name__ == "__main__":

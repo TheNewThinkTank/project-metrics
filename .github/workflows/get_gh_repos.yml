@@ -54,13 +54,13 @@ jobs:
   update_repos:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        repository: ${{ fromJson(needs.repositories.outputs.repositories) }}
+    # strategy:
+    #   matrix:
+    #     repository: ${{ fromJson(needs.repositories.outputs.repositories) }}
 
     steps:
       - name: echo repository
-        run: echo ${{ matrix.repository }}
+        run: echo $GITHUB_OUTPUT  # ${{ matrix.repository }}
 
       # - name: Update repository
       #   run: python update_script.py ${{ matrix.repository }}

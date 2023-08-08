@@ -59,7 +59,7 @@ jobs:
       #   run: echo "repositories=$(cat gh_repos.txt)" >> $GITHUB_OUTPUT
 
       - name: Output Configuration
-        id: repositories
+        id: repos
         run: |
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "JSON_RESPONSE<<$EOF" >> "$GITHUB_OUTPUT"
@@ -67,7 +67,7 @@ jobs:
           echo "$EOF" >> "$GITHUB_OUTPUT"
 
       - name: echo repository
-        run: echo "${{ steps.repositories.outputs.repositories }}"  # "${{ env.repositories }}"
+        run: echo "${{ steps.repos.outputs.repositories }}"
 
   # update_repos:
   #   needs:

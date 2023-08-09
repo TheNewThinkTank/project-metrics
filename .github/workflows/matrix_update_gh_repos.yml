@@ -1,4 +1,4 @@
-name: Update GitHub repos
+name: Matrix strategy - Update GH repos
 
 on:
   workflow_dispatch:
@@ -106,7 +106,7 @@ jobs:
 
       - name: Matrix => (${{ matrix.repository }})
         run: |
-          poetry run python src/REST/add_badge.py --repo_name ${{ matrix.repository }}
+          poetry run python src/matrix_add_badge.py --repo_name ${{ matrix.repository }}
 
       # - name: add GitHub Actions workflow to Python-based repos
       #   run: |

@@ -25,7 +25,7 @@ Overview of projects and their health:
   - `pip` (monthly)
   - `GitHub Actions` (weekly)
 
-- GitHub Actions workflow.<br>NB: as the repo updates itself, the only trigger should be `workflow_dispatch` to avoid recursive workflow invocation.
+- GitHub Actions workflow `wf.yml`.<br>NB: as the repo updates itself, the only trigger should be `workflow_dispatch` to avoid recursive workflow invocation.
 - The workflow contains the following jobs:
   - `Qualify-Code`:
     - static type checking with `mypy`
@@ -51,9 +51,12 @@ Overview of projects and their health:
       - All GitHub Python repos gets a GitHub Actions `.github/workflows/wf.yml`,
         as well as a *CI* badge on their README
 
+the last job, `Update-Repos`, is further performance tested and a comparison of parallel and threading versions are
+provided alongside the serial (for-loop) version:<br>
+- [Performance Benchmarks](BENCHMARKS.md)
+
 ## Upcoming features
 - cleanup script: `remove_badge.py`
-- perform all repeated tasks that loops over repos in parallel
 - identify public repos without any README (e.g. 'web-application-jquery-and-bootstrap')
 - security scannings with *bandit* (searching for API keys etc.)
 - filter repos by number of users, descendingly

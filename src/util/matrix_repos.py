@@ -1,12 +1,9 @@
-"""
-{
-    "target": ["dev", "qa", "prod"]
-}
+"""_summary_
 """
 
 import os
 
-from github import Auth, Github  # , PaginatedList, Repository
+from github import Auth, Github
 
 
 def get_gh_repos(

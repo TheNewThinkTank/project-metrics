@@ -4,17 +4,14 @@ Docs:
 https://pygithub.readthedocs.io/en/stable/examples/Repository.html
 """
 
-import argparse
 import os
 from pathlib import Path
 from typing import Literal
 
-# import concurrent.futures
-from github import Github, Repository, PaginatedList
+from github import Repository, PaginatedList
 
 from get_badge import get_badge  # type: ignore
-
-# from util.get_gh_repos import get_gh_repos  # type: ignore
+from util.get_gh_repos import get_gh_repos  # type: ignore
 
 
 def update_readme(
@@ -122,45 +119,10 @@ def update_all_repos(
         # for badge_name in badge_names:
         #     update_repo(username, repo, badge_name)
 
-    # chunk_size = 2
-    # repository_chunks = [
-    #     repositories[i : i + chunk_size]
-    #     for i in range(0, repositories.totalCount, chunk_size)
-    # ]
-
-    # with concurrent.futures.ProcessPoolExecutor(
-    #     max_workers=2
-    # ) as executor:  # Adjust max_workers as needed
-    #     futures = {
-    #         executor.submit(update_repo, username, repo, badge_name): repo_chunk
-    #         for repo_chunk in repository_chunks
-    #     }
-
-    #     for future in concurrent.futures.as_completed(futures):
-    #         repo_chunk = futures[future]
-    #         try:
-    #             future.result()
-    #         except Exception as e:
-    #             print(f"An error occurred while updating {repo_chunk}: {e}")
-
 
 def main() -> None:
-    # repositories = get_gh_repos()
-    # update_all_repos("TheNewThinkTank", repositories)
-
-    username = "TheNewThinkTank"
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--repo_name", type=str, required=True)
-    args = parser.parse_args()
-    repo_name = args.repo_name
-
-    if repo_name == username:
-        return
-
-    g = Github(os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"])
-    repo = g.get_user().get_repo(repo_name)
-    update_repo(username, repo, "size_badge")
+    repositories = get_gh_repos()
+    update_all_repos("TheNewThinkTank", repositories)
 
 
 if __name__ == "__main__":

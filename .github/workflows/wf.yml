@@ -20,7 +20,7 @@ env:
   # PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN }}
 
 jobs:
-  Qualify-Code:
+  qualify_code:
     runs-on: ubuntu-latest
 
     env:
@@ -103,9 +103,9 @@ jobs:
           files: ./cov.xml
           verbose: true
 
-  Get-Metrics:
+  get_metrics:
     needs:
-      - Qualify-Code
+      - qualify_code
     runs-on: ubuntu-latest
 
     # needed for running some python scripts in src/REST and src/GraphQL dirs
@@ -163,51 +163,51 @@ jobs:
         run: |
           poetry run python src/GraphQL/gh_group_by_lang.py
 
-  # Update-Repos:
-  #   needs:
-  #     - Get-Metrics
-  #   runs-on: ubuntu-latest
+  update_repos:
+    needs:
+      - get_metrics
+    runs-on: ubuntu-latest
 
-  #   # needed for running some python scripts in src/REST and src/GraphQL dirs
-  #   env:
-  #     PYTHONPATH: ${{ github.workspace }}/src
+    # needed for running some python scripts in src/REST and src/GraphQL dirs
+    env:
+      PYTHONPATH: ${{ github.workspace }}/src
 
-  #   steps:
-  #     - name: Check out repository code
-  #       uses: actions/checkout@v3
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
 
-  #     - name: Setup Python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: 3.11
-  #         cache: pip
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: pip
 
-  #     - name: Install and cache poetry
-  #       run: |
-  #         curl -sSL https://install.python-poetry.org | python3 -
-  #       if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install and cache poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+        if: steps.cache.outputs.cache-hit != 'true'
 
-  #     - name: Cache poetry dependencies
-  #       id: cache
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: ~/.cache/pypoetry/virtualenvs
-  #         key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-  #         restore-keys: ${{ runner.os }}-poetry-
+      - name: Cache poetry dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
 
-  #     - name: Install dependencies with poetry
-  #       run: poetry install
-  #       env:
-  #         POETRY_VIRTUALENVS_IN_PROJECT: true
-  #       if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install dependencies with poetry
+        run: poetry install
+        env:
+          POETRY_VIRTUALENVS_IN_PROJECT: true
+        if: steps.cache.outputs.cache-hit != 'true'
 
-  #     # TODO: if repo has tests, setup codecov badge on it's README
-  #     # TODO: if repo has wf, setup CI badge on it's README
+      # TODO: if repo has tests, setup codecov badge on it's README
+      # TODO: if repo has wf, setup CI badge on it's README
 
-  #     - name: update repos with README size badge
-  #       run: |
-  #         poetry run python src/REST/add_badge.py
+      - name: update repos with README size badge
+        run: |
+          poetry run python src/REST/add_badge.py
 
-  #     - name: add GitHub Actions workflow to Python-based repos
-  #       run: |
-  #         poetry run python src/add_gha_wf.py
+      - name: add GitHub Actions workflow to Python-based repos
+        run: |
+          poetry run python src/add_gha_wf.py

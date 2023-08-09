@@ -57,7 +57,7 @@ provided alongside the serial (for-loop) version:<br>
 
 ## Upcoming features
 - cleanup script: `remove_badge.py`
-- run all 3 benchmarks for same commit ID, perhaps using a single, resuable base workflow (poetry setup etc.)
+- run all 3 benchmarks for same commit ID, perhaps using a single, reusable base workflow (poetry setup etc.)
 - identify public repos without any README (e.g. 'web-application-jquery-and-bootstrap')
 - security scannings with *bandit* (searching for API keys etc.)
 - filter repos by number of users, descendingly

@@ -15,5 +15,5 @@ There is a large Parallel Execution Overhead due to process creation, context sw
 mainly useful if program is CPU bound, but in this case code is mostly IO bound.
 
 ## Conclusion
-the comparison (processing 32 public GitHub repos) shows threading as the most optimal strategy,
+The comparison (processing 32 public GitHub repos) shows threading as the most optimal strategy,
 and indicates that program execution is mostly IO bound.

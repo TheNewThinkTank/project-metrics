@@ -3,10 +3,12 @@
 
 # project-metrics
 
-![CI](https://github.com/TheNewThinkTank/project-metrics/actions/workflows/wf.yml/badge.svg)
-[![Documentation Status](https://readthedocs.org/projects/project-metrics/badge/?version=latest)](https://project-metrics.readthedocs.io/en/latest/?badge=latest)
 [![codecov](https://codecov.io/gh/TheNewThinkTank/project-metrics/branch/main/graph/badge.svg)](https://codecov.io/gh/TheNewThinkTank/project-metrics)
+[![Documentation Status](https://readthedocs.org/projects/project-metrics/badge/?version=latest)](https://project-metrics.readthedocs.io/en/latest/?badge=latest)
 
+![CI](https://github.com/TheNewThinkTank/project-metrics/actions/workflows/wf.yml/badge.svg)
+![CI](https://github.com/TheNewThinkTank/project-metrics/actions/workflows/matrix_update_gh_repos.yml/badge.svg)
+![CI](https://github.com/TheNewThinkTank/project-metrics/actions/workflows/threading_update_gh_repos.yml/badge.svg)
 
 Overview of projects and their health:
 

@@ -1,7 +1,7 @@
 import os
 from unittest.mock import Mock, patch
 
-from github import Auth, Github
+# from github import Auth, Github
 
 from src.util.get_gh_repos import get_gh_repos
 

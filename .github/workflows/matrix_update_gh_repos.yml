@@ -72,10 +72,6 @@ jobs:
         repository: ${{ fromJson(needs.get_gh_repo_names.outputs.repos) }}
 
     steps:
-      # - name: Matrix => (${{ matrix.repository }})
-      #   run: |
-      #     echo "${{ matrix.repository }}"
-
       - name: Check out repository code
         uses: actions/checkout@v3
 
@@ -107,14 +103,3 @@ jobs:
       - name: Matrix => (${{ matrix.repository }})
         run: |
           poetry run python src/matrix_add_badge.py --repo_name ${{ matrix.repository }}
-
-      # - name: add GitHub Actions workflow to Python-based repos
-      #   run: |
-      #     poetry run python src/add_gha_wf.py ${{ matrix.repository }}
-
-      # - name: echo REPOS
-      #   run: echo "$REPOS"
-      # - name: echo repository
-      #   run: echo ${{ matrix.repository }}
-      # - name: Update repository
-      #   run: python update_script.py ${{ matrix.repository }}

@@ -1,6 +1,7 @@
 codecov
 descendingly
 GitLab
+jquery
 profiler
 pytest
 README

@@ -18,7 +18,15 @@ Overview of projects and their health:
 
 ## Current features
 
-- CI health badge
+- pre commit hooks for:
+  - Python linting with `black`
+  - trailing-whitespace
+  - end-of-file-fixer
+  - check-yaml
+  - check-added-large-files
+
+- Statistics and health badges
+  (commit activity, repo size, code test coverage, documentation status, CI health of workflows)
 
 - Sphinx auto doc, with doc hosting on readthedocs:<br>
 [project-metrics](https://project-metrics.readthedocs.io/en/latest/)

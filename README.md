@@ -61,7 +61,7 @@ Overview of projects and their health:
       - All GitHub Python repos gets a GitHub Actions `.github/workflows/wf.yml`,
         as well as a *CI* badge on their README
 
-the last job, `Update-Repos`, is further performance tested and a comparison of parallel and threading versions are
+the last job, `update_repos`, is further performance tested and a comparison of parallel and threading versions are
 provided alongside the serial (for-loop) version:<br>
 - [Performance Benchmarks](BENCHMARKS.md)
 

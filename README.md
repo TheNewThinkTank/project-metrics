@@ -37,7 +37,7 @@ Overview of projects and their health:
 
 - GitHub Actions workflow `wf.yml`.<br>NB: as the repo updates itself, the only trigger should be `workflow_dispatch` to avoid recursive workflow invocation.
 - The workflow contains the following jobs:
-  - `Qualify-Code`:
+  - `qualify_code`:
     - static type checking with `mypy`
     - code linting with `flake8` and `ruff`
     - spell checking of README
@@ -47,13 +47,13 @@ Overview of projects and their health:
     - code coverage reporting
     - caching of `poetry` and `mypy` dependencies
 
-  - `Get-Metrics`:
+  - `get_metrics`:
     - updates *this* repo's README (links above) with following projects metrics:
       - top 10 most popular GitHub repos, by star count
       - repos lacking any description, across `GitHub` and `GitLab`
       - repos grouped by programming language
 
-  - `Update-Repos`:
+  - `update_repos`:
     - updates *all* GitHub repos:
       - All GitHub repos (including this one) get a repo size badge on top of their README<br>
         NB: does not affect the GitHub profile page, which is a special repo.

@@ -1,6 +1,7 @@
 codecov
 descendingly
 GitLab
+GraphQL
 jquery
 pre
 profiler

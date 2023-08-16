@@ -2,6 +2,7 @@ codecov
 descendingly
 GitLab
 jquery
+pre
 profiler
 pytest
 README
@@ -11,4 +12,6 @@ repo
 repos
 repo's
 scannings
+whitespace
+yaml
 YAML

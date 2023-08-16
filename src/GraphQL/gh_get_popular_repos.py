@@ -30,6 +30,7 @@ def fetch_top_repos(username: str, token: str) -> list:
           edges {
             node {
               name
+              description
               stargazers {
                 totalCount
               }
@@ -51,6 +52,7 @@ def fetch_top_repos(username: str, token: str) -> list:
         popular_repos = [
             {
                 "name": repo["node"]["name"],
+                "description": repo["node"]["description"],
                 "stars": repo["node"]["stargazers"]["totalCount"],
             }
             for repo in repositories

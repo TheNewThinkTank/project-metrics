@@ -65,6 +65,11 @@ the last job, `update_repos`, is further performance tested and a comparison of 
 provided alongside the serial (for-loop) version:<br>
 - [Performance Benchmarks](BENCHMARKS.md)
 
+## Note on GraphQL
+
+Useful explorer for testing out GraphQL queries:
+- [GitHub GraphQL API Explorer](https://docs.github.com/en/graphql/overview/explorer)
+
 ## Upcoming features
 - cleanup script: `remove_badge.py`
 - setup a single, reusable base workflow (poetry setup etc.)

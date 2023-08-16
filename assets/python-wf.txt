@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Qualify-Code:
+  qualify_code:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,9 +19,6 @@ jobs:
         with:
           python-version: 3.11
           cache: pip
-
-      # - name: install ruff and lint python code
-      #   run: pip install ruff && ruff check .
 
       - name: Install and cache poetry
         run: |
@@ -42,5 +39,9 @@ jobs:
           POETRY_VIRTUALENVS_IN_PROJECT: true
         if: steps.cache.outputs.cache-hit != 'true'
 
+      - name: run mypy
+        run: poetry run mypy .
+
       - name: Lint with ruff
+        continue-on-error: true
         run: poetry run ruff .

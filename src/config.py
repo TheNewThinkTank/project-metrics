@@ -6,17 +6,17 @@ platforms = {
         "username": "TheNewThinkTank",
         "repos_url": "https://api.github.com/users/TheNewThinkTank/repos",
         "api_url": "https://api.github.com/repos/{owner}/{repo}",
-        "access_token": os.environ.get('PROJECT_METRICS_GITHUB_ACCESS_TOKEN', ''),
+        "access_token": os.environ.get("PROJECT_METRICS_GITHUB_ACCESS_TOKEN", ""),
         "stars": "stargazers_count",
-        "url": "html_url"
+        "url": "html_url",
     },
     "gitlab": {
         "username": "TheNewThinkTank",
         "repos_url": "https://gitlab.com/api/v4/users/TheNewThinkTank/projects?owned=true&visibility=public",
         "api_url": "https://gitlab.com/api/v4/projects/{owner}%2F{repo}",
-        "access_token": os.environ.get('PROJECT_METRICS_GITLAB_ACCESS_TOKEN', ''),
+        "access_token": os.environ.get("PROJECT_METRICS_GITLAB_ACCESS_TOKEN", ""),
         "stars": "star_count",
-        "url": "web_url"
+        "url": "web_url",
     },
     # "bitbucket": {
     #     "username": "Gustav_Collin_Rasmussen",
@@ -35,7 +35,7 @@ gh_badges = {
         "value": [
             "https://img.shields.io/github/repo-size/TheNewThinkTank/{repo}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size",
             "https://github.com/TheNewThinkTank/{repo}/archive/refs/heads/main.zip",
-        ]
+        ],
     },
     "ci_badge": {
         "label": "CI",
@@ -45,7 +45,7 @@ gh_badges = {
         "label": "codecov",
         "value": [
             "https://codecov.io/gh/TheNewThinkTank/{repo}/branch/main/graph/badge.svg",
-            "https://codecov.io/gh/TheNewThinkTank/{repo})"
-        ]
-    }
+            "https://codecov.io/gh/TheNewThinkTank/{repo})",
+        ],
+    },
 }

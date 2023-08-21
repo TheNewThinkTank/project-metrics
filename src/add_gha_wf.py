@@ -3,7 +3,7 @@ If so, check if GitHub Actions workflow already exists,
 otherwise, add wf with Qualify-Code job, with linting etc.
 """
 
-from github import Repository, InputGitTreeElement
+from github import InputGitTreeElement, Repository
 
 from REST.add_badge import update_repo  # type: ignore
 from util.get_gh_repos import get_gh_repos  # type: ignore

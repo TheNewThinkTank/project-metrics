@@ -1,4 +1,3 @@
-
 import requests  # type: ignore
 
 from config import platforms  # type: ignore
@@ -20,13 +19,9 @@ def get_repos(platform: str) -> list[dict]:
     repos = response.json()["values"] if platform == "bitbucket" else response.json()
 
     return [
-        {
-            "name": repo["name"],
-            "owner": username,
-            "platform": platform
-        }
+        {"name": repo["name"], "owner": username, "platform": platform}
         for repo in repos
-        ]
+    ]
 
 
 def get_all_repos() -> list:
@@ -89,7 +84,9 @@ def get_repo_info(platforms: dict, repo) -> dict | None:
             "url": data[platform["url"]],
             "description": data["description"],
             "stars": data[platform["stars"]],
-            "creation_date": data["created_at"],  # datetime.datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%SZ"),
+            "creation_date": data[
+                "created_at"
+            ],  # datetime.datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%SZ"),
             # "commits": 0,
             # "open_issues": 0,
             # "closed_issues": 0,

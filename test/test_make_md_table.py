@@ -1,7 +1,6 @@
 # import pandas as pd
 from src.util.make_md_table import table_from_nested  # , table
 
-
 # def test_table_with_strings():
 #     data = [
 #         {'Name': 'Alice', 'Age': '30', 'Hobbies': 'Reading'},

@@ -1,16 +1,16 @@
-
 import os
+
 import requests  # type: ignore
 
-single_repo_query = '''
+single_repo_query = """
 {
   repository(name: "Fitness-Tracker", owner: "TheNewThinkTank") {
     diskUsage
   }
 }
-'''
+"""
 
-'''
+"""
 {
   repositoryOwner(login: "TheNewThinkTank") {
     repositories(first: 10, orderBy: {field: UPDATED_AT, direction: DESC}, privacy: PUBLIC, isFork: false) {
@@ -23,9 +23,9 @@ single_repo_query = '''
     }
   }
 }
-'''
+"""
 
-'''
+"""
 {
   search(query: "user:TheNewThinkTank size:>1000 is:public fork:false", type: REPOSITORY, first: 10) {
     repositoryCount
@@ -37,7 +37,7 @@ single_repo_query = '''
     }
   }
 }
-'''
+"""
 
 
 def fetch_largest_repos(username: str, token) -> None:
@@ -49,9 +49,9 @@ def fetch_largest_repos(username: str, token) -> None:
     :type token: _type_
     """
 
-    url = 'https://api.github.com/graphql'
-    headers = {'Authorization': f'bearer {token}'}
-    query = '''
+    url = "https://api.github.com/graphql"
+    headers = {"Authorization": f"bearer {token}"}
+    query = """
     query ($login: String!, $limit: Int!) {
       user(login: $login) {
         repositories(first: $limit, orderBy: {field: DISK_USAGE, direction: DESC}) {
@@ -62,29 +62,31 @@ def fetch_largest_repos(username: str, token) -> None:
         }
       }
     }
-    '''
-    variables = {'login': username, 'limit': 10}
-    response = requests.post(url, json={'query': query, 'variables': variables}, headers=headers)
+    """
+    variables = {"login": username, "limit": 10}
+    response = requests.post(
+        url, json={"query": query, "variables": variables}, headers=headers
+    )
 
     if response.status_code == 200:
         data = response.json()
-        user = data.get('data', {}).get('user')
+        user = data.get("data", {}).get("user")
         if user:
-            repositories = user['repositories']['nodes']
+            repositories = user["repositories"]["nodes"]
             for repo in repositories:
-                name = repo['name']
-                size = repo['diskUsage']
-                print(f'{name} - {size} bytes')
+                name = repo["name"]
+                size = repo["diskUsage"]
+                print(f"{name} - {size} bytes")
         else:
-            print('Unable to fetch repositories.')
+            print("Unable to fetch repositories.")
     else:
-        print(f'Request failed with status code {response.status_code}')
+        print(f"Request failed with status code {response.status_code}")
         print(response.text)
 
 
 def main() -> None:
     token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
-    fetch_largest_repos('TheNewThinkTank', token)
+    fetch_largest_repos("TheNewThinkTank", token)
 
 
 if __name__ == "__main__":

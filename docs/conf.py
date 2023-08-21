@@ -20,30 +20,30 @@ sys.path.insert(0, os.path.abspath(".."))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'project-metrics'
-copyright = '2023, Gustav Collin Rasmussen'
-author = 'Gustav Collin Rasmussen'
-release = '1.0.0'
+project = "project-metrics"
+copyright = "2023, Gustav Collin Rasmussen"
+author = "Gustav Collin Rasmussen"
+release = "1.0.0"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-            "sphinx.ext.autodoc",
-            "sphinx.ext.mathjax",
-            'sphinx.ext.todo',
-            'sphinx.ext.viewcode',
-            'sphinx.ext.ifconfig',
-            # "sphinx_markdown_builder",
-            ]
+    "sphinx.ext.autodoc",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.todo",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.ifconfig",
+    # "sphinx_markdown_builder",
+]
 
 # mathjax_path = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+templates_path = ["_templates"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'  # 'pydata_sphinx_theme'
-html_static_path = ['_static']
+html_theme = "alabaster"  # 'pydata_sphinx_theme'
+html_static_path = ["_static"]

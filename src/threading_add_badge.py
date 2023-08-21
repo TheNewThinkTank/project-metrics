@@ -3,8 +3,8 @@
 
 import concurrent.futures
 
-from util.get_gh_repos import get_gh_repos  # type: ignore
 from REST.add_badge import update_repo  # type: ignore
+from util.get_gh_repos import get_gh_repos  # type: ignore
 
 
 def update_all_repos(username, repositories):

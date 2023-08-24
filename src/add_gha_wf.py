@@ -29,7 +29,7 @@ def has_actions_workflow(repo: Repository.Repository) -> bool:
         return False
 
 
-def make_gha_file_content(repo: Repository.Repository, language: str = "python") -> str:
+def make_gha_file_content(repo: Repository.Repository, language: str = "Python") -> str:
     """_summary_
 
     :param repo: _description_
@@ -101,7 +101,7 @@ def create_pyproject_file(repo: Repository.Repository) -> None:
     file_path = "pyproject.toml"
     repo_description = repo.description if repo.description is not None else ""
 
-    with open("assets/python/pyproject.txt", "r") as rf:
+    with open("assets/Python/pyproject.txt", "r") as rf:
         file_content = rf.read().replace("{project-name}", repo.name)
         file_content = file_content.replace("{description}", repo_description)
         file_content = file_content.replace("{readme-format}", get_readme_format(repo))
@@ -118,37 +118,53 @@ def create_pyproject_file(repo: Repository.Repository) -> None:
         )
 
 
-def main() -> None:
-    username = "TheNewThinkTank"
-    repositories = get_gh_repos()
-
+def update_repos(username, repositories, language="Python"):
     # test on just a few repos first
-    num_python_repos_to_update = 2
-    python_repos_encountered = 0
+    num_repos_to_update = 2
+    repos_encountered = 0
 
     for repo in repositories:
-        if not repo_has_lang(repo, "Python"):
+        if not repo_has_lang(repo, language):
             continue
         print(f"Processing repo: {repo.name}")
-        create_pyproject_file(repo)
+
+        if language == "Python":
+            create_pyproject_file(repo)
+
+        if language == "TypeScript":
+            # add tsconfig.json and eslintrc.js (both from assets/TypeScript)
+            ...
+
         update_repo(username, repo, badge_name="ci_badge")
         if has_actions_workflow(repo):
             continue
 
-        python_wf_file_content = make_gha_file_content(repo)
-        create_workflow(repo, python_wf_file_content)
-
-        # typescript_wf_file_content = make_gha_file_content(repo, language="typescript")
-        # create_workflow(repo, typescript_wf_file_content)
+        if language == "Python":
+            file_content = make_gha_file_content(repo)
+            create_workflow(repo, file_content)
+        if language == "TypeScript":
+            file_content = make_gha_file_content(repo, language=language)
+            create_workflow(
+                repo,
+                file_content,
+                file_path=f".github/workflows/{language.lower()}-wf.yml",
+            )
 
         print(f"\tcreated workflow for {repo.name}")
-
-        python_repos_encountered += 1
-        if python_repos_encountered >= num_python_repos_to_update:
+        repos_encountered += 1
+        if repos_encountered >= num_repos_to_update:
             print(
-                f"\t\thas processed {num_python_repos_to_update} python-based repos now.\nquitting ...\n"
+                f"\t\thas processed {num_repos_to_update} {language}-based repos now.\nquitting ...\n"
             )
             break
+
+
+def main() -> None:
+    username = "TheNewThinkTank"
+    repositories = get_gh_repos()
+
+    update_repos(username, repositories)
+    update_repos(username, repositories, "TypeScript")
 
 
 if __name__ == "__main__":

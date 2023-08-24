@@ -18,13 +18,15 @@ env:
   PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
   PROJECT_METRICS_GITLAB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITLAB_ACCESS_TOKEN }}
   # PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN }}
+  # needed for running some python scripts in src/REST and src/GraphQL dirs:
+  PYTHONPATH: ${{ github.workspace }}/src
 
 jobs:
   qualify_code:
     runs-on: ubuntu-latest
 
-    env:
-      PYTHONPATH: ${{ github.workspace }}/src
+    # env:
+    #   PYTHONPATH: ${{ github.workspace }}/src
 
     steps:
       - name: Check out repository code
@@ -108,9 +110,9 @@ jobs:
       - qualify_code
     runs-on: ubuntu-latest
 
-    # needed for running some python scripts in src/REST and src/GraphQL dirs
-    env:
-      PYTHONPATH: ${{ github.workspace }}/src
+    # # needed for running some python scripts in src/REST and src/GraphQL dirs
+    # env:
+    #   PYTHONPATH: ${{ github.workspace }}/src
 
     steps:
       - name: Check out repository code
@@ -169,8 +171,8 @@ jobs:
     runs-on: ubuntu-latest
 
     # needed for running some python scripts in src/REST and src/GraphQL dirs
-    env:
-      PYTHONPATH: ${{ github.workspace }}/src
+    # env:
+    #   PYTHONPATH: ${{ github.workspace }}/src
 
     steps:
       - name: Check out repository code

@@ -132,7 +132,7 @@ def update_repos(username, repositories, language="Python"):
             create_pyproject_file(repo)
 
         if language == "TypeScript":
-            # add tsconfig.json and eslintrc.js (both from assets/TypeScript)
+            # add tsconfig.json and .eslintrc.js (both from assets/TypeScript)
             ...
 
         update_repo(username, repo, badge_name="ci_badge")

@@ -203,6 +203,10 @@ jobs:
         run: |
           pwd && ls -a
 
+      - name: inspect assets
+        run: |
+          ls assets
+
       # - name: add GitHub Actions workflow to repos
       #   run: |
       #     poetry run python src/add_gha_wf.py

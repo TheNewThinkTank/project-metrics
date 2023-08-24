@@ -25,9 +25,6 @@ jobs:
   qualify_code:
     runs-on: ubuntu-latest
 
-    # env:
-    #   PYTHONPATH: ${{ github.workspace }}/src
-
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -110,10 +107,6 @@ jobs:
       - qualify_code
     runs-on: ubuntu-latest
 
-    # # needed for running some python scripts in src/REST and src/GraphQL dirs
-    # env:
-    #   PYTHONPATH: ${{ github.workspace }}/src
-
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -170,10 +163,6 @@ jobs:
       - get_metrics
     runs-on: ubuntu-latest
 
-    # needed for running some python scripts in src/REST and src/GraphQL dirs
-    # env:
-    #   PYTHONPATH: ${{ github.workspace }}/src
-
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -210,6 +199,6 @@ jobs:
         run: |
           poetry run python src/REST/add_badge.py
 
-      - name: add GitHub Actions workflow to Python-based repos
+      - name: add GitHub Actions workflow to repos
         run: |
-          poetry run python src/add_gha_wf.py
+          pwd && ls -a && poetry run python src/add_gha_wf.py

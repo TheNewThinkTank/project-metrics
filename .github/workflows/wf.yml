@@ -171,26 +171,26 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
-          cache: pip
+          # cache: pip
 
       - name: Install and cache poetry
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
-        if: steps.cache.outputs.cache-hit != 'true'
+        # if: steps.cache.outputs.cache-hit != 'true'
 
-      - name: Cache poetry dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-          restore-keys: ${{ runner.os }}-poetry-
+      # - name: Cache poetry dependencies
+      #   id: cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ~/.cache/pypoetry/virtualenvs
+      #     key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+      #     restore-keys: ${{ runner.os }}-poetry-
 
       - name: Install dependencies with poetry
         run: poetry install
         env:
           POETRY_VIRTUALENVS_IN_PROJECT: true
-        if: steps.cache.outputs.cache-hit != 'true'
+        # if: steps.cache.outputs.cache-hit != 'true'
 
       # TODO: if repo has tests, setup codecov badge on it's README
       # TODO: if repo has wf, setup CI badge on it's README
@@ -207,6 +207,6 @@ jobs:
         run: |
           ls assets
 
-      # - name: add GitHub Actions workflow to repos
-      #   run: |
-      #     poetry run python src/add_gha_wf.py
+      - name: add GitHub Actions workflow to repos
+        run: |
+          poetry run python src/add_gha_wf.py

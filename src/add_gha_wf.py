@@ -29,7 +29,7 @@ def has_actions_workflow(repo: Repository.Repository) -> bool:
         return False
 
 
-def make_gha_file_content(repo: Repository.Repository) -> str:
+def make_gha_file_content(repo: Repository.Repository, language: str = "python") -> str:
     """_summary_
 
     :param repo: _description_
@@ -38,7 +38,7 @@ def make_gha_file_content(repo: Repository.Repository) -> str:
     :rtype: str
     """
 
-    with open("assets/python-wf.txt", "r") as rf:
+    with open(f"assets/{language}/wf.txt", "r") as rf:
         wf = (
             rf.read()
             .replace("{repo_name}", repo.name)
@@ -101,7 +101,7 @@ def create_pyproject_file(repo: Repository.Repository) -> None:
     file_path = "pyproject.toml"
     repo_description = repo.description if repo.description is not None else ""
 
-    with open("assets/pyproject.txt", "r") as rf:
+    with open("assets/python/pyproject.txt", "r") as rf:
         file_content = rf.read().replace("{project-name}", repo.name)
         file_content = file_content.replace("{description}", repo_description)
         file_content = file_content.replace("{readme-format}", get_readme_format(repo))

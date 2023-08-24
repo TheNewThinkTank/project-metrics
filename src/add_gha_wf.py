@@ -139,16 +139,16 @@ def update_repos(username, repositories, language="Python"):
         if has_actions_workflow(repo):
             continue
 
-        if language == "Python":
-            file_content = make_gha_file_content(repo)
-            create_workflow(repo, file_content)
-        if language == "TypeScript":
-            file_content = make_gha_file_content(repo, language=language)
-            create_workflow(
-                repo,
-                file_content,
-                file_path=f".github/workflows/{language.lower()}-wf.yml",
-            )
+        # if language == "Python":
+        #     file_content = make_gha_file_content(repo)
+        #     create_workflow(repo, file_content)
+        # if language == "TypeScript":
+        file_content = make_gha_file_content(repo, language=language)
+        create_workflow(
+            repo,
+            file_content,
+            file_path=f".github/workflows/{language.lower()}-wf.yml",
+        )
 
         print(f"\tcreated workflow for {repo.name}")
         repos_encountered += 1
@@ -164,7 +164,7 @@ def main() -> None:
     repositories = get_gh_repos()
 
     update_repos(username, repositories)
-    update_repos(username, repositories, "TypeScript")
+    # update_repos(username, repositories, "TypeScript")
 
 
 if __name__ == "__main__":

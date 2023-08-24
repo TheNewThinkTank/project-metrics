@@ -134,8 +134,13 @@ def main() -> None:
         update_repo(username, repo, badge_name="ci_badge")
         if has_actions_workflow(repo):
             continue
-        file_content = make_gha_file_content(repo)
-        create_workflow(repo, file_content)
+
+        python_wf_file_content = make_gha_file_content(repo)
+        create_workflow(repo, python_wf_file_content)
+
+        # typescript_wf_file_content = make_gha_file_content(repo, language="typescript")
+        # create_workflow(repo, typescript_wf_file_content)
+
         print(f"\tcreated workflow for {repo.name}")
 
         python_repos_encountered += 1

@@ -13,6 +13,7 @@ repo
 repos
 repo's
 scannings
+TypeScript
 whitespace
 yaml
 YAML

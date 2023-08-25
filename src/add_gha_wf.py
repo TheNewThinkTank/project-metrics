@@ -164,7 +164,7 @@ def main() -> None:
     repositories = get_gh_repos()
 
     update_repos(username, repositories)
-    # update_repos(username, repositories, "TypeScript")
+    update_repos(username, repositories, "TypeScript")
 
 
 if __name__ == "__main__":

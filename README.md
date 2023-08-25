@@ -59,7 +59,8 @@ Overview of projects and their health:
       - All GitHub repos (including this one) get a repo size badge on top of their README<br>
         NB: does not affect the GitHub profile page, which is a special repo.
       - support for both `.md` and `.rst` files
-      - All GitHub Python repos gets a GitHub Actions `.github/workflows/wf.yml`,
+      - All GitHub Python repos gets a GitHub Actions workflow, `.github/workflows/wf.yml`,
+        containing linting for Python and/or TypeScript code,
         as well as a *CI* badge on their README
 
 the last job, `update_repos`, is further performance tested and a comparison of parallel and threading versions are
@@ -72,6 +73,7 @@ Useful explorer for testing out GraphQL queries:
 - [GitHub GraphQL API Explorer](https://docs.github.com/en/graphql/overview/explorer)
 
 ## Upcoming features
+- linting of R scripts with `lintr`
 - cleanup script: `remove_badge.py`
 - setup a single, reusable base workflow (poetry setup etc.)
 - identify public repos without any README (e.g. 'web-application-jquery-and-bootstrap')

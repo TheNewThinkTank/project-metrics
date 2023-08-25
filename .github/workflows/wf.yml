@@ -199,14 +199,6 @@ jobs:
       #   run: |
       #     poetry run python src/REST/add_badge.py
 
-      - name: inspect workspace
-        run: |
-          pwd && ls -a
-
-      - name: inspect assets
-        run: |
-          ls assets
-
       - name: add GitHub Actions workflow to repos
         run: |
           poetry run python src/add_gha_wf.py

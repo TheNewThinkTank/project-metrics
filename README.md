@@ -19,7 +19,8 @@ Overview of projects and their health:
 ## Current features
 
 - pre commit hooks for:
-  - Python linting with `black`
+  - Python auto-formatting with `black`
+  - Python import sorting with `isort`
   - trailing-whitespace
   - end-of-file-fixer
   - check-yaml

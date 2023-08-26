@@ -134,6 +134,11 @@ def create_tsconfig(repo: Repository.Repository) -> None:
         )
 
 
+# TODO: implement
+def create_package_json():
+    ...
+
+
 def create_eslintrc(repo: Repository.Repository) -> None:
     file_path = ".eslintrc.js"
     with open("assets/TypeScript/eslintrc.txt", "r") as rf:

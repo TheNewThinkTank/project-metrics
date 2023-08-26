@@ -134,9 +134,20 @@ def create_tsconfig(repo: Repository.Repository) -> None:
         )
 
 
-# TODO: implement
-def create_package_json():
-    ...
+def create_package_json(repo: Repository.Repository) -> None:
+    file_path = "package.json"
+    with open("assets/TypeScript/package.txt", "r") as rf:
+        file_content = rf.read()
+    try:
+        repo.get_contents(file_path)
+        print(f"File '{file_path}' already exists.")
+    except Exception:
+        repo.create_file(
+            file_path,
+            f"chore: add {file_path}",
+            file_content,
+            branch=repo.default_branch,
+        )
 
 
 def create_eslintrc(repo: Repository.Repository) -> None:
@@ -171,6 +182,7 @@ def update_repos(username, repositories, language="Python"):
         if language == "TypeScript":
             create_tsconfig(repo)
             create_eslintrc(repo)
+            create_package_json(repo)
 
         update_repo(username, repo, badge_name="ci_badge")
         if has_actions_workflow(repo):

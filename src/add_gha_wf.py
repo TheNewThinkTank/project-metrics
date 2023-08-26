@@ -118,6 +118,38 @@ def create_pyproject_file(repo: Repository.Repository) -> None:
         )
 
 
+def create_tsconfig(repo: Repository.Repository) -> None:
+    file_path = "tsconfig.json"
+    with open("assets/TypeScript/tsconfig.txt", "r") as rf:
+        file_content = rf.read()
+    try:
+        repo.get_contents(file_path)
+        print(f"File '{file_path}' already exists.")
+    except Exception:
+        repo.create_file(
+            file_path,
+            f"chore: add {file_path}",
+            file_content,
+            branch=repo.default_branch,
+        )
+
+
+def create_eslintrc(repo: Repository.Repository) -> None:
+    file_path = ".eslintrc.js"
+    with open("assets/TypeScript/eslintrc.txt", "r") as rf:
+        file_content = rf.read()
+    try:
+        repo.get_contents(file_path)
+        print(f"File '{file_path}' already exists.")
+    except Exception:
+        repo.create_file(
+            file_path,
+            f"chore: add {file_path}",
+            file_content,
+            branch=repo.default_branch,
+        )
+
+
 def update_repos(username, repositories, language="Python"):
     # test on just a few repos first
     num_repos_to_update = 2
@@ -132,8 +164,8 @@ def update_repos(username, repositories, language="Python"):
             create_pyproject_file(repo)
 
         if language == "TypeScript":
-            # add tsconfig.json and .eslintrc.js (both from assets/TypeScript)
-            ...
+            create_tsconfig(repo)
+            create_eslintrc(repo)
 
         update_repo(username, repo, badge_name="ci_badge")
         if has_actions_workflow(repo):

@@ -118,25 +118,8 @@ def create_pyproject_file(repo: Repository.Repository) -> None:
         )
 
 
-def create_tsconfig(repo: Repository.Repository) -> None:
-    file_path = "tsconfig.json"
-    with open("assets/TypeScript/tsconfig.txt", "r") as rf:
-        file_content = rf.read()
-    try:
-        repo.get_contents(file_path)
-        print(f"File '{file_path}' already exists.")
-    except Exception:
-        repo.create_file(
-            file_path,
-            f"chore: add {file_path}",
-            file_content,
-            branch=repo.default_branch,
-        )
-
-
-def create_package_json(repo: Repository.Repository) -> None:
-    file_path = "package.json"
-    with open("assets/TypeScript/package.txt", "r") as rf:
+def create_file(repo: Repository.Repository, file_path: str, file_asset: str) -> None:
+    with open(file_asset, "r") as rf:
         file_content = rf.read()
     try:
         repo.get_contents(file_path)
@@ -166,22 +149,6 @@ def create_package_lock_json(repo: Repository.Repository) -> None:
         )
 
 
-def create_eslintrc(repo: Repository.Repository) -> None:
-    file_path = ".eslintrc.js"
-    with open("assets/TypeScript/eslintrc.txt", "r") as rf:
-        file_content = rf.read()
-    try:
-        repo.get_contents(file_path)
-        print(f"File '{file_path}' already exists.")
-    except Exception:
-        repo.create_file(
-            file_path,
-            f"chore: add {file_path}",
-            file_content,
-            branch=repo.default_branch,
-        )
-
-
 def update_repos(username, repositories, language="Python"):
     # test on just a few repos first
     num_repos_to_update = 2
@@ -196,9 +163,9 @@ def update_repos(username, repositories, language="Python"):
             create_pyproject_file(repo)
 
         if language == "TypeScript":
-            create_tsconfig(repo)
-            create_eslintrc(repo)
-            create_package_json(repo)
+            create_file(repo, "tsconfig.json", "assets/TypeScript/tsconfig.txt")
+            create_file(repo, "package.json", "assets/TypeScript/package.txt")
+            create_file(repo, ".eslintrc.js", "assets/TypeScript/eslintrc.txt")
             create_package_lock_json(repo)
 
         update_repo(username, repo, badge_name="ci_badge")

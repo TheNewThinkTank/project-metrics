@@ -17,6 +17,7 @@ Overview of projects and their health:
 - [repos grouped by language](query-results/group_by_lang.md)
 
 ![8 largest repos](imgs/8_largest_repos.png)
+![8 medium-sized repos](imgs/8_medium_repos.png)
 ![smallest repos](imgs/smallest_repos.png)
 
 ## Current features

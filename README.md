@@ -15,8 +15,9 @@ Overview of projects and their health:
 - [popular repos](query-results/popular_repos.md)<br>
 - [repos without description](query-results/repos_wo_desc.md)<br>
 - [repos grouped by language](query-results/group_by_lang.md)
-- ![8 largest repos](imgs/8_largest_repos.png)
-- ![smallest repos](imgs/smallest_repos.png)
+
+![8 largest repos](imgs/8_largest_repos.png)
+![smallest repos](imgs/smallest_repos.png)
 
 ## Current features
 

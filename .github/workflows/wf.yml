@@ -146,16 +146,6 @@ jobs:
       #     name: generated-plots
       #     path: repo_size.png
 
-      - name: Commit and Push Plot
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add repo_size.png
-          git commit -m "Add generated plot"
-          git push https://github.com/${{ github.repository }}.git HEAD:${{ github.ref }} 2>&1
-        env:
-          PROJECT_METRICS_GITHUB_PAT: ${{ secrets.PROJECT_METRICS_GITHUB_PAT }}
-
       # - name: GitHub GraphQL largest repos
       #   run: |
       #       poetry run python src/gh_graphql_get_largest_repos.py

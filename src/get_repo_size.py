@@ -6,6 +6,7 @@ from pprint import pprint as pp
 import matplotlib.pyplot as plt  # type: ignore
 import seaborn as sns  # type: ignore
 
+from save_file_to_github import save_file_to_github  # type: ignore
 from util.get_gh_repos import get_gh_repos  # type: ignore
 
 repositories = get_gh_repos()
@@ -64,5 +65,13 @@ plt.ylabel("repo size (KB)")
 plt.title("Repo Sizes")
 ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
 plt.tight_layout()
+
 # plt.show()
-plt.savefig("repo_size.png")  # plt.savefig("imgs/repo_size.png")
+local_file_path = "img/repo_size.png"
+plt.savefig(local_file_path)
+plt.close()
+
+with open(local_file_path, "rb") as file:
+    content = file.read()
+
+save_file_to_github("project-metrics", local_file_path, content)

@@ -91,36 +91,21 @@ def create_workflow(
     repo.get_git_ref(f"heads/{branch}").edit(new_commit.sha)
 
 
-def create_pyproject_file(repo: Repository.Repository) -> None:
-    """Add pyproject.toml to repo if it doesn't exist already.
-
-    :param repo: _description_
-    :type repo: Repository.Repository
-    """
-
-    file_path = "pyproject.toml"
-    repo_description = repo.description if repo.description is not None else ""
-
-    with open("assets/Python/pyproject.txt", "r") as rf:
-        file_content = rf.read().replace("{project-name}", repo.name)
-        file_content = file_content.replace("{description}", repo_description)
-        file_content = file_content.replace("{readme-format}", get_readme_format(repo))
-
-    try:
-        repo.get_contents(file_path)
-        print(f"File '{file_path}' already exists.")
-    except Exception:
-        repo.create_file(
-            file_path,
-            "chore: add pyproject.toml",
-            file_content,
-            branch=repo.default_branch,
-        )
-
-
 def create_file(repo: Repository.Repository, file_path: str, file_asset: str) -> None:
     with open(file_asset, "r") as rf:
         file_content = rf.read()
+
+        if file_path == "pyproject.toml":
+            repo_description = repo.description if repo.description is not None else ""
+            file_content = file_content.replace("{project-name}", repo.name)
+            file_content = file_content.replace("{description}", repo_description)
+            file_content = file_content.replace(
+                "{readme-format}", get_readme_format(repo)
+            )
+
+        if file_path == "package-lock.json":
+            file_content = file_content.replace("{project-name}", repo.name)
+
     try:
         repo.get_contents(file_path)
         print(f"File '{file_path}' already exists.")
@@ -133,23 +118,7 @@ def create_file(repo: Repository.Repository, file_path: str, file_asset: str) ->
         )
 
 
-def create_package_lock_json(repo: Repository.Repository) -> None:
-    file_path = "package-lock.json"
-    with open("assets/TypeScript/package-lock.txt", "r") as rf:
-        file_content = rf.read().replace("{project-name}", repo.name)
-    try:
-        repo.get_contents(file_path)
-        print(f"File '{file_path}' already exists.")
-    except Exception:
-        repo.create_file(
-            file_path,
-            f"chore: add {file_path}",
-            file_content,
-            branch=repo.default_branch,
-        )
-
-
-def update_repos(username, repositories, language="Python"):
+def update_repos(username, repositories, language):
     # test on just a few repos first
     num_repos_to_update = 2
     repos_encountered = 0
@@ -160,13 +129,13 @@ def update_repos(username, repositories, language="Python"):
         print(f"Processing repo: {repo.name}")
 
         if language == "Python":
-            create_pyproject_file(repo)
+            create_file(repo, "pyproject.toml", "assets/Python/pyproject.txt")
 
         if language == "TypeScript":
             create_file(repo, "tsconfig.json", "assets/TypeScript/tsconfig.txt")
             create_file(repo, "package.json", "assets/TypeScript/package.txt")
             create_file(repo, ".eslintrc.js", "assets/TypeScript/eslintrc.txt")
-            create_package_lock_json(repo)
+            create_file(repo, "package-lock.json", "assets/TypeScript/package-lock.txt")
 
         update_repo(username, repo, badge_name="ci_badge")
         if has_actions_workflow(repo):
@@ -196,7 +165,7 @@ def main() -> None:
     username = "TheNewThinkTank"
     repositories = get_gh_repos()
 
-    update_repos(username, repositories)
+    update_repos(username, repositories, "Python")
     update_repos(username, repositories, "TypeScript")
 
 

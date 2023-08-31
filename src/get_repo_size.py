@@ -1,7 +1,7 @@
 """_summary_
 """
 
-from pprint import pprint as pp
+# from pprint import pprint as pp
 
 import matplotlib.pyplot as plt  # type: ignore
 import seaborn as sns  # type: ignore
@@ -52,7 +52,7 @@ test_data = {
 
 data = name_and_size  # test_data
 data_by_size_desc = sorted(data.items(), key=lambda x: x[1], reverse=True)
-pp(data_by_size_desc)
+# pp(data_by_size_desc)
 
 names = [item[0] for item in data_by_size_desc]
 sizes = [item[1] for item in data_by_size_desc]
@@ -67,7 +67,7 @@ ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
 plt.tight_layout()
 
 # plt.show()
-local_file_path = "img/repo_size.png"
+local_file_path = "imgs/repo_size.png"
 plt.savefig(local_file_path)
 plt.close()
 

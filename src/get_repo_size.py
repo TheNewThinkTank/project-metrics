@@ -6,14 +6,12 @@ from pprint import pprint as pp
 import matplotlib.pyplot as plt  # type: ignore
 import seaborn as sns  # type: ignore
 
-# from util.get_gh_repos import get_gh_repos  # type: ignore
+from util.get_gh_repos import get_gh_repos  # type: ignore
 
-# repositories = get_gh_repos()
-# name_and_size = {repo.name: repo.size for repo in repositories}
-# pp(name_and_size)
-# print(f"Repository Size: {repo.size} KB")
+repositories = get_gh_repos()
+name_and_size = {repo.name: repo.size for repo in repositories}
 
-data = {
+test_data = {
     "AACT-Analysis": 326486,
     "AWS-recipes": 6,
     "Computation-Optimizations": 10,
@@ -51,6 +49,7 @@ data = {
     "world-maps": 487,
 }
 
+data = name_and_size  # test_data
 data_by_size_desc = sorted(data.items(), key=lambda x: x[1], reverse=True)
 pp(data_by_size_desc)
 
@@ -60,14 +59,10 @@ sizes = [item[1] for item in data_by_size_desc]
 sns.set(style="whitegrid")
 plt.figure(figsize=(12, 6))
 ax = sns.barplot(x=names, y=sizes, palette="pastel")
-
 plt.xlabel("repo name")
 plt.ylabel("repo size (KB)")
 plt.title("Repo Sizes")
-
-# plt.xticks(rotation=45)
 ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
 plt.tight_layout()
-
 # plt.show()
-plt.savefig("imgs/repo_size.png")
+plt.savefig("repo_size.png")  # plt.savefig("imgs/repo_size.png")

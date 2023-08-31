@@ -140,6 +140,12 @@ jobs:
         run: |
           poetry run python src/get_repo_size.py
 
+      - name: Upload Plot Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: generated-plots
+          path: repo_size.png
+
       # - name: GitHub GraphQL largest repos
       #   run: |
       #       poetry run python src/gh_graphql_get_largest_repos.py

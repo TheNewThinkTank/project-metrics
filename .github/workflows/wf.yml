@@ -136,6 +136,10 @@ jobs:
           POETRY_VIRTUALENVS_IN_PROJECT: true
         if: steps.cache.outputs.cache-hit != 'true'
 
+      - name: Get repos and sizes
+        run: |
+          poetry run python src/get_repo_size.py
+
       # - name: GitHub GraphQL largest repos
       #   run: |
       #       poetry run python src/gh_graphql_get_largest_repos.py

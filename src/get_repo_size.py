@@ -64,15 +64,19 @@ n = 8
 names_largest = names[:n]
 sizes_largest = sizes[:n]
 
+# medium sized repos
+names_medium = names[n : n + n]
+sizes_medium = sizes[n : n + n]
+
 # remaining, smallest repos
-names_smallest = names[n:]
-sizes_smallest = sizes[n:]
+names_smallest = names[n + n :]
+sizes_smallest = sizes[n + n :]
 
 plt.figure(figsize=(12, 6))
 ax = sns.barplot(x=names_largest, y=sizes_largest, palette="pastel")
 plt.xlabel("repo name")
 plt.ylabel("repo size (KB)")
-plt.title(f"Sizes of {n} largest repos")
+plt.title(f"Largest repos")
 ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
 plt.tight_layout()
 local_file_path = f"imgs/{n}_largest_repos.png"
@@ -83,10 +87,24 @@ with open(local_file_path, "rb") as file:
 save_file_to_github("project-metrics", local_file_path, content)
 
 plt.figure(figsize=(12, 6))
+ax = sns.barplot(x=names_medium, y=sizes_medium, palette="pastel")
+plt.xlabel("repo name")
+plt.ylabel("repo size (KB)")
+plt.title(f"Medium-sized repos")
+ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
+plt.tight_layout()
+local_file_path = f"imgs/{n}_medium_repos.png"
+plt.savefig(local_file_path)
+plt.close()
+with open(local_file_path, "rb") as file:
+    content = file.read()
+save_file_to_github("project-metrics", local_file_path, content)
+
+plt.figure(figsize=(12, 6))
 ax = sns.barplot(x=names_smallest, y=sizes_smallest, palette="pastel")
 plt.xlabel("repo name")
 plt.ylabel("repo size (KB)")
-plt.title("Sizes of the smallest repos")
+plt.title("Smallest repos")
 ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
 plt.tight_layout()
 local_file_path = "imgs/smallest_repos.png"

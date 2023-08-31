@@ -18,7 +18,8 @@ Overview of projects and their health:
 
 ![8 largest repos](imgs/8_largest_repos.png)
 ![8 medium-sized repos](imgs/8_medium_repos.png)
-![smallest repos](imgs/smallest_repos.png)
+![small repos](imgs/small_repos.png)
+![8 smallest repos](imgs/8_smallest_repos.png)
 
 ## Current features
 

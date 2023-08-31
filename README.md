@@ -16,10 +16,9 @@ Overview of projects and their health:
 - [repos without description](query-results/repos_wo_desc.md)<br>
 - [repos grouped by language](query-results/group_by_lang.md)
 
-![8 largest repos](imgs/8_largest_repos.png)
-![8 medium-sized repos](imgs/8_medium_repos.png)
-![small repos](imgs/small_repos.png)
-![8 smallest repos](imgs/8_smallest_repos.png)
+| ![8 largest repos](imgs/8_largest_repos.png) | ![8 medium-sized repos](imgs/8_medium_repos.png) |
+| :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| ![small repos](imgs/small_repos.png) | ![8 smallest repos](imgs/8_smallest_repos.png) |
 
 ## Current features
 

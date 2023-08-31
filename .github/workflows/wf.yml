@@ -140,11 +140,19 @@ jobs:
         run: |
           poetry run python src/get_repo_size.py
 
-      - name: Upload Plot Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: generated-plots
-          path: repo_size.png
+      # - name: Upload Plot Artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: generated-plots
+      #     path: repo_size.png
+
+      - name: Commit and Push Plot
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add repo_size.png
+          git commit -m "Add generated plot"
+          git push
 
       # - name: GitHub GraphQL largest repos
       #   run: |

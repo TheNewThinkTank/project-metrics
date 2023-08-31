@@ -33,6 +33,8 @@ Overview of projects and their health:
 - Statistics and health badges
   (commit activity, repo size, code test coverage, documentation status, CI health of workflows)
 
+- barplots grouping repos by size, sectioned into 4 categories (large, medium, small, smallest)
+
 - Sphinx auto doc, with doc hosting on readthedocs:<br>
 [project-metrics](https://project-metrics.readthedocs.io/en/latest/)
 
@@ -87,7 +89,6 @@ Useful explorer for testing out GraphQL queries:
 - improve & extend documentation on `readthedocs`
 - alphabetic sorting of words in `config/.wordlist.txt`
 - group by category (using tags), e.g. health (nutrition, fitness, athlete profiler)
-- group by repo size, display largest and smallest repos
 - group by created_at, display newest and oldest repos
 - check if repos have tests
 - if so, setup codecov badge on their README's

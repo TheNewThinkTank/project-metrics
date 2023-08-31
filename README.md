@@ -12,12 +12,12 @@
 
 Overview of projects and their health:
 
-- [popular repos](query-results/popular_repos.md)
-- [repos without description](query-results/repos_wo_desc.md)
+- [popular repos](query-results/popular_repos.md)<br>
+- [repos without description](query-results/repos_wo_desc.md)<br>
 - [repos grouped by language](query-results/group_by_lang.md)
 
-- [commits over time - code-vault](imgs/commits_over_time_code-vault.png)
-- [commits over time - fitness-tracker](imgs/commits_over_time_fitness-tracker.png)
+- [commits over time - code-vault](imgs/commits_over_time_code-vault.png)<br>
+- [commits over time - fitness-tracker](imgs/commits_over_time_fitness-tracker.png)<br>
 - [commits over time - project-metrics](imgs/commits_over_time_project-metrics.png)
 
 | ![8 largest repos](imgs/8_largest_repos.png) | ![8 medium-sized repos](imgs/8_medium_repos.png) |

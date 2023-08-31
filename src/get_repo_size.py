@@ -59,22 +59,23 @@ sizes = [item[1] for item in data_by_size_desc]
 
 sns.set(style="whitegrid")
 
-# 7 largest repos
-names_7_largest = names[:7]
-sizes_7_largest = sizes[:7]
+# N largest repos
+n = 8
+names_largest = names[:n]
+sizes_largest = sizes[:n]
 
 # remaining, smallest repos
-names_smallest = names[7:]
-sizes_smallest = sizes[7:]
+names_smallest = names[n:]
+sizes_smallest = sizes[n:]
 
 plt.figure(figsize=(12, 6))
-ax = sns.barplot(x=names_7_largest, y=sizes_7_largest, palette="pastel")
+ax = sns.barplot(x=names_largest, y=sizes_largest, palette="pastel")
 plt.xlabel("repo name")
 plt.ylabel("repo size (KB)")
-plt.title("Sizes of 7 largest repos")
+plt.title(f"Sizes of {n} largest repos")
 ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
 plt.tight_layout()
-local_file_path = "imgs/largest_repos.png"
+local_file_path = f"imgs/{n}_largest_repos.png"
 plt.savefig(local_file_path)
 plt.close()
 with open(local_file_path, "rb") as file:

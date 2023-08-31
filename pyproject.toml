@@ -25,6 +25,7 @@ sphinx = "^7.1.1"
 black = "^23.7.0"
 pre-commit = "^3.3.3"
 isort = "^5.12.0"
+seaborn = "^0.12.2"
 
 
 [build-system]

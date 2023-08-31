@@ -9,7 +9,7 @@ import requests  # type: ignore
 from save_file_to_github import save_file_to_github  # type: ignore
 
 owner = "TheNewThinkTank"
-repo = "N-body-simulations"
+repo = "fitness-tracker"  # "N-body-simulations"
 
 url = f"https://api.github.com/repos/{owner}/{repo}/commits"
 response = requests.get(url)

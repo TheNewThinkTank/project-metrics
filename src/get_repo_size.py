@@ -17,7 +17,7 @@ def get_repo_names_and_sizes():
     return names, sizes
 
 
-def split_data(names, sizes, n=8):
+def split_data(names, sizes, n):
     # n largest repos
     names_largest = names[:n]
     sizes_largest = sizes[:n]
@@ -44,6 +44,7 @@ def split_data(names, sizes, n=8):
 
 
 def commit_4_barplots(
+    n,
     names_largest,
     sizes_largest,
     names_medium,
@@ -114,6 +115,7 @@ def commit_4_barplots(
 
 def main():
     names, sizes = get_repo_names_and_sizes()
+    n = 8
     (
         names_largest,
         sizes_largest,
@@ -123,8 +125,9 @@ def main():
         sizes_small,
         names_smallest,
         sizes_smallest,
-    ) = split_data(names, sizes)
+    ) = split_data(names, sizes, n)
     commit_4_barplots(
+        n,
         names_largest,
         sizes_largest,
         names_medium,

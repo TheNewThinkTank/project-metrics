@@ -136,9 +136,13 @@ jobs:
           POETRY_VIRTUALENVS_IN_PROJECT: true
         if: steps.cache.outputs.cache-hit != 'true'
 
-      - name: Get repos and sizes
+      - name: Get repos and sizes plot
         run: |
           poetry run python src/get_repo_size.py
+
+      - name: Get commit frequency plot
+        run: |
+          poetry run python src/REST/commits_over_time.py
 
       # - name: Upload Plot Artifact
       #   uses: actions/upload-artifact@v3

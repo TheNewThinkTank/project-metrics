@@ -3,7 +3,7 @@
 
 from pprint import pprint as pp
 
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  # type: ignore
 import seaborn as sns  # type: ignore
 
 # from util.get_gh_repos import get_gh_repos  # type: ignore

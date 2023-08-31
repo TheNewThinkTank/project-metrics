@@ -1,10 +1,10 @@
 """_summary_
 """
 
-from datetime import datetime
+from datetime import datetime  # type: ignore
 
-import matplotlib.pyplot as plt
-import requests
+import matplotlib.pyplot as plt  # type: ignore
+import requests  # type: ignore
 
 from save_file_to_github import save_file_to_github  # type: ignore
 

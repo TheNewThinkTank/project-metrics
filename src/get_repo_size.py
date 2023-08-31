@@ -122,7 +122,7 @@ plt.figure(figsize=(12, 6))
 ax = sns.barplot(x=names_smallest, y=sizes_smallest, palette="pastel")
 plt.xlabel("repo name")
 plt.ylabel("repo size (KB)")
-plt.title(f"Smallest repos")
+plt.title("Smallest repos")
 ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
 plt.tight_layout()
 local_file_path = f"imgs/{n}_smallest_repos.png"

@@ -15,7 +15,7 @@ response = requests.get(url)
 
 if response.status_code == 200:
     commits_data = response.json()
-    commit_activity = {}
+    commit_activity = dict()  # type: ignore
     for commit in commits_data:
         commit_date = datetime.strptime(
             commit["commit"]["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ"

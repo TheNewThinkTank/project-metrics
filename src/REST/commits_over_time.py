@@ -9,13 +9,15 @@ import requests  # type: ignore
 from save_file_to_github import save_file_to_github  # type: ignore
 
 
-def make_line_chart(owner, repo) -> None:
+def get_commits(owner: str, repo: str) -> tuple[list, list]:
     """_summary_
 
     :param owner: _description_
-    :type owner: _type_
+    :type owner: str
     :param repo: _description_
-    :type repo: _type_
+    :type repo: str
+    :return: _description_
+    :rtype: tuple[list, list]
     """
 
     url = f"https://api.github.com/repos/{owner}/{repo}/commits"
@@ -50,6 +52,20 @@ def make_line_chart(owner, repo) -> None:
     sorted_dates = sorted(commit_activity.keys())
     commit_counts = [commit_activity[date] for date in sorted_dates]
 
+    return sorted_dates, commit_counts
+
+
+def make_line_chart(repo: str, sorted_dates: list, commit_counts: list) -> None:
+    """_summary_
+
+    :param repo: _description_
+    :type repo: str
+    :param sorted_dates: _description_
+    :type sorted_dates: list
+    :param commit_counts: _description_
+    :type commit_counts: list
+    """
+
     plt.figure(figsize=(10, 6))
     plt.plot(sorted_dates, commit_counts, marker="o")
     plt.title(f"Commit frequency - {repo}")
@@ -75,7 +91,8 @@ def main() -> None:
     ]
 
     for repo in repos:
-        make_line_chart(owner, repo)
+        sorted_dates, commit_counts = get_commits(owner, repo)
+        make_line_chart(repo, sorted_dates, commit_counts)
 
 
 if __name__ == "__main__":

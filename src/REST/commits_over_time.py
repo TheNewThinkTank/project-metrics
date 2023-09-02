@@ -8,15 +8,16 @@ import requests  # type: ignore
 
 from save_file_to_github import save_file_to_github  # type: ignore
 
-owner = "TheNewThinkTank"
 
-repos = [
-    "project-metrics",
-    "code-vault",
-    "fitness-tracker",
-]
+def make_line_chart(owner, repo) -> None:
+    """_summary_
 
-for repo in repos:
+    :param owner: _description_
+    :type owner: _type_
+    :param repo: _description_
+    :type repo: _type_
+    """
+
     url = f"https://api.github.com/repos/{owner}/{repo}/commits"
     commit_activity = dict()  # type: ignore
     page = 1
@@ -62,3 +63,20 @@ for repo in repos:
     with open(local_file_path, "rb") as file:
         content = file.read()
     save_file_to_github("project-metrics", local_file_path, content)
+
+
+def main() -> None:
+    owner = "TheNewThinkTank"
+
+    repos = [
+        "project-metrics",
+        "code-vault",
+        "fitness-tracker",
+    ]
+
+    for repo in repos:
+        make_line_chart(owner, repo)
+
+
+if __name__ == "__main__":
+    main()

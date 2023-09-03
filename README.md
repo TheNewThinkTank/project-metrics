@@ -42,6 +42,7 @@ Repo sizes:
   (commit activity, repo size, code test coverage, documentation status, CI health of workflows)
 
 - Barplots grouping repos by size, sectioned into 4 categories (large, medium, small, smallest)
+- Linecharts showing commits over time
 
 - Sphinx auto doc, with doc hosting on readthedocs:<br>
 [project-metrics](https://project-metrics.readthedocs.io/en/latest/)

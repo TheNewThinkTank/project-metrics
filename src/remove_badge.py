@@ -20,10 +20,7 @@ badges to remove:
 (https://github.com/TheNewThinkTank/AACT-Analysis/archive/refs/heads/main.zip)
 
 
-test on repos:
-image-models (with README in rst format)
-Machine-Learning-101 (with README in md format)
-
+test on a few repos
 and check that repo: 'AACT-Analysis' is unaffected.
 
 -------------------------------------------------------------------------------------

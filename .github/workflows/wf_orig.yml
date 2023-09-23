@@ -59,7 +59,7 @@ jobs:
         run: poetry run flake8 --ignore=E123,E126,E203,E402,E501,F401 .
 
       - name: Lint with ruff
-        run: poetry run ruff --ignore=F401,F841,E402,E501,E999 .
+        run: poetry run ruff --ignore=F401,F841,E402,E501,E999 --exclude=.venv .
 
       - name: Cache mypy dependencies
         uses: actions/cache@v3

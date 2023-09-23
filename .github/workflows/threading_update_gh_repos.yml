@@ -6,13 +6,11 @@ on:
 env:
   PROJECT_METRICS_GITHUB_PAT: ${{ secrets.PROJECT_METRICS_GITHUB_PAT }}
   PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
+  PYTHONPATH: ${{ github.workspace }}/src
 
 jobs:
   update_repos:
     runs-on: ubuntu-latest
-
-    env:
-      PYTHONPATH: ${{ github.workspace }}/src
 
     steps:
       - name: Check out repository code
@@ -25,8 +23,7 @@ jobs:
           cache: pip
 
       - name: Install and cache poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
+        run: make install-poetry
         if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Cache poetry dependencies

@@ -30,12 +30,12 @@ install-dependencies:
 # Lint with flake8
 .PHONY: lint-flake8
 lint-flake8:
-	poetry run flake8 --ignore=E123,E126,E203,E402,E501,F401 .
+	poetry run flake8 --ignore=E123,E126,E203,E402,E501,F401 --exclude=.venv .
 
 # Lint with ruff
 .PHONY: lint-ruff
 lint-ruff:
-	poetry run ruff --ignore=F401,F841,E402,E501,E999 .
+	poetry run ruff --ignore=F401,F841,E402,E501,E999 --exclude=.venv .
 
 # Cache mypy dependencies
 .PHONY: cache-mypy

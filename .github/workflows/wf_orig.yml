@@ -37,7 +37,8 @@ jobs:
 
       - name: Install and cache poetry
         run: |
-          curl -sSL https://install.python-poetry.org | python3 -
+          make install-poetry
+          # curl -sSL https://install.python-poetry.org | python3 -
         if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Cache poetry dependencies

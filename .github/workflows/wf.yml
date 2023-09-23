@@ -1,5 +1,5 @@
 ---
-name: Project Metrics Make Workflow
+name: Project Metrics Workflow
 
 # Only set manual trigger, as the wf will otherwise recursively keep invoking itself
 on:
@@ -29,8 +29,77 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Qualify Code
-        run: make qualify-code
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: pip
+
+      - name: Install and cache poetry
+        run: |
+          make install-poetry
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - name: Cache poetry dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
+
+      - name: Install dependencies with poetry
+        run: poetry install
+        env:
+          POETRY_VIRTUALENVS_IN_PROJECT: true
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - name: Lint with flake8
+        run: make lint-flake8
+
+      - name: Lint with ruff
+        run: make lint-ruff
+
+      - name: Cache mypy dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/mypy
+          key: ${{ runner.os }}-mypy-${{ hashFiles('**/mypy.ini') }}
+          restore-keys: ${{ runner.os }}-mypy-
+
+      - name: Static type checks with mypy
+        run: make static-type-checks
+
+      - name: wily build and rank
+        run: make wily-build-and-rank
+
+      # TODO:
+      # - name: Run ShellCheck
+      #   uses: ludeeus/action-shellcheck@master
+
+      - name: lint yaml
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: .
+          config_file: .yamllint.yml
+
+      - uses: rojopolis/spellcheck-github-actions@0.33.1
+        name: Spellcheck README
+        with:
+          config_path: config/.spellcheck.yml
+          source_files: README.md
+          task_name: Markdown
+
+      - name: Run unit tests and make coverage report
+        run: make run-tests-and-coverage
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: ./cov.xml
+          verbose: true
 
   get_metrics:
     needs:
@@ -48,8 +117,7 @@ jobs:
           cache: pip
 
       - name: Install and cache poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
+        run: make install-poetry
         if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Cache poetry dependencies
@@ -118,8 +186,7 @@ jobs:
           # cache: pip
 
       - name: Install and cache poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
+        run: make install-poetry
         # if: steps.cache.outputs.cache-hit != 'true'
 
       # - name: Cache poetry dependencies

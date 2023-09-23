@@ -4,12 +4,22 @@ install-poetry:
 	curl -sSL https://install.python-poetry.org | python3 -
 
 # Cache poetry dependencies
+# .PHONY: cache-poetry
+# cache-poetry:
+# 	actions/cache@v3 \
+# 		--path=$$HOME/.cache/pypoetry/virtualenvs \
+# 		--key=${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }} \
+# 		--restore-keys=${{ runner.os }}-poetry-
+
+# Cache poetry dependencies
 .PHONY: cache-poetry
 cache-poetry:
-	actions/cache@v3 \
+	@echo "Caching poetry dependencies..."
+	@actions/cache@v3 \
 		--path=$$HOME/.cache/pypoetry/virtualenvs \
 		--key=${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }} \
 		--restore-keys=${{ runner.os }}-poetry-
+	@echo "Poetry dependencies cached."
 
 # Install dependencies with poetry
 .PHONY: install-dependencies

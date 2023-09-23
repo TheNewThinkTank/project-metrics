@@ -1,5 +1,5 @@
 ---
-name: Project Metrics Workflow
+name: Project Metrics Make Workflow
 
 # Only set manual trigger, as the wf will otherwise recursively keep invoking itself
 on:

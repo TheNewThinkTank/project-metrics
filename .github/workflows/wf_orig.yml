@@ -29,8 +29,78 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Qualify Code
-        run: make qualify-code
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: pip
+
+      - name: Install and cache poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - name: Cache poetry dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
+
+      - name: Install dependencies with poetry
+        run: poetry install
+        env:
+          POETRY_VIRTUALENVS_IN_PROJECT: true
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - name: Lint with flake8
+        run: poetry run flake8 --ignore=E123,E126,E203,E402,E501,F401 .
+
+      - name: Lint with ruff
+        run: poetry run ruff --ignore=F401,F841,E402,E501,E999 .
+
+      - name: Cache mypy dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/mypy
+          key: ${{ runner.os }}-mypy-${{ hashFiles('**/mypy.ini') }}
+          restore-keys: ${{ runner.os }}-mypy-
+
+      - name: Static type checks with mypy
+        run: poetry run mypy src/ --exclude '/site-packages/'
+
+      - name: wily build and rank
+        run: |
+          poetry run wily build src
+          poetry run wily rank src
+
+      # - name: Run ShellCheck
+      #   uses: ludeeus/action-shellcheck@master
+
+      - name: lint yaml
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: .  # "./codecov.yml"
+          config_file: .yamllint.yml
+
+      - uses: rojopolis/spellcheck-github-actions@0.33.1
+        name: Spellcheck README
+        with:
+          config_path: config/.spellcheck.yml
+          source_files: README.md
+          task_name: Markdown
+
+      - name: Run unit tests and make coverage report
+        run: poetry run pytest --cov=./ --cov-report xml:cov.xml
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: ./cov.xml
+          verbose: true
 
   get_metrics:
     needs:

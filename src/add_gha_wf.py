@@ -156,7 +156,8 @@ def update_repos(username, repositories, language):
         repos_encountered += 1
         if repos_encountered >= num_repos_to_update:
             print(
-                f"\t\thas processed {num_repos_to_update} {language}-based repos now.\nquitting ...\n"
+                f"\t\thas processed {num_repos_to_update}"
+                f" {language}-based repos now.\nquitting ...\n"
             )
             break
 

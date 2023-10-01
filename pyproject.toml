@@ -19,13 +19,13 @@ pytest = "^7.4.0"
 pytest-cov = "^4.1.0"
 flake8 = "^6.1.0"
 mypy = "^1.5.1"
-ruff = "^0.0.287"
+ruff = "^0.0.291"
 wily = "^1.24.2"
 sphinx = "^7.2.5"
 black = "^23.9.1"
 pre-commit = "^3.3.3"
 isort = "^5.12.0"
-seaborn = "^0.12.2"
+seaborn = "^0.13.0"
 
 
 [build-system]

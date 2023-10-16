@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "project-metrics"
-version = "0.1.0"
+version = "1.0.0"
 description = "Overview of projects and their health"
-authors = ["Your Name <you@example.com>"]
+authors = ["Gustav Rasmussen <you@example.com>"]
 license = "MIT"
 readme = "README.md"
 
@@ -10,7 +10,7 @@ readme = "README.md"
 profile = "black"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.11,<3.13"
 requests = "^2.31.0"
 pygithub = "^2.1.1"
 pandas = "^2.1.0"
@@ -19,6 +19,7 @@ pytest = "^7.4.0"
 pytest-cov = "^4.1.0"
 flake8 = "^6.1.0"
 mypy = "^1.5.1"
+numpy = "^1.26"
 ruff = "^0.0.291"
 wily = "^1.24.2"
 sphinx = "^7.2.5"

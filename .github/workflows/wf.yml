@@ -8,9 +8,9 @@ on:
   #     - main
   # pull_request:
   #   branches: [master, main]
-  workflow_dispatch
-  # schedule:
-  #   - cron:  '0 0 * * *'
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 0 * * *'
 
 env:
   PROJECT_METRICS_GITHUB_PAT: ${{ secrets.PROJECT_METRICS_GITHUB_PAT }}

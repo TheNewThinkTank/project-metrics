@@ -166,8 +166,13 @@ def main() -> None:
     username = "TheNewThinkTank"
     repositories = get_gh_repos()
 
-    update_repos(username, repositories, "Python")
-    update_repos(username, repositories, "TypeScript")
+    languages = [
+        "Python",
+        "TypeScript",
+    ]
+
+    for language in languages:
+        update_repos(username, repositories, language)
 
 
 if __name__ == "__main__":

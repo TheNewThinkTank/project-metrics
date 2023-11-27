@@ -48,21 +48,14 @@ def update_readme(
     if format == "md":
         if isinstance(badge["value"], list):
             badge_content = format_map["md"][0]
-            # (
-            #     f"[![{badge['label']}]({badge['value'][0]})]({badge['value'][1]})"
-            # )
         else:
-            badge_content = format_map["md"][
-                1
-            ]  # f"![{badge['label']}]({badge['value']})"
+            badge_content = format_map["md"][1]
 
     elif format == "rst":
         if isinstance(badge["value"], list):
             badge_content = format_map["rst"][0]
-            # f""".. image:: {badge['value'][0]}
-            #                       :target: {badge['value'][1]}"""
         else:
-            badge_content = format_map["rst"][1]  # f""".. image:: {badge['value']}"""
+            badge_content = format_map["rst"][1]
 
     repo_contents = repo.get_contents(f"README.{format}", ref=repo.default_branch)
     content = repo_contents.decoded_content.decode()  # type: ignore

@@ -138,15 +138,6 @@ def update_repos(username, repositories, language):
             continue
         print(f"Processing repo: {repo.name}")
 
-        # if language == "Python":
-        #     create_file(repo, "pyproject.toml", "assets/Python/pyproject.txt")
-
-        # if language == "TypeScript":
-        #     create_file(repo, "tsconfig.json", "assets/TypeScript/tsconfig.txt")
-        #     create_file(repo, "package.json", "assets/TypeScript/package.txt")
-        #     create_file(repo, ".eslintrc.js", "assets/TypeScript/eslintrc.txt")
-        #     create_file(repo, "package-lock.json", "assets/TypeScript/package-lock.txt")
-
         for files in lang_files[language]:
             create_file(repo, files[0], files[1])
 

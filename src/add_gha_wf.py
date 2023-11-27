@@ -123,19 +123,32 @@ def update_repos(username, repositories, language):
     num_repos_to_update = 2
     repos_encountered = 0
 
+    lang_files = {
+        "Python": [("pyproject.toml", "assets/Python/pyproject.txt")],
+        "TypeScript": [
+            ("tsconfig.json", "assets/TypeScript/tsconfig.txt"),
+            ("package.json", "assets/TypeScript/package.txt"),
+            (".eslintrc.js", "assets/TypeScript/eslintrc.txt"),
+            ("package-lock.json", "assets/TypeScript/package-lock.txt"),
+        ],
+    }
+
     for repo in repositories:
         if not repo_has_lang(repo, language):
             continue
         print(f"Processing repo: {repo.name}")
 
-        if language == "Python":
-            create_file(repo, "pyproject.toml", "assets/Python/pyproject.txt")
+        # if language == "Python":
+        #     create_file(repo, "pyproject.toml", "assets/Python/pyproject.txt")
 
-        if language == "TypeScript":
-            create_file(repo, "tsconfig.json", "assets/TypeScript/tsconfig.txt")
-            create_file(repo, "package.json", "assets/TypeScript/package.txt")
-            create_file(repo, ".eslintrc.js", "assets/TypeScript/eslintrc.txt")
-            create_file(repo, "package-lock.json", "assets/TypeScript/package-lock.txt")
+        # if language == "TypeScript":
+        #     create_file(repo, "tsconfig.json", "assets/TypeScript/tsconfig.txt")
+        #     create_file(repo, "package.json", "assets/TypeScript/package.txt")
+        #     create_file(repo, ".eslintrc.js", "assets/TypeScript/eslintrc.txt")
+        #     create_file(repo, "package-lock.json", "assets/TypeScript/package-lock.txt")
+
+        for files in lang_files[language]:
+            create_file(repo, files[0], files[1])
 
         update_repo(username, repo, badge_name="ci_badge")
         if has_actions_workflow(repo):

@@ -28,28 +28,41 @@ def update_readme(
     """
 
     repo_name = repo.name
-
     badge = get_badge(repo_name, badge_name)
-
     # print(f"{badge = }")
-
     newlines = {"md": "\n", "rst": "\n\n"}
     newline = newlines[format]
 
+    format_map = {
+        "md": (
+            (f"[![{badge['label']}]({badge['value'][0]})]({badge['value'][1]})"),
+            f"![{badge['label']}]({badge['value']})",
+        ),
+        "rst": (
+            f""".. image:: {badge['value'][0]}
+            :target: {badge['value'][1]}""",
+            f""".. image:: {badge['value']}""",
+        ),
+    }
+
     if format == "md":
         if isinstance(badge["value"], list):
-            badge_content = (
-                f"[![{badge['label']}]({badge['value'][0]})]({badge['value'][1]})"
-            )
+            badge_content = format_map["md"][0]
+            # (
+            #     f"[![{badge['label']}]({badge['value'][0]})]({badge['value'][1]})"
+            # )
         else:
-            badge_content = f"![{badge['label']}]({badge['value']})"
+            badge_content = format_map["md"][
+                1
+            ]  # f"![{badge['label']}]({badge['value']})"
 
     elif format == "rst":
         if isinstance(badge["value"], list):
-            badge_content = f""".. image:: {badge['value'][0]}
-                                  :target: {badge['value'][1]}"""
+            badge_content = format_map["rst"][0]
+            # f""".. image:: {badge['value'][0]}
+            #                       :target: {badge['value'][1]}"""
         else:
-            badge_content = f""".. image:: {badge['value']}"""
+            badge_content = format_map["rst"][1]  # f""".. image:: {badge['value']}"""
 
     repo_contents = repo.get_contents(f"README.{format}", ref=repo.default_branch)
     content = repo_contents.decoded_content.decode()  # type: ignore

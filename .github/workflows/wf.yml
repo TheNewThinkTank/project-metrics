@@ -42,7 +42,7 @@ jobs:
 
       - name: Cache poetry dependencies
         id: cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pypoetry/virtualenvs
           key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
@@ -61,7 +61,7 @@ jobs:
         run: make lint-ruff
 
       - name: Cache mypy dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/mypy
           key: ${{ runner.os }}-mypy-${{ hashFiles('**/mypy.ini') }}
@@ -122,7 +122,7 @@ jobs:
 
       - name: Cache poetry dependencies
         id: cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pypoetry/virtualenvs
           key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
@@ -191,7 +191,7 @@ jobs:
 
       # - name: Cache poetry dependencies
       #   id: cache
-      #   uses: actions/cache@v3
+      #   uses: actions/cache@v4
       #   with:
       #     path: ~/.cache/pypoetry/virtualenvs
       #     key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}

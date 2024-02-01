@@ -1,6 +1,6 @@
 | name | description | stars |
 |-----|-----|-----|
-| fitness-tracker | Full stack fitness tracking application using TinyDB and FastAPI | 16 |
+| fitness-tracker | Full stack fitness tracking application using TinyDB and FastAPI | 17 |
 | code-vault | recipes for BASH, Docker and more | 13 |
 | nutrition-planner | streamlit app for meal nutrition analysis | 5 |
 | N-body-simulations | Simulations of dynamical systems of particles under the influence of gravity | 5 |

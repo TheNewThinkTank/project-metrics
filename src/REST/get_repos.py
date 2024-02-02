@@ -1,4 +1,5 @@
 import requests  # type: ignore
+from icecream import ic  # type: ignore
 
 from config import platforms  # type: ignore
 
@@ -16,7 +17,15 @@ def get_repos(platform: str) -> list[dict]:
     url = platforms[platform]["repos_url"]
 
     response = requests.get(url)
-    repos = response.json()["values"] if platform == "bitbucket" else response.json()
+    response.raise_for_status()  # Raise an exception for 4xx or 5xx status codes
+
+    # repos = response.json()["values"] if platform == "bitbucket" else response.json()
+    repos = response.json()
+
+    if platform == "bitbucket":
+        repos = repos["values"]
+
+    ic(platform)
 
     return [
         {"name": repo["name"], "owner": username, "platform": platform}

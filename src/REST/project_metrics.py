@@ -17,7 +17,7 @@ def repo_missing_descriptions(repo_info: dict) -> bool:
     :rtype: bool
     """
 
-    return False if repo_info["description"] else True
+    return True if repo_info["description"] is None else False
 
 
 def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:

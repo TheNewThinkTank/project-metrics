@@ -35,13 +35,12 @@ def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:
         "  ####################     Repos missing descriptions:     ####################  "
     )
 
-    # TODO: fix GitLab repo "dojo"
-    skip_repo = {"name": "dojo", "owner": "TheNewThinkTank", "platform": "gitlab"}
+    # skip_repo = {"name": "dojo", "owner": "TheNewThinkTank", "platform": "gitlab"}
 
     repos_wo_desc = []
     for repo in all_repos:
-        if repo == skip_repo:
-            continue
+        # if repo == skip_repo:
+        #     continue
         repo_info = get_repo_info(platforms, repo)
         if repo_missing_descriptions(repo_info):
             print_repo_info(repo_info)

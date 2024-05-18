@@ -27,7 +27,7 @@ def get_repos(platform: str) -> list[dict]:
     if platform == "bitbucket":
         repos = repos["values"]
 
-    logger.info(f"{platform =}")
+    logger.info(f"{platform=}")
     # ic(platform)
 
     return [

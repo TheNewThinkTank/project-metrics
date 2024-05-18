@@ -1,5 +1,7 @@
 import requests  # type: ignore
-from icecream import ic  # type: ignore
+
+# from icecream import ic  # type: ignore
+from loguru import logger  # type: ignore
 
 from config import platforms  # type: ignore
 
@@ -25,7 +27,8 @@ def get_repos(platform: str) -> list[dict]:
     if platform == "bitbucket":
         repos = repos["values"]
 
-    ic(platform)
+    logger.info(f"{platform =}")
+    # ic(platform)
 
     return [
         {"name": repo["name"], "owner": username, "platform": platform}

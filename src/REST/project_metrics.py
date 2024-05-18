@@ -2,6 +2,7 @@
 """
 
 from get_repos import get_all_repos, get_repo_info, print_repo_info  # type: ignore
+from loguru import logger  # type: ignore
 
 from config import platforms  # type: ignore
 from save_file_to_github import save_file_to_github  # type: ignore
@@ -31,16 +32,12 @@ def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:
     :rtype: list
     """
 
-    print(
+    logger.info(
         "  ####################     Repos missing descriptions:     ####################  "
     )
 
-    # skip_repo = {"name": "dojo", "owner": "TheNewThinkTank", "platform": "gitlab"}
-
     repos_wo_desc = []
     for repo in all_repos:
-        # if repo == skip_repo:
-        #     continue
         repo_info = get_repo_info(platforms, repo)
         if repo_missing_descriptions(repo_info):
             print_repo_info(repo_info)

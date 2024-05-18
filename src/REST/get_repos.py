@@ -20,8 +20,6 @@ def get_repos(platform: str) -> list[dict]:
 
     response = requests.get(url)
     response.raise_for_status()  # Raise an exception for 4xx or 5xx status codes
-
-    # repos = response.json()["values"] if platform == "bitbucket" else response.json()
     repos = response.json()
 
     if platform == "bitbucket":
@@ -42,9 +40,6 @@ def get_all_repos() -> list:
     :return: _description_
     :rtype: list
     """
-
-    # print(get_gl_repos())
-    # get_bb_repos()
 
     gh_repos = get_repos("github")
     gl_repos = get_repos("gitlab")

@@ -17,7 +17,7 @@ lint-flake8:
 # Lint with ruff
 .PHONY: lint-ruff
 lint-ruff:
-	poetry run ruff --ignore=F401,F841,E402,E501,E999 --exclude=.venv check .
+	poetry run ruff check --ignore=F401,F841,E402,E501,E999 --exclude=.venv .
 
 # Static type checks with mypy
 .PHONY: static-type-checks

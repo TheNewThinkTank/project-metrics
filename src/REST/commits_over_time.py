@@ -66,6 +66,8 @@ def make_line_chart(repo: str, sorted_dates: list, commit_counts: list) -> None:
     :type commit_counts: list
     """
 
+    basepath = "docs/project_docs/img/"
+
     plt.figure(figsize=(10, 6))
     plt.plot(sorted_dates, commit_counts, marker="o")
     plt.title(f"Commit frequency - {repo}")
@@ -73,7 +75,7 @@ def make_line_chart(repo: str, sorted_dates: list, commit_counts: list) -> None:
     plt.ylabel("Number of Commits")
     plt.xticks(rotation=45)
     plt.tight_layout()
-    local_file_path = f"imgs/commits_over_time_{repo}.png"
+    local_file_path = f"{basepath}commits_over_time_{repo}.png"
     plt.savefig(local_file_path)
     plt.close()
     with open(local_file_path, "rb") as file:

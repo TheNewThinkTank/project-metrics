@@ -68,11 +68,12 @@ def group_repos_by_language(username: str, token: str) -> list:
 
 
 def main() -> None:
+    basepath = "docs/project_docs/query-results/"
     repo_name = "project-metrics"
     lang_repos = group_repos_by_language(
         "TheNewThinkTank", os.environ["FG_GITHUB_ACCESS_TOKEN"]
     )
-    file_path = "query-results/group_by_lang.md"
+    file_path = f"{basepath}group_by_lang.md"
     file_content = table_from_nested(lang_repos)
 
     save_file_to_github(repo_name, file_path, file_content)

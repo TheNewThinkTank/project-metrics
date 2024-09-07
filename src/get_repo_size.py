@@ -43,69 +43,25 @@ def split_data(names, sizes, n):
     )
 
 
-def commit_4_barplots(
-    n,
-    names_largest,
-    sizes_largest,
-    names_medium,
-    sizes_medium,
-    names_small,
-    sizes_small,
-    names_smallest,
-    sizes_smallest,
+def commit_barplot(
+    names,
+    sizes,
+    filename="largest_repos"
 ):
-    sns.set(style="whitegrid")
+    sns.set_theme(style="whitegrid")
+    basepath = "docs/project_docs/img/"
+    figure_title_parts = filename.split("_")
+    figure_title_parts = [part.title() for part in figure_title_parts]
+    figure_title = " ".join(figure_title_parts)
+    local_file_path = f"{basepath}{filename}.png"
 
     plt.figure(figsize=(12, 6))
-    ax = sns.barplot(x=names_largest, y=sizes_largest, palette="pastel")
+    ax = sns.barplot(x=names, y=sizes, palette="pastel")
     plt.xlabel("repo name")
     plt.ylabel("repo size (KB)")
-    plt.title("Largest repos")
+    plt.title(f"{figure_title}")
     ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
     plt.tight_layout()
-    local_file_path = f"imgs/{n}_largest_repos.png"
-    plt.savefig(local_file_path)
-    plt.close()
-    with open(local_file_path, "rb") as file:
-        content = file.read()
-    save_file_to_github("project-metrics", local_file_path, content)
-
-    plt.figure(figsize=(12, 6))
-    ax = sns.barplot(x=names_medium, y=sizes_medium, palette="pastel")
-    plt.xlabel("repo name")
-    plt.ylabel("repo size (KB)")
-    plt.title("Medium-sized repos")
-    ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
-    plt.tight_layout()
-    local_file_path = f"imgs/{n}_medium_repos.png"
-    plt.savefig(local_file_path)
-    plt.close()
-    with open(local_file_path, "rb") as file:
-        content = file.read()
-    save_file_to_github("project-metrics", local_file_path, content)
-
-    plt.figure(figsize=(12, 6))
-    ax = sns.barplot(x=names_small, y=sizes_small, palette="pastel")
-    plt.xlabel("repo name")
-    plt.ylabel("repo size (KB)")
-    plt.title("Small repos")
-    ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
-    plt.tight_layout()
-    local_file_path = "imgs/small_repos.png"
-    plt.savefig(local_file_path)
-    plt.close()
-    with open(local_file_path, "rb") as file:
-        content = file.read()
-    save_file_to_github("project-metrics", local_file_path, content)
-
-    plt.figure(figsize=(12, 6))
-    ax = sns.barplot(x=names_smallest, y=sizes_smallest, palette="pastel")
-    plt.xlabel("repo name")
-    plt.ylabel("repo size (KB)")
-    plt.title("Smallest repos")
-    ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
-    plt.tight_layout()
-    local_file_path = f"imgs/{n}_smallest_repos.png"
     plt.savefig(local_file_path)
     plt.close()
     with open(local_file_path, "rb") as file:
@@ -116,6 +72,7 @@ def commit_4_barplots(
 def main():
     names, sizes = get_repo_names_and_sizes()
     n = 8
+
     (
         names_largest,
         sizes_largest,
@@ -126,16 +83,29 @@ def main():
         names_smallest,
         sizes_smallest,
     ) = split_data(names, sizes, n)
-    commit_4_barplots(
-        n,
-        names_largest,
-        sizes_largest,
-        names_medium,
-        sizes_medium,
-        names_small,
-        sizes_small,
-        names_smallest,
-        sizes_smallest,
+
+    commit_barplot(
+        names=names_largest,
+        sizes=sizes_largest,
+        filename="largest_repos"
+    )
+
+    commit_barplot(
+        names=names_medium,
+        sizes=sizes_medium,
+        filename="medium_repos"
+    )
+
+    commit_barplot(
+        names=names_small,
+        sizes=sizes_small,
+        filename="small_repos"
+    )
+
+    commit_barplot(
+        names=names_smallest,
+        sizes=sizes_smallest,
+        filename="smallest_repos"
     )
 
 

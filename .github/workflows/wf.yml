@@ -1,13 +1,8 @@
 ---
 name: Project Metrics Workflow
 
-# NB: Only set manual trigger, as the wf will otherwise recursively keep invoking itself
+# NB: Only set manual trigger or schedule, as the wf will otherwise recursively keep invoking itself
 on:
-  # push:
-  #   branches:  # [master, main]
-  #     - main
-  # pull_request:
-  #   branches: [master, main]
   workflow_dispatch:
   # schedule:
   #   - cron:  '0 0 * * *'
@@ -54,9 +49,6 @@ jobs:
           POETRY_VIRTUALENVS_IN_PROJECT: true
         if: steps.cache.outputs.cache-hit != 'true'
 
-      # - name: Lint with flake8
-      #   run: make lint-flake8
-
       - name: Lint with ruff
         run: make lint-ruff
 
@@ -73,7 +65,6 @@ jobs:
       - name: wily build and rank
         run: make wily-build-and-rank
 
-      # TODO:
       # - name: Run ShellCheck
       #   uses: ludeeus/action-shellcheck@master
 

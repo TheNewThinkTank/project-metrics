@@ -12,18 +12,5 @@
 
 <!--
 - [popular repos](query-results/popular_repos.md)<br>
-- [repos without description](query-results/repos_wo_desc.md)<br>
 - [repos grouped by language](query-results/group_by_lang.md)
-
-Commits over time:
-
-- [code-vault](imgs/commits_over_time_code-vault.png)<br>
-- [fitness-tracker](imgs/commits_over_time_fitness-tracker.png)<br>
-- [project-metrics](imgs/commits_over_time_project-metrics.png)
-
-Repo sizes:
-
-| ![8 largest repos](imgs/8_largest_repos.png) | ![8 medium-sized repos](imgs/8_medium_repos.png) |
-| :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| ![small repos](imgs/small_repos.png) | ![8 smallest repos](imgs/8_smallest_repos.png) |
 -->

@@ -54,8 +54,8 @@ jobs:
           POETRY_VIRTUALENVS_IN_PROJECT: true
         if: steps.cache.outputs.cache-hit != 'true'
 
-      - name: Lint with flake8
-        run: make lint-flake8
+      # - name: Lint with flake8
+      #   run: make lint-flake8
 
       - name: Lint with ruff
         run: make lint-ruff
@@ -81,12 +81,12 @@ jobs:
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: .
-          config_file: .yamllint.yml
+          config_file: .config/.yamllint.yml
 
       - uses: rojopolis/spellcheck-github-actions@0.41.0
         name: Spellcheck README
         with:
-          config_path: config/.spellcheck.yml
+          config_path: .config/.spellcheck.yml
           source_files: README.md
           task_name: Markdown
 

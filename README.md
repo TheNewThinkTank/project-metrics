@@ -30,13 +30,15 @@ Repo sizes:
 
 ## Current features
 
-- pre commit hooks for:
+<!--
+  - pre commit hooks for:
   - Python auto-formatting with `black`
   - Python import sorting with `isort`
   - trailing-whitespace
   - end-of-file-fixer
   - check-yaml
   - check-added-large-files
+  -->
 
 - Statistics and health badges
   (commit activity, repo size, code test coverage, documentation status, CI health of workflows)

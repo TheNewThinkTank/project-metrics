@@ -89,7 +89,7 @@ def main() -> None:
     repos_wo_desc = get_repos_wo_desc(platforms, all_repos)
 
     repo_name = "project-metrics"
-    file_path = f"{basepath}repos_wo_desc.md"
+    file_path = f"{basepath}repos-without-description.md"
     file_content = table(repos_wo_desc)
     save_file_to_github(repo_name, file_path, file_content)
 

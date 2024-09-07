@@ -73,7 +73,7 @@ def main() -> None:
     lang_repos = group_repos_by_language(
         "TheNewThinkTank", os.environ["FG_GITHUB_ACCESS_TOKEN"]
     )
-    file_path = f"{basepath}group_by_lang.md"
+    file_path = f"{basepath}group-by-lang.md"
     file_content = table_from_nested(lang_repos)
 
     save_file_to_github(repo_name, file_path, file_content)

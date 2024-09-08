@@ -31,4 +31,9 @@ def save_file_to_github(repo_name: str, file_path: str, file_content) -> None:
         )
     except Exception:
         # If the file doesn't exist, create it
-        repo.create_file(file_path, "Creating file", file_content, branch=branch_name)
+        repo.create_file(
+            file_path,
+            "Creating file",
+            file_content,
+            branch=branch_name
+            )

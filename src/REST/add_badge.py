@@ -15,7 +15,9 @@ from util.get_gh_repos import get_gh_repos  # type: ignore
 
 
 def update_readme(
-    repo: Repository.Repository, format: Literal["md", "rst"], badge_name: str
+    repo: Repository.Repository,
+    format: Literal["md", "rst"],
+    badge_name: str
 ) -> None:
     """_summary_
 
@@ -30,8 +32,7 @@ def update_readme(
     repo_name = repo.name
     badge = get_badge(repo_name, badge_name)
     # print(f"{badge = }")
-    newlines = {"md": "\n", "rst": "\n\n"}
-    newline = newlines[format]
+    newline = {"md": "\n", "rst": "\n\n"}.get(format, f"Bad format: {format}")
 
     format_map = {
         "md": (
@@ -45,32 +46,36 @@ def update_readme(
         ),
     }
 
-    if format == "md":
-        if isinstance(badge["value"], list):
-            badge_content = format_map["md"][0]
-        else:
-            badge_content = format_map["md"][1]
+    if isinstance(badge["value"], list):
+        badge_content = format_map[format][0]
+    else:
+        badge_content = format_map[format][1]
 
-    elif format == "rst":
-        if isinstance(badge["value"], list):
-            badge_content = format_map["rst"][0]
-        else:
-            badge_content = format_map["rst"][1]
-
-    repo_contents = repo.get_contents(f"README.{format}", ref=repo.default_branch)
-    content = repo_contents.decoded_content.decode()  # type: ignore
-    if badge_content not in content:
-        updated_content = badge_content + newline + content
-        repo.update_file(
-            repo_contents.path,  # type: ignore
-            f"chore: update README.{format}",
-            updated_content.encode(),
-            repo_contents.sha,  # type: ignore
-            branch=repo.default_branch,
+    repo_contents = repo.get_contents(
+        f"README.{format}",
+        ref=repo.default_branch
         )
 
+    content = repo_contents.decoded_content.decode()  # type: ignore
 
-def update_repo(username: str, repo: Repository.Repository, badge_name: str) -> None:
+    if badge_content in content:
+        return
+
+    updated_content = badge_content + newline + content
+    repo.update_file(
+        repo_contents.path,  # type: ignore
+        f"chore: update README.{format}",
+        updated_content.encode(),
+        repo_contents.sha,  # type: ignore
+        branch=repo.default_branch,
+    )
+
+
+def update_repo(
+        username: str,
+        repo: Repository.Repository,
+        badge_name: str
+        ) -> None:
     """_summary_
 
     :param username: _description_
@@ -87,15 +92,20 @@ def update_repo(username: str, repo: Repository.Repository, badge_name: str) -> 
     # Get the local path of the repository
     repo_path = os.path.join(os.getcwd(), repo.name)
 
-    # Check if README.md exists and update it
-    readme_md_path = Path(repo_path + "/README.md")
-    if readme_md_path.exists():
-        update_readme(repo, "md", badge_name)
+    formats = ["md", "rst"]
+    for format in formats:
+        if Path(repo_path + f"/README.{format}").exists():
+            update_readme(repo, format, badge_name)
 
-    # Check if README.rst exists and update it
-    readme_rst_path = Path(repo_path + "/README.rst")
-    if readme_rst_path.exists():
-        update_readme(repo, "rst", badge_name)
+    # # Check if README.md exists and update it
+    # readme_md_path = Path(repo_path + "/README.md")
+    # if readme_md_path.exists():
+    #     update_readme(repo, "md", badge_name)
+
+    # # Check if README.rst exists and update it
+    # readme_rst_path = Path(repo_path + "/README.rst")
+    # if readme_rst_path.exists():
+    #     update_readme(repo, "rst", badge_name)
 
 
 def update_all_repos(

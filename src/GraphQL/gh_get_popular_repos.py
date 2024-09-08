@@ -71,7 +71,7 @@ def main() -> None:
     token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
     popular_repos = fetch_top_repos("TheNewThinkTank", token)
     repo_name = "project-metrics"
-    file_path = "{basepath}popular_repos.md"
+    file_path = f"{basepath}popular_repos.md"
     file_content = table(popular_repos)
     save_file_to_github(repo_name, file_path, file_content)
 

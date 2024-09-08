@@ -92,20 +92,11 @@ def update_repo(
     # Get the local path of the repository
     repo_path = os.path.join(os.getcwd(), repo.name)
 
-    formats = ["md", "rst"]
-    for format in formats:
-        if Path(repo_path + f"/README.{format}").exists():
-            update_readme(repo, format, badge_name)
+    if Path(repo_path + "/README.md").exists():
+        update_readme(repo, "md", badge_name)
 
-    # # Check if README.md exists and update it
-    # readme_md_path = Path(repo_path + "/README.md")
-    # if readme_md_path.exists():
-    #     update_readme(repo, "md", badge_name)
-
-    # # Check if README.rst exists and update it
-    # readme_rst_path = Path(repo_path + "/README.rst")
-    # if readme_rst_path.exists():
-    #     update_readme(repo, "rst", badge_name)
+    if Path(repo_path + "/README.rst").exists():
+        update_readme(repo, "rst", badge_name)
 
 
 def update_all_repos(

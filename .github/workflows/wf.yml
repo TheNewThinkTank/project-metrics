@@ -4,8 +4,8 @@ name: Project Metrics Workflow
 # NB: Only set manual trigger or schedule, as the wf will otherwise recursively keep invoking itself
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron:  '0 0 * * *'
+  schedule:
+    - cron:  '0 0 * * *'
 
 env:
   PROJECT_METRICS_GITHUB_PAT: ${{ secrets.PROJECT_METRICS_GITHUB_PAT }}

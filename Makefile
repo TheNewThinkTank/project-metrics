@@ -29,7 +29,7 @@ static-type-checks:
 wily-build-and-rank:
 	poetry run wily build src
 	poetry run wily rank src
-	poetry run wily diff src/ -r HEAD^1
+	poetry run wily rank src loc
 
 # Run unit tests and make coverage report
 .PHONY: run-tests-and-coverage

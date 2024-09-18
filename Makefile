@@ -32,16 +32,14 @@ wily-build-and-rank:
     #   - name: Build cache and diff
     #     id: wily
     #     run: |
-    # poetry run wily build src
-	DIFF=$(poetry run wily diff src -r main)
-	echo "${DIFF}"
+    poetry run wily diff src -r main
+    # DIFF=$(poetry run wily diff src -r main)
+    # echo "${DIFF}"
     # Build multine output
-	DIFF="${DIFF//'%'/'%25'}"
-	DIFF="${DIFF//$'\n'/'%0A'}"
-	DIFF="${DIFF//$'\r'/'%0D'}"
-    # echo "::set-output name=diff::$DIFF"
-    # - name: Set output
-	echo "{diff}={$DIFF}" >> $GITHUB_OUTPUT
+    # DIFF="${DIFF//'%'/'%25'}"
+    # DIFF="${DIFF//$'\n'/'%0A'}"
+    # DIFF="${DIFF//$'\r'/'%0D'}"
+    # echo "{diff}={${DIFF}}" >> ${GITHUB_OUTPUT}
 
 
 # Run unit tests and make coverage report

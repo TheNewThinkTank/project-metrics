@@ -66,11 +66,13 @@ jobs:
       - name: wily build and rank
         run: make wily-build-and-rank
 
+      # TODO: transform wily-mi-raw.md and wily-loc-raw.md to md tables
+
       - name: Commit Wily Metrics
         run: |
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
-          git add ${{ env.WILY_PATH }}wily-mi.md ${{ env.WILY_PATH }}wily-loc.md
+          git add ${{ env.WILY_PATH }}wily-mi-raw.md ${{ env.WILY_PATH }}wily-loc-raw.md
           git commit -m "Update Wily metrics"
           git push
         env:

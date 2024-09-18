@@ -1,11 +1,11 @@
 # KPI
 
 logging timestamp:
-2024-09-18 08:40:44.410754
+2024-09-18 09:36:09.385375
 
 | Python scripts | total code lines | total PEP-8 violations |
 | -------------- | ---------------- | ---------------------- |
-| 39| 2147 | 59 |
+| 40| 2180 | 61 |
 
 | Module name | lines | PEP-8 Violations |
 | ----------- | ----- | ---------------- |
@@ -34,6 +34,7 @@ logging timestamp:
 | src/util/get_gh_repos.py                 |         36 |                    1 |
 | test/test_csv_to_md.py                   |         34 |                    0 |
 | src/util/matrix_repos.py                 |         34 |                    1 |
+| src/wily_to_md.py                        |         33 |                    2 |
 | test/test_txt_to_csv.py                  |         31 |                    0 |
 | src/remove_badge.py                      |         31 |                    1 |
 | src/util/txt_to_csv.py                   |         31 |                    0 |
@@ -45,6 +46,6 @@ logging timestamp:
 | src/util/repo_has_lang.py                |         22 |                    0 |
 | test/__init__.py                         |          7 |                    1 |
 | src/__init__.py                          |          0 |                    0 |
-| src/GraphQL/__init__.py                  |          0 |                    0 |
 | src/REST/__init__.py                     |          0 |                    0 |
 | src/util/__init__.py                     |          0 |                    0 |
+| src/GraphQL/__init__.py                  |          0 |                    0 |

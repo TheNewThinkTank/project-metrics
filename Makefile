@@ -29,6 +29,18 @@ static-type-checks:
 wily-build-and-rank:
 	poetry run wily build src
 	poetry run wily rank src
+    #   - name: Build cache and diff
+    #     id: wily
+    #     run: |
+    # poetry run wily build src
+	DIFF=$(poetry run wily diff src -r master)
+	echo "${DIFF}"
+    # Build multine output
+	DIFF="${DIFF//'%'/'%25'}"
+	DIFF="${DIFF//$'\n'/'%0A'}"
+	DIFF="${DIFF//$'\r'/'%0D'}"
+	echo "::set-output name=diff::$DIFF"
+
 
 # Run unit tests and make coverage report
 .PHONY: run-tests-and-coverage

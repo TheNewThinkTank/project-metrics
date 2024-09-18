@@ -15,6 +15,7 @@ env:
   # PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN }}
   # needed for running some python scripts in src/REST and src/GraphQL dirs:
   PYTHONPATH: ${{ github.workspace }}/src
+  WILY_PATH: "docs/project_docs/code-analysis/"
 
 jobs:
   qualify_code:
@@ -69,7 +70,7 @@ jobs:
         run: |
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
-          git add wily-mi.md wily-loc.md
+          git add ${{ env.WILY_PATH }}wily-mi.md ${{ env.WILY_PATH }}wily-loc.md
           git commit -m "Update Wily metrics"
           git push
         env:

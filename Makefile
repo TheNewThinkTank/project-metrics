@@ -25,11 +25,12 @@ static-type-checks:
 	poetry run mypy src/ --exclude '/site-packages/'
 
 # Wily build and rank
+wily_path = "docs/project_docs/code-analysis/"
 .PHONY: wily-build-and-rank
 wily-build-and-rank:
 	poetry run wily build src
-	poetry run wily rank src > wily-mi.md
-	poetry run wily rank src loc > wily-loc.md
+	poetry run wily rank src > $(wily_path)wily-mi.md
+	poetry run wily rank src loc > $(wily_path)wily-loc.md
 
 # Run unit tests and make coverage report
 .PHONY: run-tests-and-coverage

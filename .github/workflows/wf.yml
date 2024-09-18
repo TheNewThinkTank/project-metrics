@@ -65,6 +65,10 @@ jobs:
       - name: wily build and rank
         run: make wily-build-and-rank
 
+      - name: Get KPIs
+        run: |
+          poetry run python src/kpi.py
+
       # - name: Run ShellCheck
       #   uses: ludeeus/action-shellcheck@master
 

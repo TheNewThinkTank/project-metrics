@@ -1,21 +1,21 @@
 
-# import os
 import subprocess
 import datetime
 from pathlib import Path
+
+from save_file_to_github import save_file_to_github  # type: ignore
 
 # count lines and PEP-8 violations in a file
 line_count_cmd = "wc -l < {}"
 pep8_count_cmd = "pycodestyle {} | wc -l"
 
-# path setup
 project_path = Path.cwd()  # current project directory
-log_dir = project_path / "docs/project_docs/code-analysis"  # log directory
-logfile_name = f"kpi_{project_path.name}.txt"  # file name from project dir
-logfile = log_dir / logfile_name
+basepath = "docs/project_docs/code-analysis/"
+local_file_path = f"{basepath}kpi_{project_path.name}.md"
 
-# Create log dir if it doesn't exist
-log_dir.mkdir(parents=True, exist_ok=True)
+# Create dir if it doesn't exist
+dir = project_path / basepath
+dir.mkdir(parents=True, exist_ok=True)
 
 
 def byte_to_str(byte_str):
@@ -23,20 +23,12 @@ def byte_to_str(byte_str):
     return byte_str.decode("utf-8").strip()
 
 
-def generate_project_overview():
-    # generate project overview with PEP-8 violations
+def get_kpi_data():
     # Initialize counters and data storage
     file_count = 0
     total_line_count = 0
     total_pep8_violations = 0
     kpi_list = []
-
-    # Write log header
-    with logfile.open("a") as wf:
-        wf.write(f"{'-' * 75}\n\n")
-        wf.write(f"{'*' * 8}\tLogging timestamp: {datetime.datetime.now()}\t{'*' * 8}\n\n\n")
-        wf.write(f"{'Module name':<40}{'Lines':>10}{'PEP-8 Violations':>20}\n\n")
-
     # Iterate through Python files in the project directory
     for item in project_path.glob("**/*.py"):  # Recursively search Python files
         if ".venv" in item.parts:  # Skip the .venv directory
@@ -71,16 +63,36 @@ def generate_project_overview():
 
     # Sort files by line count in descending order
     kpi_list_sorted = sorted(kpi_list, key=lambda x: x["lines"], reverse=True)
+    return {"kpi_list_sorted": kpi_list_sorted,
+            "file_count": file_count,
+            "total_line_count": total_line_count,
+            "total_pep8_violations": total_pep8_violations
+            }
 
-    # Log data into the file
-    with logfile.open("a") as wf:
+
+def write_kpi_md(kpi_list_sorted, file_count, total_line_count, total_pep8_violations):
+    with open(local_file_path, "w") as wf:
+        wf.write(f"# KPI\n\nlogging timestamp:\n{datetime.datetime.now()}\n\n")
+        wf.write(
+            "| Python scripts | total code lines | total PEP-8 violations |\n"
+            "| -------------- | ---------------- | ---------------------- |\n"
+            )
+        wf.write(f"| {file_count}| {total_line_count} | {total_pep8_violations} |\n\n")
+
+        wf.write(
+            "| Module name | lines | PEP-8 Violations |\n"
+            "| ----------- | ----- | ---------------- |\n"
+            )
         for kpi in kpi_list_sorted:
-            wf.write(f"{kpi['module']:<40}{kpi['lines']:>10}{kpi['pep8_violations']:>20}\n")
-        # Summary of the overview
-        wf.write(f"\n\n{'*' * 14}\tPython scripts: {file_count}\t{'*' * 14}\n")
-        wf.write(f"\n{'*' * 14}\tTotal code lines: {total_line_count}\t{'*' * 14}\n")
-        wf.write(f"\n{'*' * 14}\tTotal PEP-8 violations: {total_pep8_violations}\t{'*' * 14}\n\n")
+            wf.write(
+                f"| {kpi['module']:<40} | {kpi['lines']:>10} | {kpi['pep8_violations']:>20} |\n"
+                )
+    
+    with open(local_file_path, "rb") as file:
+        content = file.read()
+    save_file_to_github("project-metrics", local_file_path, content)
 
 
 if __name__ == "__main__":
-    generate_project_overview()
+    data = get_kpi_data()
+    write_kpi_md(**data)

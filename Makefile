@@ -28,8 +28,8 @@ static-type-checks:
 .PHONY: wily-build-and-rank
 wily-build-and-rank:
 	poetry run wily build src
-	poetry run wily rank src
-	poetry run wily rank src loc
+	poetry run wily rank src > wily-mi.md
+	poetry run wily rank src loc > wily-loc.md
 
 # Run unit tests and make coverage report
 .PHONY: run-tests-and-coverage

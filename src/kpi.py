@@ -1,28 +1,30 @@
 
-import os
+# import os
 import subprocess
 import datetime
 from pathlib import Path
 
-# Commands to count lines and PEP-8 violations in a file
+# count lines and PEP-8 violations in a file
 line_count_cmd = "wc -l < {}"
-pep8_count_cmd = "pycodestyle {} | wc -l"  # Use pycodestyle to count PEP-8 violations
+pep8_count_cmd = "pycodestyle {} | wc -l"
 
-# Path setup
-project_path = Path.cwd()  # Current project directory
-log_dir = project_path / "docs/project_docs/code-analysis"  # Log directory
-logfile_name = f"kpi_{project_path.name}.txt"  # Log file name based on project folder
+# path setup
+project_path = Path.cwd()  # current project directory
+log_dir = project_path / "docs/project_docs/code-analysis"  # log directory
+logfile_name = f"kpi_{project_path.name}.txt"  # file name from project dir
 logfile = log_dir / logfile_name
 
-# Create log directory if it doesn't exist
+# Create log dir if it doesn't exist
 log_dir.mkdir(parents=True, exist_ok=True)
 
-# Utility function to decode byte string and strip whitespaces
+
 def byte_to_str(byte_str):
+    # Utility function to decode byte string and strip whitespaces
     return byte_str.decode("utf-8").strip()
 
-# Function to generate project overview with PEP-8 violations
+
 def generate_project_overview():
+    # generate project overview with PEP-8 violations
     # Initialize counters and data storage
     file_count = 0
     total_line_count = 0
@@ -36,24 +38,33 @@ def generate_project_overview():
         wf.write(f"{'Module name':<40}{'Lines':>10}{'PEP-8 Violations':>20}\n\n")
 
     # Iterate through Python files in the project directory
-    for item in project_path.glob("**/*.py"):  # Recursively search for Python files
-        if item.is_file():
-            # Count lines in the file
-            lines = subprocess.check_output(line_count_cmd.format(item), shell=True)
+    for item in project_path.glob("**/*.py"):  # Recursively search Python files
+        if ".venv" in item.parts:  # Skip the .venv directory
+            continue
+        print(f"Processing: {item}")
+        if item.is_file() and not item.is_symlink():
+            # count lines in the file
+            lines = subprocess.check_output(line_count_cmd.format(item),
+                                            shell=True,
+                                            timeout=10
+                                            )
             line_count = int(byte_to_str(lines))
 
-            # Count PEP-8 violations using pycodestyle
-            pep8_violations = subprocess.check_output(pep8_count_cmd.format(item), shell=True)
+            # count PEP-8 violations using pycodestyle
+            pep8_violations = subprocess.check_output(pep8_count_cmd.format(item),
+                                                      shell=True,
+                                                      timeout=10
+                                                      )
             pep8_count = int(byte_to_str(pep8_violations))
 
-            # Collect KPI data
+            # collect KPI data
             kpi_list.append({
                 "module": str(item.relative_to(project_path)),
                 "lines": line_count,
                 "pep8_violations": pep8_count
             })
 
-            # Update counters
+            # update counters
             file_count += 1
             total_line_count += line_count
             total_pep8_violations += pep8_count

@@ -1,6 +1,6 @@
 import os
 
-from gh_graphql_post import graphql_post
+from gh_graphql_post import graphql_post  # type: ignore
 
 single_repo_query = """
 {

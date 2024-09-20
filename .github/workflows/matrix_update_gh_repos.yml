@@ -7,6 +7,7 @@ env:
   PROJECT_METRICS_GITHUB_PAT: ${{ secrets.PROJECT_METRICS_GITHUB_PAT }}
   PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
   PYTHONPATH: ${{ github.workspace }}/src
+  PYTHONVERSION: 3.12
 
 jobs:
   get_gh_repo_names:
@@ -22,7 +23,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: ${{ env.PYTHONVERSION }}  # 3.11
           cache: pip
 
       - name: Install and cache poetry
@@ -72,7 +73,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: ${{ env.PYTHONVERSION }}  # 3.11
           cache: pip
 
       - name: Install and cache poetry

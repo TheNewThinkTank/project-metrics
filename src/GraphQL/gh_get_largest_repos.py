@@ -1,10 +1,10 @@
 import os
 
-import requests  # type: ignore
+from gh_graphql_post import graphql_post
 
 single_repo_query = """
 {
-  repository(name: "Fitness-Tracker", owner: "TheNewThinkTank") {
+  repository(name: "Fitness-Tracker", owner: $login) {
     diskUsage
   }
 }
@@ -12,8 +12,8 @@ single_repo_query = """
 
 """
 {
-  repositoryOwner(login: "TheNewThinkTank") {
-    repositories(first: 10, orderBy: {field: UPDATED_AT, direction: DESC}, privacy: PUBLIC, isFork: false) {
+  repositoryOwner(login: $login) {
+    repositories(first: $limit, orderBy: {field: UPDATED_AT, direction: DESC}, privacy: PUBLIC, isFork: false) {
       totalCount
       totalDiskUsage
       nodes {
@@ -27,7 +27,7 @@ single_repo_query = """
 
 """
 {
-  search(query: "user:TheNewThinkTank size:>1000 is:public fork:false", type: REPOSITORY, first: 10) {
+  search(query: "user:TheNewThinkTank size:>1000 is:public fork:false", type: REPOSITORY, first: $limit) {
     repositoryCount
     nodes {
       ... on Repository {
@@ -40,34 +40,7 @@ single_repo_query = """
 """
 
 
-def fetch_largest_repos(username: str, token) -> None:
-    """_summary_
-
-    :param username: _description_
-    :type username: str
-    :param token: _description_
-    :type token: _type_
-    """
-
-    url = "https://api.github.com/graphql"
-    headers = {"Authorization": f"bearer {token}"}
-    query = """
-    query ($login: String!, $limit: Int!) {
-      user(login: $login) {
-        repositories(first: $limit, orderBy: {field: DISK_USAGE, direction: DESC}) {
-          nodes {
-            name
-            diskUsage
-          }
-        }
-      }
-    }
-    """
-    variables = {"login": username, "limit": 10}
-    response = requests.post(
-        url, json={"query": query, "variables": variables}, headers=headers
-    )
-
+def handle_graphql_post_response(response) -> None:
     if response.status_code == 200:
         data = response.json()
         user = data.get("data", {}).get("user")
@@ -84,9 +57,36 @@ def fetch_largest_repos(username: str, token) -> None:
         print(response.text)
 
 
+def fetch_largest_repos(username: str, token) -> None:
+    """_summary_
+
+    :param username: _description_
+    :type username: str
+    :param token: _description_
+    :type token: _type_
+    """
+
+    query = """
+    query ($login: String!, $limit: Int!) {
+      user(login: $login) {
+        repositories(first: $limit, orderBy: {field: DISK_USAGE, direction: DESC}) {
+          nodes {
+            name
+            diskUsage
+          }
+        }
+      }
+    }
+    """
+
+    response = graphql_post(username, token, query)
+    handle_graphql_post_response(response)
+
+
 def main() -> None:
     token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
-    fetch_largest_repos("TheNewThinkTank", token)
+    username = "TheNewThinkTank"
+    fetch_largest_repos(username, token)
 
 
 if __name__ == "__main__":

@@ -68,7 +68,6 @@ def main() -> None:
     """_summary_"""
 
     basepath = "docs/project_docs/query-results/"
-
     all_repos = get_all_repos()
 
     # for repo in bb_repos:

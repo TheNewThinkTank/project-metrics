@@ -35,7 +35,8 @@ def get_commits(owner: str, repo: str) -> tuple[list, list]:
 
             for commit in commits_data:
                 commit_date = datetime.strptime(
-                    commit["commit"]["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ"
+                    commit["commit"]["committer"]["date"],
+                    "%Y-%m-%dT%H:%M:%SZ"
                 ).date()
                 if commit_date in commit_activity:
                     commit_activity[commit_date] += 1
@@ -45,7 +46,8 @@ def get_commits(owner: str, repo: str) -> tuple[list, list]:
             page += 1  # Move to the next page
         else:
             print(
-                f"Failed to fetch commit history. Status code: {response.status_code}"
+                f"Failed to fetch commit history."
+                f"Status code: {response.status_code}"
             )
             break
 

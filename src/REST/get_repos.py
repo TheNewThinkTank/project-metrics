@@ -66,7 +66,10 @@ def get_repo_info(platforms: dict, repo) -> dict | None:
 
     # Get the API endpoint and access token for the repository's platform
     platform = platforms[repo["platform"]]
-    api_url = platform["api_url"].format(owner=repo["owner"], repo=repo["name"])
+    api_url = platform["api_url"].format(
+        owner=repo["owner"],
+        repo=repo["name"]
+        )
     headers = {"Authorization": f"Bearer {platform['access_token']}"}
 
     # Make API requests to get the information for the repository
@@ -93,7 +96,8 @@ def get_repo_info(platforms: dict, repo) -> dict | None:
             "stars": data[platform["stars"]],
             "creation_date": data[
                 "created_at"
-            ],  # datetime.datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%SZ"),
+            ],
+            # datetime.datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%SZ"),
             # "commits": 0,
             # "open_issues": 0,
             # "closed_issues": 0,

@@ -15,6 +15,7 @@ env:
   # PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN }}
   # needed for running some python scripts in src/REST and src/GraphQL dirs:
   PYTHONPATH: ${{ github.workspace }}/src
+  PYTHONVERSION: 3.12
   WILY_PATH: "docs/project_docs/code-analysis/"
 
 jobs:
@@ -28,7 +29,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: ${{ env.PYTHONVERSION }}  # 3.12
           cache: pip
 
       - name: Install and cache poetry
@@ -123,7 +124,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: ${{ env.PYTHONVERSION }}  # 3.12
           cache: pip
 
       - name: Install and cache poetry
@@ -192,7 +193,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: ${{ env.PYTHONVERSION }}  # 3.12
           # cache: pip
 
       - name: Install and cache poetry

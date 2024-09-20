@@ -4,9 +4,8 @@
 import os
 from pprint import pprint as pp
 
-import requests  # type: ignore
-
 from save_file_to_github import save_file_to_github  # type: ignore
+from gh_graphql_post import graphql_post  # type: ignore
 from util.make_md_table import table  # type: ignore
 
 
@@ -20,9 +19,6 @@ def fetch_top_repos(username: str, token: str) -> list:
     :return: _description_
     :rtype: list
     """
-
-    url = "https://api.github.com/graphql"
-    headers = {"Authorization": f"bearer {token}"}
 
     query = """
     query ($login: String!, $limit: Int!) {
@@ -42,10 +38,7 @@ def fetch_top_repos(username: str, token: str) -> list:
     }
     """
 
-    variables = {"login": username, "limit": 10}
-    response = requests.post(
-        url, json={"query": query, "variables": variables}, headers=headers
-    )
+    response = graphql_post(username, token, query)
 
     if response.status_code == 200:
         data = response.json()

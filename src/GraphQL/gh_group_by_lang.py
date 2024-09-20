@@ -4,8 +4,7 @@
 import os
 from pprint import pprint as pp
 
-import requests  # type: ignore
-
+from gh_graphql_post import graphql_post  # type: ignore
 from save_file_to_github import save_file_to_github  # type: ignore
 from util.make_md_table import table_from_nested  # type: ignore
 
@@ -21,12 +20,10 @@ def group_repos_by_language(username: str, token: str) -> list:
     :rtype: list
     """
 
-    url = "https://api.github.com/graphql"
-    headers = {"Authorization": f"bearer {token}"}
     query = """
-    query ($login: String!) {
+    query ($login: String!, $limit: Int!) {
       user(login: $login) {
-        repositories(first: 100, orderBy: {field: NAME, direction: ASC}) {
+        repositories(first: $limit, orderBy: {field: NAME, direction: ASC}) {
           nodes {
             name
             primaryLanguage {
@@ -37,30 +34,31 @@ def group_repos_by_language(username: str, token: str) -> list:
       }
     }
     """
-    variables = {"login": username}
-    response = requests.post(
-        url, json={"query": query, "variables": variables}, headers=headers
-    )
+
+    response = graphql_post(username, token, query, limit=100)
 
     if response.status_code == 200:
         data = response.json()
         repositories = data["data"]["user"]["repositories"]["nodes"]
+
         language_groups = dict()  # type: ignore
 
         for repo in repositories:
-            name = repo["name"]
+            repo_name = repo["name"]
             language = repo["primaryLanguage"]
-            if language is not None:
-                language_name = language["name"]
-                if language_name in language_groups:
-                    language_groups[language_name].append(name)
-                else:
-                    language_groups[language_name] = [name]
+
+            if language is None:
+                continue
+
+            language_name = language["name"]
+
+            if language_name in language_groups:
+                language_groups[language_name].append(repo_name)
+            else:
+                language_groups[language_name] = [repo_name]
 
         pp(language_groups)
-
         return [language_groups]
-
     else:
         print(f"Request failed with status code {response.status_code}")
         print(response.text)
@@ -71,7 +69,8 @@ def main() -> None:
     basepath = "docs/project_docs/query-results/"
     repo_name = "project-metrics"
     lang_repos = group_repos_by_language(
-        "TheNewThinkTank", os.environ["FG_GITHUB_ACCESS_TOKEN"]
+        "TheNewThinkTank",
+        os.environ["FG_GITHUB_ACCESS_TOKEN"]
     )
     file_path = f"{basepath}group-by-lang.md"
     file_content = table_from_nested(lang_repos)

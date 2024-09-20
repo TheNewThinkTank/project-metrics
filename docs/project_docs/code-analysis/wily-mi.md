@@ -4,8 +4,8 @@
 | --- | --- |
 | src/REST/project_metrics.py         |                 64.8995 |
 | src/get_repo_size.py                |                 66.6282 |
-| src/kpi.py                          |                 71.2723 |
 | src/wily_to_md.py                   |                 71.7603 |
+| src/kpi.py                          |                 71.8199 |
 | src/add_gha_wf.py                   |                 71.8865 |
 | src/REST/get_repos.py               |                 75.7504 |
 | src/REST/commits_over_time.py       |                 76.9348 |
@@ -33,4 +33,4 @@
 | src/REST/__init__.py                |                100      |
 | src/util/__init__.py                |                100      |
 | src/GraphQL/__init__.py             |                100      |
-| Total                               |                 86.7997 |
+| Total                               |                 86.8174 |

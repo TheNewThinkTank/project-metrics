@@ -27,7 +27,7 @@ def get_kpi_data(repo_name, project_path):
     kpi_list = []
     # Iterate through Python files in the project directory
     for item in project_path.glob("**/*.py"):  # Recursively search Python files
-        if any(x in item.parts for x in (".venv", "__init__")):  # Skip the .venv directory
+        if any(x in item.parts for x in (".venv", "__init__.py")):
             continue
         print(f"Processing: {item}")
         if item.is_file() and not item.is_symlink():

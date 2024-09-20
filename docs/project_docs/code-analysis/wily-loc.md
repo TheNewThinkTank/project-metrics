@@ -25,12 +25,12 @@
 | src/util/make_md_table.py           |              66 |
 | src/GraphQL/gh_get_popular_repos.py |              80 |
 | src/GraphQL/gh_group_by_lang.py     |              83 |
+| src/kpi.py                          |              91 |
 | src/GraphQL/gh_get_largest_repos.py |              93 |
-| src/kpi.py                          |              98 |
 | src/REST/commits_over_time.py       |             101 |
 | src/REST/project_metrics.py         |             106 |
 | src/get_repo_size.py                |             113 |
 | src/REST/add_badge.py               |             136 |
 | src/REST/get_repos.py               |             164 |
 | src/add_gha_wf.py                   |             183 |
-| Total                               |            1769 |
+| Total                               |            1762 |

@@ -5,17 +5,12 @@ from pathlib import Path
 
 from save_file_to_github import save_file_to_github  # type: ignore
 
-# count lines and PEP-8 violations in a file
-line_count_cmd = "wc -l < {}"
-pep8_count_cmd = "pycodestyle {} | wc -l"
-
 project_path = Path.cwd()  # current project directory
 basepath = "docs/project_docs/code-analysis/"
 local_file_path = f"{basepath}kpi_{project_path.name}.md"
 
-# Create dir if it doesn't exist
 dir = project_path / basepath
-dir.mkdir(parents=True, exist_ok=True)
+dir.mkdir(parents=True, exist_ok=True)  # Create dir if it doesn't exist
 
 
 def byte_to_str(byte_str):
@@ -23,11 +18,17 @@ def byte_to_str(byte_str):
     return byte_str.decode("utf-8").strip()
 
 
+def get_metric(item, cmd):
+    metric = subprocess.check_output(cmd.format(item),
+                                     shell=True,
+                                     timeout=10
+                                    )
+    return int(byte_to_str(metric))
+
+
 def get_kpi_data():
     # Initialize counters and data storage
     file_count = 0
-    total_line_count = 0
-    total_pep8_violations = 0
     kpi_list = []
     # Iterate through Python files in the project directory
     for item in project_path.glob("**/*.py"):  # Recursively search Python files
@@ -35,19 +36,11 @@ def get_kpi_data():
             continue
         print(f"Processing: {item}")
         if item.is_file() and not item.is_symlink():
-            # count lines in the file
-            lines = subprocess.check_output(line_count_cmd.format(item),
-                                            shell=True,
-                                            timeout=10
-                                            )
-            line_count = int(byte_to_str(lines))
-
-            # count PEP-8 violations using pycodestyle
-            pep8_violations = subprocess.check_output(pep8_count_cmd.format(item),
-                                                      shell=True,
-                                                      timeout=10
-                                                      )
-            pep8_count = int(byte_to_str(pep8_violations))
+            line_count = get_metric(item, "wc -l < {}")  # lines in the file
+            pep8_count = get_metric(
+                item,
+                "pycodestyle {} | wc -l"
+                )  # PEP-8 violations
 
             # collect KPI data
             kpi_list.append({
@@ -56,10 +49,10 @@ def get_kpi_data():
                 "pep8_violations": pep8_count
             })
 
-            # update counters
             file_count += 1
-            total_line_count += line_count
-            total_pep8_violations += pep8_count
+
+    total_line_count = sum(x["lines"] for x in kpi_list)
+    total_pep8_violations = sum(x["pep8_violations"] for x in kpi_list)
 
     # Sort files by line count in descending order
     kpi_list_sorted = sorted(kpi_list, key=lambda x: x["lines"], reverse=True)

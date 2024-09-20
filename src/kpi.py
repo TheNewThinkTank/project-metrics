@@ -27,7 +27,7 @@ def get_kpi_data(repo_name, project_path):
     kpi_list = []
     # Iterate through Python files in the project directory
     for item in project_path.glob("**/*.py"):  # Recursively search Python files
-        if ".venv" in item.parts:  # Skip the .venv directory
+        if any(x in item.parts for x in (".venv", "__init__")):  # Skip the .venv directory
             continue
         print(f"Processing: {item}")
         if item.is_file() and not item.is_symlink():
@@ -105,7 +105,8 @@ def main():
     ]
     repo_name = repo_names[0]
 
-    project_path = Path(repo_name)  # Path.cwd() if repo_name == "project-metrics" else Path(repo_name)
+    # project_path = Path(repo_name)
+    project_path = Path.cwd()  # if repo_name == "project-metrics" else Path(repo_name)
     basepath = "docs/project_docs/code-analysis/"
     local_file_path = f"{basepath}kpi_{project_path.name}.md"
     dir = project_path / basepath

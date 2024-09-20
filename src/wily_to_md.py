@@ -3,12 +3,25 @@ from save_file_to_github import save_file_to_github  # type: ignore
 
 
 def wily_to_md(in_file) -> None:
+    """_summary_
+
+    :param in_file: _description_
+    :type in_file: _type_
+    """
+
     with open(in_file, 'r') as rf:
         lines = rf.readlines()
-    lines = [line for line in lines if not any(x in line for x in ["───", "═══"])]
+    lines = [
+        line
+        for line in lines
+        if not any(
+            x in line
+            for x in ["───", "═══", "__init__"]
+            )
+        ]
     sep = "| --- | --- |\n"
 
-    md_str = lines[0].replace("│", "|")  # + "\n"
+    md_str = lines[0].replace("│", "|")
     md_str += sep
     for line in lines[1:]:
         md_str += line.replace("│", "|")

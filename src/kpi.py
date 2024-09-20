@@ -89,7 +89,7 @@ def write_kpi_md(
             )
         for kpi in kpi_list_sorted:
             wf.write(
-                f"| {kpi['module']:<40} | {kpi['lines']:>10} | {kpi['pep8_violations']:>20} |\n"
+                f"| `{kpi['module']:<40}` | {kpi['lines']:>10} | {kpi['pep8_violations']:>20} |\n"
                 )
 
     with open(local_file_path, "rb") as file:

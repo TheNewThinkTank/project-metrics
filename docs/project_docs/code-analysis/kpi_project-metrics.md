@@ -1,18 +1,18 @@
 # KPI
 
 logging timestamp:
-2024-09-20 14:28:17.910660
+2024-09-20 14:44:57.914168
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 41| 2236 | 58 |
+| 36| 2229 | 56 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
 | src/add_gha_wf.py                        |        183 |                    4 |
 | src/REST/get_repos.py                    |        168 |                    7 |
 | src/REST/add_badge.py                    |        136 |                    2 |
-| src/kpi.py                               |        121 |                    6 |
+| src/kpi.py                               |        121 |                    5 |
 | src/get_repo_size.py                     |        113 |                    5 |
 | src/REST/project_metrics.py              |        105 |                    5 |
 | src/REST/commits_over_time.py            |        103 |                    1 |
@@ -45,8 +45,3 @@ logging timestamp:
 | src/util/get_readme_format.py            |         23 |                    0 |
 | src/GraphQL/gh_graphql_post.py           |         23 |                    0 |
 | src/util/repo_has_lang.py                |         22 |                    0 |
-| test/__init__.py                         |          7 |                    1 |
-| src/__init__.py                          |          0 |                    0 |
-| src/REST/__init__.py                     |          0 |                    0 |
-| src/util/__init__.py                     |          0 |                    0 |
-| src/GraphQL/__init__.py                  |          0 |                    0 |

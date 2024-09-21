@@ -65,9 +65,9 @@ def get_kpi_data(files: list) -> dict:
         file_content = base64.b64decode(item.content).decode('utf-8')
         lines = file_content.splitlines()
         line_count = len(lines)
-        print(f"{file_content = }")
-        print(f"{lines = }")
-        print(f"{line_count = }")
+        # print(f"{file_content = }")
+        # print(f"{lines = }")
+        # print(f"{line_count = }")
 
         if line_count == 0 or all(line.strip() == "" for line in lines):
             print(f"Skipping empty or blank file: {item.path}")
@@ -93,7 +93,7 @@ def get_kpi_data(files: list) -> dict:
 
         # collect KPI data
         kpi_list.append({
-            "module": item.path.split(".")[-2:],  # str(item.relative_to(project_path)),
+            "module": ".".join(item.path.split(".")[-2:]),  # str(item.relative_to(project_path)),
             "lines": line_count,
             "pep8_violations": pep8_count
         })

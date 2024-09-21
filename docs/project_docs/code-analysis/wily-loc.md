@@ -30,5 +30,5 @@
 | src/REST/add_badge.py               |             136 |
 | src/REST/get_repos.py               |             168 |
 | src/add_gha_wf.py                   |             183 |
-| src/kpi.py                          |             190 |
-| Total                               |            1950 |
+| src/kpi.py                          |             193 |
+| Total                               |            1953 |

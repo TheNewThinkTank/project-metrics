@@ -6,7 +6,7 @@ from pprint import pprint as pp
 import subprocess
 from typing import TypedDict
 
-from pycodestyle import Checker, StyleGuide  # , StandardReport  # type: ignore
+from pycodestyle import Checker, StyleGuide  # type: ignore
 
 from save_file_to_github import save_file_to_github  # type: ignore
 from util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore

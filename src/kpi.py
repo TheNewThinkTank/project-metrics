@@ -12,7 +12,6 @@ from save_file_to_github import save_file_to_github  # type: ignore
 from util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore
 
 
-# class QuietReport(StandardReport):
 class QuietReport(BaseReport):
     """Custom report to quietly count violations without printing errors."""
 
@@ -94,7 +93,7 @@ def get_kpi_data(files: list) -> dict:
 
         # collect KPI data
         kpi_list.append({
-            "module": item.path.split(".")[-1],  # str(item.relative_to(project_path)),
+            "module": item.path.split(".")[-2:],  # str(item.relative_to(project_path)),
             "lines": line_count,
             "pep8_violations": pep8_count
         })

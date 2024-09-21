@@ -26,8 +26,8 @@
 | src/REST/commits_over_time.py       |             103 |
 | src/REST/project_metrics.py         |             105 |
 | src/get_repo_size.py                |             113 |
-| src/kpi.py                          |             121 |
+| src/kpi.py                          |             133 |
 | src/REST/add_badge.py               |             136 |
 | src/REST/get_repos.py               |             168 |
 | src/add_gha_wf.py                   |             183 |
-| Total                               |            1825 |
+| Total                               |            1837 |

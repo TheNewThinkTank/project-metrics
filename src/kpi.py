@@ -6,6 +6,8 @@ from pprint import pprint as pp
 import subprocess
 from typing import TypedDict
 
+from pycodestyle import Checker
+
 from save_file_to_github import save_file_to_github  # type: ignore
 from util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore
 
@@ -29,8 +31,7 @@ def get_metric(item: str, cmd: str) -> int:
     return int(byte_to_str(metric))
 
 
-def get_kpi_data(repo_name: str, project_path) -> dict:
-    print(repo_name)
+def get_kpi_data(files: list) -> dict:
 
     # Initialize counters and data storage
     file_count = 0
@@ -38,24 +39,32 @@ def get_kpi_data(repo_name: str, project_path) -> dict:
     kpi_list: list[KPIDict] = []
 
     # Iterate through Python files in the project directory
-    for item in project_path.glob("**/*.py"):  # Recursively search Python files
+    # for item in project_path.glob("**/*.py"):  # Recursively search Python files
+    for item in files:
         # if any(x in item.parts for x in (".venv", "__init__.py")):
         if any(x in [".venv", "__init__.py"] for x in item.parts):
             continue
+
         print(f"Processing: {item}")
-        if item.is_file() and not item.is_symlink():
-            line_count = get_metric(item, "wc -l < {}")  # lines in the file
-            pep8_count = get_metric(
-                item,
-                "pycodestyle {} | wc -l"
-                )  # PEP-8 violations
-            # collect KPI data
-            kpi_list.append({
-                "module": str(item.relative_to(project_path)),
-                "lines": line_count,
-                "pep8_violations": pep8_count
-            })
-            file_count += 1
+        # if item.is_file() and not item.is_symlink():
+        file_content = base64.b64decode(item.content).decode('utf-8')
+        line_count = len(file_content.splitlines())
+        checker = Checker(lines=file_content.splitlines())
+        pep8_count = checker.check_all()
+
+
+        # line_count = get_metric(item, "wc -l < {}")  # lines in the file
+        # pep8_count = get_metric(
+        #     item,
+        #     "pycodestyle {} | wc -l"
+        #     )  # PEP-8 violations
+        # collect KPI data
+        kpi_list.append({
+            "module": item.path.split(".")[-1],  # str(item.relative_to(project_path)),
+            "lines": line_count,
+            "pep8_violations": pep8_count
+        })
+        file_count += 1
     total_line_count = sum([x["lines"] for x in kpi_list])
     total_pep8_violations = sum([x["pep8_violations"] for x in kpi_list])
     # Sort files by line count in descending order
@@ -118,25 +127,25 @@ def main() -> None:
         "N-body-simulations",
     ]
     repo_name = repo_names[1]
+
     files = get_gh_repo_py_files(repo_name=repo_name)
     file = files[0]
-
     file_content = base64.b64decode(file.content).decode('utf-8')
-    print(f"Content of {file.path}:")
-    print(file_content)
+    # print(f"Content of {file.path}:")
+    # print(file_content)
 
     # # TODO: setup project_path for cross-repo access
     # # project_path = Path(repo_name)
     # project_path = Path.cwd()  # if repo_name == "project-metrics" else Path(repo_name)
     # print(f"{project_path = }")
-    # basepath = "docs/project_docs/code-analysis/"
-    # local_file_path = f"{basepath}kpi_{project_path.name}.md"
+    basepath = "docs/project_docs/code-analysis/"
+    local_file_path = f"{basepath}kpi_{repo_name}.md"
     # dir = project_path / basepath
     # dir.mkdir(parents=True, exist_ok=True)  # Create dir if it doesn't exist
 
-    # data = get_kpi_data(repo_name, project_path)
+    data = get_kpi_data(files)
     # print(data)
-    # write_kpi_md(repo_name, local_file_path, **data)
+    write_kpi_md(repo_name, local_file_path, **data)
 
 
 if __name__ == "__main__":

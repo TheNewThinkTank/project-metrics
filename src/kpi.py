@@ -19,7 +19,7 @@ def get_metric(item: str, cmd: str) -> int:
     return int(byte_to_str(metric))
 
 
-def get_kpi_data(repo_name: str, project_path) -> dict:
+def get_kpi_data(repo_name: str, project_path):
     print(repo_name)
 
     # Initialize counters and data storage

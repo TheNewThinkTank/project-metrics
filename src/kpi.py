@@ -2,8 +2,15 @@
 import subprocess
 import datetime
 from pathlib import Path
+from typing import TypedDict  # , List
 
 from save_file_to_github import save_file_to_github  # type: ignore
+
+
+class KPIDict(TypedDict):
+    module: str
+    lines: int
+    pep8_violations: int
 
 
 def byte_to_str(byte_str) -> str:
@@ -19,15 +26,18 @@ def get_metric(item: str, cmd: str) -> int:
     return int(byte_to_str(metric))
 
 
-def get_kpi_data(repo_name: str, project_path):
+def get_kpi_data(repo_name: str, project_path) -> dict:
     print(repo_name)
 
     # Initialize counters and data storage
     file_count = 0
-    kpi_list = []
+    # kpi_list = []
+    kpi_list: list[KPIDict] = []
+
     # Iterate through Python files in the project directory
     for item in project_path.glob("**/*.py"):  # Recursively search Python files
-        if any(x in item.parts for x in (".venv", "__init__.py")):
+        # if any(x in item.parts for x in (".venv", "__init__.py")):
+        if any(x in [".venv", "__init__.py"] for x in item.parts):
             continue
         print(f"Processing: {item}")
         if item.is_file() and not item.is_symlink():
@@ -74,6 +84,7 @@ def write_kpi_md(
     :param total_pep8_violations: _description_
     :type total_pep8_violations: _type_
     """
+
     table_sep = "| --- | --- | --- |\n"
     with open(local_file_path, "w") as wf:
         wf.write(f"# KPI\n\nlogging timestamp:\n{datetime.datetime.now()}\n\n")

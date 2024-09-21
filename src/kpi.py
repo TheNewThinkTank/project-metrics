@@ -18,17 +18,17 @@ class KPIDict(TypedDict):
     pep8_violations: int
 
 
-def byte_to_str(byte_str) -> str:
-    # Utility function to decode byte string and strip whitespaces
-    return byte_str.decode("utf-8").strip()
+# def byte_to_str(byte_str) -> str:
+#     # Utility function to decode byte string and strip whitespaces
+#     return byte_str.decode("utf-8").strip()
 
 
-def get_metric(item: str, cmd: str) -> int:
-    metric = subprocess.check_output(cmd.format(item),
-                                     shell=True,
-                                     timeout=10
-                                    )
-    return int(byte_to_str(metric))
+# def get_metric(item: str, cmd: str) -> int:
+#     metric = subprocess.check_output(cmd.format(item),
+#                                      shell=True,
+#                                      timeout=10
+#                                     )
+#     return int(byte_to_str(metric))
 
 
 def get_kpi_data(files: list) -> dict:
@@ -42,7 +42,8 @@ def get_kpi_data(files: list) -> dict:
     # for item in project_path.glob("**/*.py"):  # Recursively search Python files
     for item in files:
         # if any(x in item.parts for x in (".venv", "__init__.py")):
-        if any(x in [".venv", "__init__.py"] for x in item.parts):
+        # if any(x in [".venv", "__init__.py"] for x in item.parts):
+        if any(x in item.path for x in [".venv", "__init__.py"]):
             continue
 
         print(f"Processing: {item}")

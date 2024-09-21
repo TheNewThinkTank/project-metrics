@@ -50,6 +50,11 @@ def get_kpi_data(files: list) -> dict:
         # if item.is_file() and not item.is_symlink():
         file_content = base64.b64decode(item.content).decode('utf-8')
         line_count = len(file_content.splitlines())
+
+        if line_count == 0:
+            print(f"Skipping empty file: {item.path}")
+            continue
+
         checker = Checker(lines=file_content.splitlines())
         pep8_count = checker.check_all()
 

@@ -2,9 +2,11 @@
 import subprocess
 import datetime
 from pathlib import Path
-from typing import TypedDict  # , List
+from pprint import pprint as pp
+from typing import TypedDict
 
 from save_file_to_github import save_file_to_github  # type: ignore
+from util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore
 
 
 class KPIDict(TypedDict):
@@ -114,20 +116,26 @@ def main() -> None:
         "project-metrics",
         "N-body-simulations",
     ]
-    repo_name = repo_names[0]
+    repo_name = repo_names[1]
+    files = get_gh_repo_py_files(repo_name=repo_name)
+    file = files[0]
 
-    # TODO: setup project_path for cross-repo access
-    # project_path = Path(repo_name)
-    project_path = Path.cwd()  # if repo_name == "project-metrics" else Path(repo_name)
-    print(f"{project_path = }")
-    basepath = "docs/project_docs/code-analysis/"
-    local_file_path = f"{basepath}kpi_{project_path.name}.md"
-    dir = project_path / basepath
-    dir.mkdir(parents=True, exist_ok=True)  # Create dir if it doesn't exist
+    with open(file, "r") as rf:
+        print(f"content of {file}:\n")
+        pp(rf.readlines())
 
-    data = get_kpi_data(repo_name, project_path)
-    print(data)
-    write_kpi_md(repo_name, local_file_path, **data)
+    # # TODO: setup project_path for cross-repo access
+    # # project_path = Path(repo_name)
+    # project_path = Path.cwd()  # if repo_name == "project-metrics" else Path(repo_name)
+    # print(f"{project_path = }")
+    # basepath = "docs/project_docs/code-analysis/"
+    # local_file_path = f"{basepath}kpi_{project_path.name}.md"
+    # dir = project_path / basepath
+    # dir.mkdir(parents=True, exist_ok=True)  # Create dir if it doesn't exist
+
+    # data = get_kpi_data(repo_name, project_path)
+    # print(data)
+    # write_kpi_md(repo_name, local_file_path, **data)
 
 
 if __name__ == "__main__":

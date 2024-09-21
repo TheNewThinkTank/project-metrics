@@ -7,7 +7,11 @@ from pprint import pprint as pp
 from github import Auth, Github
 
 
-def get_gh_repos(username, access_token, repo_name) -> list:
+def get_gh_repo_py_files(
+        username="TheNewThinkTank",
+        access_token=os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"],
+        repo_name="project-metrics"
+        ) -> list:
     auth = Auth.Token(access_token)
     g = Github(auth=auth)
     repo = g.get_repo(f"{username}/{repo_name}")
@@ -28,12 +32,15 @@ def get_gh_repos(username, access_token, repo_name) -> list:
         else:
             files.append(file_content)
 
-    return [file for file in files if file.path.endswith(".py")]
+    return [
+        file
+        for file in files
+        if file.path.endswith(".py")
+        and not file.path.endswith("__init__.py")
+        ]
 
 
 def main():
-    username = "TheNewThinkTank"
-    access_token = os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
 
     repo_names = [
         "project-metrics",
@@ -42,7 +49,7 @@ def main():
 
     for repo_name in repo_names:
         print(f"files in {repo_name}:\n")
-        pp(get_gh_repos(username, access_token, repo_name))
+        pp(get_gh_repo_py_files(repo_name=repo_name))
 
 
 if __name__ == "__main__":

@@ -75,6 +75,13 @@ def get_kpi_data(files: list) -> dict:
             print(f"Skipping empty or blank file: {item.path}")
             continue
 
+        # Filter out empty lines to prevent errors
+        non_empty_lines = [line for line in lines if line.strip()]
+
+        if not non_empty_lines:
+            print(f"Skipping file with only blank lines: {item.path}")
+            continue
+
         # checker = Checker(lines=file_content.splitlines())
         # pep8_count = checker.check_all()
 

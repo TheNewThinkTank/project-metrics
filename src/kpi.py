@@ -6,13 +6,14 @@ from pprint import pprint as pp
 import subprocess
 from typing import TypedDict
 
-from pycodestyle import Checker, StandardReport  # type: ignore
+from pycodestyle import Checker, StyleGuide  # , StandardReport  # type: ignore
 
 from save_file_to_github import save_file_to_github  # type: ignore
 from util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore
 
 
-class QuietReport(StandardReport):
+# class QuietReport(StandardReport):
+class QuietReport(Checker.report_class):
     """Custom report to quietly count violations without printing errors."""
 
     def __init__(self, options):
@@ -50,6 +51,8 @@ def get_kpi_data(files: list) -> dict:
     # kpi_list = []
     kpi_list: list[KPIDict] = []
 
+    style_guide = StyleGuide(quiet=True)
+
     # Iterate through Python files in the project directory
     # for item in project_path.glob("**/*.py"):  # Recursively search Python files
     for item in files:
@@ -69,7 +72,9 @@ def get_kpi_data(files: list) -> dict:
 
         # checker = Checker(lines=file_content.splitlines())
         # pep8_count = checker.check_all()
-        report = QuietReport(options={})
+
+        # report = QuietReport(options={})
+        report = QuietReport(style_guide.options)
         checker = Checker(lines=file_content.splitlines(), report=report)
         checker.check_all()
         pep8_count = report.violations_count

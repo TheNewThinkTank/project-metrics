@@ -43,8 +43,8 @@ def get_kpi_data(repo_name: str, project_path):
                 "pep8_violations": pep8_count
             })
             file_count += 1
-    total_line_count = sum(x["lines"] for x in kpi_list)
-    total_pep8_violations = sum(x["pep8_violations"] for x in kpi_list)
+    total_line_count = sum([x["lines"] for x in kpi_list])
+    total_pep8_violations = sum([x["pep8_violations"] for x in kpi_list])
     # Sort files by line count in descending order
     kpi_list_sorted = sorted(kpi_list, key=lambda x: x["lines"], reverse=True)
 

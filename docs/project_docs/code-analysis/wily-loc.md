@@ -18,8 +18,8 @@
 | src/util/csv_to_md.py               |              44 |
 | src/wily_to_md.py                   |              46 |
 | src/REST/group_by_tag.py            |              49 |
-| src/util/get_gh_repo_content.py     |              49 |
 | src/config.py                       |              51 |
+| src/util/get_gh_repo_content.py     |              56 |
 | src/util/make_md_table.py           |              66 |
 | src/GraphQL/gh_get_popular_repos.py |              73 |
 | src/GraphQL/gh_group_by_lang.py     |              82 |
@@ -27,8 +27,8 @@
 | src/REST/commits_over_time.py       |             103 |
 | src/REST/project_metrics.py         |             105 |
 | src/get_repo_size.py                |             113 |
-| src/kpi.py                          |             134 |
 | src/REST/add_badge.py               |             136 |
+| src/kpi.py                          |             142 |
 | src/REST/get_repos.py               |             168 |
 | src/add_gha_wf.py                   |             183 |
-| Total                               |            1887 |
+| Total                               |            1902 |

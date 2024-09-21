@@ -64,10 +64,15 @@ def get_kpi_data(files: list) -> dict:
         print(f"Processing: {item}")
         # if item.is_file() and not item.is_symlink():
         file_content = base64.b64decode(item.content).decode('utf-8')
-        line_count = len(file_content.splitlines())
+        lines = file_content.splitlines()
+        line_count = len(lines)
 
-        if line_count == 0:
-            print(f"Skipping empty file: {item.path}")
+        # if line_count == 0:
+        #     print(f"Skipping empty file: {item.path}")
+        #     continue
+
+        if line_count == 0 or all(line.strip() == "" for line in lines):
+            print(f"Skipping empty or blank file: {item.path}")
             continue
 
         # checker = Checker(lines=file_content.splitlines())
@@ -75,7 +80,7 @@ def get_kpi_data(files: list) -> dict:
 
         # report = QuietReport(options={})
         report = QuietReport(style_guide.options)
-        checker = Checker(lines=file_content.splitlines(), report=report)
+        checker = Checker(lines=lines, report=report)
         checker.check_all()
         pep8_count = report.violations_count
 

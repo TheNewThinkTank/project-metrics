@@ -1,6 +1,10 @@
 
 from save_file_to_github import save_file_to_github  # type: ignore
 
+# TODO: sort by loc descending
+# TODO: consolidate wily tables
+# TODO: add repo-name to file-name
+
 
 def wily_to_md(in_file) -> None:
     """_summary_

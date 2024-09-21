@@ -2,18 +2,18 @@
 import base64
 import datetime
 # from pathlib import Path
-from pprint import pprint as pp
-import subprocess
+# from pprint import pprint as pp
+# import subprocess
 from typing import TypedDict
 
-from pycodestyle import Checker, StyleGuide  # type: ignore
+from pycodestyle import Checker, BaseReport, StyleGuide  # type: ignore
 
 from save_file_to_github import save_file_to_github  # type: ignore
 from util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore
 
 
 # class QuietReport(StandardReport):
-class QuietReport(Checker.report_class):
+class QuietReport(BaseReport):
     """Custom report to quietly count violations without printing errors."""
 
     def __init__(self, options):

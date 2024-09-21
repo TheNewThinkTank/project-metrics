@@ -66,6 +66,9 @@ def get_kpi_data(files: list) -> dict:
         file_content = base64.b64decode(item.content).decode('utf-8')
         lines = file_content.splitlines()
         line_count = len(lines)
+        print(f"{file_content = }")
+        print(f"{lines = }")
+        print(f"{line_count = }")
 
         # if line_count == 0:
         #     print(f"Skipping empty file: {item.path}")
@@ -167,8 +170,8 @@ def main() -> None:
     repo_name = repo_names[1]
 
     files = get_gh_repo_py_files(repo_name=repo_name)
-    file = files[0]
-    file_content = base64.b64decode(file.content).decode('utf-8')
+    # file = files[0]
+    # file_content = base64.b64decode(file.content).decode('utf-8')
     # print(f"Content of {file.path}:")
     # print(file_content)
 

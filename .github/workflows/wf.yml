@@ -81,6 +81,10 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}
 
+      - name: Get Python files
+        run: |
+          poetry run python src/util/get_gh_repo_content.py
+
       - name: Get KPIs
         run: |
           poetry run python src/kpi.py

@@ -116,6 +116,7 @@ def main() -> None:
     ]
     repo_name = repo_names[0]
 
+    # TODO: setup project_path for cross-repo access
     # project_path = Path(repo_name)
     project_path = Path.cwd()  # if repo_name == "project-metrics" else Path(repo_name)
     print(f"{project_path = }")

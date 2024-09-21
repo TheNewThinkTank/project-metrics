@@ -1,18 +1,18 @@
 # KPI
 
 logging timestamp:
-2024-09-21 07:42:26.319143
+2024-09-21 09:55:01.590556
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 36| 2241 | 59 |
+| 37| 2291 | 59 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
 | `src/add_gha_wf.py                       ` |        183 |                    4 |
 | `src/REST/get_repos.py                   ` |        168 |                    7 |
 | `src/REST/add_badge.py                   ` |        136 |                    2 |
-| `src/kpi.py                              ` |        133 |                    8 |
+| `src/kpi.py                              ` |        134 |                    8 |
 | `src/get_repo_size.py                    ` |        113 |                    5 |
 | `src/REST/project_metrics.py             ` |        105 |                    5 |
 | `src/REST/commits_over_time.py           ` |        103 |                    1 |
@@ -25,6 +25,7 @@ logging timestamp:
 | `test/test_get_readme_format.py          ` |         57 |                    0 |
 | `src/config.py                           ` |         51 |                   10 |
 | `src/REST/group_by_tag.py                ` |         49 |                    0 |
+| `src/util/get_gh_repo_content.py         ` |         49 |                    0 |
 | `docs/sphinx-docs/conf.py                ` |         49 |                    1 |
 | `src/wily_to_md.py                       ` |         46 |                    1 |
 | `test/test_get_badge.py                  ` |         44 |                    4 |

@@ -1,9 +1,6 @@
 
 import base64
 import datetime
-# from pathlib import Path
-# from pprint import pprint as pp
-# import subprocess
 from typing import TypedDict
 
 from pycodestyle import Checker, BaseReport, StyleGuide  # type: ignore
@@ -30,44 +27,20 @@ class KPIDict(TypedDict):
     pep8_violations: int
 
 
-# def byte_to_str(byte_str) -> str:
-#     # Utility function to decode byte string and strip whitespaces
-#     return byte_str.decode("utf-8").strip()
-
-
-# def get_metric(item: str, cmd: str) -> int:
-#     metric = subprocess.check_output(cmd.format(item),
-#                                      shell=True,
-#                                      timeout=10
-#                                     )
-#     return int(byte_to_str(metric))
-
-
 def get_kpi_data(files: list) -> dict:
 
-    # Initialize counters and data storage
     file_count = 0
-    # kpi_list = []
     kpi_list: list[KPIDict] = []
-
     style_guide = StyleGuide(quiet=True)
 
-    # Iterate through Python files in the project directory
-    # for item in project_path.glob("**/*.py"):  # Recursively search Python files
     for item in files:
-        # if any(x in item.parts for x in (".venv", "__init__.py")):
-        # if any(x in [".venv", "__init__.py"] for x in item.parts):
         if any(x in item.path for x in [".venv", "__init__.py"]):
             continue
 
         print(f"Processing: {item}")
-        # if item.is_file() and not item.is_symlink():
         file_content = base64.b64decode(item.content).decode('utf-8')
         lines = file_content.splitlines()
         line_count = len(lines)
-        # print(f"{file_content = }")
-        # print(f"{lines = }")
-        # print(f"{line_count = }")
 
         if line_count == 0 or all(line.strip() == "" for line in lines):
             print(f"Skipping empty or blank file: {item.path}")
@@ -80,20 +53,14 @@ def get_kpi_data(files: list) -> dict:
             print(f"Skipping file with only blank lines: {item.path}")
             continue
 
-        report = QuietReport(style_guide.options)  # QuietReport(options={})
-        checker = Checker(lines=non_empty_lines, report=report)  # Checker(lines=lines, report=report)
+        report = QuietReport(style_guide.options)
+        checker = Checker(lines=non_empty_lines, report=report)
         checker.check_all()
         pep8_count = report.violations_count
 
-        # line_count = get_metric(item, "wc -l < {}")  # lines in the file
-        # pep8_count = get_metric(
-        #     item,
-        #     "pycodestyle {} | wc -l"
-        #     )  # PEP-8 violations
-
         # collect KPI data
         kpi_list.append({
-            "module": ".".join(item.path.split(".")[-2:]),  # str(item.relative_to(project_path)),
+            "module": item.path,
             "lines": line_count,
             "pep8_violations": pep8_count
         })
@@ -158,27 +125,17 @@ def main() -> None:
     repo_names = [
         "project-metrics",
         "N-body-simulations",
+        "fitness-tracker",
     ]
-    repo_name = repo_names[1]
 
-    files = get_gh_repo_py_files(repo_name=repo_name)
-    # file = files[0]
-    # file_content = base64.b64decode(file.content).decode('utf-8')
-    # print(f"Content of {file.path}:")
-    # print(file_content)
-
-    # # TODO: setup project_path for cross-repo access
-    # # project_path = Path(repo_name)
-    # project_path = Path.cwd()  # if repo_name == "project-metrics" else Path(repo_name)
-    # print(f"{project_path = }")
     basepath = "docs/project_docs/code-analysis/"
-    local_file_path = f"{basepath}kpi_{repo_name}.md"
-    # dir = project_path / basepath
-    # dir.mkdir(parents=True, exist_ok=True)  # Create dir if it doesn't exist
 
-    data = get_kpi_data(files)
-    # print(data)
-    write_kpi_md(repo_name, local_file_path, **data)
+    for repo_name in repo_names:
+        print(f"Processing KPIs for repo: {repo_name}")
+        files = get_gh_repo_py_files(repo_name=repo_name)
+        local_file_path = f"{basepath}kpi_{repo_name}.md"
+        data = get_kpi_data(files)
+        write_kpi_md(repo_name, local_file_path, **data)
 
 
 if __name__ == "__main__":

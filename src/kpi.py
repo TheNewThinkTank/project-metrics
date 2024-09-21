@@ -6,12 +6,12 @@ from pathlib import Path
 from save_file_to_github import save_file_to_github  # type: ignore
 
 
-def byte_to_str(byte_str):
+def byte_to_str(byte_str) -> str:
     # Utility function to decode byte string and strip whitespaces
     return byte_str.decode("utf-8").strip()
 
 
-def get_metric(item, cmd):
+def get_metric(item: str, cmd: str) -> int:
     metric = subprocess.check_output(cmd.format(item),
                                      shell=True,
                                      timeout=10
@@ -19,7 +19,7 @@ def get_metric(item, cmd):
     return int(byte_to_str(metric))
 
 
-def get_kpi_data(repo_name, project_path):
+def get_kpi_data(repo_name: str, project_path) -> dict:
     print(repo_name)
 
     # Initialize counters and data storage
@@ -56,12 +56,12 @@ def get_kpi_data(repo_name, project_path):
 
 
 def write_kpi_md(
-        repo_name,
-        local_file_path,
-        kpi_list_sorted,
-        file_count,
-        total_line_count,
-        total_pep8_violations
+        repo_name: str,
+        local_file_path: str,
+        kpi_list_sorted: list,
+        file_count: int,
+        total_line_count: int,
+        total_pep8_violations: int
         ) -> None:
     """_summary_
 
@@ -97,7 +97,7 @@ def write_kpi_md(
     save_file_to_github(repo_name, local_file_path, content)
 
 
-def main():
+def main() -> None:
 
     repo_names = [
         "project-metrics",

@@ -1,8 +1,9 @@
 
-import subprocess
+import base64
 import datetime
 from pathlib import Path
 from pprint import pprint as pp
+import subprocess
 from typing import TypedDict
 
 from save_file_to_github import save_file_to_github  # type: ignore
@@ -120,9 +121,9 @@ def main() -> None:
     files = get_gh_repo_py_files(repo_name=repo_name)
     file = files[0]
 
-    with open(file, "r") as rf:
-        print(f"content of {file}:\n")
-        pp(rf.readlines())
+    file_content = base64.b64decode(file.content).decode('utf-8')
+    print(f"Content of {file.path}:")
+    print(file_content)
 
     # # TODO: setup project_path for cross-repo access
     # # project_path = Path(repo_name)

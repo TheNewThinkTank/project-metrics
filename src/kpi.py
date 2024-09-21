@@ -99,7 +99,7 @@ def write_kpi_md(
 
     table_sep = "| --- | --- | --- |\n"
     with open(local_file_path, "w") as wf:
-        wf.write(f"# KPI\n\nlogging timestamp:\n{datetime.datetime.now()}\n\n")
+        wf.write(f"# {repo_name} KPIs\n\nlogging timestamp:\n{datetime.datetime.now()}\n\n")
         wf.write(
             "| Python scripts | total code lines | total PEP-8 violations |\n"
             + table_sep
@@ -117,7 +117,8 @@ def write_kpi_md(
 
     with open(local_file_path, "rb") as file:
         content = file.read()
-    save_file_to_github(repo_name, local_file_path, content)
+    # save_file_to_github(repo_name, local_file_path, content)
+    save_file_to_github("project-metrics", local_file_path, content)
 
 
 def main() -> None:

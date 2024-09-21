@@ -13,15 +13,22 @@ def get_gh_repos(username, access_token, repo_name) -> list:
     repo = g.get_repo(f"{username}/{repo_name}")
 
     contents = repo.get_contents("")
+    if not isinstance(contents, list):
+        contents = [contents]
+
     files = []
     while contents:
         file_content = contents.pop(0)
         if file_content.type == "dir":
-            contents.extend(repo.get_contents(file_content.path))
+            # contents.extend(repo.get_contents(file_content.path))
+            new_contents = repo.get_contents(file_content.path)
+            if not isinstance(new_contents, list):
+                new_contents = [new_contents]
+            contents.extend(new_contents)
         else:
             files.append(file_content)
-    files = [file for file in files if file.endswith(".py")]
-    return files
+
+    return [file for file in files if file.path.endswith(".py")]
 
 
 def main():

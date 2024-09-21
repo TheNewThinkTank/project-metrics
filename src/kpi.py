@@ -107,6 +107,7 @@ def main() -> None:
 
     # project_path = Path(repo_name)
     project_path = Path.cwd()  # if repo_name == "project-metrics" else Path(repo_name)
+    print(f"{project_path = }")
     basepath = "docs/project_docs/code-analysis/"
     local_file_path = f"{basepath}kpi_{project_path.name}.md"
     dir = project_path / basepath

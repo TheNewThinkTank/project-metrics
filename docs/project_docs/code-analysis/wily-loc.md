@@ -29,6 +29,6 @@
 | src/get_repo_size.py                |             113 |
 | src/REST/add_badge.py               |             136 |
 | src/REST/get_repos.py               |             168 |
-| src/kpi.py                          |             173 |
+| src/kpi.py                          |             178 |
 | src/add_gha_wf.py                   |             183 |
-| Total                               |            1933 |
+| Total                               |            1938 |

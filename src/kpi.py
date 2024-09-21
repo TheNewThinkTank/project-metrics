@@ -3,7 +3,7 @@ import base64
 import datetime
 # from pathlib import Path
 # from pprint import pprint as pp
-import subprocess
+# import subprocess
 from typing import TypedDict
 
 from pycodestyle import Checker, BaseReport, StyleGuide  # type: ignore
@@ -31,17 +31,17 @@ class KPIDict(TypedDict):
     pep8_violations: int
 
 
-def byte_to_str(byte_str) -> str:
-    # Utility function to decode byte string and strip whitespaces
-    return byte_str.decode("utf-8").strip()
+# def byte_to_str(byte_str) -> str:
+#     # Utility function to decode byte string and strip whitespaces
+#     return byte_str.decode("utf-8").strip()
 
 
-def get_metric(item: str, cmd: str) -> int:
-    metric = subprocess.check_output(cmd.format(item),
-                                     shell=True,
-                                     timeout=10
-                                    )
-    return int(byte_to_str(metric))
+# def get_metric(item: str, cmd: str) -> int:
+#     metric = subprocess.check_output(cmd.format(item),
+#                                      shell=True,
+#                                      timeout=10
+#                                     )
+#     return int(byte_to_str(metric))
 
 
 def get_kpi_data(files: list) -> dict:
@@ -81,16 +81,16 @@ def get_kpi_data(files: list) -> dict:
             print(f"Skipping file with only blank lines: {item.path}")
             continue
 
-        # report = QuietReport(style_guide.options)  # QuietReport(options={})
-        # checker = Checker(lines=non_empty_lines, report=report)  # Checker(lines=lines, report=report)
-        # checker.check_all()
-        # pep8_count = report.violations_count
+        report = QuietReport(style_guide.options)  # QuietReport(options={})
+        checker = Checker(lines=non_empty_lines, report=report)  # Checker(lines=lines, report=report)
+        checker.check_all()
+        pep8_count = report.violations_count
 
         # line_count = get_metric(item, "wc -l < {}")  # lines in the file
-        pep8_count = get_metric(
-            item,
-            "pycodestyle {} | wc -l"
-            )  # PEP-8 violations
+        # pep8_count = get_metric(
+        #     item,
+        #     "pycodestyle {} | wc -l"
+        #     )  # PEP-8 violations
 
         # collect KPI data
         kpi_list.append({

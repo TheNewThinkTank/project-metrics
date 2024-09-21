@@ -6,10 +6,22 @@ from pprint import pprint as pp
 import subprocess
 from typing import TypedDict
 
-from pycodestyle import Checker  # type: ignore
+from pycodestyle import Checker, StandardReport  # type: ignore
 
 from save_file_to_github import save_file_to_github  # type: ignore
 from util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore
+
+
+class QuietReport(StandardReport):
+    """Custom report to quietly count violations without printing errors."""
+
+    def __init__(self, options):
+        super().__init__(options)
+        self.violations_count = 0
+
+    def error(self, line_number, offset, text, check):
+        self.violations_count += 1
+        return super().error(line_number, offset, text, check)
 
 
 class KPIDict(TypedDict):
@@ -55,9 +67,12 @@ def get_kpi_data(files: list) -> dict:
             print(f"Skipping empty file: {item.path}")
             continue
 
-        checker = Checker(lines=file_content.splitlines())
-        pep8_count = checker.check_all()
-
+        # checker = Checker(lines=file_content.splitlines())
+        # pep8_count = checker.check_all()
+        report = QuietReport(options={})
+        checker = Checker(lines=file_content.splitlines(), report=report)
+        checker.check_all()
+        pep8_count = report.violations_count
 
         # line_count = get_metric(item, "wc -l < {}")  # lines in the file
         # pep8_count = get_metric(

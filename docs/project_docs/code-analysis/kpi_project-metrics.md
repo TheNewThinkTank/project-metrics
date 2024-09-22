@@ -1,11 +1,11 @@
 # project-metrics KPIs
 
 logging timestamp:
-2024-09-21 16:59:10.321452
+2024-09-22 01:42:33.340313
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 37| 2307 | 208 |
+| 37| 2311 | 208 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -25,9 +25,9 @@ logging timestamp:
 | `test/test_get_readme_format.py          ` |         57 |                    5 |
 | `src/util/get_gh_repo_content.py         ` |         56 |                    6 |
 | `src/config.py                           ` |         51 |                   11 |
+| `src/wily_to_md.py                       ` |         50 |                    7 |
 | `docs/sphinx-docs/conf.py                ` |         49 |                    2 |
 | `src/REST/group_by_tag.py                ` |         49 |                    3 |
-| `src/wily_to_md.py                       ` |         46 |                    7 |
 | `test/test_get_badge.py                  ` |         44 |                    9 |
 | `src/util/csv_to_md.py                   ` |         44 |                    4 |
 | `src/readme_sentiment.py                 ` |         43 |                    4 |

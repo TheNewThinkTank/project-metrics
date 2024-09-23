@@ -1,11 +1,11 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2024-09-22 01:43:49.462022
+2024-09-23 01:38:45.306563
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 53| 3976 | 458 |
+| 53| 3976 | 459 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -28,8 +28,8 @@ logging timestamp:
 | `src/main.py                             ` |         86 |                   10 |
 | `src/helpers/analyze_stats.py            ` |         86 |                    6 |
 | `src/helpers/google_sheet.py             ` |         79 |                    5 |
-| `src/helpers/json_to_csv.py              ` |         73 |                    5 |
-| `test/test_json_to_csv.py                ` |         70 |                   27 |
+| `src/helpers/file_conversions/json_to_csv.py` |         73 |                    5 |
+| `test/test_json_to_csv.py                ` |         70 |                   28 |
 | `docs/sphinx-docs/source/conf.py         ` |         69 |                    6 |
 | `src/helpers/get_volume.py               ` |         67 |                    6 |
 | `test/test_google_sheet.py               ` |         66 |                    6 |
@@ -48,7 +48,7 @@ logging timestamp:
 | `features/steps/lookup.py                ` |         38 |                    6 |
 | `src/helpers/custom_storage.py           ` |         38 |                    7 |
 | `test/test_training.py                   ` |         37 |                    6 |
-| `src/helpers/json_to_yaml.py             ` |         32 |                    6 |
+| `src/helpers/file_conversions/json_to_yaml.py` |         32 |                    6 |
 | `features/steps/get_program.py           ` |         31 |                    5 |
 | `features/steps/validate.py              ` |         31 |                    6 |
 | `features/steps/model.py                 ` |         29 |                    6 |

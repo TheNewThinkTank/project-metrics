@@ -1,19 +1,19 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2024-09-23 01:38:45.306563
+2024-09-24 01:39:02.417624
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 53| 3976 | 459 |
+| 54| 3985 | 464 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
-| `src/model/model.py                      ` |        233 |                   12 |
 | `src/combined_metrics/combined_metrics.py` |        225 |                   30 |
+| `src/model/model.py                      ` |        223 |                   13 |
 | `src/simulations/workout_simulator.py    ` |        220 |                   26 |
-| `src/CRUD/insert.py                      ` |        185 |                   22 |
 | `src/plot.py                             ` |        172 |                    8 |
+| `src/CRUD/insert.py                      ` |        172 |                   23 |
 | `src/helpers/validate.py                 ` |        170 |                   16 |
 | `src/CRUD/read.py                        ` |        163 |                   13 |
 | `src/model/plot_model.py                 ` |        160 |                   22 |
@@ -48,6 +48,7 @@ logging timestamp:
 | `features/steps/lookup.py                ` |         38 |                    6 |
 | `src/helpers/custom_storage.py           ` |         38 |                    7 |
 | `test/test_training.py                   ` |         37 |                    6 |
+| `src/helpers/logger_config.py            ` |         32 |                    3 |
 | `src/helpers/file_conversions/json_to_yaml.py` |         32 |                    6 |
 | `features/steps/get_program.py           ` |         31 |                    5 |
 | `features/steps/validate.py              ` |         31 |                    6 |

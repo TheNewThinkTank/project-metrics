@@ -51,8 +51,7 @@ def commit_barplot(
     sns.set_theme(style="whitegrid")
     basepath = "docs/project_docs/img/"
     figure_title_parts = filename.split("_")
-    figure_title_parts = [part.title() for part in figure_title_parts]
-    figure_title = " ".join(figure_title_parts)
+    figure_title = " ".join(map(str.title, figure_title_parts))
     local_file_path = f"{basepath}{filename}.png"
 
     plt.figure(figsize=(12, 6))

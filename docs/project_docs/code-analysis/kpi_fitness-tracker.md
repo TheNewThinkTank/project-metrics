@@ -1,11 +1,11 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2024-09-26 01:37:53.742039
+2024-09-27 01:38:43.124322
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 54| 3985 | 464 |
+| 54| 3977 | 466 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -17,11 +17,10 @@ logging timestamp:
 | `src/helpers/validate.py                 ` |        170 |                   16 |
 | `src/CRUD/read.py                        ` |        163 |                   13 |
 | `src/model/plot_model.py                 ` |        160 |                   22 |
-| `src/one_rep_max_calc.py                 ` |        120 |                   17 |
+| `src/one_rep_max_plot.py                 ` |        146 |                   19 |
 | `src/CRUD/update.py                      ` |        115 |                   12 |
-| `src/one_rep_max_plot.py                 ` |        112 |                   17 |
 | `src/helpers/get_breath_holding.py       ` |        112 |                   16 |
-| `src/helpers/set_db_and_table.py         ` |        112 |                    4 |
+| `src/helpers/set_db_and_table.py         ` |        110 |                    4 |
 | `src/simulations/simulate_data.py        ` |        107 |                   11 |
 | `src/helpers/get_workout_duration.py     ` |        106 |                    6 |
 | `test/test_model.py                      ` |         89 |                   11 |
@@ -29,6 +28,7 @@ logging timestamp:
 | `src/helpers/analyze_stats.py            ` |         86 |                    6 |
 | `src/helpers/google_sheet.py             ` |         79 |                    5 |
 | `src/helpers/file_conversions/json_to_csv.py` |         73 |                    5 |
+| `src/one_rep_max_calc.py                 ` |         71 |                   15 |
 | `test/test_json_to_csv.py                ` |         70 |                   28 |
 | `docs/sphinx-docs/source/conf.py         ` |         69 |                    6 |
 | `src/helpers/get_volume.py               ` |         67 |                    6 |
@@ -54,10 +54,10 @@ logging timestamp:
 | `features/steps/validate.py              ` |         31 |                    6 |
 | `features/steps/model.py                 ` |         29 |                    6 |
 | `src/helpers/get_bodyweight.py           ` |         28 |                    5 |
+| `src/one_rep_max.py                      ` |         26 |                    5 |
 | `test/test_get_exercises.py              ` |         25 |                    2 |
 | `test/conftest.py                        ` |         18 |                    5 |
 | `test/test_get_year_and_week.py          ` |         18 |                    2 |
-| `src/one_rep_max.py                      ` |         17 |                    3 |
 | `src/helpers/get_tz.py                   ` |         16 |                    3 |
 | `test/test_get_workout_duration.py       ` |          9 |                    2 |
 | `src/helpers/get_split.py                ` |          9 |                    2 |

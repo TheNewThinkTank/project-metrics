@@ -1,11 +1,11 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2024-10-04 01:38:48.015212
+2024-10-05 01:37:05.803206
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 56| 4026 | 503 |
+| 56| 4022 | 512 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -18,11 +18,11 @@ logging timestamp:
 | `src/one_rep_max_plot.py                 ` |        159 |                   21 |
 | `src/helpers/validate.py                 ` |        147 |                   25 |
 | `src/simulations/workout_simulator.py    ` |        130 |                   26 |
-| `src/helpers/set_db_and_table.py         ` |        113 |                    5 |
 | `src/helpers/get_breath_holding.py       ` |        112 |                   16 |
 | `src/helpers/get_workout_duration.py     ` |        108 |                    7 |
 | `src/simulations/simulate_data.py        ` |        107 |                   11 |
 | `test/test_model.py                      ` |         89 |                   11 |
+| `src/helpers/set_db_and_table.py         ` |         89 |                   13 |
 | `src/CRUD/update.py                      ` |         88 |                   12 |
 | `test/test_workout_simulator.py          ` |         87 |                   12 |
 | `src/main.py                             ` |         86 |                   10 |
@@ -37,6 +37,7 @@ logging timestamp:
 | `src/helpers/get_program.py              ` |         65 |                    4 |
 | `test/test_simulate_data.py              ` |         59 |                   14 |
 | `src/CRUD/delete.py                      ` |         57 |                    7 |
+| `src/helpers/config_loader.py            ` |         57 |                    9 |
 | `test/test_insert.py                     ` |         51 |                    5 |
 | `src/one_rep_max.py                      ` |         49 |                    6 |
 | `test/test_update.py                     ` |         47 |                    6 |
@@ -50,7 +51,6 @@ logging timestamp:
 | `features/steps/lookup.py                ` |         38 |                    6 |
 | `src/helpers/custom_storage.py           ` |         38 |                    7 |
 | `test/test_training.py                   ` |         37 |                    6 |
-| `src/helpers/config_loader.py            ` |         37 |                    8 |
 | `src/helpers/logger_config.py            ` |         32 |                    3 |
 | `src/helpers/file_conversions/json_to_yaml.py` |         32 |                    6 |
 | `features/steps/get_program.py           ` |         31 |                    5 |

@@ -3,9 +3,9 @@
 | File                                |   Lines of Code |
 | --- | --- |
 | src/util/repo_has_lang.py           |              22 |
-| src/REST/get_repo_size.py           |              23 |
-| src/util/get_readme_format.py       |              23 |
 | src/GraphQL/gh_graphql_post.py      |              23 |
+| src/util/get_readme_format.py       |              23 |
+| src/REST/get_repo_size.py           |              23 |
 | src/matrix_add_badge.py             |              28 |
 | src/get_badge.py                    |              29 |
 | src/threading_add_badge.py          |              30 |

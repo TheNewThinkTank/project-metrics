@@ -26,9 +26,9 @@
 | src/util/get_gh_repos.py            |                 98.147  |
 | src/util/matrix_repos.py            |                 99.1862 |
 | src/save_file_to_github.py          |                100      |
+| src/remove_badge.py                 |                100      |
 | src/config.py                       |                100      |
 | src/get_badge.py                    |                100      |
-| src/remove_badge.py                 |                100      |
-| src/REST/get_repo_size.py           |                100      |
 | src/GraphQL/gh_graphql_post.py      |                100      |
+| src/REST/get_repo_size.py           |                100      |
 | Total                               |                 87.0104 |

@@ -1,19 +1,19 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2024-10-13 01:44:06.562433
+2024-10-14 01:41:38.151367
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 57| 4037 | 527 |
+| 57| 4037 | 529 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
 | `src/combined_metrics/combined_metrics.py` |        225 |                   30 |
 | `src/CRUD/read.py                        ` |        198 |                   17 |
 | `src/model/model.py                      ` |        191 |                   16 |
-| `src/CRUD/insert.py                      ` |        182 |                   23 |
 | `src/plot.py                             ` |        172 |                    8 |
+| `src/CRUD/insert.py                      ` |        170 |                   23 |
 | `src/model/plot_model.py                 ` |        160 |                   22 |
 | `src/one_rep_max_plot.py                 ` |        159 |                   21 |
 | `src/helpers/validate.py                 ` |        147 |                   25 |
@@ -28,16 +28,16 @@ logging timestamp:
 | `src/main.py                             ` |         86 |                   10 |
 | `src/one_rep_max_calc.py                 ` |         86 |                   20 |
 | `src/helpers/get_workout_duration.py     ` |         85 |                    6 |
-| `src/helpers/google_sheet.py             ` |         79 |                    5 |
+| `src/helpers/google_sheet.py             ` |         83 |                    6 |
 | `src/helpers/file_conversions/json_to_csv.py` |         73 |                    5 |
 | `test/test_json_to_csv.py                ` |         70 |                   28 |
 | `docs/sphinx-docs/source/conf.py         ` |         69 |                    6 |
 | `test/test_google_sheet.py               ` |         66 |                    6 |
+| `src/helpers/config_loader.py            ` |         65 |                   10 |
 | `src/helpers/get_program.py              ` |         65 |                    4 |
 | `test/test_simulate_data.py              ` |         59 |                   14 |
 | `src/helpers/get_volume.py               ` |         59 |                    6 |
 | `src/CRUD/delete.py                      ` |         57 |                    7 |
-| `src/helpers/config_loader.py            ` |         57 |                    9 |
 | `test/test_insert.py                     ` |         51 |                    5 |
 | `src/one_rep_max.py                      ` |         49 |                    6 |
 | `test/test_update.py                     ` |         47 |                    6 |

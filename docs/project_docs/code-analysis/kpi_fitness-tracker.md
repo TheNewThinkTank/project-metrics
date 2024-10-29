@@ -1,11 +1,11 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2024-10-28 01:43:14.466680
+2024-10-29 01:41:27.523639
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 57| 4037 | 529 |
+| 57| 4035 | 529 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -21,13 +21,13 @@ logging timestamp:
 | `src/simulations/simulate_data.py        ` |        107 |                   11 |
 | `src/utils/profiling/analyze_stats.py    ` |        106 |                   15 |
 | `src/utils/get_breath_holding.py         ` |        101 |                   16 |
-| `src/utils/set_db_and_table.py           ` |         90 |                   13 |
 | `test/test_model.py                      ` |         89 |                   11 |
 | `src/CRUD/update.py                      ` |         88 |                   12 |
+| `src/main.py                             ` |         87 |                   10 |
 | `test/test_workout_simulator.py          ` |         87 |                   12 |
-| `src/main.py                             ` |         86 |                   10 |
 | `src/one_rep_max_calc.py                 ` |         86 |                   20 |
 | `src/utils/get_workout_duration.py       ` |         85 |                    6 |
+| `src/utils/set_db_and_table.py           ` |         85 |                   13 |
 | `src/utils/google_sheet.py               ` |         83 |                    6 |
 | `src/utils/file_conversions/json_to_csv.py` |         73 |                    5 |
 | `test/test_json_to_csv.py                ` |         70 |                   28 |
@@ -40,9 +40,9 @@ logging timestamp:
 | `src/CRUD/delete.py                      ` |         57 |                    7 |
 | `test/test_insert.py                     ` |         51 |                    5 |
 | `src/one_rep_max.py                      ` |         49 |                    6 |
+| `src/utils/cleanup.py                    ` |         49 |                    5 |
 | `test/test_update.py                     ` |         47 |                    6 |
 | `test/test_validate.py                   ` |         47 |                    3 |
-| `src/utils/cleanup.py                    ` |         47 |                    5 |
 | `src/combined_metrics/get_frequency_data.py` |         46 |                    4 |
 | `src/utils/lookup.py                     ` |         46 |                    5 |
 | `src/utils/get_exercises.py              ` |         44 |                    4 |

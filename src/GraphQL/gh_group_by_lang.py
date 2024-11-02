@@ -3,10 +3,9 @@
 
 import os
 from pprint import pprint as pp
-
 from gh_graphql_post import graphql_post  # type: ignore
 from save_file_to_github import save_file_to_github  # type: ignore
-from util.make_md_table import table_from_nested  # type: ignore
+from file_convertion_tools.make_md_table import table_from_nested  # type: ignore
 
 
 def group_repos_by_language(username: str, token: str) -> list:

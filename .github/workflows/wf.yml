@@ -19,106 +19,106 @@ env:
   WILY_PATH: "docs/project_docs/code-analysis/"
 
 jobs:
-  qualify_code:
-    runs-on: ubuntu-latest
+  # qualify_code:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Check out repository code
+  #       uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHONVERSION }}  # 3.12
-          cache: pip
+  #     - name: Setup Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: ${{ env.PYTHONVERSION }}  # 3.12
+  #         cache: pip
 
-      - name: Install and cache poetry
-        run: |
-          make install-poetry
-        if: steps.cache.outputs.cache-hit != 'true'
+  #     - name: Install and cache poetry
+  #       run: |
+  #         make install-poetry
+  #       if: steps.cache.outputs.cache-hit != 'true'
 
-      - name: Cache poetry dependencies
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-          restore-keys: ${{ runner.os }}-poetry-
+  #     - name: Cache poetry dependencies
+  #       id: cache
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: ~/.cache/pypoetry/virtualenvs
+  #         key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+  #         restore-keys: ${{ runner.os }}-poetry-
 
-      - name: Install dependencies with poetry
-        run: poetry install
-        env:
-          POETRY_VIRTUALENVS_IN_PROJECT: true
-        if: steps.cache.outputs.cache-hit != 'true'
+  #     - name: Install dependencies with poetry
+  #       run: poetry install
+  #       env:
+  #         POETRY_VIRTUALENVS_IN_PROJECT: true
+  #       if: steps.cache.outputs.cache-hit != 'true'
 
-      - name: Lint with ruff
-        run: make lint-ruff
+  #     - name: Lint with ruff
+  #       run: make lint-ruff
 
-      - name: Cache mypy dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/mypy
-          key: ${{ runner.os }}-mypy-${{ hashFiles('**/mypy.ini') }}
-          restore-keys: ${{ runner.os }}-mypy-
+  #     - name: Cache mypy dependencies
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: ~/.cache/mypy
+  #         key: ${{ runner.os }}-mypy-${{ hashFiles('**/mypy.ini') }}
+  #         restore-keys: ${{ runner.os }}-mypy-
 
-      - name: Static type checks with mypy
-        run: make static-type-checks
+  #     - name: Static type checks with mypy
+  #       run: make static-type-checks
 
-      - name: wily build and rank
-        run: make wily-build-and-rank
+  #     - name: wily build and rank
+  #       run: make wily-build-and-rank
 
-      - name: Make Wily Markdown
-        run: |
-          poetry run python src/wily_to_md.py
+  #     - name: Make Wily Markdown
+  #       run: |
+  #         poetry run python src/wily_to_md.py
 
-      # - name: Commit Wily Metrics
-      #   run: |
-      #     git config --local user.name "GitHub Action"
-      #     git config --local user.email "action@github.com"
-      #     git add ${{ env.WILY_PATH }}wily-mi-raw.md ${{ env.WILY_PATH }}wily-loc-raw.md
-      #     git commit -m "Update Wily metrics"
-      #     git push
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}
+  #     # - name: Commit Wily Metrics
+  #     #   run: |
+  #     #     git config --local user.name "GitHub Action"
+  #     #     git config --local user.email "action@github.com"
+  #     #     git add ${{ env.WILY_PATH }}wily-mi-raw.md ${{ env.WILY_PATH }}wily-loc-raw.md
+  #     #     git commit -m "Update Wily metrics"
+  #     #     git push
+  #     #   env:
+  #     #     GITHUB_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}
 
-      # - name: Get Python files
-      #   run: |
-      #     poetry run python src/util/get_gh_repo_content.py
+  #     # - name: Get Python files
+  #     #   run: |
+  #     #     poetry run python src/util/get_gh_repo_content.py
 
-      - name: Get KPIs
-        run: |
-          poetry run python src/kpi.py
+  #     - name: Get KPIs
+  #       run: |
+  #         poetry run python src/kpi.py
 
-      # - name: Run ShellCheck
-      #   uses: ludeeus/action-shellcheck@master
+  #     # - name: Run ShellCheck
+  #     #   uses: ludeeus/action-shellcheck@master
 
-      - name: lint yaml
-        uses: ibiqlik/action-yamllint@v3
-        with:
-          file_or_dir: .
-          config_file: .config/.yamllint.yml
+  #     - name: lint yaml
+  #       uses: ibiqlik/action-yamllint@v3
+  #       with:
+  #         file_or_dir: .
+  #         config_file: .config/.yamllint.yml
 
-      - uses: rojopolis/spellcheck-github-actions@0.44.0
-        name: Spellcheck README
-        with:
-          config_path: .config/.spellcheck.yml
-          source_files: README.md
-          task_name: Markdown
+  #     - uses: rojopolis/spellcheck-github-actions@0.44.0
+  #       name: Spellcheck README
+  #       with:
+  #         config_path: .config/.spellcheck.yml
+  #         source_files: README.md
+  #         task_name: Markdown
 
-      - name: Run unit tests and make coverage report
-        run: make run-tests-and-coverage
+  #     - name: Run unit tests and make coverage report
+  #       run: make run-tests-and-coverage
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        with:
-          files: ./cov.xml
-          verbose: true
+  #     - name: Upload coverage reports to Codecov
+  #       uses: codecov/codecov-action@v4
+  #       env:
+  #         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  #       with:
+  #         files: ./cov.xml
+  #         verbose: true
 
   get_metrics:
-    needs:
-      - qualify_code
+    # needs:
+    #   - qualify_code
     runs-on: ubuntu-latest
 
     steps:
@@ -185,46 +185,46 @@ jobs:
         run: |
           poetry run python src/GraphQL/gh_group_by_lang.py
 
-  update_repos:
-    needs:
-      - get_metrics
-    runs-on: ubuntu-latest
+  # update_repos:
+  #   needs:
+  #     - get_metrics
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Check out repository code
+  #       uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHONVERSION }}  # 3.12
-          # cache: pip
+  #     - name: Setup Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: ${{ env.PYTHONVERSION }}  # 3.12
+  #         # cache: pip
 
-      - name: Install and cache poetry
-        run: make install-poetry
-        # if: steps.cache.outputs.cache-hit != 'true'
+  #     - name: Install and cache poetry
+  #       run: make install-poetry
+  #       # if: steps.cache.outputs.cache-hit != 'true'
 
-      # - name: Cache poetry dependencies
-      #   id: cache
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: ~/.cache/pypoetry/virtualenvs
-      #     key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-      #     restore-keys: ${{ runner.os }}-poetry-
+  #     # - name: Cache poetry dependencies
+  #     #   id: cache
+  #     #   uses: actions/cache@v4
+  #     #   with:
+  #     #     path: ~/.cache/pypoetry/virtualenvs
+  #     #     key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+  #     #     restore-keys: ${{ runner.os }}-poetry-
 
-      - name: Install dependencies with poetry
-        run: poetry install
-        env:
-          POETRY_VIRTUALENVS_IN_PROJECT: true
-        # if: steps.cache.outputs.cache-hit != 'true'
+  #     - name: Install dependencies with poetry
+  #       run: poetry install
+  #       env:
+  #         POETRY_VIRTUALENVS_IN_PROJECT: true
+  #       # if: steps.cache.outputs.cache-hit != 'true'
 
-      # TODO: if repo has tests, setup codecov badge on it's README
-      # TODO: if repo has wf, setup CI badge on it's README
+  #     # TODO: if repo has tests, setup codecov badge on it's README
+  #     # TODO: if repo has wf, setup CI badge on it's README
 
-      # - name: update repos with README size badge
-      #   run: |
-      #     poetry run python src/REST/add_badge.py
+  #     # - name: update repos with README size badge
+  #     #   run: |
+  #     #     poetry run python src/REST/add_badge.py
 
-      - name: add GitHub Actions workflow to repos
-        run: |
-          poetry run python src/add_gha_wf.py
+  #     - name: add GitHub Actions workflow to repos
+  #       run: |
+  #         poetry run python src/add_gha_wf.py

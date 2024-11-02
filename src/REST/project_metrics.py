@@ -6,7 +6,7 @@ from loguru import logger  # type: ignore
 
 from config import platforms  # type: ignore
 from save_file_to_github import save_file_to_github  # type: ignore
-from util.make_md_table import table  # type: ignore
+from file_convertion_tools.make_md_table import table  # type: ignore
 
 
 def repo_missing_descriptions(repo_info: dict) -> bool:

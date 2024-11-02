@@ -10,12 +10,9 @@
 | src/REST/commits_over_time.py       |                 76.7946 |
 | src/REST/get_repos.py               |                 77.6289 |
 | src/REST/add_badge.py               |                 78.538  |
-| src/util/make_md_table.py           |                 78.5987 |
 | src/GraphQL/gh_group_by_lang.py     |                 78.733  |
-| src/util/csv_to_md.py               |                 79.3132 |
 | src/wily_to_md.py                   |                 80.3246 |
 | src/REST/group_by_tag.py            |                 81.9808 |
-| src/util/txt_to_csv.py              |                 83.6038 |
 | src/GraphQL/gh_get_popular_repos.py |                 84.2262 |
 | src/matrix_add_badge.py             |                 86.5609 |
 | src/GraphQL/gh_get_largest_repos.py |                 87.2524 |
@@ -30,5 +27,8 @@
 | src/config.py                       |                100      |
 | src/get_badge.py                    |                100      |
 | src/GraphQL/gh_graphql_post.py      |                100      |
+| src/util/make_md_table.py           |                100      |
+| src/util/csv_to_md.py               |                100      |
+| src/util/txt_to_csv.py              |                100      |
 | src/REST/get_repo_size.py           |                100      |
-| Total                               |                 87.0104 |
+| Total                               |                 88.7827 |

@@ -2,7 +2,7 @@
 |-----|-----|-----|
 | fitness-tracker | Full stack fitness tracking application using TinyDB and FastAPI | 18 |
 | code-vault | recipes for BASH, Docker and more | 13 |
-| nutrition-planner | streamlit app for meal nutrition analysis | 6 |
+| nutrition-planner | streamlit app for meal nutrition analysis | 7 |
 | N-body-simulations | Simulations of dynamical systems of particles under the influence of gravity | 5 |
 | IllustrisTNG | The next generation of cosmological hydrodynamical simulations of galaxy formation and evolution. | 4 |
 | project-metrics | Overview of projects and their health | 3 |

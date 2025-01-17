@@ -8,7 +8,7 @@ from src.config import platforms  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
 
 
-def repo_missing_descriptions(repo_info: dict) -> bool:
+def repo_missing_descriptions(repo_info: dict | None) -> bool:
     """_summary_
 
     :param repo_info: _description_
@@ -17,7 +17,9 @@ def repo_missing_descriptions(repo_info: dict) -> bool:
     :rtype: bool
     """
 
-    return True if repo_info["description"] is None else False
+    if repo_info is None:
+        return True
+    return repo_info.get("description") is None
 
 
 def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:

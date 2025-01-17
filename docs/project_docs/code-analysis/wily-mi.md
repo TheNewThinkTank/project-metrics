@@ -2,16 +2,16 @@
 
 | File                                |   Maintainability Index |
 | --- | --- |
-| src/kpi.py                          |                 64.0815 |
 | src/REST/project_metrics.py         |                 64.8995 |
+| src/kpi.py                          |                 66.3985 |
 | src/get_repo_size.py                |                 67.0087 |
 | src/add_gha_wf.py                   |                 71.8865 |
-| src/util/get_gh_repo_content.py     |                 72.4542 |
 | src/REST/commits_over_time.py       |                 76.7946 |
 | src/REST/get_repos.py               |                 77.6289 |
 | src/REST/add_badge.py               |                 78.538  |
 | src/GraphQL/gh_group_by_lang.py     |                 78.733  |
 | src/wily_to_md.py                   |                 80.3716 |
+| src/util/get_gh_repo_content.py     |                 81.833  |
 | src/REST/group_by_tag.py            |                 81.9808 |
 | src/GraphQL/gh_get_popular_repos.py |                 84.2262 |
 | src/matrix_add_badge.py             |                 86.5609 |
@@ -27,4 +27,4 @@
 | src/save_file_to_github.py          |                100      |
 | src/config.py                       |                100      |
 | src/GraphQL/gh_graphql_post.py      |                100      |
-| Total                               |                 87.2371 |
+| Total                               |                 87.6404 |

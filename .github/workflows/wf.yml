@@ -9,17 +9,17 @@ on:
 
 jobs:
 
-  # qualify_code:
-  #   uses: ./.github/workflows/qualify_code.yml
-  #   with:
-  #     PYTHONVERSION: 3.12
-  #     WILY_PATH: "docs/project_docs/code-analysis/"
-  #   secrets:
-  #     PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
+  qualify_code:
+    uses: ./.github/workflows/qualify_code.yml
+    with:
+      PYTHONVERSION: 3.12
+      WILY_PATH: "docs/project_docs/code-analysis/"
+    secrets:
+      PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
 
   get_metrics:
-    # needs:
-    #   - qualify_code
+    needs:
+      - qualify_code
     uses: ./.github/workflows/get_metrics.yml
     with:
       PYTHONVERSION: 3.12

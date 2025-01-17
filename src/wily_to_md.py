@@ -1,5 +1,7 @@
+"""_summary_
+"""
 
-from save_file_to_github import save_file_to_github  # type: ignore
+from src.save_file_to_github import save_file_to_github  # type: ignore
 
 # TODO: sort by loc descending
 # TODO: consolidate wily tables
@@ -39,7 +41,7 @@ def wily_to_md(in_file) -> None:
     save_file_to_github("project-metrics", local_file_path, content)
 
 
-if __name__ == "__main__":
+def main() -> None:
     basepath = "docs/project_docs/code-analysis/"
     files = [
         "wily-loc-raw",
@@ -48,3 +50,7 @@ if __name__ == "__main__":
     for file in files:
         in_file = basepath + file + '.md'
         wily_to_md(in_file)
+
+
+if __name__ == "__main__":
+    main()

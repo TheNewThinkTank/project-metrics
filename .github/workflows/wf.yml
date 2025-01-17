@@ -23,6 +23,8 @@ jobs:
     with:
       PYTHONVERSION: 3.12
       WILY_PATH: "docs/project_docs/code-analysis/"
+    secrets:
+      PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
 
   get_metrics:
     needs:

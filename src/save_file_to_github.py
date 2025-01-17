@@ -16,7 +16,13 @@ def save_file_to_github(repo_name: str, file_path: str, file_content) -> None:
     :type file_content: _type_
     """
 
-    g = Github(os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"])
+    token = os.environ.get("PROJECT_METRICS_GITHUB_ACCESS_TOKEN")
+    if not token:
+        raise ValueError(
+            "PROJECT_METRICS_GITHUB_ACCESS_TOKEN environment variable is not set"
+            )
+
+    g = Github(token)
     repo = g.get_user().get_repo(repo_name)
     branch_name = repo.default_branch
 

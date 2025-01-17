@@ -9,6 +9,9 @@ on:
       WILY_PATH:
         required: true
         type: string
+      secrets:
+        PROJECT_METRICS_GITHUB_ACCESS_TOKEN:
+          required: true
 
 jobs:
   qualify_code:
@@ -62,8 +65,8 @@ jobs:
       - name: Make Wily Markdown
         run: |
           poetry run python src/wily_to_md.py
-        env:
-          PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
+        # env:
+        #   PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
 
       # - name: Commit Wily Metrics
       #   run: |

@@ -9,11 +9,12 @@ from src.save_file_to_github import save_file_to_github  # type: ignore
 
 
 def repo_missing_descriptions(repo_info: dict | None) -> bool:
-    """_summary_
+    """
+    Determines if a repository is missing a description.
 
-    :param repo_info: _description_
-    :type repo_info: dict
-    :return: _description_
+    :param repo_info: A dictionary containing repository information, or None.
+    :type repo_info: dict | None
+    :return: True if the repository is missing a description or if repo_info is None, False otherwise.
     :rtype: bool
     """
 

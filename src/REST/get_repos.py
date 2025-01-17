@@ -145,12 +145,15 @@ def get_repo_info(platforms: dict, repo) -> dict | None:
     return info
 
 
-def print_repo_info(repo_info: dict) -> None:
+def print_repo_info(repo_info: dict | None) -> None:
     """_summary_
 
     :param repo_info: _description_
-    :type repo_info: dict
+    :type repo_info: dict | None
     """
+
+    if repo_info is None:
+        return
 
     print(f"Name: {repo_info['name']}")
     # print(f"Owner: {repo_info['owner']}")

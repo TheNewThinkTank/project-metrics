@@ -1,66 +1,71 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2024-11-02 21:30:54.923359
+2025-01-17 16:14:42.997230
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 55| 3911 | 511 |
+| 60| 4830 | 593 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
-| `src/combined_metrics/combined_metrics.py` |        225 |                   30 |
-| `src/CRUD/read.py                        ` |        198 |                   17 |
-| `src/model/model.py                      ` |        191 |                   16 |
-| `src/plot.py                             ` |        172 |                    8 |
-| `src/CRUD/insert.py                      ` |        170 |                   23 |
-| `src/model/plot_model.py                 ` |        160 |                   22 |
-| `src/one_rep_max_plot.py                 ` |        159 |                   21 |
-| `src/utils/validate.py                   ` |        147 |                   25 |
-| `src/simulations/workout_simulator.py    ` |        130 |                   26 |
-| `src/simulations/simulate_data.py        ` |        107 |                   11 |
-| `src/utils/get_breath_holding.py         ` |        101 |                   16 |
-| `test/test_model.py                      ` |         89 |                   11 |
-| `src/CRUD/update.py                      ` |         88 |                   12 |
-| `src/main.py                             ` |         87 |                   10 |
+| `src/combined_metrics/combined_metrics.py` |        343 |                   58 |
+| `src/CRUD/read.py                        ` |        201 |                   19 |
+| `src/plot.py                             ` |        191 |                   10 |
+| `oxygen/oxygen/cli.py                    ` |        190 |                   13 |
+| `src/model/model.py                      ` |        190 |                   14 |
+| `src/model/plot_model.py                 ` |        188 |                   27 |
+| `src/combined_metrics/plot_frequency.py  ` |        176 |                    6 |
+| `src/one_rep_max_plot.py                 ` |        173 |                   23 |
+| `src/CRUD/insert.py                      ` |        160 |                   23 |
+| `src/rep_range/rep_range.py              ` |        145 |                    5 |
+| `src/utils/validate.py                   ` |        143 |                   25 |
+| `src/simulations/workout_simulator.py    ` |        135 |                   26 |
+| `test/test_get_workout_duration.py       ` |        134 |                    1 |
+| `src/utils/get_breath_holding.py         ` |        121 |                   16 |
+| `src/CRUD/update.py                      ` |        115 |                   11 |
+| `src/one_rep_max_calc.py                 ` |        108 |                   22 |
+| `src/utils/set_db_and_table.py           ` |        103 |                   11 |
+| `src/main.py                             ` |        101 |                   11 |
+| `test/test_one_rep_max_calc.py           ` |         95 |                   15 |
+| `src/utils/get_workout_duration.py       ` |         95 |                   13 |
+| `src/utils/config_loader.py              ` |         88 |                   17 |
 | `test/test_workout_simulator.py          ` |         87 |                   12 |
-| `src/one_rep_max_calc.py                 ` |         86 |                   20 |
-| `src/utils/get_workout_duration.py       ` |         85 |                    6 |
-| `src/utils/set_db_and_table.py           ` |         85 |                   13 |
-| `src/utils/google_sheet.py               ` |         83 |                    6 |
-| `src/utils/file_conversions/json_to_csv.py` |         73 |                    5 |
-| `test/test_json_to_csv.py                ` |         70 |                   28 |
-| `docs/sphinx-docs/source/conf.py         ` |         69 |                    6 |
-| `test/test_google_sheet.py               ` |         66 |                    6 |
-| `src/utils/config_loader.py              ` |         65 |                   10 |
-| `src/utils/get_program.py                ` |         65 |                    4 |
-| `test/test_simulate_data.py              ` |         59 |                   14 |
-| `src/utils/get_volume.py                 ` |         59 |                    6 |
-| `src/CRUD/delete.py                      ` |         57 |                    7 |
-| `test/test_insert.py                     ` |         51 |                    5 |
-| `src/one_rep_max.py                      ` |         49 |                    6 |
-| `src/utils/cleanup.py                    ` |         49 |                    5 |
-| `test/test_update.py                     ` |         47 |                    6 |
-| `test/test_validate.py                   ` |         47 |                    3 |
-| `src/combined_metrics/get_frequency_data.py` |         46 |                    4 |
-| `src/utils/lookup.py                     ` |         46 |                    5 |
-| `src/utils/get_exercises.py              ` |         44 |                    4 |
-| `src/utils/custom_storage.py             ` |         43 |                    8 |
-| `src/simulations/simulate_athletes.py    ` |         42 |                    5 |
-| `src/utils/get_year_and_week.py          ` |         42 |                    4 |
+| `src/utils/google_sheet.py               ` |         87 |                    6 |
+| `test/test_model.py                      ` |         83 |                   10 |
+| `src/simulations/simulate_data.py        ` |         78 |                    9 |
+| `docs/sphinx-docs/source/conf.py         ` |         76 |                    6 |
+| `src/utils/get_volume.py                 ` |         72 |                    8 |
+| `src/utils/file_conversions/json_to_csv.py` |         72 |                    5 |
+| `test/test_json_to_csv.py                ` |         67 |                   27 |
+| `test/test_google_sheet.py               ` |         63 |                    7 |
+| `test/test_one_rep_max.py                ` |         61 |                   17 |
+| `src/utils/get_program.py                ` |         60 |                    6 |
+| `src/one_rep_max.py                      ` |         57 |                    6 |
+| `src/CRUD/delete.py                      ` |         56 |                    7 |
+| `src/utils/custom_storage.py             ` |         52 |                    8 |
+| `test/test_insert.py                     ` |         48 |                    6 |
+| `test/test_simulate_data.py              ` |         45 |                   11 |
+| `src/combined_metrics/get_frequency_data.py` |         45 |                    4 |
+| `src/utils/get_exercises.py              ` |         43 |                    4 |
+| `src/utils/logger_config.py              ` |         42 |                    3 |
 | `features/steps/lookup.py                ` |         38 |                    6 |
-| `test/test_training.py                   ` |         37 |                    6 |
-| `src/utils/get_bodyweight.py             ` |         35 |                    7 |
-| `src/utils/file_conversions/json_to_yaml.py` |         32 |                    6 |
+| `src/utils/get_bodyweight.py             ` |         37 |                    7 |
 | `features/steps/get_program.py           ` |         31 |                    5 |
 | `features/steps/validate.py              ` |         31 |                    6 |
-| `src/utils/logger_config.py              ` |         31 |                    3 |
 | `features/steps/model.py                 ` |         29 |                    6 |
-| `test/test_get_exercises.py              ` |         25 |                    2 |
-| `test/conftest.py                        ` |         18 |                    5 |
-| `test/test_get_year_and_week.py          ` |         18 |                    2 |
-| `src/utils/get_tz.py                     ` |         16 |                    3 |
-| `test/test_get_workout_duration.py       ` |          9 |                    2 |
-| `src/utils/get_split.py                  ` |          9 |                    2 |
+| `test/test_plot_model.py                 ` |         26 |                    1 |
+| `test/test_update.py                     ` |         24 |                    1 |
+| `test/test_training.py                   ` |         23 |                    2 |
+| `src/utils/file_conversions/json_to_yaml.py` |         23 |                    4 |
+| `test/test_validate.py                   ` |         22 |                    3 |
+| `src/anomaly_detection.py                ` |         21 |                    3 |
+| `src/utils/cleanup.py                    ` |         21 |                    3 |
+| `test/test_get_exercises.py              ` |         20 |                    2 |
+| `src/user_settings.py                    ` |         19 |                    2 |
+| `test/conftest.py                        ` |         19 |                    6 |
+| `oxygen/setup.py                         ` |         16 |                    1 |
+| `src/utils/file_conversions/load_yaml.py ` |         16 |                    2 |
+| `src/utils/get_split.py                  ` |         11 |                    2 |
 | `test/test_get_program.py                ` |          7 |                    2 |
-| `test/test_lookup.py                     ` |          6 |                    2 |
+| `src/simulations/simulate_people.py      ` |          7 |                    1 |

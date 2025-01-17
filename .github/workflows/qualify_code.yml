@@ -9,9 +9,9 @@ on:
       WILY_PATH:
         required: true
         type: string
-      secrets:
-        PROJECT_METRICS_GITHUB_ACCESS_TOKEN:
-          required: true
+    secrets:
+      PROJECT_METRICS_GITHUB_ACCESS_TOKEN:
+        required: true
 
 jobs:
   qualify_code:

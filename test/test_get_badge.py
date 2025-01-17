@@ -2,7 +2,6 @@
 """
 
 import pytest
-
 from src.get_badge import get_badge
 
 testdata = [

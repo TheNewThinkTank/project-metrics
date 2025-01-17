@@ -1,4 +1,7 @@
-from config import gh_badges  # type: ignore
+"""_summary_
+"""
+
+from src.config import gh_badges  # type: ignore
 
 
 def get_badge(repo_name: str, badge_name: str):

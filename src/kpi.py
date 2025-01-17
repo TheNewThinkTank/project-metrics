@@ -1,12 +1,13 @@
+"""_summary_
+"""
 
 import base64
 import datetime
+import os
 from typing import TypedDict
-
 from pycodestyle import Checker, BaseReport, StyleGuide  # type: ignore
-
-from save_file_to_github import save_file_to_github  # type: ignore
-from util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore
+from src.save_file_to_github import save_file_to_github  # type: ignore
+from src.util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore
 
 
 class QuietReport(BaseReport):
@@ -22,12 +23,24 @@ class QuietReport(BaseReport):
 
 
 class KPIDict(TypedDict):
+    """_summary_
+
+    :param TypedDict: _description_
+    :type TypedDict: _type_
+    """
     module: str
     lines: int
     pep8_violations: int
 
 
 def get_kpi_data(files: list) -> dict:
+    """_summary_
+
+    :param files: _description_
+    :type files: list
+    :return: _description_
+    :rtype: dict
+    """
 
     file_count = 0
     kpi_list: list[KPIDict] = []
@@ -128,12 +141,20 @@ def main() -> None:
         "N-body-simulations",
         "fitness-tracker",
     ]
-
     basepath = "docs/project_docs/code-analysis/"
+
+    token = os.environ.get("PROJECT_METRICS_GITHUB_ACCESS_TOKEN")
+    if not token:
+        raise ValueError(
+            "PROJECT_METRICS_GITHUB_ACCESS_TOKEN environment variable is not set"
+            )
 
     for repo_name in repo_names:
         print(f"Processing KPIs for repo: {repo_name}")
-        files = get_gh_repo_py_files(repo_name=repo_name)
+        files = get_gh_repo_py_files(
+            access_token=token,
+            repo_name=repo_name
+            )
         local_file_path = f"{basepath}kpi_{repo_name}.md"
         data = get_kpi_data(files)
         write_kpi_md(repo_name, local_file_path, **data)

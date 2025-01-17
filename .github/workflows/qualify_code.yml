@@ -85,6 +85,8 @@ jobs:
       - name: Get KPIs
         run: |
           poetry run python src/kpi.py
+        env:
+          PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
 
       # - name: Run ShellCheck
       #   uses: ludeeus/action-shellcheck@master

@@ -12,6 +12,18 @@ def get_gh_repo_py_files(
         access_token=os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"],
         repo_name="project-metrics"
         ) -> list:
+    """_summary_
+
+    :param username: _description_, defaults to "TheNewThinkTank"
+    :type username: str, optional
+    :param access_token: _description_, defaults to os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"]
+    :type access_token: _type_, optional
+    :param repo_name: _description_, defaults to "project-metrics"
+    :type repo_name: str, optional
+    :return: _description_
+    :rtype: list
+    """
+
     auth = Auth.Token(access_token)
     g = Github(auth=auth)
     repo = g.get_repo(f"{username}/{repo_name}")
@@ -40,7 +52,7 @@ def get_gh_repo_py_files(
         ]
 
 
-def main():
+def main() -> None:
 
     repo_names = [
         "project-metrics",

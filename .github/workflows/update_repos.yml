@@ -3,9 +3,12 @@ name: Update Repos
 on:
   workflow_call:
     inputs:
-        PYTHONVERSION:
-          required: true
-          type: string
+      PYTHONVERSION:
+        required: true
+        type: string
+    secrets:
+      PROJECT_METRICS_GITHUB_ACCESS_TOKEN:
+        required: true
 
 jobs:
   update_repos:

@@ -7,31 +7,24 @@ on:
   schedule:
     - cron:  '0 0 * * *'
 
-# env:
-#   PROJECT_METRICS_GITHUB_PAT: ${{ secrets.PROJECT_METRICS_GITHUB_PAT }}
-#   FG_GITHUB_ACCESS_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}  # fine-grained
-#   PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
-#   PROJECT_METRICS_GITLAB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITLAB_ACCESS_TOKEN }}
-#   # PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN }}
-#   # needed for running some python scripts in src/REST and src/GraphQL dirs:
-#   PYTHONPATH: ${{ github.workspace }}/src
-
 jobs:
 
-  qualify_code:
-    uses: ./.github/workflows/qualify_code.yml
-    with:
-      PYTHONVERSION: 3.12
-      WILY_PATH: "docs/project_docs/code-analysis/"
-    secrets:
-      PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
+  # qualify_code:
+  #   uses: ./.github/workflows/qualify_code.yml
+  #   with:
+  #     PYTHONVERSION: 3.12
+  #     WILY_PATH: "docs/project_docs/code-analysis/"
+  #   secrets:
+  #     PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
 
   get_metrics:
-    needs:
-      - qualify_code
+    # needs:
+    #   - qualify_code
     uses: ./.github/workflows/get_metrics.yml
     with:
       PYTHONVERSION: 3.12
+    secrets:
+      PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
 
   update_repos:
     needs:
@@ -39,3 +32,5 @@ jobs:
     uses: ./.github/workflows/update_repos.yml
     with:
       PYTHONVERSION: 3.12
+    secrets:
+      PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}

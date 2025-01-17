@@ -1,3 +1,6 @@
+"""_summary_
+"""
+
 import nltk  # type: ignore
 from nltk.sentiment import SentimentIntensityAnalyzer  # type: ignore
 
@@ -5,6 +8,13 @@ nltk.download("vader_lexicon")  # Download the sentiment analysis lexicon
 
 
 def get_readme_sentiment(readme_content: str) -> dict:
+    """_summary_
+
+    :param readme_content: _description_
+    :type readme_content: str
+    :return: _description_
+    :rtype: dict
+    """
     # Initialize the SentimentIntensityAnalyzer
     sia = SentimentIntensityAnalyzer()
 
@@ -28,7 +38,7 @@ def get_readme_sentiment(readme_content: str) -> dict:
     }
 
 
-def main():
+def main() -> None:
     # Sample README content
     readme_content = """
     Welcome to this project!

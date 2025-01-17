@@ -3,10 +3,8 @@
 
 import argparse
 import os
-
 from github import Github
-
-from REST.add_badge import update_repo  # type: ignore
+from src.REST.add_badge import update_repo  # type: ignore
 
 
 def main() -> None:

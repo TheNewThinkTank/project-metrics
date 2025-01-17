@@ -7,11 +7,9 @@ https://pygithub.readthedocs.io/en/stable/examples/Repository.html
 import os
 from pathlib import Path
 from typing import Literal
-
 from github import PaginatedList, Repository
-
-from get_badge import get_badge  # type: ignore
-from util.get_gh_repos import get_gh_repos  # type: ignore
+from src.get_badge import get_badge  # type: ignore
+from src.util.get_gh_repos import get_gh_repos  # type: ignore
 
 
 def update_readme(

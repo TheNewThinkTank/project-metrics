@@ -1,9 +1,10 @@
-import requests  # type: ignore
+"""_summary_
+"""
 
+import requests  # type: ignore
 # from icecream import ic  # type: ignore
 from loguru import logger  # type: ignore
-
-from config import platforms  # type: ignore
+from src.config import platforms  # type: ignore
 
 
 def get_repos(platform: str) -> list[dict]:

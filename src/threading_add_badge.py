@@ -2,12 +2,11 @@
 """
 
 import concurrent.futures
+from src.REST.add_badge import update_repo  # type: ignore
+from src.util.get_gh_repos import get_gh_repos  # type: ignore
 
-from REST.add_badge import update_repo  # type: ignore
-from util.get_gh_repos import get_gh_repos  # type: ignore
 
-
-def update_all_repos(username, repositories):
+def update_all_repos(username, repositories) -> None:
     badge_name = "size_badge"
 
     def update_repo_wrapper(repo):
@@ -19,7 +18,7 @@ def update_all_repos(username, repositories):
         executor.map(update_repo_wrapper, repositories)
 
 
-def main():
+def main() -> None:
     username = "TheNewThinkTank"
     repositories = get_gh_repos()
 

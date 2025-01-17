@@ -1,14 +1,14 @@
-"""Check if repo's main language is Python.
+"""
+Check if repo's main language is Python.
 If so, check if GitHub Actions workflow already exists,
 otherwise, add wf with Qualify-Code job, with linting etc.
 """
 
 from github import InputGitTreeElement, Repository
-
-from REST.add_badge import update_repo  # type: ignore
-from util.get_gh_repos import get_gh_repos  # type: ignore
-from util.get_readme_format import get_readme_format  # type: ignore
-from util.repo_has_lang import repo_has_lang  # type: ignore
+from src.REST.add_badge import update_repo  # type: ignore
+from src.util.get_gh_repos import get_gh_repos  # type: ignore
+from src.util.get_readme_format import get_readme_format  # type: ignore
+from src.util.repo_has_lang import repo_has_lang  # type: ignore
 
 
 def has_actions_workflow(repo: Repository.Repository) -> bool:
@@ -91,7 +91,20 @@ def create_workflow(
     repo.get_git_ref(f"heads/{branch}").edit(new_commit.sha)
 
 
-def create_file(repo: Repository.Repository, file_path: str, file_asset: str) -> None:
+def create_file(
+        repo: Repository.Repository,
+        file_path: str,
+        file_asset: str
+        ) -> None:
+    """_summary_
+
+    :param repo: _description_
+    :type repo: Repository.Repository
+    :param file_path: _description_
+    :type file_path: str
+    :param file_asset: _description_
+    :type file_asset: str
+    """
     with open(file_asset, "r") as rf:
         file_content = rf.read()
 
@@ -119,6 +132,15 @@ def create_file(repo: Repository.Repository, file_path: str, file_asset: str) ->
 
 
 def update_repos(username, repositories, language):
+    """_summary_
+
+    :param username: _description_
+    :type username: _type_
+    :param repositories: _description_
+    :type repositories: _type_
+    :param language: _description_
+    :type language: _type_
+    """
     # test on just a few repos first
     num_repos_to_update = 2
     repos_encountered = 0

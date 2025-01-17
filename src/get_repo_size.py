@@ -3,12 +3,16 @@
 
 import matplotlib.pyplot as plt  # type: ignore
 import seaborn as sns  # type: ignore
+from src.save_file_to_github import save_file_to_github  # type: ignore
+from src.util.get_gh_repos import get_gh_repos  # type: ignore
 
-from save_file_to_github import save_file_to_github  # type: ignore
-from util.get_gh_repos import get_gh_repos  # type: ignore
 
+def get_repo_names_and_sizes() -> tuple[list[str], list[int]]:
+    """_summary_
 
-def get_repo_names_and_sizes():
+    :return: _description_
+    :rtype: tuple[list[str], list[int]]
+    """
     repositories = get_gh_repos()
     name_and_size = {repo.name: repo.size for repo in repositories}
     data_by_size_desc = sorted(name_and_size.items(), key=lambda x: x[1], reverse=True)
@@ -18,6 +22,17 @@ def get_repo_names_and_sizes():
 
 
 def split_data(names, sizes, n):
+    """_summary_
+
+    :param names: _description_
+    :type names: _type_
+    :param sizes: _description_
+    :type sizes: _type_
+    :param n: _description_
+    :type n: _type_
+    :return: _description_
+    :rtype: _type_
+    """
     # n largest repos
     names_largest = names[:n]
     sizes_largest = sizes[:n]
@@ -47,7 +62,16 @@ def commit_barplot(
     names,
     sizes,
     filename="largest_repos"
-):
+) -> None:
+    """_summary_
+
+    :param names: _description_
+    :type names: _type_
+    :param sizes: _description_
+    :type sizes: _type_
+    :param filename: _description_, defaults to "largest_repos"
+    :type filename: str, optional
+    """
     sns.set_theme(style="whitegrid")
     basepath = "docs/project_docs/img/"
     figure_title_parts = filename.split("_")
@@ -68,7 +92,7 @@ def commit_barplot(
     save_file_to_github("project-metrics", local_file_path, content)
 
 
-def main():
+def main() -> None:
     names, sizes = get_repo_names_and_sizes()
     n = 8
 

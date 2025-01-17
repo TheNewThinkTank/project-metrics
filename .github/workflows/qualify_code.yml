@@ -1,0 +1,109 @@
+name: Qualify Code
+
+on:
+  workflow_call:
+    inputs:
+      PYTHONVERSION:
+        required: true
+        type: string
+      WILY_PATH:
+        required: true
+        type: string
+
+jobs:
+  qualify_code:
+    runs-on: ubuntu-latest  # ubuntu-20.04
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.PYTHONVERSION }}
+          cache: pip
+
+      - name: Install and cache poetry
+        run: |
+          make install-poetry
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - name: Cache poetry dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
+
+      - name: Install dependencies with poetry
+        run: poetry install
+        env:
+          POETRY_VIRTUALENVS_IN_PROJECT: true
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - name: Lint with ruff
+        run: make lint-ruff
+
+      - name: Cache mypy dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/mypy
+          key: ${{ runner.os }}-mypy-${{ hashFiles('**/mypy.ini') }}
+          restore-keys: ${{ runner.os }}-mypy-
+
+      - name: Static type checks with mypy
+        run: make static-type-checks
+
+      - name: wily build and rank
+        run: make wily-build-and-rank
+
+      - name: Make Wily Markdown
+        run: |
+          poetry run python src/wily_to_md.py
+
+      # - name: Commit Wily Metrics
+      #   run: |
+      #     git config --local user.name "GitHub Action"
+      #     git config --local user.email "action@github.com"
+      #     git add ${{ inputs.WILY_PATH }}wily-mi-raw.md ${{ inputs.WILY_PATH }}wily-loc-raw.md
+      #     git commit -m "Update Wily metrics"
+      #     git push
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}
+
+      # - name: Get Python files
+      #   run: |
+      #     poetry run python src/util/get_gh_repo_content.py
+
+      - name: Get KPIs
+        run: |
+          poetry run python src/kpi.py
+
+      # - name: Run ShellCheck
+      #   uses: ludeeus/action-shellcheck@master
+
+      - name: lint yaml
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: .
+          config_file: .config/.yamllint.yml
+
+      - uses: rojopolis/spellcheck-github-actions@0.44.0
+        name: Spellcheck README
+        with:
+          config_path: .config/.spellcheck.yml
+          source_files: README.md
+          task_name: Markdown
+
+      - name: Run unit tests and make coverage report
+        run: make run-tests-and-coverage
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: ./cov.xml
+          verbose: true

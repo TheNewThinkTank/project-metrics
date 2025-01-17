@@ -2,11 +2,9 @@
 """
 
 from datetime import datetime  # type: ignore
-
 import matplotlib.pyplot as plt  # type: ignore
 import requests  # type: ignore
-
-from save_file_to_github import save_file_to_github  # type: ignore
+from src.save_file_to_github import save_file_to_github  # type: ignore
 
 
 def get_commits(owner: str, repo: str) -> tuple[list, list]:

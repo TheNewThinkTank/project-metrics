@@ -16,7 +16,7 @@
 | src/REST/group_by_tag.py            |              49 |
 | src/config.py                       |              51 |
 | src/wily_to_md.py                   |              56 |
-| src/util/get_gh_repo_content.py     |              56 |
+| src/util/get_gh_repo_content.py     |              68 |
 | src/GraphQL/gh_get_popular_repos.py |              72 |
 | src/GraphQL/gh_group_by_lang.py     |              81 |
 | src/GraphQL/gh_get_largest_repos.py |              93 |
@@ -24,7 +24,7 @@
 | src/REST/project_metrics.py         |             105 |
 | src/get_repo_size.py                |             112 |
 | src/REST/add_badge.py               |             136 |
-| src/kpi.py                          |             143 |
+| src/kpi.py                          |             164 |
 | src/REST/get_repos.py               |             168 |
 | src/add_gha_wf.py                   |             183 |
-| Total                               |            1754 |
+| Total                               |            1787 |

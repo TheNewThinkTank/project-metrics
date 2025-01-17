@@ -1,4 +1,8 @@
+"""_summary_
+"""
+
 import os
+from typing import Any
 
 # Define the API endpoints and access tokens for each platform
 platforms = {
@@ -29,7 +33,7 @@ platforms = {
 }
 
 # GitHub badges
-gh_badges = {
+gh_badges: dict[str, Any] = {
     "size_badge": {
         "label": "GitHub repo size",
         "value": [

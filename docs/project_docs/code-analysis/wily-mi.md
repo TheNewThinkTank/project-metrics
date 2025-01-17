@@ -11,7 +11,7 @@
 | src/REST/get_repos.py               |                 77.6289 |
 | src/REST/add_badge.py               |                 78.538  |
 | src/GraphQL/gh_group_by_lang.py     |                 78.733  |
-| src/wily_to_md.py                   |                 80.3246 |
+| src/wily_to_md.py                   |                 80.3716 |
 | src/REST/group_by_tag.py            |                 81.9808 |
 | src/GraphQL/gh_get_popular_repos.py |                 84.2262 |
 | src/matrix_add_badge.py             |                 86.5609 |
@@ -22,13 +22,9 @@
 | src/util/get_readme_format.py       |                 94.8362 |
 | src/util/get_gh_repos.py            |                 98.147  |
 | src/util/matrix_repos.py            |                 99.1862 |
-| src/save_file_to_github.py          |                100      |
-| src/remove_badge.py                 |                100      |
-| src/config.py                       |                100      |
 | src/get_badge.py                    |                100      |
+| src/remove_badge.py                 |                100      |
+| src/save_file_to_github.py          |                100      |
+| src/config.py                       |                100      |
 | src/GraphQL/gh_graphql_post.py      |                100      |
-| src/util/make_md_table.py           |                100      |
-| src/util/csv_to_md.py               |                100      |
-| src/util/txt_to_csv.py              |                100      |
-| src/REST/get_repo_size.py           |                100      |
-| Total                               |                 88.7827 |
+| Total                               |                 87.2371 |

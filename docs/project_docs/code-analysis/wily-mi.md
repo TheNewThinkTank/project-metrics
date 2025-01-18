@@ -2,7 +2,7 @@
 
 | File                                |   Maintainability Index |
 | --- | --- |
-| src/REST/project_metrics.py         |                 65.61   |
+| src/REST/project_metrics.py         |                 64.9066 |
 | src/kpi.py                          |                 66.3985 |
 | src/add_gha_wf.py                   |                 72.8197 |
 | src/REST/get_repos.py               |                 73.5264 |
@@ -27,4 +27,4 @@
 | src/save_file_to_github.py          |                100      |
 | src/config.py                       |                100      |
 | src/GraphQL/gh_graphql_post.py      |                100      |
-| Total                               |                 87.8371 |
+| Total                               |                 87.8129 |

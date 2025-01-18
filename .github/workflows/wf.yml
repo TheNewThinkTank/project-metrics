@@ -10,7 +10,7 @@ on:
 jobs:
 
   qualify_code:
-    uses: ./.github/workflows/jobs/qualify_code.yml
+    uses: ./.github/workflows/qualify_code.yml
     with:
       PYTHONVERSION: 3.12
       WILY_PATH: "docs/project_docs/code-analysis/"
@@ -20,7 +20,7 @@ jobs:
   get_metrics:
     needs:
       - qualify_code
-    uses: ./.github/workflows/jobs/get_metrics.yml
+    uses: ./.github/workflows/get_metrics.yml
     with:
       PYTHONVERSION: 3.12
     secrets:
@@ -29,7 +29,7 @@ jobs:
   update_repos:
     needs:
       - get_metrics
-    uses: ./.github/workflows/jobs/update_repos.yml
+    uses: ./.github/workflows/update_repos.yml
     with:
       PYTHONVERSION: 3.12
     secrets:

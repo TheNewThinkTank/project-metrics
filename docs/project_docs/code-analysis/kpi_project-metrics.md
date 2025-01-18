@@ -1,11 +1,11 @@
 # project-metrics KPIs
 
 logging timestamp:
-2025-01-18 19:47:21.615543
+2025-01-18 21:57:38.877229
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 31| 2217 | 205 |
+| 31| 2220 | 205 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -14,7 +14,7 @@ logging timestamp:
 | `src/kpi.py                              ` |        169 |                   17 |
 | `src/get_repo_size.py                    ` |        143 |                   11 |
 | `src/REST/add_badge.py                   ` |        138 |                   12 |
-| `src/REST/project_metrics.py             ` |        109 |                   10 |
+| `src/REST/project_metrics.py             ` |        112 |                   10 |
 | `src/REST/commits_over_time.py           ` |        106 |                    6 |
 | `src/GraphQL/gh_get_largest_repos.py     ` |         98 |                    8 |
 | `src/GraphQL/gh_group_by_lang.py         ` |         83 |                    5 |

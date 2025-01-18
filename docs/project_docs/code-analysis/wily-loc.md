@@ -22,10 +22,10 @@
 | src/GraphQL/gh_group_by_lang.py     |              83 |
 | src/GraphQL/gh_get_largest_repos.py |              98 |
 | src/REST/commits_over_time.py       |             106 |
-| src/REST/project_metrics.py         |             109 |
+| src/REST/project_metrics.py         |             112 |
 | src/REST/add_badge.py               |             138 |
 | src/get_repo_size.py                |             143 |
 | src/kpi.py                          |             169 |
 | src/REST/get_repos.py               |             172 |
 | src/add_gha_wf.py                   |             213 |
-| Total                               |            1954 |
+| Total                               |            1957 |

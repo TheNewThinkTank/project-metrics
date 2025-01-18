@@ -4,6 +4,9 @@
 import concurrent.futures
 from src.REST.add_badge import update_repo  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 
 def update_all_repos(username, repositories) -> None:
@@ -19,7 +22,7 @@ def update_all_repos(username, repositories) -> None:
 
 
 def main() -> None:
-    username = "TheNewThinkTank"
+    username = config_data['github_username']
     repositories = get_gh_repos()
 
     update_all_repos(username, repositories)

@@ -5,12 +5,15 @@ Get all of the file contents of the repository recursively.
 import os
 from pprint import pprint as pp
 from github import Auth, Github
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 
 def get_gh_repo_py_files(
-        username="TheNewThinkTank",
-        access_token=os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"],
-        repo_name="project-metrics"
+        username=config_data['github_username'],
+        access_token=os.environ[config_data['github_token']],
+        repo_name=config_data['project_name']
         ) -> list:
     """_summary_
 
@@ -54,10 +57,12 @@ def get_gh_repo_py_files(
 
 def main() -> None:
 
-    repo_names = [
-        "project-metrics",
-        "N-body-simulations",
-    ]
+    # repo_names = [
+    #     "project-metrics",
+    #     "N-body-simulations",
+    # ]
+
+    repo_names = config_data['python_sample_repos']
 
     for repo_name in repo_names:
         print(f"files in {repo_name}:\n")

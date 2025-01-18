@@ -1,10 +1,15 @@
+"""
+"""
 
 import os
 from src.GraphQL.gh_graphql_post import graphql_post  # type: ignore
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 single_repo_query = """
 {
-  repository(name: "Fitness-Tracker", owner: $login) {
+  repository(name: "fitness-tracker", owner: $login) {
     diskUsage
   }
 }
@@ -84,8 +89,8 @@ def fetch_largest_repos(username: str, token) -> None:
 
 
 def main() -> None:
-    token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
-    username = "TheNewThinkTank"
+    token = os.environ[config_data['finegrained_github_token']]
+    username = config_data['github_username']
     fetch_largest_repos(username, token)
 
 

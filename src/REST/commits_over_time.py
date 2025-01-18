@@ -5,6 +5,9 @@ from datetime import datetime  # type: ignore
 import matplotlib.pyplot as plt  # type: ignore
 import requests  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 
 def get_commits(owner: str, repo: str) -> tuple[list, list]:
@@ -66,7 +69,7 @@ def make_line_chart(repo: str, sorted_dates: list, commit_counts: list) -> None:
     :type commit_counts: list
     """
 
-    basepath = "docs/project_docs/img/"
+    basepath = f"{config_data['docs_path']}/img/"
 
     plt.figure(figsize=(10, 6))
     plt.plot(sorted_dates, commit_counts, marker="o")
@@ -80,17 +83,19 @@ def make_line_chart(repo: str, sorted_dates: list, commit_counts: list) -> None:
     plt.close()
     with open(local_file_path, "rb") as file:
         content = file.read()
-    save_file_to_github("project-metrics", local_file_path, content)
+    save_file_to_github(config_data['project_name'], local_file_path, content)
 
 
 def main() -> None:
-    owner = "TheNewThinkTank"
+    owner = config_data['github_username']
 
-    repos = [
-        "project-metrics",
-        "code-vault",
-        "fitness-tracker",
-    ]
+    # repos = [
+    #     "project-metrics",
+    #     "code-vault",
+    #     "fitness-tracker",
+    # ]
+
+    repos = config_data['active_repos']
 
     for repo in repos:
         sorted_dates, commit_counts = get_commits(owner, repo)

@@ -2,6 +2,9 @@
 """
 
 from src.save_file_to_github import save_file_to_github  # type: ignore
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 # TODO: sort by loc descending
 # TODO: consolidate wily tables
@@ -38,11 +41,11 @@ def wily_to_md(in_file) -> None:
 
     with open(local_file_path, "rb") as file:
         content = file.read()
-    save_file_to_github("project-metrics", local_file_path, content)
+    save_file_to_github(config_data['project_name'], local_file_path, content)
 
 
 def main() -> None:
-    basepath = "docs/project_docs/code-analysis/"
+    basepath = f"{config_data['docs_path']}/code-analysis/"
     files = [
         "wily-loc-raw",
         "wily-mi-raw",

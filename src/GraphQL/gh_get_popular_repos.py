@@ -6,6 +6,9 @@ from pprint import pprint as pp
 from src.save_file_to_github import save_file_to_github  # type: ignore
 from src.GraphQL.gh_graphql_post import graphql_post  # type: ignore
 from file_convertion_tools.make_md_table import table  # type: ignore
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 
 def fetch_top_repos(username: str, token: str) -> list:
@@ -59,13 +62,12 @@ def fetch_top_repos(username: str, token: str) -> list:
 
 
 def main() -> None:
-    basepath = "docs/project_docs/query-results/"
-    token = os.environ["FG_GITHUB_ACCESS_TOKEN"]
-    popular_repos = fetch_top_repos("TheNewThinkTank", token)
-    repo_name = "project-metrics"
+    basepath = f"{config_data['docs_path']}/query-results/"
+    token = os.environ[config_data['finegrained_github_token']]
+    popular_repos = fetch_top_repos(config_data['github_username'], token)
     file_path = f"{basepath}popular-repos.md"
     file_content = table(popular_repos)
-    save_file_to_github(repo_name, file_path, file_content)
+    save_file_to_github(config_data['project_name'], file_path, file_content)
 
 
 if __name__ == "__main__":

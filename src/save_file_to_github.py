@@ -3,6 +3,9 @@
 
 import os
 from github import Github
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 
 def save_file_to_github(repo_name: str, file_path: str, file_content) -> None:
@@ -16,10 +19,10 @@ def save_file_to_github(repo_name: str, file_path: str, file_content) -> None:
     :type file_content: _type_
     """
 
-    token = os.environ.get("PROJECT_METRICS_GITHUB_ACCESS_TOKEN")
+    token = os.environ.get(config_data['github_token'])
     if not token:
         raise ValueError(
-            "PROJECT_METRICS_GITHUB_ACCESS_TOKEN environment variable is not set"
+            f"{config_data['github_token']} environment variable is not set"
             )
 
     g = Github(token)

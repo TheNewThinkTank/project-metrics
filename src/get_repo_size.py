@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt  # type: ignore
 import seaborn as sns  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 
 def get_repo_names_and_sizes() -> tuple[list[str], list[int]]:
@@ -15,7 +18,11 @@ def get_repo_names_and_sizes() -> tuple[list[str], list[int]]:
     """
     repositories = get_gh_repos()
     name_and_size = {repo.name: repo.size for repo in repositories}
-    data_by_size_desc = sorted(name_and_size.items(), key=lambda x: x[1], reverse=True)
+    data_by_size_desc = sorted(
+        name_and_size.items(),
+        key=lambda x: x[1],
+        reverse=True
+        )
     names = [item[0] for item in data_by_size_desc]
     sizes = [item[1] for item in data_by_size_desc]
     return names, sizes
@@ -73,7 +80,7 @@ def commit_barplot(
     :type filename: str, optional
     """
     sns.set_theme(style="whitegrid")
-    basepath = "docs/project_docs/img/"
+    basepath = f"{config_data['docs_path']}/img/"
     figure_title_parts = filename.split("_")
     figure_title = " ".join(map(str.title, figure_title_parts))
     local_file_path = f"{basepath}{filename}.png"
@@ -89,7 +96,7 @@ def commit_barplot(
     plt.close()
     with open(local_file_path, "rb") as file:
         content = file.read()
-    save_file_to_github("project-metrics", local_file_path, content)
+    save_file_to_github(config_data['project_name'], local_file_path, content)
 
 
 def main() -> None:

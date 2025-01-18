@@ -10,6 +10,9 @@ from typing import Literal
 from github import PaginatedList, Repository
 from src.get_badge import get_badge  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 
 def update_readme(
@@ -98,8 +101,9 @@ def update_repo(
 
 
 def update_all_repos(
-    username: str, repositories: PaginatedList.PaginatedList[Repository.Repository]
-) -> None:
+    username: str,
+    repositories: PaginatedList.PaginatedList[Repository.Repository]
+    ) -> None:
     """_summary_
 
     :param username: _description_
@@ -127,7 +131,7 @@ def update_all_repos(
 
 def main() -> None:
     repositories = get_gh_repos()
-    update_all_repos("TheNewThinkTank", repositories)
+    update_all_repos(config_data['github_username'], repositories)
 
 
 if __name__ == "__main__":

@@ -9,6 +9,9 @@ from src.REST.add_badge import update_repo  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
 from src.util.get_readme_format import get_readme_format  # type: ignore
 from src.util.repo_has_lang import repo_has_lang  # type: ignore
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 
 def has_actions_workflow(repo: Repository.Repository) -> bool:
@@ -29,7 +32,10 @@ def has_actions_workflow(repo: Repository.Repository) -> bool:
         return False
 
 
-def make_gha_file_content(repo: Repository.Repository, language: str = "Python") -> str:
+def make_gha_file_content(
+        repo: Repository.Repository,
+        language: str="Python"
+        ) -> str:
     """_summary_
 
     :param repo: _description_
@@ -51,7 +57,7 @@ def make_gha_file_content(repo: Repository.Repository, language: str = "Python")
 def create_workflow(
     repo: Repository.Repository,
     file_content: str,
-    file_path: str = ".github/workflows/wf.yml",
+    file_path: str=config_data['wf_path'],
 ) -> None:
     """_summary_
 
@@ -79,7 +85,7 @@ def create_workflow(
 
     # Create a new commit
     new_commit = repo.create_git_commit(
-        message=f"Add {file_path} via PyGithub from project-metrics",
+        message=f"Add {file_path} via PyGithub from {config_data['project_name']}",
         tree=new_tree,
         parents=[latest_commit.commit],
     )
@@ -189,13 +195,15 @@ def update_repos(username, repositories, language):
 
 
 def main() -> None:
-    username = "TheNewThinkTank"
+    username = config_data['github_username']
     repositories = get_gh_repos()
 
-    languages = [
-        "Python",
-        "TypeScript",
-    ]
+    # languages = [
+    #     "Python",
+    #     "TypeScript",
+    # ]
+
+    languages = config_data['languages']
 
     for language in languages:
         update_repos(username, repositories, language)

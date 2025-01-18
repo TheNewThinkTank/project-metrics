@@ -5,10 +5,13 @@ import argparse
 import os
 from github import Github
 from src.REST.add_badge import update_repo  # type: ignore
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 
 def main() -> None:
-    username = "TheNewThinkTank"
+    username = config_data['github_username']
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo_name", type=str, required=True)
     args = parser.parse_args()
@@ -17,7 +20,7 @@ def main() -> None:
     if repo_name == username:
         return
 
-    g = Github(os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"])
+    g = Github(os.environ[config_data['github_token']])
     repo = g.get_user().get_repo(repo_name)
     update_repo(username, repo, "size_badge")
 

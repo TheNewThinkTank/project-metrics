@@ -6,6 +6,9 @@ from file_convertion_tools.make_md_table import table  # type: ignore
 from src.REST.get_repos import get_all_repos, get_repo_info, print_repo_info  # type: ignore
 from src.config import platforms  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 
 def repo_missing_descriptions(repo_info: dict | None) -> bool:
@@ -35,7 +38,7 @@ def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:
     """
 
     logger.info(
-        "  ####################     Repos missing descriptions:     ####################  "
+        f"\t{'#' * 20}\tRepos missing descriptions:\t{'#' * 20}\t"
     )
 
     repos_wo_desc = []
@@ -69,7 +72,7 @@ def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:
 def main() -> None:
     """_summary_"""
 
-    basepath = "docs/project_docs/query-results/"
+    basepath = f"{config_data['docs_path']}/query-results/"
     all_repos = get_all_repos()
 
     # for repo in bb_repos:
@@ -89,10 +92,9 @@ def main() -> None:
 
     repos_wo_desc = get_repos_wo_desc(platforms, all_repos)
 
-    repo_name = "project-metrics"
     file_path = f"{basepath}repos-without-description.md"
     file_content = table(repos_wo_desc)
-    save_file_to_github(repo_name, file_path, file_content)
+    save_file_to_github(config_data['project_name'], file_path, file_content)
 
     # popular_repos = get_popular_repos(platforms, all_repos)
     # for repo in popular_repos:

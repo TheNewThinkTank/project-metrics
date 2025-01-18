@@ -3,11 +3,14 @@
 
 import os
 from github import Auth, Github, PaginatedList, Repository
+from src.util.config_loader import load_config  # type: ignore
+
+config_data = load_config()
 
 
 def get_gh_repos(
-    username: str = "TheNewThinkTank",
-    access_token=os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"],
+    username: str=config_data['github_username'],
+    access_token=os.environ[config_data['github_token']],
 ) -> PaginatedList.PaginatedList[Repository.Repository]:
     """_summary_
 

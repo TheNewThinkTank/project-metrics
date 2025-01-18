@@ -3,6 +3,12 @@
 
 import os
 from typing import Any
+import yaml
+
+with open(".config/config.yml", "r") as rf:
+    data = yaml.safe_load(rf)
+
+print(data)
 
 # Define the API endpoints and access tokens for each platform
 platforms = {

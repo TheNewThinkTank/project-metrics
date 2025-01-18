@@ -1,5 +1,5 @@
-from unittest.mock import Mock
 
+from unittest.mock import Mock
 from src.util.get_readme_format import get_readme_format
 
 

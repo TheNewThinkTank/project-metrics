@@ -1,5 +1,5 @@
-from unittest.mock import Mock
 
+from unittest.mock import Mock
 from src.util.repo_has_lang import repo_has_lang
 
 

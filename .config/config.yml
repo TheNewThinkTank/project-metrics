@@ -1,0 +1,24 @@
+---
+
+docs_path: "docs/project_docs"
+
+github_username: "TheNewThinkTank"
+gitlab_username: "TheNewThinkTank"
+bitbucket_username: "Gustav_Collin_Rasmussen"
+
+github_token: "PROJECT_METRICS_GITHUB_ACCESS_TOKEN"
+gitlab_token: "PROJECT_METRICS_GITLAB_ACCESS_TOKEN"
+bitbucket_token: "PROJECT_METRICS_BITBUCKET_ACCESS_TOKEN"
+
+languages:
+  - "Python"
+  - "TypeScript"
+
+python_sample_repos:
+  - "project-metrics"
+  - "fitness-tracker"
+  - "N-body-simulations"
+
+# Maybe not needed
+wf_path: ".github/workflows/wf.yml"
+

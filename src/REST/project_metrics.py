@@ -44,7 +44,7 @@ def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:
     repos_wo_desc = []
     for repo in all_repos:
         repo_info = get_repo_info(platforms, repo)
-        if repo_missing_descriptions(repo_info):
+        if repo_info and repo_missing_descriptions(repo_info):
             print_repo_info(repo_info)
             repos_wo_desc.append(repo_info)
     return repos_wo_desc
@@ -91,6 +91,9 @@ def main() -> None:
     #     print()
 
     repos_wo_desc = get_repos_wo_desc(platforms, all_repos)
+    if not repos_wo_desc:
+        print("No repositories without descriptions found.")
+        return
 
     file_path = f"{basepath}repos-without-description.md"
     file_content = table(repos_wo_desc)

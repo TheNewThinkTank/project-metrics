@@ -25,6 +25,7 @@ jobs:
           cache: pip
 
       - name: Install and cache poetry
+        id: install-poetry
         run: make install-poetry
         if: steps.cache.outputs.cache-hit != 'true'
 

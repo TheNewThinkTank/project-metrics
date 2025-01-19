@@ -4,7 +4,7 @@
 import base64
 import datetime
 import os
-from typing import TypedDict
+from typing import TypedDict, Any
 from pycodestyle import Checker, BaseReport, StyleGuide  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
 from src.util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore
@@ -36,13 +36,54 @@ class KPIDict(TypedDict):
     pep8_violations: int
 
 
-def get_kpi_data(files: list) -> dict:
-    """_summary_
+def decode_file_content(item) -> list[str]:
+    """Decode the base64 content of a file and split it into lines."""
+    file_content = base64.b64decode(item.content).decode('utf-8')
+    return file_content.splitlines()
+
+
+def filter_non_empty_lines(lines: list[str]) -> list[str]:
+    """Filter out empty lines from the list of lines."""
+    return [line for line in lines if line.strip()]
+
+
+def process_file(item, style_guide) -> KPIDict | None:
+    """Process a single file to collect KPI data."""
+    if any(x in item.path for x in [".venv", "__init__.py"]):
+        return None
+
+    print(f"Processing: {item}")
+    lines = decode_file_content(item)
+    line_count = len(lines)
+
+    if line_count == 0 or all(line.strip() == "" for line in lines):
+        print(f"Skipping empty or blank file: {item.path}")
+        return None
+
+    non_empty_lines = filter_non_empty_lines(lines)
+    if not non_empty_lines:
+        print(f"Skipping file with only blank lines: {item.path}")
+        return None
+
+    report = QuietReport(style_guide.options)
+    checker = Checker(lines=non_empty_lines, report=report)
+    checker.check_all()
+    pep8_count = report.violations_count
+
+    return {
+        "module": item.path,
+        "lines": line_count,
+        "pep8_violations": pep8_count
+    }
+
+
+def get_kpi_data(files: list) -> dict[str, Any]:
+    """Collect KPI data from a list of files.
 
     :param files: _description_
     :type files: list
     :return: _description_
-    :rtype: dict
+    :rtype: dict[str, Any]
     """
 
     file_count = 0
@@ -50,47 +91,21 @@ def get_kpi_data(files: list) -> dict:
     style_guide = StyleGuide(quiet=True)
 
     for item in files:
-        if any(x in item.path for x in [".venv", "__init__.py"]):
-            continue
+        kpi_data = process_file(item, style_guide)
+        if kpi_data:
+            kpi_list.append(kpi_data)
+            file_count += 1
 
-        print(f"Processing: {item}")
-        file_content = base64.b64decode(item.content).decode('utf-8')
-        lines = file_content.splitlines()
-        line_count = len(lines)
-
-        if line_count == 0 or all(line.strip() == "" for line in lines):
-            print(f"Skipping empty or blank file: {item.path}")
-            continue
-
-        # Filter out empty lines to prevent errors
-        non_empty_lines = [line for line in lines if line.strip()]
-
-        if not non_empty_lines:
-            print(f"Skipping file with only blank lines: {item.path}")
-            continue
-
-        report = QuietReport(style_guide.options)
-        checker = Checker(lines=non_empty_lines, report=report)
-        checker.check_all()
-        pep8_count = report.violations_count
-
-        # collect KPI data
-        kpi_list.append({
-            "module": item.path,
-            "lines": line_count,
-            "pep8_violations": pep8_count
-        })
-        file_count += 1
-    total_line_count = sum([x["lines"] for x in kpi_list])
-    total_pep8_violations = sum([x["pep8_violations"] for x in kpi_list])
-    # Sort files by line count in descending order
+    total_line_count = sum(x["lines"] for x in kpi_list)
+    total_pep8_violations = sum(x["pep8_violations"] for x in kpi_list)
     kpi_list_sorted = sorted(kpi_list, key=lambda x: x["lines"], reverse=True)
 
-    return {"kpi_list_sorted": kpi_list_sorted,
-            "file_count": file_count,
-            "total_line_count": total_line_count,
-            "total_pep8_violations": total_pep8_violations
-            }
+    return {
+        "kpi_list_sorted": kpi_list_sorted,
+        "file_count": file_count,
+        "total_line_count": total_line_count,
+        "total_pep8_violations": total_pep8_violations
+    }
 
 
 def write_kpi_md(
@@ -139,11 +154,6 @@ def write_kpi_md(
 
 def main() -> None:
 
-    # repo_names = [
-    #     "project-metrics",
-    #     "N-body-simulations",
-    #     "fitness-tracker",
-    # ]
     repo_names = config_data['python_sample_repos']
 
     basepath = f"{config_data['docs_path']}/code-analysis/"

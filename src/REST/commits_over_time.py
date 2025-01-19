@@ -2,6 +2,7 @@
 """
 
 from datetime import datetime  # type: ignore
+from typing import Any
 import matplotlib.pyplot as plt  # type: ignore
 import requests  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
@@ -47,7 +48,7 @@ def get_commits(owner: str, repo: str) -> tuple[list[datetime], list[int]]:
     :rtype: tuple[list[datetime], list[int]]
     """
     url = f"https://api.github.com/repos/{owner}/{repo}/commits"
-    commit_activity = {}
+    commit_activity: dict[Any, Any] = {}
     page = 1
 
     while True:

@@ -4,7 +4,9 @@ If so, check if GitHub Actions workflow already exists,
 otherwise, add wf with Qualify-Code job, with linting etc.
 """
 
-from github import InputGitTreeElement, Repository
+from github import InputGitTreeElement  # , Repository, PaginatedList
+from github.PaginatedList import PaginatedList
+from github.Repository import Repository
 from src.REST.add_badge import update_repo  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
 from src.util.get_readme_format import get_readme_format  # type: ignore
@@ -14,7 +16,7 @@ from src.util.config_loader import load_config  # type: ignore
 config_data = load_config()
 
 
-def has_actions_workflow(repo: Repository.Repository) -> bool:
+def has_actions_workflow(repo: Repository) -> bool:
     """_summary_
 
     :param repo: _description_
@@ -33,7 +35,7 @@ def has_actions_workflow(repo: Repository.Repository) -> bool:
 
 
 def make_gha_file_content(
-        repo: Repository.Repository,
+        repo: Repository,
         language: str="Python"
         ) -> str:
     """_summary_
@@ -55,7 +57,7 @@ def make_gha_file_content(
 
 
 def create_workflow(
-    repo: Repository.Repository,
+    repo: Repository,
     file_content: str,
     file_path: str=config_data['wf_path'],
 ) -> None:
@@ -98,7 +100,7 @@ def create_workflow(
 
 
 def create_file(
-        repo: Repository.Repository,
+        repo: Repository,
         file_path: str,
         file_asset: str
         ) -> None:
@@ -165,7 +167,10 @@ def create_and_add_workflow(repo, language: str) -> None:
     print(f"\tcreated workflow for {repo.name}")
 
 
-def update_repos(username: str, repositories: list, language: str) -> None:
+def update_repos(username: str,
+                 repositories: list[Repository],
+                 language: str
+                 ) -> None:
     """Update repositories with the specified language by adding necessary files and workflows.
 
     :param username: GitHub username
@@ -210,7 +215,7 @@ def update_repos(username: str, repositories: list, language: str) -> None:
 
 def main() -> None:
     username = config_data['github_username']
-    repositories = get_gh_repos()
+    repositories: PaginatedList[Repository] = get_gh_repos()
 
     # languages = [
     #     "Python",
@@ -220,7 +225,7 @@ def main() -> None:
     languages = config_data['languages']
 
     for language in languages:
-        update_repos(username, repositories, language)
+        update_repos(username, list(repositories), language)
 
 
 if __name__ == "__main__":

@@ -1,10 +1,11 @@
 """_summary_
 """
 
+from typing import Any
 import requests  # type: ignore
 
 
-def fetch_repositories(username: str, headers: dict[str, str]) -> list[dict]:
+def fetch_repositories(username: str, headers: dict[str, str]) -> list[dict[str, Any]]:
     """Fetch repositories for a given user.
 
     :param username: GitHub username
@@ -23,7 +24,7 @@ def fetch_repositories(username: str, headers: dict[str, str]) -> list[dict]:
     return response.json()
 
 
-def fetch_tags(tags_url: str, headers: dict[str, str]) -> list[dict]:
+def fetch_tags(tags_url: str, headers: dict[str, str]) -> list[dict[str, Any]]:
     """Fetch tags for a given repository.
 
     :param tags_url: _description_
@@ -47,14 +48,14 @@ def group_repos_by_tag(username: str, token: str) -> None:
     :param token: GitHub token for authentication
     :type token: str
     """
-    headers = {"Authorization": f"token {token}"}
+    headers: dict[str, str] = {"Authorization": f"token {token}"}
     repositories = fetch_repositories(username, headers)
     tag_groups: dict[str, list[str]] = {}
 
     for repo in repositories:
-        name = repo["name"]
-        tags_url = repo["tags_url"].replace("{/repo}", "")
-        tags = fetch_tags(tags_url, headers)
+        name: str = repo["name"]
+        tags_url: str = repo["tags_url"].replace("{/repo}", "")
+        tags: list[dict[str, Any]] = fetch_tags(tags_url, headers)
 
         for tag in tags:
             tag_name = tag["name"]
@@ -63,9 +64,9 @@ def group_repos_by_tag(username: str, token: str) -> None:
             else:
                 tag_groups[tag_name] = [name]
 
-    for tag, repos in tag_groups.items():
+    for tag, repos in tag_groups.items():  # type: ignore
         print(f"Tag: {tag}")
-        for repo in repos:
+        for repo in repos:  # type: ignore
             print(f"- {repo}")
         print()
 

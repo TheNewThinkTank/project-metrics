@@ -82,6 +82,7 @@ jobs:
           poetry run python src/GraphQL/gh_get_popular_repos.py
         env:
           FG_GITHUB_ACCESS_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}
+          PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
 
       - name: GH GraphQL repos by lang
         run: |

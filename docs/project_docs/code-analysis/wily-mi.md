@@ -2,16 +2,16 @@
 
 | File                                |   Maintainability Index |
 | --- | --- |
+| src/kpi.py                          |                 63.8798 |
 | src/REST/project_metrics.py         |                 64.1844 |
-| src/kpi.py                          |                 67.5931 |
-| src/add_gha_wf.py                   |                 72.643  |
+| src/add_gha_wf.py                   |                 71.0096 |
 | src/REST/get_repos.py               |                 73.5264 |
 | src/get_repo_size.py                |                 74.9578 |
-| src/REST/commits_over_time.py       |                 77.1647 |
-| src/REST/add_badge.py               |                 78.1519 |
+| src/REST/commits_over_time.py       |                 75.3467 |
+| src/wily_to_md.py                   |                 76.169  |
+| src/REST/add_badge.py               |                 77.1792 |
 | src/GraphQL/gh_group_by_lang.py     |                 79.1362 |
-| src/wily_to_md.py                   |                 79.9369 |
-| src/REST/group_by_tag.py            |                 81.3172 |
+| src/REST/group_by_tag.py            |                 79.9072 |
 | src/util/get_gh_repo_content.py     |                 82.7175 |
 | src/GraphQL/gh_get_popular_repos.py |                 84.3395 |
 | src/GraphQL/gh_get_largest_repos.py |                 86.108  |
@@ -28,4 +28,4 @@
 | src/remove_badge.py                 |                100      |
 | src/config.py                       |                100      |
 | src/GraphQL/gh_graphql_post.py      |                100      |
-| Total                               |                 87.8858 |
+| Total                               |                 87.4419 |

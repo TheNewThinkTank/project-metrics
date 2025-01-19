@@ -1,31 +1,31 @@
 # project-metrics KPIs
 
 logging timestamp:
-2025-01-19 09:18:02.855133
+2025-01-19 12:30:42.185025
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 31| 2220 | 205 |
+| 31| 2295 | 215 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
-| `src/add_gha_wf.py                       ` |        213 |                   22 |
+| `src/add_gha_wf.py                       ` |        232 |                   23 |
+| `src/kpi.py                              ` |        179 |                   20 |
 | `src/REST/get_repos.py                   ` |        172 |                   13 |
-| `src/kpi.py                              ` |        169 |                   17 |
+| `src/REST/add_badge.py                   ` |        145 |                   10 |
 | `src/get_repo_size.py                    ` |        143 |                   11 |
-| `src/REST/add_badge.py                   ` |        138 |                   12 |
+| `src/REST/commits_over_time.py           ` |        112 |                   10 |
 | `src/REST/project_metrics.py             ` |        112 |                   10 |
-| `src/REST/commits_over_time.py           ` |        106 |                    6 |
 | `src/GraphQL/gh_get_largest_repos.py     ` |         98 |                    8 |
 | `src/GraphQL/gh_group_by_lang.py         ` |         83 |                    5 |
+| `src/REST/group_by_tag.py                ` |         75 |                    6 |
 | `src/GraphQL/gh_get_popular_repos.py     ` |         74 |                    5 |
 | `src/util/get_gh_repo_content.py         ` |         73 |                    7 |
 | `test/test_get_gh_repos.py               ` |         72 |                    5 |
-| `src/wily_to_md.py                       ` |         59 |                    8 |
+| `src/wily_to_md.py                       ` |         70 |                    9 |
 | `src/config.py                           ` |         58 |                    9 |
 | `test/test_get_readme_format.py          ` |         57 |                    5 |
 | `src/readme_sentiment.py                 ` |         53 |                    4 |
-| `src/REST/group_by_tag.py                ` |         53 |                    3 |
 | `src/save_file_to_github.py              ` |         50 |                    4 |
 | `docs/sphinx-docs/conf.py                ` |         49 |                    2 |
 | `test/test_get_badge.py                  ` |         43 |                    9 |

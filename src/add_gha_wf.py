@@ -115,12 +115,14 @@ def create_file(
         file_content = rf.read()
 
         if file_path == "pyproject.toml":
-            repo_description = repo.description if repo.description is not None else ""
-            file_content = file_content.replace("{project-name}", repo.name)
-            file_content = file_content.replace("{description}", repo_description)
-            file_content = file_content.replace(
-                "{readme-format}", get_readme_format(repo)
-            )
+            repo_description = repo.description or ""
+            replacements = {
+                "{project-name}": repo.name,
+                "{description}": repo_description,
+                "{readme-format}": get_readme_format(repo)
+            }
+            for placeholder, value in replacements.items():
+                file_content = file_content.replace(placeholder, value)
 
         if file_path == "package-lock.json":
             file_content = file_content.replace("{project-name}", repo.name)
@@ -137,15 +139,41 @@ def create_file(
         )
 
 
-def update_repos(username, repositories, language):
-    """_summary_
+def add_language_files(repo, files: list[tuple[str, str]]) -> None:
+    """Add language-specific files to the repository.
 
-    :param username: _description_
-    :type username: _type_
-    :param repositories: _description_
-    :type repositories: _type_
-    :param language: _description_
-    :type language: _type_
+    :param repo: Repository object
+    :type repo: object
+    :param files: List of tuples containing file paths and asset paths
+    :type files: list[tuple[str, str]]
+    """
+    for file_path, asset_path in files:
+        create_file(repo, file_path, asset_path)
+
+
+def create_and_add_workflow(repo, language: str) -> None:
+    """Create and add a GitHub Actions workflow to the repository.
+
+    :param repo: Repository object
+    :type repo: object
+    :param language: Programming language of the repository
+    :type language: str
+    """
+    file_content = make_gha_file_content(repo, language=language)
+    workflow_file_path = f".github/workflows/{language.lower()}-wf.yml"
+    create_workflow(repo, file_content, file_path=workflow_file_path)
+    print(f"\tcreated workflow for {repo.name}")
+
+
+def update_repos(username: str, repositories: list, language: str) -> None:
+    """Update repositories with the specified language by adding necessary files and workflows.
+
+    :param username: GitHub username
+    :type username: str
+    :param repositories: List of repository objects
+    :type repositories: list
+    :param language: Programming language of the repositories
+    :type language: str
     """
     # test on just a few repos first
     num_repos_to_update = 2
@@ -164,33 +192,19 @@ def update_repos(username, repositories, language):
     for repo in repositories:
         if not repo_has_lang(repo, language):
             continue
+
         print(f"Processing repo: {repo.name}")
-
-        for files in lang_files[language]:
-            create_file(repo, files[0], files[1])
-
+        add_language_files(repo, lang_files[language])
         update_repo(username, repo, badge_name="ci_badge")
-        if has_actions_workflow(repo):
-            continue
 
-        # if language == "Python":
-        #     file_content = make_gha_file_content(repo)
-        #     create_workflow(repo, file_content)
-        # if language == "TypeScript":
-        file_content = make_gha_file_content(repo, language=language)
-        create_workflow(
-            repo,
-            file_content,
-            file_path=f".github/workflows/{language.lower()}-wf.yml",
-        )
+        if not has_actions_workflow(repo):
+            create_and_add_workflow(repo, language)
 
-        print(f"\tcreated workflow for {repo.name}")
         repos_encountered += 1
         if repos_encountered >= num_repos_to_update:
-            print(
-                f"\t\thas processed {num_repos_to_update}"
-                f" {language}-based repos now.\nquitting ...\n"
-            )
+            print(f"\t\thas processed {num_repos_to_update}"
+                  f" {language}-based repos now.\nquitting ...\n"
+                  )
             break
 
 

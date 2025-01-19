@@ -15,29 +15,19 @@ from src.util.config_loader import load_config  # type: ignore
 config_data = load_config()
 
 
-def update_readme(
-    repo: Repository.Repository,
-    format: Literal["md", "rst"],
-    badge_name: str
-) -> None:
-    """_summary_
+def generate_badge_content(badge: dict, format: str) -> str:
+    """Generate the badge content based on the format.
 
-    :param repo: _description_
-    :type repo: Repository.Repository
-    :param format: _description_
-    :type format: Literal["md", "rst"]
-    :param badge_name: _description_
-    :type badge_name: str
+    :param badge: Badge information
+    :type badge: dict
+    :param format: Format of the README file ("md" or "rst")
+    :type format: str
+    :return: Badge content string
+    :rtype: str
     """
-
-    repo_name = repo.name
-    badge = get_badge(repo_name, badge_name)
-    # print(f"{badge = }")
-    newline = {"md": "\n", "rst": "\n\n"}.get(format, f"Bad format: {format}")
-
     format_map = {
         "md": (
-            (f"[![{badge['label']}]({badge['value'][0]})]({badge['value'][1]})"),
+            f"[![{badge['label']}]({badge['value'][0]})]({badge['value'][1]})",
             f"![{badge['label']}]({badge['value']})",
         ),
         "rst": (
@@ -48,15 +38,32 @@ def update_readme(
     }
 
     if isinstance(badge["value"], list):
-        badge_content = format_map[format][0]
-    else:
-        badge_content = format_map[format][1]
+        return format_map[format][0]
+    return format_map[format][1]
 
-    repo_contents = repo.get_contents(
-        f"README.{format}",
-        ref=repo.default_branch
-        )
 
+def update_readme(
+    repo: Repository.Repository,
+    format: Literal["md", "rst"],
+    badge_name: str
+) -> None:
+    """Update the README file with a badge.
+
+    :param repo: GitHub repository object
+    :type repo: Repository.Repository
+    :param format: Format of the README file ("md" or "rst")
+    :type format: Literal["md", "rst"]
+    :param badge_name: Name of the badge to add
+    :type badge_name: str
+    """
+
+    repo_name = repo.name
+    badge = get_badge(repo_name, badge_name)
+    newline = {"md": "\n", "rst": "\n\n"}.get(format, "\n")
+
+    badge_content = generate_badge_content(badge, format)
+    readme_path = f"README.{format}"
+    repo_contents = repo.get_contents(readme_path, ref=repo.default_branch)
     content = repo_contents.decoded_content.decode()  # type: ignore
 
     if badge_content in content:

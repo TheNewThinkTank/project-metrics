@@ -10,47 +10,52 @@ from src.util.config_loader import load_config  # type: ignore
 config_data = load_config()
 
 
-def get_commits(owner: str, repo: str) -> tuple[list, list]:
-    """_summary_
+def fetch_commits(url: str, page: int) -> list[dict]:
+    """Fetch commits from the GitHub API."""
+    response = requests.get(url, params={"page": page, "per_page": 100})
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Failed to fetch commit history. Status code: {response.status_code}")
+        return []
 
-    :param owner: _description_
-    :type owner: str
-    :param repo: _description_
-    :type repo: str
-    :return: _description_
-    :rtype: tuple[list, list]
-    """
 
-    url = f"https://api.github.com/repos/{owner}/{repo}/commits"
-    commit_activity = dict()  # type: ignore
-    page = 1
-    while True:
-        response = requests.get(
-            url, params={"page": page, "per_page": 100}
-        )  # Fetch 100 commits per page
-        if response.status_code == 200:
-            commits_data = response.json()
-
-            if not commits_data:  # No more commits, break the loop
-                break
-
-            for commit in commits_data:
-                commit_date = datetime.strptime(
-                    commit["commit"]["committer"]["date"],
-                    "%Y-%m-%dT%H:%M:%SZ"
-                ).date()
-                if commit_date in commit_activity:
-                    commit_activity[commit_date] += 1
-                else:
-                    commit_activity[commit_date] = 1
-
-            page += 1  # Move to the next page
+def process_commit_activity(
+        commits_data: list[dict],
+        commit_activity: dict
+        ) -> None:
+    """Process commit activity and update the commit_activity dictionary."""
+    for commit in commits_data:
+        commit_date = datetime.strptime(
+            commit["commit"]["committer"]["date"],
+            "%Y-%m-%dT%H:%M:%SZ"
+        ).date()
+        if commit_date in commit_activity:
+            commit_activity[commit_date] += 1
         else:
-            print(
-                f"Failed to fetch commit history."
-                f"Status code: {response.status_code}"
-            )
+            commit_activity[commit_date] = 1
+
+
+def get_commits(owner: str, repo: str) -> tuple[list[datetime], list[int]]:
+    """Get commit dates and counts for a given repository.
+
+    :param owner: Repository owner
+    :type owner: str
+    :param repo: Repository name
+    :type repo: str
+    :return: Tuple of sorted commit dates and their corresponding counts
+    :rtype: tuple[list[datetime], list[int]]
+    """
+    url = f"https://api.github.com/repos/{owner}/{repo}/commits"
+    commit_activity = {}
+    page = 1
+
+    while True:
+        commits_data = fetch_commits(url, page)
+        if not commits_data:
             break
+        process_commit_activity(commits_data, commit_activity)
+        page += 1
 
     sorted_dates = sorted(commit_activity.keys())
     commit_counts = [commit_activity[date] for date in sorted_dates]

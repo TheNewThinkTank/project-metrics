@@ -9,6 +9,8 @@ on:
     secrets:
       PROJECT_METRICS_GITHUB_ACCESS_TOKEN:
         required: true
+      FG_GITHUB_ACCESS_TOKEN:
+        required: true
 
 jobs:
   update_repos:

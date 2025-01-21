@@ -76,6 +76,9 @@ jobs:
       - name: REST repos missing description
         run: |
           poetry run python src/REST/project_metrics.py
+        env:
+          # FG_GITHUB_ACCESS_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}
+          PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
 
       - name: GH GraphQL most popular repos
         run: |

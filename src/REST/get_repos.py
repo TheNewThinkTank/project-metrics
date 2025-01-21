@@ -1,6 +1,7 @@
 """_summary_
 """
 
+import os
 import requests  # type: ignore
 # from icecream import ic  # type: ignore
 from loguru import logger  # type: ignore
@@ -19,7 +20,11 @@ def get_repos(platform: str) -> list[dict]:
     username = platforms[platform]["username"]
     url = platforms[platform]["repos_url"]
 
-    response = requests.get(url)
+    headers = {
+        "Authorization": f"token {os.getenv('PROJECT_METRICS_GITHUB_ACCESS_TOKEN')}"
+    }
+
+    response = requests.get(url, headers=headers)
     response.raise_for_status()  # Raise an exception for 4xx or 5xx status codes
     repos = response.json()
 

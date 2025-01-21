@@ -92,3 +92,4 @@ jobs:
           poetry run python src/GraphQL/gh_group_by_lang.py
         env:
           FG_GITHUB_ACCESS_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}
+          PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}

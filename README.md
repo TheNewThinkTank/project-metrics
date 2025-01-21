@@ -7,5 +7,3 @@
 [![Documentation Status](https://readthedocs.org/projects/project-metrics/badge/?version=latest)](https://project-metrics.readthedocs.io/en/latest/?badge=latest)
 
 ![CI](https://github.com/TheNewThinkTank/project-metrics/actions/workflows/wf.yml/badge.svg)
-![CI](https://github.com/TheNewThinkTank/project-metrics/actions/workflows/matrix_update_gh_repos.yml/badge.svg)
-![CI](https://github.com/TheNewThinkTank/project-metrics/actions/workflows/threading_update_gh_repos.yml/badge.svg)

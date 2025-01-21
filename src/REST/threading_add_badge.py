@@ -22,10 +22,8 @@ def update_all_repos(username, repositories) -> None:
 
 
 def main() -> None:
-    username = config_data['github_username']
     repositories = get_gh_repos()
-
-    update_all_repos(username, repositories)
+    update_all_repos(config_data['github_username'], repositories)
 
 
 if __name__ == "__main__":

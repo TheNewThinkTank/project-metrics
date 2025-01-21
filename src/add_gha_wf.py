@@ -214,13 +214,9 @@ def update_repos(username: str,
 
 
 def main() -> None:
+
     username = config_data['github_username']
     repositories: PaginatedList[Repository] = get_gh_repos()
-
-    # languages = [
-    #     "Python",
-    #     "TypeScript",
-    # ]
 
     languages = config_data['languages']
 

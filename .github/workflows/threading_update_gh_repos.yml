@@ -20,7 +20,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ env.PYTHONVERSION }}  # 3.11
+          python-version: ${{ env.PYTHONVERSION }}
           cache: pip
 
       - name: Install and cache poetry

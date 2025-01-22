@@ -47,17 +47,10 @@ def test_get_gh_repos_with_custom_values(mock_github):
     repo_mock = Mock()
     user_mock = Mock()
     user_mock.get_repos.return_value = repo_mock
-
-    # github_mock = Mock()
-    # github_mock.get_user.return_value = user_mock
     mock_github.return_value.get_user.return_value = user_mock
 
     # Act
-    result = get_gh_repos(
-        username=custom_username,
-        access_token=os.environ["PROJECT_METRICS_GITHUB_ACCESS_TOKEN"],
-    )
-    # result = get_gh_repos(username=custom_username, access_token=custom_access_token)
+    result = get_gh_repos(username=custom_username)
 
     # Assert
     assert result == repo_mock

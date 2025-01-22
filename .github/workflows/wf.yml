@@ -24,26 +24,28 @@ jobs:
     uses: ./.github/workflows/job_qualify_code.yml
     with:
       WILY_PATH: "docs/project_docs/code-analysis/"
-      PYTHONVERSION: ${{ needs.vars.outputs.PYTHONVERSION }}  # 3.12
+      PYTHONVERSION: ${{ needs.vars.outputs.PYTHONVERSION }}
     secrets:
       PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
 
   get_metrics:
     needs:
+      - vars
       - qualify_code
     uses: ./.github/workflows/job_get_metrics.yml
     with:
-      PYTHONVERSION: 3.12
+      PYTHONVERSION: ${{ needs.vars.outputs.PYTHONVERSION }}
     secrets:
       PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
       FG_GITHUB_ACCESS_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}
 
   update_repos:
     needs:
+      - vars
       - get_metrics
     uses: ./.github/workflows/job_update_repos.yml
     with:
-      PYTHONVERSION: 3.12
+      PYTHONVERSION: ${{ needs.vars.outputs.PYTHONVERSION }}
     secrets:
       PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
       FG_GITHUB_ACCESS_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}

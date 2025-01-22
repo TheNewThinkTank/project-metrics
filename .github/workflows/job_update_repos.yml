@@ -54,6 +54,7 @@ jobs:
 
       - name: add GitHub Actions workflow to repos
         run: |
-          poetry run python src/add_gha_wf.py
+          poetry run python src/threading_add_gha_wf.py
+        # poetry run python src/add_gha_wf.py
         env:
           PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}

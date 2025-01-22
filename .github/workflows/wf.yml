@@ -17,19 +17,19 @@ jobs:
   #   secrets:
   #     PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
 
-  get_metrics:
-    # needs:
-    #   - qualify_code
-    uses: ./.github/workflows/job_get_metrics.yml
-    with:
-      PYTHONVERSION: 3.12
-    secrets:
-      PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
-      FG_GITHUB_ACCESS_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}
+  # get_metrics:
+  #   # needs:
+  #   #   - qualify_code
+  #   uses: ./.github/workflows/job_get_metrics.yml
+  #   with:
+  #     PYTHONVERSION: 3.12
+  #   secrets:
+  #     PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
+  #     FG_GITHUB_ACCESS_TOKEN: ${{ secrets.FG_GITHUB_ACCESS_TOKEN }}
 
   update_repos:
-    needs:
-      - get_metrics
+    # needs:
+    #   - get_metrics
     uses: ./.github/workflows/job_update_repos.yml
     with:
       PYTHONVERSION: 3.12

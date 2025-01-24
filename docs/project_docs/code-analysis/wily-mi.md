@@ -26,7 +26,7 @@
 | src/util/matrix_repos.py            |                 97.9886 |
 | src/save_file_to_github.py          |                 99.2511 |
 | src/get_badge.py                    |                100      |
-| src/remove_badge.py                 |                100      |
 | src/config.py                       |                100      |
+| src/remove_badge.py                 |                100      |
 | src/GraphQL/gh_graphql_post.py      |                100      |
 | Total                               |                 87.2812 |

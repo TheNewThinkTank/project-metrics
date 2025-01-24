@@ -22,8 +22,8 @@
 | src/threading_add_gha_wf.py         |              77 |
 | src/GraphQL/gh_group_by_lang.py     |              83 |
 | src/GraphQL/gh_get_largest_repos.py |              98 |
-| src/REST/commits_over_time.py       |             112 |
 | src/REST/project_metrics.py         |             112 |
+| src/REST/commits_over_time.py       |             112 |
 | src/get_repo_size.py                |             143 |
 | src/REST/add_badge.py               |             145 |
 | src/REST/get_repos.py               |             177 |

@@ -1,11 +1,11 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2025-01-25 00:51:00.101678
+2025-01-26 00:56:03.945514
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 60| 4901 | 564 |
+| 62| 5476 | 667 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -18,14 +18,18 @@ logging timestamp:
 | `test/test_model.py                      ` |        182 |                    9 |
 | `src/combined_metrics/plot_frequency.py  ` |        176 |                    6 |
 | `src/one_rep_max_plot.py                 ` |        169 |                   21 |
-| `src/crud/insert.py                      ` |        157 |                   19 |
+| `test/test_validate.py                   ` |        169 |                   27 |
+| `src/crud/insert.py                      ` |        167 |                   20 |
 | `src/rep_range/rep_range.py              ` |        145 |                    5 |
 | `src/utils/validate.py                   ` |        143 |                   25 |
+| `test/test_read.py                       ` |        142 |                   14 |
+| `test/test_insert.py                     ` |        135 |                   30 |
 | `src/simulations/workout_simulator.py    ` |        135 |                   26 |
 | `test/test_get_workout_duration.py       ` |        134 |                    4 |
+| `test/test_set_db_and_table.py           ` |        129 |                   30 |
 | `src/utils/get_breath_holding.py         ` |        121 |                   16 |
-| `src/crud/update.py                      ` |        110 |                   10 |
 | `src/one_rep_max_calc.py                 ` |        108 |                   22 |
+| `src/crud/update.py                      ` |        107 |                   10 |
 | `src/utils/set_db_and_table.py           ` |        103 |                   11 |
 | `src/main.py                             ` |        101 |                   11 |
 | `test/test_one_rep_max_calc.py           ` |         95 |                   15 |
@@ -39,14 +43,15 @@ logging timestamp:
 | `src/utils/file_conversions/json_to_csv.py` |         72 |                    5 |
 | `test/test_json_to_csv.py                ` |         67 |                   27 |
 | `test/test_google_sheet.py               ` |         63 |                    7 |
+| `test/test_update.py                     ` |         63 |                    8 |
 | `test/test_one_rep_max.py                ` |         61 |                   17 |
 | `src/utils/get_program.py                ` |         60 |                    6 |
 | `src/one_rep_max.py                      ` |         57 |                    6 |
 | `src/crud/delete.py                      ` |         52 |                    6 |
 | `src/utils/custom_storage.py             ` |         52 |                    8 |
-| `test/test_insert.py                     ` |         48 |                    6 |
 | `test/test_simulate_data.py              ` |         45 |                   11 |
 | `src/combined_metrics/get_frequency_data.py` |         45 |                    4 |
+| `test/test_get_exercises.py              ` |         43 |                    7 |
 | `src/utils/get_exercises.py              ` |         43 |                    4 |
 | `src/utils/logger_config.py              ` |         42 |                    3 |
 | `features/steps/lookup.py                ` |         38 |                    6 |
@@ -55,13 +60,10 @@ logging timestamp:
 | `features/steps/validate.py              ` |         31 |                    6 |
 | `features/steps/model.py                 ` |         29 |                    6 |
 | `test/test_plot_model.py                 ` |         26 |                    1 |
-| `test/test_update.py                     ` |         23 |                    3 |
 | `src/utils/file_conversions/json_to_yaml.py` |         23 |                    4 |
-| `test/test_validate.py                   ` |         22 |                    3 |
 | `src/anomaly_detection.py                ` |         21 |                    3 |
 | `src/utils/cleanup.py                    ` |         21 |                    3 |
 | `test/conftest.py                        ` |         20 |                    6 |
-| `test/test_get_exercises.py              ` |         20 |                    2 |
 | `test/test_training.py                   ` |         20 |                    4 |
 | `src/user_settings.py                    ` |         19 |                    2 |
 | `oxygen/setup.py                         ` |         16 |                    1 |

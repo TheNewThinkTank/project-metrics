@@ -8,9 +8,7 @@ from typing import TypedDict, Any
 from pycodestyle import Checker, BaseReport, StyleGuide  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
 from src.util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore
-from src.util.config_loader import load_config  # type: ignore
-
-config_data = load_config()
+from src.util.config_loader import config_data  # type: ignore
 
 
 class QuietReport(BaseReport):

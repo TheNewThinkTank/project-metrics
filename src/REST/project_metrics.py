@@ -6,9 +6,7 @@ from file_convertion_tools.make_md_table import table  # type: ignore
 from src.REST.get_repos import get_all_repos, get_repo_info, print_repo_info  # type: ignore
 from src.config import platforms  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
-from src.util.config_loader import load_config  # type: ignore
-
-config_data = load_config()
+from src.util.config_loader import config_data  # type: ignore
 
 
 def repo_missing_descriptions(repo_info: dict | None) -> bool:

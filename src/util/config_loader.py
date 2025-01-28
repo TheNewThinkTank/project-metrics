@@ -1,34 +1,27 @@
 """_summary_
 """
 
-import yaml  # type: ignore
+from dynaconf import Dynaconf  # type: ignore
+
+settings = Dynaconf(
+        settings_files=[".config/settings.toml"],
+        # envvar_prefix="DYNACONF",
+        environments=True,
+        default_env="default",
+        # load_dotenv=True,
+        # envvar_for_dynaconf=".env",
+    )
+
+settings.setenv("default")  # Ensure the correct environment is active
+# settings.validators.validate()
+config_data = settings.as_dict()
 
 
-def load_config():
-    with open(".config/config.yml", "r") as rf:
-        data = yaml.safe_load(rf)
-    return data
+def main() -> None:
 
+    from pprint import pprint as pp
 
-def main():
-
-    data = load_config()
-
-    # docs_path = data["docs_path"]
-
-    # github_username = data["github_username"]
-    # gitlab_username = data["gitlab_username"]
-    # bitbucket_username = data["bitbucket_username"]
-
-    # github_token = data["github_token"]
-    # gitlab_token = data["gitlab_token"]
-    # bitbucket_token = data["bitbucket_token"]
-
-    # languages = data["languages"]
-    # python_sample_repos = data["python_sample_repos"]
-    # wf_path = data["wf_path"]
-
-    print(data)
+    pp(config_data)
 
 
 if __name__ == "__main__":

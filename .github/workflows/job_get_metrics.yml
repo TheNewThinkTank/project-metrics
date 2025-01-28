@@ -67,10 +67,10 @@ jobs:
       #   run: |
       #       poetry run python src/gh_graphql_get_largest_repos.py
 
-      # TODO: repos have tests (true/false, grouped.
+      # TODO: repos have tests (true/false, grouped).
       # e.g. test or tests folder exist and contains at least 1 non-empty file)
 
-      # TODO: repos have GH Actions wf (true/false, grouped.
+      # TODO: repos have GH Actions wf (true/false, grouped).
       # e.g. .github/workflows/ exist and contains at least 1 non-empty yaml/yml file)
 
       - name: REST repos missing description

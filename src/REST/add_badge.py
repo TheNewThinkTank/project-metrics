@@ -10,9 +10,7 @@ from typing import Literal
 from github import PaginatedList, Repository
 from src.get_badge import get_badge  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
-from src.util.config_loader import load_config  # type: ignore
-
-config_data = load_config()
+from src.util.config_loader import config_data  # type: ignore
 
 
 def generate_badge_content(badge: dict, format: str) -> str:

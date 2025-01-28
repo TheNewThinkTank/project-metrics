@@ -6,9 +6,7 @@ from pprint import pprint as pp
 from src.save_file_to_github import save_file_to_github  # type: ignore
 from src.GraphQL.gh_graphql_post import graphql_post  # type: ignore
 from file_convertion_tools.make_md_table import table  # type: ignore
-from src.util.config_loader import load_config  # type: ignore
-
-config_data = load_config()
+from src.util.config_loader import config_data  # type: ignore
 
 
 def fetch_top_repos(username: str, token: str) -> list:

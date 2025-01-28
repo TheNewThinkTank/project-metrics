@@ -595,6 +595,27 @@ files = [
 ]
 
 [[package]]
+name = "dynaconf"
+version = "3.2.7"
+description = "The dynamic configurator for your Python Project"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "dynaconf-3.2.7-py2.py3-none-any.whl", hash = "sha256:d4bba5d75242acc7bee575e44e190a38e15a7dc02ba5fe7580e4c019ed1acdd6"},
+    {file = "dynaconf-3.2.7.tar.gz", hash = "sha256:1246ef16b0577aa25876f1606e8eb2ea2d9acc61a39087e01c90c5a9da787b46"},
+]
+
+[package.extras]
+all = ["configobj", "hvac", "redis", "ruamel.yaml"]
+configobj = ["configobj"]
+ini = ["configobj"]
+redis = ["redis"]
+test = ["configobj", "django", "flask (>=0.12)", "hvac (>=1.1.0)", "pytest", "pytest-cov", "pytest-mock", "pytest-xdist", "python-dotenv", "radon", "redis", "toml"]
+toml = ["toml"]
+vault = ["hvac"]
+yaml = ["ruamel.yaml"]
+
+[[package]]
 name = "executing"
 version = "2.1.0"
 description = "Get the currently executing AST node of a frame, and other information"
@@ -2518,4 +2539,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "c3ae3a866ba68100fa079c7a12b196a95fbac3e7e770a301ba71cb3064ab2a2b"
+content-hash = "cdb06336a934a782f7584c3187cbc676aff0e530e46534ee42ee8aa77da4091e"

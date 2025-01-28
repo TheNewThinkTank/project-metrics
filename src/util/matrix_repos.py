@@ -3,9 +3,7 @@
 
 import os
 from github import Auth, Github
-from src.util.config_loader import load_config  # type: ignore
-
-config_data = load_config()
+from src.util.config_loader import config_data  # type: ignore
 
 
 def get_gh_repos(

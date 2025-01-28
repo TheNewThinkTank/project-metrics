@@ -3,9 +3,7 @@
 
 import os
 from github import Github
-from src.util.config_loader import load_config  # type: ignore
-
-config_data = load_config()
+from src.util.config_loader import config_data  # type: ignore
 
 
 def save_file_to_github(repo_name: str, file_path: str, file_content) -> None:

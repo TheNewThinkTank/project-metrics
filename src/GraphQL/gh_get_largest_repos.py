@@ -3,9 +3,7 @@
 
 import os
 from src.GraphQL.gh_graphql_post import graphql_post  # type: ignore
-from src.util.config_loader import load_config  # type: ignore
-
-config_data = load_config()
+from src.util.config_loader import config_data  # type: ignore
 
 single_repo_query = """
 {

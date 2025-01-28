@@ -14,14 +14,15 @@ settings = Dynaconf(
 
 settings.setenv("default")  # Ensure the correct environment is active
 # settings.validators.validate()
-config_data = settings.as_dict()
+# config_data = settings.as_dict()
+settings = settings.as_dict()
 
 
 def main() -> None:
 
     from pprint import pprint as pp
 
-    pp(config_data)
+    pp(settings)
 
 
 if __name__ == "__main__":

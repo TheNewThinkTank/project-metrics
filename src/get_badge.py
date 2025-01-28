@@ -1,7 +1,8 @@
 """_summary_
 """
 
-from src.config import gh_badges  # type: ignore
+# from src.config import gh_badges  # type: ignore
+from dynaconf import settings  # type: ignore
 
 
 def get_badge(repo_name: str, badge_name: str):
@@ -16,7 +17,10 @@ def get_badge(repo_name: str, badge_name: str):
     """
 
     # avoid modifying the original gh_badges dictionary, by making a copy
-    badge = gh_badges[badge_name].copy()
+    # badge = gh_badges[badge_name].copy()
+
+    github_badges = settings.platforms.github.badges
+    badge = github_badges[badge_name].copy()
 
     if isinstance(badge["value"], str):  # type: ignore
         badge["value"] = badge["value"].replace("{repo}", repo_name)  # type: ignore

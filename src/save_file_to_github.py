@@ -17,10 +17,10 @@ def save_file_to_github(repo_name: str, file_path: str, file_content) -> None:
     :type file_content: _type_
     """
 
-    token = os.environ.get(config_data['github_token'])
+    token = os.environ.get(config_data['GITHUB_TOKEN'])
     if not token:
         raise ValueError(
-            f"{config_data['github_token']} environment variable is not set"
+            f"{config_data['GITHUB_TOKEN']} environment variable is not set"
             )
 
     g = Github(token)

@@ -9,7 +9,7 @@ from src.util.config_loader import config_data  # type: ignore
 
 
 def main() -> None:
-    username = config_data['github_username']
+    username = config_data['GITHUB_USERNAME']
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo_name", type=str, required=True)
     args = parser.parse_args()
@@ -18,7 +18,7 @@ def main() -> None:
     if repo_name == username:
         return
 
-    g = Github(os.environ[config_data['github_token']])
+    g = Github(os.environ[config_data['GITHUB_TOKEN']])
     repo = g.get_user().get_repo(repo_name)
     update_repo(username, repo, "size_badge")
 

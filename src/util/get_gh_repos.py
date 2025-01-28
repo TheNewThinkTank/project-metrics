@@ -7,7 +7,7 @@ from src.util.config_loader import config_data  # type: ignore
 
 
 def get_gh_repos(
-    username: str=config_data['github_username'],
+    username: str=config_data['GITHUB_USERNAME'],
 ) -> PaginatedList.PaginatedList[Repository.Repository]:
     """_summary_
 
@@ -22,7 +22,7 @@ def get_gh_repos(
     token = os.environ.get(config_data['github_token'])
     if not token:
         raise ValueError(
-            f"{config_data['github_token']} environment variable is not set"
+            f"{config_data['GITHUB_TOKEN']} environment variable is not set"
             )
 
     auth = Auth.Token(token)

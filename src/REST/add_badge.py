@@ -136,7 +136,7 @@ def update_all_repos(
 
 def main() -> None:
     repositories = get_gh_repos()
-    update_all_repos(config_data['github_username'], repositories)
+    update_all_repos(config_data['GITHUB_USERNAME'], repositories)
 
 
 if __name__ == "__main__":

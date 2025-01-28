@@ -9,8 +9,8 @@ from src.util.config_loader import config_data  # type: ignore
 
 
 def get_gh_repo_py_files(
-        username=config_data['github_username'],
-        access_token=os.environ[config_data['github_token']],
+        username=config_data['GITHUB_USERNAME'],
+        access_token=os.environ[config_data['GITHUB_TOKEN']],
         repo_name=config_data['PROJECT_NAME']
         ) -> list:
     """_summary_

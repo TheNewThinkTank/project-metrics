@@ -87,8 +87,8 @@ def fetch_largest_repos(username: str, token) -> None:
 
 
 def main() -> None:
-    token = os.environ[config_data['finegrained_github_token']]
-    username = config_data['github_username']
+    token = os.environ[config_data['FINEGRAINED_GITHUB_TOKEN']]
+    username = config_data['GITHUB_USERNAME']
     fetch_largest_repos(username, token)
 
 

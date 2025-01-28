@@ -7,8 +7,8 @@ from src.util.config_loader import config_data  # type: ignore
 
 
 def get_gh_repos(
-    username: str=config_data['github_username'],
-    access_token=os.environ[config_data['github_token']],
+    username: str=config_data['GITHUB_USERNAME'],
+    access_token=os.environ[config_data['GITHUB_TOKEN']],
 ):
     """_summary_
 

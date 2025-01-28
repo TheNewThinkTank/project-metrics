@@ -8,26 +8,26 @@ from src.util.config_loader import config_data  # type: ignore
 # Define the API endpoints and access tokens for each platform
 platforms = {
     "github": {
-        "username": config_data["github_username"],
-        "repos_url": f"https://api.github.com/users/{config_data['github_username']}/repos",
+        "username": config_data["GITHUB_USERNAME"],
+        "repos_url": f"https://api.github.com/users/{config_data['GITHUB_USERNAME']}/repos",
         "api_url": "https://api.github.com/repos/{owner}/{repo}",
-        "access_token": os.environ.get(config_data["github_token"], ""),
+        "access_token": os.environ.get(config_data["GITHUB_TOKEN"], ""),
         "stars": "stargazers_count",
         "url": "html_url",
     },
     "gitlab": {
-        "username": config_data["gitlab_username"],
-        "repos_url": f"https://gitlab.com/api/v4/users/{config_data['gitlab_username']}/projects?owned=true&visibility=public",
+        "username": config_data["GITLAB_USERNAME"],
+        "repos_url": f"https://gitlab.com/api/v4/users/{config_data['GITLAB_USERNAME']}/projects?owned=true&visibility=public",
         "api_url": "https://gitlab.com/api/v4/projects/{owner}%2F{repo}",
-        "access_token": os.environ.get(config_data["gitlab_token"], ""),
+        "access_token": os.environ.get(config_data["GITLAB_TOKEN"], ""),
         "stars": "star_count",
         "url": "web_url",
     },
     # "bitbucket": {
-    #     "username": config_data["bitbucket_username"],
-    #     "repos_url": f"https://api.bitbucket.org/2.0/repositories/{config_data['bitbucket_username']}",
+    #     "username": config_data["BITBUCKET_USERNAME"],
+    #     "repos_url": f"https://api.bitbucket.org/2.0/repositories/{config_data['BITBUCKET_USERNAME']}",
     #     "api_url": "https://api.bitbucket.org/2.0/repositories/{owner}/{repo}",
-    #     "access_token": os.environ.get(config_data["bitbucket_token"], ''),
+    #     "access_token": os.environ.get(config_data["BITBUCKET_TOKEN"], ''),
     #     "stars": "",
     #     "url": ""
     # },

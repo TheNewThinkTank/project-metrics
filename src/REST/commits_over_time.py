@@ -91,7 +91,7 @@ def make_line_chart(repo: str, sorted_dates: list, commit_counts: list) -> None:
 
 
 def main() -> None:
-    owner = config_data['github_username']
+    owner = config_data['GITHUB_USERNAME']
 
     # repos = [
     #     "project-metrics",

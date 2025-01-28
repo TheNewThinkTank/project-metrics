@@ -50,7 +50,7 @@ def wily_to_md(in_file: str) -> None:
 
     with open(local_file_path, "rb") as file:
         content = file.read()
-    save_file_to_github(config_data['project_name'], local_file_path, content)
+    save_file_to_github(config_data['PROJECT_NAME'], local_file_path, content)
 
 
 def main() -> None:

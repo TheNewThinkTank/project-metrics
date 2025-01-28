@@ -26,4 +26,4 @@ active_repos:
   - "fitness-tracker"
   - "biblio-sphere"
 
-wf_path: ".github/workflows/wf.yml"  # Maybe not needed
+wf_path: ".github/workflows/wf.yml"

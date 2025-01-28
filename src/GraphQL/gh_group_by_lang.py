@@ -66,15 +66,15 @@ def group_repos_by_language(username: str, token: str) -> list:
 
 
 def main() -> None:
-    basepath = f"{config_data['docs_path']}/query-results/"
+    basepath = f"{config_data['DOCS_PATH']}/query-results/"
     lang_repos = group_repos_by_language(
-        config_data['github_username'],
-        os.environ[config_data['finegrained_github_token']]
+        config_data['GITHUB_USERNAME'],
+        os.environ[config_data['FINEGRAINED_GITHUB_TOKEN']]
     )
     file_path = f"{basepath}group-by-lang.md"
     file_content = table_from_nested(lang_repos)
 
-    save_file_to_github(config_data['project_name'], file_path, file_content)
+    save_file_to_github(config_data['PROJECT_NAME'], file_path, file_content)
 
 
 if __name__ == "__main__":

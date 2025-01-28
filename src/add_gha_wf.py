@@ -57,7 +57,7 @@ def make_gha_file_content(
 def create_workflow(
     repo: Repository,
     file_content: str,
-    file_path: str=config_data['wf_path'],
+    file_path: str=config_data['WF_PATH'],
 ) -> None:
     """_summary_
 
@@ -85,7 +85,7 @@ def create_workflow(
 
     # Create a new commit
     new_commit = repo.create_git_commit(
-        message=f"Add {file_path} via PyGithub from {config_data['project_name']}",
+        message=f"Add {file_path} via PyGithub from {config_data['PROJECT_NAME']}",
         tree=new_tree,
         parents=[latest_commit.commit],
     )
@@ -213,10 +213,10 @@ def update_repos(username: str,
 
 def main() -> None:
 
-    username = config_data['github_username']
+    username = config_data['GITHUB_USERNAME']
     repositories: PaginatedList[Repository] = get_gh_repos()
 
-    languages = config_data['languages']
+    languages = config_data['LANGUAGES']
 
     for language in languages:
         update_repos(username, list(repositories), language)

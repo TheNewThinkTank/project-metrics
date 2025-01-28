@@ -73,7 +73,7 @@ def make_line_chart(repo: str, sorted_dates: list, commit_counts: list) -> None:
     :type commit_counts: list
     """
 
-    basepath = f"{config_data['docs_path']}/img/"
+    basepath = f"{config_data['DOCS_PATH']}/img/"
 
     plt.figure(figsize=(10, 6))
     plt.plot(sorted_dates, commit_counts, marker="o")
@@ -87,7 +87,7 @@ def make_line_chart(repo: str, sorted_dates: list, commit_counts: list) -> None:
     plt.close()
     with open(local_file_path, "rb") as file:
         content = file.read()
-    save_file_to_github(config_data['project_name'], local_file_path, content)
+    save_file_to_github(config_data['PROJECT_NAME'], local_file_path, content)
 
 
 def main() -> None:
@@ -99,7 +99,7 @@ def main() -> None:
     #     "fitness-tracker",
     # ]
 
-    repos = config_data['active_repos']
+    repos = config_data['ACTIVE_REPOS']
 
     for repo in repos:
         sorted_dates, commit_counts = get_commits(owner, repo)

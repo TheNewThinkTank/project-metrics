@@ -11,7 +11,7 @@ from src.util.config_loader import config_data  # type: ignore
 def get_gh_repo_py_files(
         username=config_data['github_username'],
         access_token=os.environ[config_data['github_token']],
-        repo_name=config_data['project_name']
+        repo_name=config_data['PROJECT_NAME']
         ) -> list:
     """_summary_
 
@@ -60,7 +60,7 @@ def main() -> None:
     #     "N-body-simulations",
     # ]
 
-    repo_names = config_data['python_sample_repos']
+    repo_names = config_data['PYTHON_SAMPLE_REPOS']
 
     for repo_name in repo_names:
         print(f"files in {repo_name}:\n")

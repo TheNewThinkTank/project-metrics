@@ -78,7 +78,7 @@ def commit_barplot(
     :type filename: str, optional
     """
     sns.set_theme(style="whitegrid")
-    basepath = f"{config_data['docs_path']}/img/"
+    basepath = f"{config_data['DOCS_PATH']}/img/"
     figure_title_parts = filename.split("_")
     figure_title = " ".join(map(str.title, figure_title_parts))
     local_file_path = f"{basepath}{filename}.png"
@@ -94,7 +94,7 @@ def commit_barplot(
     plt.close()
     with open(local_file_path, "rb") as file:
         content = file.read()
-    save_file_to_github(config_data['project_name'], local_file_path, content)
+    save_file_to_github(config_data['PROJECT_NAME'], local_file_path, content)
 
 
 def main() -> None:

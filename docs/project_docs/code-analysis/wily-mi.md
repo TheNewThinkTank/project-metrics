@@ -28,5 +28,4 @@
 | src/config.py                       |                100      |
 | src/remove_badge.py                 |                100      |
 | src/GraphQL/gh_graphql_post.py      |                100      |
-| src/util/config_loader.py           |                100      |
-| Total                               |                 87.671  |
+| Total                               |                 87.26   |

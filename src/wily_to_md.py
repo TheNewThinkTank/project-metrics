@@ -3,7 +3,8 @@
 
 import os
 from src.save_file_to_github import save_file_to_github  # type: ignore
-from src.config import config_data  # type: ignore
+# from src.config import config_data  # type: ignore
+from dynaconf import settings  # type: ignore
 
 # TODO: sort by loc descending
 # TODO: consolidate wily tables
@@ -50,11 +51,11 @@ def wily_to_md(in_file: str) -> None:
 
     with open(local_file_path, "rb") as file:
         content = file.read()
-    save_file_to_github(config_data['PROJECT_NAME'], local_file_path, content)
+    save_file_to_github(settings['PROJECT_NAME'], local_file_path, content)
 
 
 def main() -> None:
-    basepath = f"{config_data['DOCS_PATH']}/code-analysis/"
+    basepath = f"{settings['DOCS_PATH']}/code-analysis/"
     files = [
         "wily-loc-raw",
         "wily-mi-raw",

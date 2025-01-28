@@ -2,7 +2,7 @@
 # DEBUG = true
 # VERSION = "0.0.1"
 
-docs_path = "docs/project_docs"
+DOCS_PATH = "docs/project_docs"
 project_name = "project-metrics"
 
 github_username = "TheNewThinkTank"

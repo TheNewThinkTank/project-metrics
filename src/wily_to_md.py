@@ -54,7 +54,7 @@ def wily_to_md(in_file: str) -> None:
 
 
 def main() -> None:
-    basepath = f"{config_data['docs_path']}/code-analysis/"
+    basepath = f"{config_data['DOCS_PATH']}/code-analysis/"
     files = [
         "wily-loc-raw",
         "wily-mi-raw",

@@ -1,11 +1,11 @@
 # project-metrics KPIs
 
 logging timestamp:
-2025-01-28 18:41:36.195448
+2025-01-28 21:17:37.785116
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 32| 2328 | 226 |
+| 31| 2272 | 217 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -25,7 +25,6 @@ logging timestamp:
 | `src/wily_to_md.py                       ` |         68 |                    9 |
 | `test/test_get_gh_repos.py               ` |         65 |                    4 |
 | `test/test_get_readme_format.py          ` |         57 |                    5 |
-| `src/config.py                           ` |         56 |                    9 |
 | `src/readme_sentiment.py                 ` |         53 |                    4 |
 | `docs/sphinx-docs/conf.py                ` |         49 |                    2 |
 | `src/save_file_to_github.py              ` |         48 |                    4 |
@@ -35,8 +34,8 @@ logging timestamp:
 | `src/util/matrix_repos.py                ` |         34 |                    6 |
 | `src/get_badge.py                        ` |         32 |                    3 |
 | `src/remove_badge.py                     ` |         31 |                    2 |
+| `src/config.py                           ` |         28 |                    5 |
 | `src/REST/threading_add_badge.py         ` |         28 |                    5 |
-| `src/util/config_loader.py               ` |         28 |                    5 |
 | `src/matrix_add_badge.py                 ` |         27 |                    3 |
 | `src/GraphQL/gh_graphql_post.py          ` |         25 |                    3 |
 | `src/util/get_readme_format.py           ` |         23 |                    2 |

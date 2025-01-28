@@ -11,7 +11,7 @@ from src.REST.add_badge import update_repo  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
 from src.util.get_readme_format import get_readme_format  # type: ignore
 from src.util.repo_has_lang import repo_has_lang  # type: ignore
-from src.util.config_loader import config_data  # type: ignore
+from src.config import config_data  # type: ignore
 
 
 def has_actions_workflow(repo: Repository) -> bool:

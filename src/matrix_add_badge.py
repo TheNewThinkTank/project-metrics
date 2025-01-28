@@ -5,7 +5,7 @@ import argparse
 import os
 from github import Github
 from src.REST.add_badge import update_repo  # type: ignore
-from src.util.config_loader import config_data  # type: ignore
+from src.config import config_data  # type: ignore
 
 
 def main() -> None:

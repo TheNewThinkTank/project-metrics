@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt  # type: ignore
 import seaborn as sns  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
-from src.util.config_loader import config_data  # type: ignore
+from src.config import config_data  # type: ignore
 
 
 def get_repo_names_and_sizes() -> tuple[list[str], list[int]]:

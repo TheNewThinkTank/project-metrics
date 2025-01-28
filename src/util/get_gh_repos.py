@@ -3,7 +3,7 @@
 
 import os
 from github import Auth, Github, PaginatedList, Repository
-from src.util.config_loader import config_data  # type: ignore
+from src.config import config_data  # type: ignore
 
 
 def get_gh_repos(

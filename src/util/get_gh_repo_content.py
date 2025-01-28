@@ -5,7 +5,7 @@ Get all of the file contents of the repository recursively.
 import os
 from pprint import pprint as pp
 from github import Auth, Github
-from src.util.config_loader import config_data  # type: ignore
+from src.config import config_data  # type: ignore
 
 
 def get_gh_repo_py_files(

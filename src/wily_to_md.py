@@ -3,7 +3,7 @@
 
 import os
 from src.save_file_to_github import save_file_to_github  # type: ignore
-from src.util.config_loader import config_data  # type: ignore
+from src.config import config_data  # type: ignore
 
 # TODO: sort by loc descending
 # TODO: consolidate wily tables

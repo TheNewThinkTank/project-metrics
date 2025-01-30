@@ -3,11 +3,11 @@
 
 import os
 from github import Auth, Github, PaginatedList, Repository
-from src.config import config_data  # type: ignore
+from src.config import settings  # type: ignore
 
 
 def get_gh_repos(
-    username: str=config_data['GITHUB_USERNAME'],
+    username: str=settings['GITHUB_USERNAME'],
 ) -> PaginatedList.PaginatedList[Repository.Repository]:
     """_summary_
 
@@ -19,10 +19,10 @@ def get_gh_repos(
     :rtype: PaginatedList.PaginatedList[Repository.Repository]
     """
 
-    token = os.environ.get(config_data['GITHUB_TOKEN'])
+    token = os.environ.get(settings['GITHUB_TOKEN'])
     if not token:
         raise ValueError(
-            f"{config_data['GITHUB_TOKEN']} environment variable is not set"
+            f"{settings['GITHUB_TOKEN']} environment variable is not set"
             )
 
     auth = Auth.Token(token)

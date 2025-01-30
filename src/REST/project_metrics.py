@@ -6,7 +6,7 @@ from file_convertion_tools.make_md_table import table  # type: ignore
 from src.REST.get_repos import get_all_repos, get_repo_info, print_repo_info  # type: ignore
 from src.config import platforms  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
-from src.config import config_data  # type: ignore
+from src.config import settings  # type: ignore
 
 
 def repo_missing_descriptions(repo_info: dict | None) -> bool:
@@ -70,7 +70,7 @@ def get_repos_wo_desc(platforms: dict, all_repos: list) -> list:
 def main() -> None:
     """_summary_"""
 
-    basepath = f"{config_data['DOCS_PATH']}/query-results/"
+    basepath = f"{settings['DOCS_PATH']}/query-results/"
     all_repos = get_all_repos()
 
     # for repo in bb_repos:
@@ -95,7 +95,7 @@ def main() -> None:
 
     file_path = f"{basepath}repos-without-description.md"
     file_content = table(repos_wo_desc)
-    save_file_to_github(config_data['PROJECT_NAME'], file_path, file_content)
+    save_file_to_github(settings['PROJECT_NAME'], file_path, file_content)
 
     # popular_repos = get_popular_repos(platforms, all_repos)
     # for repo in popular_repos:

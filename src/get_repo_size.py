@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt  # type: ignore
 import seaborn as sns  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
-from src.config import config_data  # type: ignore
+from src.config import settings  # type: ignore
 
 
 def get_repo_names_and_sizes() -> tuple[list[str], list[int]]:
@@ -78,7 +78,7 @@ def commit_barplot(
     :type filename: str, optional
     """
     sns.set_theme(style="whitegrid")
-    basepath = f"{config_data['DOCS_PATH']}/img/"
+    basepath = f"{settings['DOCS_PATH']}/img/"
     figure_title_parts = filename.split("_")
     figure_title = " ".join(map(str.title, figure_title_parts))
     local_file_path = f"{basepath}{filename}.png"
@@ -94,7 +94,7 @@ def commit_barplot(
     plt.close()
     with open(local_file_path, "rb") as file:
         content = file.read()
-    save_file_to_github(config_data['PROJECT_NAME'], local_file_path, content)
+    save_file_to_github(settings['PROJECT_NAME'], local_file_path, content)
 
 
 def main() -> None:

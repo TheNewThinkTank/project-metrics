@@ -3,7 +3,7 @@
 
 import os
 from src.GraphQL.gh_graphql_post import graphql_post  # type: ignore
-from src.config import config_data  # type: ignore
+from src.config import settings  # type: ignore
 
 single_repo_query = """
 {
@@ -87,8 +87,8 @@ def fetch_largest_repos(username: str, token) -> None:
 
 
 def main() -> None:
-    token = os.environ[config_data['FINEGRAINED_GITHUB_TOKEN']]
-    username = config_data['GITHUB_USERNAME']
+    token = os.environ[settings['FINEGRAINED_GITHUB_TOKEN']]
+    username = settings['GITHUB_USERNAME']
     fetch_largest_repos(username, token)
 
 

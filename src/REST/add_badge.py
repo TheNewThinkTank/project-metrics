@@ -10,7 +10,7 @@ from typing import Literal
 from github import PaginatedList, Repository
 from src.get_badge import get_badge  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
-from src.config import config_data  # type: ignore
+from src.config import settings  # type: ignore
 
 
 def generate_badge_content(badge: dict, format: str) -> str:
@@ -136,7 +136,7 @@ def update_all_repos(
 
 def main() -> None:
     repositories = get_gh_repos()
-    update_all_repos(config_data['GITHUB_USERNAME'], repositories)
+    update_all_repos(settings['GITHUB_USERNAME'], repositories)
 
 
 if __name__ == "__main__":

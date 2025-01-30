@@ -6,7 +6,7 @@ from pprint import pprint as pp
 from src.GraphQL.gh_graphql_post import graphql_post  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
 from file_convertion_tools.make_md_table import table_from_nested  # type: ignore
-from src.config import config_data  # type: ignore
+from src.config import settings  # type: ignore
 
 
 def group_repos_by_language(username: str, token: str) -> list:
@@ -66,15 +66,15 @@ def group_repos_by_language(username: str, token: str) -> list:
 
 
 def main() -> None:
-    basepath = f"{config_data['DOCS_PATH']}/query-results/"
+    basepath = f"{settings['DOCS_PATH']}/query-results/"
     lang_repos = group_repos_by_language(
-        config_data['GITHUB_USERNAME'],
-        os.environ[config_data['FINEGRAINED_GITHUB_TOKEN']]
+        settings['GITHUB_USERNAME'],
+        os.environ[settings['FINEGRAINED_GITHUB_TOKEN']]
     )
     file_path = f"{basepath}group-by-lang.md"
     file_content = table_from_nested(lang_repos)
 
-    save_file_to_github(config_data['PROJECT_NAME'], file_path, file_content)
+    save_file_to_github(settings['PROJECT_NAME'], file_path, file_content)
 
 
 if __name__ == "__main__":

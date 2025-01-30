@@ -8,7 +8,7 @@ from typing import TypedDict, Any
 from pycodestyle import Checker, BaseReport, StyleGuide  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
 from src.util.get_gh_repo_content import get_gh_repo_py_files  # type: ignore
-from src.config import config_data  # type: ignore
+from src.config import settings  # type: ignore
 
 
 class QuietReport(BaseReport):
@@ -147,19 +147,19 @@ def write_kpi_md(
     with open(local_file_path, "rb") as file:
         content = file.read()
     # save_file_to_github(repo_name, local_file_path, content)
-    save_file_to_github(config_data['PROJECT_NAME'], local_file_path, content)
+    save_file_to_github(settings['PROJECT_NAME'], local_file_path, content)
 
 
 def main() -> None:
 
-    repo_names = config_data['PYTHON_SAMPLE_REPOS']
+    repo_names = settings['PYTHON_SAMPLE_REPOS']
 
-    basepath = f"{config_data['DOCS_PATH']}/code-analysis/"
+    basepath = f"{settings['DOCS_PATH']}/code-analysis/"
 
-    token = os.environ.get(config_data['GITHUB_TOKEN'])
+    token = os.environ.get(settings['GITHUB_TOKEN'])
     if not token:
         raise ValueError(
-            f"{config_data['GITHUB_TOKEN']} environment variable is not set"
+            f"{settings['GITHUB_TOKEN']} environment variable is not set"
             )
 
     for repo_name in repo_names:

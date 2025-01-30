@@ -4,7 +4,7 @@
 import concurrent.futures
 from src.REST.add_badge import update_repo  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
-from src.config import config_data  # type: ignore
+from src.config import settings  # type: ignore
 
 
 def update_all_repos(username, repositories) -> None:
@@ -21,7 +21,7 @@ def update_all_repos(username, repositories) -> None:
 
 def main() -> None:
     repositories = get_gh_repos()
-    update_all_repos(config_data['GITHUB_USERNAME'], repositories)
+    update_all_repos(settings['GITHUB_USERNAME'], repositories)
 
 
 if __name__ == "__main__":

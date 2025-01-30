@@ -11,7 +11,7 @@ from src.REST.add_badge import update_repo  # type: ignore
 from src.util.get_gh_repos import get_gh_repos  # type: ignore
 from src.util.get_readme_format import get_readme_format  # type: ignore
 from src.util.repo_has_lang import repo_has_lang  # type: ignore
-from src.config import config_data  # type: ignore
+from src.config import settings  # type: ignore
 
 
 def has_actions_workflow(repo: Repository) -> bool:
@@ -57,7 +57,7 @@ def make_gha_file_content(
 def create_workflow(
     repo: Repository,
     file_content: str,
-    file_path: str=config_data['WF_PATH'],
+    file_path: str=settings['WF_PATH'],
 ) -> None:
     """_summary_
 
@@ -85,7 +85,7 @@ def create_workflow(
 
     # Create a new commit
     new_commit = repo.create_git_commit(
-        message=f"Add {file_path} via PyGithub from {config_data['PROJECT_NAME']}",
+        message=f"Add {file_path} via PyGithub from {settings['PROJECT_NAME']}",
         tree=new_tree,
         parents=[latest_commit.commit],
     )
@@ -213,10 +213,10 @@ def update_repos(username: str,
 
 def main() -> None:
 
-    username = config_data['GITHUB_USERNAME']
+    username = settings['GITHUB_USERNAME']
     repositories: PaginatedList[Repository] = get_gh_repos()
 
-    languages = config_data['LANGUAGES']
+    languages = settings['LANGUAGES']
 
     for language in languages:
         update_repos(username, list(repositories), language)

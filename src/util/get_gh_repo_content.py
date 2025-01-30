@@ -5,13 +5,13 @@ Get all of the file contents of the repository recursively.
 import os
 from pprint import pprint as pp
 from github import Auth, Github
-from src.config import config_data  # type: ignore
+from src.config import settings  # type: ignore
 
 
 def get_gh_repo_py_files(
-        username=config_data['GITHUB_USERNAME'],
-        access_token=os.environ[config_data['GITHUB_TOKEN']],
-        repo_name=config_data['PROJECT_NAME']
+        username=settings['GITHUB_USERNAME'],
+        access_token=os.environ[settings['GITHUB_TOKEN']],
+        repo_name=settings['PROJECT_NAME']
         ) -> list:
     """_summary_
 
@@ -60,7 +60,7 @@ def main() -> None:
     #     "N-body-simulations",
     # ]
 
-    repo_names = config_data['PYTHON_SAMPLE_REPOS']
+    repo_names = settings['PYTHON_SAMPLE_REPOS']
 
     for repo_name in repo_names:
         print(f"files in {repo_name}:\n")

@@ -3,12 +3,12 @@
 
 import os
 from github import Auth, Github
-from src.config import config_data  # type: ignore
+from src.config import settings  # type: ignore
 
 
 def get_gh_repos(
-    username: str=config_data['GITHUB_USERNAME'],
-    access_token=os.environ[config_data['GITHUB_TOKEN']],
+    username: str=settings['GITHUB_USERNAME'],
+    access_token=os.environ[settings['GITHUB_TOKEN']],
 ):
     """_summary_
 

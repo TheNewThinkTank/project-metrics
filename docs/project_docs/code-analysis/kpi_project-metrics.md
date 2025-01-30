@@ -1,11 +1,11 @@
 # project-metrics KPIs
 
 logging timestamp:
-2025-01-30 19:56:45.178847
+2025-01-30 20:25:37.403821
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 31| 2285 | 217 |
+| 31| 2295 | 217 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -28,13 +28,13 @@ logging timestamp:
 | `src/readme_sentiment.py                 ` |         53 |                    4 |
 | `docs/sphinx-docs/conf.py                ` |         49 |                    2 |
 | `src/save_file_to_github.py              ` |         48 |                    4 |
+| `src/get_badge.py                        ` |         45 |                    3 |
 | `test/test_get_badge.py                  ` |         43 |                    9 |
 | `test/test_repo_has_lang.py              ` |         42 |                    4 |
 | `src/util/get_gh_repos.py                ` |         41 |                    7 |
-| `src/get_badge.py                        ` |         36 |                    3 |
 | `src/util/matrix_repos.py                ` |         34 |                    6 |
 | `src/remove_badge.py                     ` |         31 |                    2 |
-| `src/config.py                           ` |         28 |                    5 |
+| `src/config.py                           ` |         29 |                    5 |
 | `src/REST/threading_add_badge.py         ` |         28 |                    5 |
 | `src/matrix_add_badge.py                 ` |         27 |                    3 |
 | `src/GraphQL/gh_graphql_post.py          ` |         25 |                    3 |

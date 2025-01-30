@@ -6,12 +6,12 @@
 | src/util/get_readme_format.py       |              23 |
 | src/GraphQL/gh_graphql_post.py      |              25 |
 | src/matrix_add_badge.py             |              27 |
-| src/config.py                       |              28 |
 | src/REST/threading_add_badge.py     |              28 |
+| src/config.py                       |              29 |
 | src/remove_badge.py                 |              31 |
 | src/util/matrix_repos.py            |              34 |
-| src/get_badge.py                    |              36 |
 | src/util/get_gh_repos.py            |              41 |
+| src/get_badge.py                    |              45 |
 | src/save_file_to_github.py          |              48 |
 | src/readme_sentiment.py             |              53 |
 | src/util/get_gh_repo_content.py     |              71 |
@@ -28,4 +28,4 @@
 | src/kpi.py                          |             177 |
 | src/REST/get_repos.py               |             177 |
 | src/add_gha_wf.py                   |             226 |
-| Total                               |            2029 |
+| Total                               |            2039 |

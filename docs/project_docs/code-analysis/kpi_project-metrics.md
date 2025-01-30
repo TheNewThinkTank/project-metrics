@@ -1,11 +1,11 @@
 # project-metrics KPIs
 
 logging timestamp:
-2025-01-28 21:17:37.785116
+2025-01-30 19:56:45.178847
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 31| 2272 | 217 |
+| 31| 2285 | 217 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -19,10 +19,10 @@ logging timestamp:
 | `src/GraphQL/gh_get_largest_repos.py     ` |         96 |                    8 |
 | `src/GraphQL/gh_group_by_lang.py         ` |         81 |                    5 |
 | `src/threading_add_gha_wf.py             ` |         77 |                    9 |
+| `src/wily_to_md.py                       ` |         77 |                    9 |
 | `src/REST/group_by_tag.py                ` |         75 |                    6 |
 | `src/GraphQL/gh_get_popular_repos.py     ` |         72 |                    5 |
 | `src/util/get_gh_repo_content.py         ` |         71 |                    7 |
-| `src/wily_to_md.py                       ` |         68 |                    9 |
 | `test/test_get_gh_repos.py               ` |         65 |                    4 |
 | `test/test_get_readme_format.py          ` |         57 |                    5 |
 | `src/readme_sentiment.py                 ` |         53 |                    4 |
@@ -31,8 +31,8 @@ logging timestamp:
 | `test/test_get_badge.py                  ` |         43 |                    9 |
 | `test/test_repo_has_lang.py              ` |         42 |                    4 |
 | `src/util/get_gh_repos.py                ` |         41 |                    7 |
+| `src/get_badge.py                        ` |         36 |                    3 |
 | `src/util/matrix_repos.py                ` |         34 |                    6 |
-| `src/get_badge.py                        ` |         32 |                    3 |
 | `src/remove_badge.py                     ` |         31 |                    2 |
 | `src/config.py                           ` |         28 |                    5 |
 | `src/REST/threading_add_badge.py         ` |         28 |                    5 |

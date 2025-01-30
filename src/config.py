@@ -13,6 +13,7 @@ settings = Dynaconf(
     )
 
 settings.setenv("default")  # Ensure the correct environment is active
+
 # settings.validators.validate()
 settings = settings.as_dict()
 

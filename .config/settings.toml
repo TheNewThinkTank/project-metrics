@@ -32,9 +32,9 @@ ACTIVE_REPOS = [
   "biblio-sphere",
 ]
 
-[platforms]
+[default.platforms]
 
-[platforms.github]
+[default.platforms.github]
 username = "${GITHUB_USERNAME}"
 repos_url = "https://api.github.com/users/${GITHUB_USERNAME}/repos"
 api_url = "https://api.github.com/repos/{owner}/{repo}"
@@ -42,9 +42,9 @@ access_token = "${GITHUB_TOKEN}"
 stars = "stargazers_count"
 url = "html_url"
 
-[platforms.github.badges]
+[default.platforms.github.badges]
 
-[platforms.github.badges.size_badge]
+[default.platforms.github.badges.size_badge]
 label = "GitHub repo size"
 value = [
   "https://img.shields.io/github/repo-size/TheNewThinkTank/{repo}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size",

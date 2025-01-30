@@ -19,7 +19,7 @@ def get_badge(repo_name: str, badge_name: str):
     # avoid modifying the original gh_badges dictionary, by making a copy
     # badge = gh_badges[badge_name].copy()
 
-    github_badges = settings.platforms.github.badges
+    github_badges = settings['PLATFORMS']['github']['badges']
     badge = github_badges[badge_name].copy()
 
     if isinstance(badge["value"], str):  # type: ignore
@@ -34,3 +34,12 @@ def get_badge(repo_name: str, badge_name: str):
     # print(f"badge from get_badge: {badge}")
 
     return badge
+
+
+# if __name__ == "__main__":
+
+#     from pprint import pprint as pp
+
+#     # pp(settings)
+#     pp(settings['PLATFORMS']['github']['badges']['size_badge'])
+#     # pp(settings.platforms.github.badges)

@@ -2,7 +2,7 @@
 """
 
 # from src.config import gh_badges  # type: ignore
-from dynaconf import settings  # type: ignore
+from src.config import settings  # type: ignore
 
 
 def get_badge(repo_name: str, badge_name: str):

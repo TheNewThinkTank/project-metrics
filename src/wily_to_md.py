@@ -3,8 +3,7 @@
 
 import os
 from src.save_file_to_github import save_file_to_github  # type: ignore
-# from src.config import config_data  # type: ignore
-from dynaconf import settings  # type: ignore
+from src.config import settings  # type: ignore
 
 # TODO: sort by loc descending
 # TODO: consolidate wily tables
@@ -55,6 +54,15 @@ def wily_to_md(in_file: str) -> None:
 
 
 def main() -> None:
+
+    from pprint import pprint as pp
+
+    # pp(settings)
+    # pp(settings.keys())
+    # pp(settings.values())
+
+    pp(settings)
+
     basepath = f"{settings['DOCS_PATH']}/code-analysis/"
     files = [
         "wily-loc-raw",

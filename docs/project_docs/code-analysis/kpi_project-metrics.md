@@ -1,11 +1,11 @@
 # project-metrics KPIs
 
 logging timestamp:
-2025-01-31 14:03:34.166791
+2025-01-31 14:15:26.888507
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 31| 2302 | 219 |
+| 31| 2305 | 220 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -14,8 +14,8 @@ logging timestamp:
 | `src/REST/get_repos.py                   ` |        177 |                   14 |
 | `src/REST/add_badge.py                   ` |        143 |                   10 |
 | `src/get_repo_size.py                    ` |        141 |                   11 |
+| `src/REST/project_metrics.py             ` |        112 |                   11 |
 | `src/REST/commits_over_time.py           ` |        110 |                   10 |
-| `src/REST/project_metrics.py             ` |        110 |                   10 |
 | `src/GraphQL/gh_get_largest_repos.py     ` |         96 |                    8 |
 | `src/GraphQL/gh_group_by_lang.py         ` |         81 |                    5 |
 | `src/threading_add_gha_wf.py             ` |         77 |                    9 |
@@ -32,7 +32,7 @@ logging timestamp:
 | `test/test_get_badge.py                  ` |         43 |                    9 |
 | `test/test_repo_has_lang.py              ` |         42 |                    4 |
 | `src/util/get_gh_repos.py                ` |         41 |                    7 |
-| `src/config.py                           ` |         36 |                    6 |
+| `src/config.py                           ` |         37 |                    6 |
 | `src/util/matrix_repos.py                ` |         34 |                    6 |
 | `src/remove_badge.py                     ` |         31 |                    2 |
 | `src/REST/threading_add_badge.py         ` |         28 |                    5 |

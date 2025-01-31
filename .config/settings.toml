@@ -51,18 +51,18 @@ value = [
   "https://github.com/TheNewThinkTank/{repo}/archive/refs/heads/main.zip",
 ]
 
-[platforms.github.badges.ci_badge]
+[default.platforms.github.badges.ci_badge]
 label = "CI"
 value = "https://github.com/TheNewThinkTank/{repo}/actions/workflows/wf.yml/badge.svg"
 
-[platforms.github.badges.codecov_badge]
+[default.platforms.github.badges.codecov_badge]
 label = "codecov"
 value = [
   "https://codecov.io/gh/TheNewThinkTank/{repo}/branch/main/graph/badge.svg",
   "https://codecov.io/gh/TheNewThinkTank/{repo})",
 ]
 
-[platforms.gitlab]
+[default.platforms.gitlab]
 username = "${GITLAB_USERNAME}"
 repos_url = "https://gitlab.com/api/v4/users/${GITLAB_USERNAME}/projects?owned=true&visibility=public"
 api_url = "https://gitlab.com/api/v4/projects/{owner}%2F{repo}"
@@ -70,7 +70,7 @@ access_token = "${GITLAB_TOKEN}"
 stars = "star_count"
 url = "web_url"
 
-# [platforms.bitbucket]
+# [default.platforms.bitbucket]
 # username = "${BITBUCKET_USERNAME}"
 # repos_url = "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_USERNAME}"
 # api_url = "https://api.bitbucket.org/2.0/repositories/{owner}/{repo}"

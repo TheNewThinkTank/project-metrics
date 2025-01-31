@@ -22,7 +22,8 @@ def main() -> None:
     from pprint import pprint as pp
 
     # pp(settings)
-    pp(settings.platforms.to_dict())
+    # pp(settings.platforms.to_dict())
+    pp(settings.platforms.github.repos_url)
     # pp(settings.platforms.github.badges)  # ['PLATFORMS']['github']['badges'])
 
     # pp(settings.platforms.github.badges.size_badge)

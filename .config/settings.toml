@@ -35,10 +35,10 @@ ACTIVE_REPOS = [
 [default.platforms]
 
 [default.platforms.github]
-username = "${GITHUB_USERNAME}"
-repos_url = "https://api.github.com/users/${GITHUB_USERNAME}/repos"
+username = "@jinja {{ this.GITHUB_USERNAME }}"
+repos_url = "@jinja https://api.github.com/users/{{ this.GITHUB_USERNAME }}/repos"
 api_url = "https://api.github.com/repos/{owner}/{repo}"
-access_token = "${GITHUB_TOKEN}"
+access_token = "@jinja {{ this.GITHUB_TOKEN }}"
 stars = "stargazers_count"
 url = "html_url"
 
@@ -47,33 +47,33 @@ url = "html_url"
 [default.platforms.github.badges.size_badge]
 label = "GitHub repo size"
 value = [
-  "https://img.shields.io/github/repo-size/TheNewThinkTank/{repo}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size",
-  "https://github.com/TheNewThinkTank/{repo}/archive/refs/heads/main.zip",
+  "@jinja https://img.shields.io/github/repo-size/{{ this.GITHUB_USERNAME }}/{repo}?style=flat&logo=github&logoColor=whitesmoke&label=Repo%20Size",
+  "@jinja https://github.com/{{ this.GITHUB_USERNAME }}/{repo}/archive/refs/heads/main.zip",
 ]
 
 [default.platforms.github.badges.ci_badge]
 label = "CI"
-value = "https://github.com/TheNewThinkTank/{repo}/actions/workflows/wf.yml/badge.svg"
+value = "@jinja https://github.com/{{ this.GITHUB_USERNAME }}/{repo}/actions/workflows/wf.yml/badge.svg"
 
 [default.platforms.github.badges.codecov_badge]
 label = "codecov"
 value = [
-  "https://codecov.io/gh/TheNewThinkTank/{repo}/branch/main/graph/badge.svg",
-  "https://codecov.io/gh/TheNewThinkTank/{repo})",
+  "@jinja https://codecov.io/gh/{{ this.GITHUB_USERNAME }}/{repo}/branch/main/graph/badge.svg",
+  "@jinja https://codecov.io/gh/{{ this.GITHUB_USERNAME }}/{repo})",
 ]
 
 [default.platforms.gitlab]
-username = "${GITLAB_USERNAME}"
-repos_url = "https://gitlab.com/api/v4/users/${GITLAB_USERNAME}/projects?owned=true&visibility=public"
+username = "@jinja {{ this.GITLAB_USERNAME }}"
+repos_url = "@jinja https://gitlab.com/api/v4/users/{{ this.GITLAB_USERNAME }}/projects?owned=true&visibility=public"
 api_url = "https://gitlab.com/api/v4/projects/{owner}%2F{repo}"
-access_token = "${GITLAB_TOKEN}"
+access_token = "@jinja {{ this.GITLAB_TOKEN }}"
 stars = "star_count"
 url = "web_url"
 
 # [default.platforms.bitbucket]
-# username = "${BITBUCKET_USERNAME}"
-# repos_url = "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_USERNAME}"
+# username = "@jinja {{ this.BITBUCKET_USERNAME }}"
+# repos_url = "@jinja https://api.bitbucket.org/2.0/repositories/{{ BITBUCKET_USERNAME }}"
 # api_url = "https://api.bitbucket.org/2.0/repositories/{owner}/{repo}"
-# access_token = "${BITBUCKET_TOKEN}"
+# access_token = "@jinja {{ BITBUCKET_TOKEN }}"
 # stars = ""
 # url = ""

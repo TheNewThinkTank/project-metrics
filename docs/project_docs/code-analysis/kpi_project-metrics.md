@@ -1,11 +1,11 @@
 # project-metrics KPIs
 
 logging timestamp:
-2025-01-31 14:26:11.261622
+2025-01-31 14:47:44.471685
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 31| 2305 | 220 |
+| 31| 2306 | 220 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -32,7 +32,7 @@ logging timestamp:
 | `test/test_get_badge.py                  ` |         43 |                    9 |
 | `test/test_repo_has_lang.py              ` |         42 |                    4 |
 | `src/util/get_gh_repos.py                ` |         41 |                    7 |
-| `src/config.py                           ` |         37 |                    6 |
+| `src/config.py                           ` |         38 |                    6 |
 | `src/util/matrix_repos.py                ` |         34 |                    6 |
 | `src/remove_badge.py                     ` |         31 |                    2 |
 | `src/REST/threading_add_badge.py         ` |         28 |                    5 |

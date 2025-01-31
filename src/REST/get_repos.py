@@ -17,11 +17,11 @@ def get_repos(platform: str) -> list[dict]:
     :rtype: list[dict]
     """
 
-    username = settings[platform]["username"]
-    url = settings[platform]["repos_url"]
+    username = settings.platforms[platform]["username"]
+    url = settings.platforms[platform]["repos_url"]
 
     headers = {
-        "Authorization": f"token {os.getenv('PROJECT_METRICS_GITHUB_ACCESS_TOKEN')}"
+        "Authorization": f"token {os.getenv(settings.GITHUB_TOKEN)}"  # {os.getenv('PROJECT_METRICS_GITHUB_ACCESS_TOKEN')}"
     }
 
     response = requests.get(url, headers=headers)

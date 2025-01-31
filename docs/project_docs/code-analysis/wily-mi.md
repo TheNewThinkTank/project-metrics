@@ -5,7 +5,7 @@
 | src/kpi.py                          |                 64.0474 |
 | src/REST/project_metrics.py         |                 66.346  |
 | src/add_gha_wf.py                   |                 71.141  |
-| src/REST/get_repos.py               |                 74.4893 |
+| src/REST/get_repos.py               |                 74.2132 |
 | src/get_repo_size.py                |                 75.1686 |
 | src/REST/commits_over_time.py       |                 75.5552 |
 | src/REST/add_badge.py               |                 77.3041 |
@@ -28,4 +28,4 @@
 | src/save_file_to_github.py          |                 99.8446 |
 | src/remove_badge.py                 |                100      |
 | src/GraphQL/gh_graphql_post.py      |                100      |
-| Total                               |                 86.8143 |
+| Total                               |                 86.8051 |

@@ -1,11 +1,11 @@
-"""_summary_
+b"""_summary_
 """
 
 import os
 import requests  # type: ignore
 # from icecream import ic  # type: ignore
 from loguru import logger  # type: ignore
-from src.config import platforms  # type: ignore
+from src.config import settings  # type: ignore
 
 
 def get_repos(platform: str) -> list[dict]:
@@ -17,8 +17,8 @@ def get_repos(platform: str) -> list[dict]:
     :rtype: list[dict]
     """
 
-    username = platforms[platform]["username"]
-    url = platforms[platform]["repos_url"]
+    username = settings[platform]["username"]
+    url = settings[platform]["repos_url"]
 
     headers = {
         "Authorization": f"token {os.getenv('PROJECT_METRICS_GITHUB_ACCESS_TOKEN')}"

@@ -4,7 +4,6 @@
 from loguru import logger  # type: ignore
 from file_convertion_tools.make_md_table import table  # type: ignore
 from src.REST.get_repos import get_all_repos, get_repo_info, print_repo_info  # type: ignore
-from src.config import platforms  # type: ignore
 from src.save_file_to_github import save_file_to_github  # type: ignore
 from src.config import settings  # type: ignore
 
@@ -88,7 +87,10 @@ def main() -> None:
     #     print_repo_info(repo_info)
     #     print()
 
-    repos_wo_desc = get_repos_wo_desc(platforms, all_repos)
+    repos_wo_desc = get_repos_wo_desc(
+        settings.platforms.to_dict(),
+        all_repos
+        )
     if not repos_wo_desc:
         print("No repositories without descriptions found.")
         return

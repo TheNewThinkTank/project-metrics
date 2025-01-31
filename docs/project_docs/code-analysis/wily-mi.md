@@ -14,6 +14,7 @@
 | src/REST/group_by_tag.py            |                 79.9072 |
 | src/util/get_gh_repo_content.py     |                 83.0818 |
 | src/threading_add_gha_wf.py         |                 83.7193 |
+| src/get_badge.py                    |                 84.1284 |
 | src/GraphQL/gh_get_popular_repos.py |                 84.7847 |
 | src/GraphQL/gh_get_largest_repos.py |                 86.2315 |
 | src/matrix_add_badge.py             |                 87.9226 |
@@ -24,8 +25,7 @@
 | src/util/get_readme_format.py       |                 94.8362 |
 | src/util/matrix_repos.py            |                 98.3547 |
 | src/save_file_to_github.py          |                 99.8446 |
-| src/get_badge.py                    |                100      |
 | src/config.py                       |                100      |
 | src/remove_badge.py                 |                100      |
 | src/GraphQL/gh_graphql_post.py      |                100      |
-| Total                               |                 87.2883 |
+| Total                               |                 86.7593 |

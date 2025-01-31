@@ -19,7 +19,7 @@ def get_badge(repo_name: str, badge_name: str):
     # badge = gh_badges[badge_name].copy()
 
     github_badges = settings.platforms.github.badges  # settings['PLATFORMS']['github']['badges']
-    badge = github_badges.badge_name.copy()
+    badge = github_badges[badge_name].copy()
 
     if isinstance(badge.value, str):  # type: ignore
         badge.value = badge.value.replace("{repo}", repo_name)  # type: ignore

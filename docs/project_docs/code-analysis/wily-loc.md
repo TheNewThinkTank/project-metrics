@@ -9,7 +9,7 @@
 | src/REST/threading_add_badge.py     |              28 |
 | src/remove_badge.py                 |              31 |
 | src/util/matrix_repos.py            |              34 |
-| src/config.py                       |              36 |
+| src/config.py                       |              37 |
 | src/util/get_gh_repos.py            |              41 |
 | src/get_badge.py                    |              45 |
 | src/save_file_to_github.py          |              48 |
@@ -21,11 +21,11 @@
 | src/wily_to_md.py                   |              77 |
 | src/GraphQL/gh_group_by_lang.py     |              81 |
 | src/GraphQL/gh_get_largest_repos.py |              96 |
-| src/REST/project_metrics.py         |             110 |
 | src/REST/commits_over_time.py       |             110 |
+| src/REST/project_metrics.py         |             112 |
 | src/get_repo_size.py                |             141 |
 | src/REST/add_badge.py               |             143 |
 | src/kpi.py                          |             177 |
 | src/REST/get_repos.py               |             177 |
 | src/add_gha_wf.py                   |             226 |
-| Total                               |            2046 |
+| Total                               |            2049 |

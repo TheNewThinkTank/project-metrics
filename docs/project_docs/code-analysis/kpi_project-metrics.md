@@ -1,11 +1,11 @@
 # project-metrics KPIs
 
 logging timestamp:
-2025-02-01 00:57:11.802178
+2025-02-01 16:24:19.727775
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 31| 2306 | 220 |
+| 33| 2469 | 238 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -17,7 +17,9 @@ logging timestamp:
 | `src/REST/project_metrics.py             ` |        112 |                   11 |
 | `src/REST/commits_over_time.py           ` |        110 |                   10 |
 | `src/GraphQL/gh_get_largest_repos.py     ` |         96 |                    8 |
+| `test/test_readme_sentiment.py           ` |         82 |                   10 |
 | `src/GraphQL/gh_group_by_lang.py         ` |         81 |                    5 |
+| `test/test_wily_to_md.py                 ` |         79 |                    7 |
 | `src/threading_add_gha_wf.py             ` |         77 |                    9 |
 | `src/wily_to_md.py                       ` |         77 |                    9 |
 | `src/REST/group_by_tag.py                ` |         75 |                    6 |
@@ -30,8 +32,8 @@ logging timestamp:
 | `src/save_file_to_github.py              ` |         48 |                    4 |
 | `src/get_badge.py                        ` |         45 |                    4 |
 | `test/test_get_badge.py                  ` |         43 |                    9 |
+| `src/util/get_gh_repos.py                ` |         43 |                    8 |
 | `test/test_repo_has_lang.py              ` |         42 |                    4 |
-| `src/util/get_gh_repos.py                ` |         41 |                    7 |
 | `src/config.py                           ` |         38 |                    6 |
 | `src/util/matrix_repos.py                ` |         34 |                    6 |
 | `src/remove_badge.py                     ` |         31 |                    2 |

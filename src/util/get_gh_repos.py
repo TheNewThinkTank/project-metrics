@@ -19,7 +19,9 @@ def get_gh_repos(
     :rtype: PaginatedList.PaginatedList[Repository.Repository]
     """
 
-    token = os.environ.get(settings['GITHUB_TOKEN'])
+    token = os.environ.get(
+        settings.GITHUB_TOKEN  # settings['GITHUB_TOKEN']
+        )
     if not token:
         raise ValueError(
             f"{settings['GITHUB_TOKEN']} environment variable is not set"

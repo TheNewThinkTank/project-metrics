@@ -21,11 +21,11 @@
 | src/readme_sentiment.py             |                 88.1981 |
 | src/util/repo_has_lang.py           |                 88.442  |
 | src/REST/threading_add_badge.py     |                 90.7044 |
-| src/util/get_gh_repos.py            |                 94.5868 |
+| src/util/get_gh_repos.py            |                 94.727  |
 | src/util/get_readme_format.py       |                 94.8362 |
 | src/config.py                       |                 97.4158 |
 | src/util/matrix_repos.py            |                 98.3547 |
 | src/save_file_to_github.py          |                 99.8446 |
 | src/remove_badge.py                 |                100      |
 | src/GraphQL/gh_graphql_post.py      |                100      |
-| Total                               |                 86.7634 |
+| Total                               |                 86.768  |

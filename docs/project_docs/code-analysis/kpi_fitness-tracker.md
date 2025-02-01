@@ -1,25 +1,25 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2025-01-31 14:48:29.118260
+2025-02-01 00:57:57.682763
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 62| 5414 | 637 |
+| 62| 5461 | 650 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
-| `src/combined_metrics/combined_metrics.py` |        338 |                   42 |
+| `src/combined_metrics/combined_metrics.py` |        336 |                   42 |
 | `src/crud/read.py                        ` |        197 |                   18 |
-| `oxygen/oxygen/cli.py                    ` |        190 |                   13 |
-| `src/plot.py                             ` |        189 |                   10 |
+| `src/crud/insert.py                      ` |        191 |                   32 |
 | `src/model/model.py                      ` |        189 |                   14 |
-| `src/model/plot_model.py                 ` |        188 |                   23 |
+| `src/model/plot_model.py                 ` |        188 |                   24 |
+| `src/plot.py                             ` |        187 |                   10 |
+| `oxygen/oxygen/cli.py                    ` |        187 |                   13 |
 | `test/test_model.py                      ` |        182 |                    9 |
-| `src/combined_metrics/plot_frequency.py  ` |        175 |                    6 |
+| `src/combined_metrics/plot_frequency.py  ` |        173 |                    6 |
 | `src/one_rep_max_plot.py                 ` |        169 |                   21 |
 | `test/test_validate.py                   ` |        169 |                   27 |
-| `src/crud/insert.py                      ` |        165 |                   20 |
 | `src/rep_range/rep_range.py              ` |        145 |                    5 |
 | `test/test_read.py                       ` |        142 |                   14 |
 | `src/utils/validate.py                   ` |        140 |                   24 |
@@ -27,18 +27,18 @@ logging timestamp:
 | `src/simulations/workout_simulator.py    ` |        135 |                   26 |
 | `test/test_get_workout_duration.py       ` |        134 |                    4 |
 | `test/test_set_db_and_table.py           ` |        129 |                   10 |
-| `src/utils/get_breath_holding.py         ` |        120 |                   16 |
+| `src/utils/get_breath_holding.py         ` |        119 |                   17 |
 | `src/one_rep_max_calc.py                 ` |        108 |                   22 |
+| `src/utils/set_db_and_table.py           ` |        108 |                   12 |
 | `src/crud/update.py                      ` |        107 |                   10 |
-| `src/utils/set_db_and_table.py           ` |        102 |                   13 |
+| `src/utils/get_workout_duration.py       ` |        103 |                    7 |
 | `src/main.py                             ` |        101 |                   11 |
 | `test/test_one_rep_max_calc.py           ` |         95 |                   15 |
-| `src/utils/get_workout_duration.py       ` |         93 |                    7 |
 | `test/test_workout_simulator.py          ` |         87 |                   12 |
 | `src/utils/google_sheet.py               ` |         87 |                    6 |
+| `src/utils/get_volume.py                 ` |         84 |                    8 |
 | `src/simulations/simulate_data.py        ` |         78 |                    9 |
 | `docs/sphinx-docs/source/conf.py         ` |         76 |                    6 |
-| `src/utils/get_volume.py                 ` |         72 |                    8 |
 | `src/utils/file_conversions/json_to_csv.py` |         72 |                    5 |
 | `test/test_json_to_csv.py                ` |         67 |                   27 |
 | `test/test_google_sheet.py               ` |         63 |                    7 |
@@ -52,8 +52,8 @@ logging timestamp:
 | `src/combined_metrics/get_frequency_data.py` |         45 |                    4 |
 | `test/test_get_exercises.py              ` |         43 |                    7 |
 | `src/utils/get_exercises.py              ` |         43 |                    4 |
+| `src/utils/config.py                     ` |         42 |                    8 |
 | `src/utils/logger_config.py              ` |         42 |                    3 |
-| `src/utils/config_loader.py              ` |         40 |                    8 |
 | `features/steps/lookup.py                ` |         38 |                    6 |
 | `src/utils/get_bodyweight.py             ` |         37 |                    7 |
 | `features/steps/get_program.py           ` |         31 |                    5 |
@@ -63,8 +63,8 @@ logging timestamp:
 | `test/test_training.py                   ` |         22 |                    4 |
 | `src/anomaly_detection.py                ` |         21 |                    3 |
 | `src/utils/cleanup.py                    ` |         21 |                    3 |
+| `src/utils/file_conversions/json_to_yaml.py` |         21 |                    4 |
 | `test/conftest.py                        ` |         20 |                    6 |
-| `src/utils/file_conversions/json_to_yaml.py` |         20 |                    4 |
 | `src/user_settings.py                    ` |         19 |                    2 |
 | `oxygen/setup.py                         ` |         16 |                    1 |
 | `src/utils/file_conversions/load_yaml.py ` |         16 |                    2 |

@@ -10,7 +10,7 @@
 | src/remove_badge.py                 |              31 |
 | src/util/matrix_repos.py            |              34 |
 | src/config.py                       |              38 |
-| src/util/get_gh_repos.py            |              41 |
+| src/util/get_gh_repos.py            |              43 |
 | src/get_badge.py                    |              45 |
 | src/save_file_to_github.py          |              48 |
 | src/readme_sentiment.py             |              53 |
@@ -28,4 +28,4 @@
 | src/kpi.py                          |             177 |
 | src/REST/get_repos.py               |             177 |
 | src/add_gha_wf.py                   |             226 |
-| Total                               |            2050 |
+| Total                               |            2052 |

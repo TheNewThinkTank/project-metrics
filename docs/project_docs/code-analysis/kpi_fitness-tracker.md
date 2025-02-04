@@ -1,11 +1,11 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2025-02-03 00:56:15.264165
+2025-02-04 00:54:50.369044
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 62| 5452 | 657 |
+| 63| 5555 | 673 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -45,22 +45,23 @@ logging timestamp:
 | `test/test_update.py                     ` |         63 |                    8 |
 | `src/utils/get_program.py                ` |         62 |                    6 |
 | `test/test_one_rep_max.py                ` |         61 |                   17 |
+| `test/test_anomaly_detection.py          ` |         60 |                   11 |
 | `src/one_rep_max.py                      ` |         57 |                    6 |
+| `src/utils/config.py                     ` |         54 |                   10 |
 | `src/utils/custom_storage.py             ` |         54 |                    8 |
 | `src/crud/delete.py                      ` |         52 |                    6 |
+| `src/anomaly_detection.py                ` |         51 |                    6 |
 | `test/test_simulate_data.py              ` |         45 |                   11 |
 | `src/combined_metrics/get_frequency_data.py` |         45 |                    4 |
 | `src/utils/get_exercises.py              ` |         45 |                    5 |
 | `test/test_get_exercises.py              ` |         43 |                    7 |
 | `src/utils/logger_config.py              ` |         42 |                    3 |
-| `src/utils/config.py                     ` |         40 |                    8 |
 | `src/utils/get_bodyweight.py             ` |         39 |                    7 |
 | `features/steps/lookup.py                ` |         38 |                    6 |
 | `features/steps/get_program.py           ` |         31 |                    5 |
 | `features/steps/validate.py              ` |         31 |                    6 |
 | `features/steps/model.py                 ` |         29 |                    6 |
 | `test/test_plot_model.py                 ` |         26 |                    1 |
-| `src/anomaly_detection.py                ` |         22 |                    3 |
 | `test/test_training.py                   ` |         22 |                    4 |
 | `src/utils/cleanup.py                    ` |         21 |                    3 |
 | `src/utils/file_conversions/json_to_yaml.py` |         21 |                    4 |

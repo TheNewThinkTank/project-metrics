@@ -1,17 +1,18 @@
 # project-metrics KPIs
 
 logging timestamp:
-2025-02-07 00:55:09.433152
+2025-02-07 14:33:51.732001
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 33| 2469 | 238 |
+| 34| 2619 | 250 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
 | `src/add_gha_wf.py                       ` |        226 |                   23 |
 | `src/kpi.py                              ` |        177 |                   20 |
 | `src/REST/get_repos.py                   ` |        177 |                   14 |
+| `test/test_add_gha_wf.py                 ` |        150 |                   12 |
 | `src/REST/add_badge.py                   ` |        143 |                   10 |
 | `src/get_repo_size.py                    ` |        141 |                   11 |
 | `src/REST/project_metrics.py             ` |        112 |                   11 |

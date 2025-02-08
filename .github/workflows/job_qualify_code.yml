@@ -29,7 +29,7 @@ jobs:
 
       - name: Install and cache poetry
         run: |
-          make install-poetry
+          make -f .config/Makefile install-poetry
         if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Cache poetry dependencies
@@ -47,7 +47,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Lint with ruff
-        run: make lint-ruff
+        run: make -f .config/Makefile lint-ruff
 
       - name: Cache mypy dependencies
         uses: actions/cache@v4
@@ -57,10 +57,10 @@ jobs:
           restore-keys: ${{ runner.os }}-mypy-
 
       - name: Static type checks with mypy
-        run: make static-type-checks
+        run: make -f .config/Makefile static-type-checks
 
       - name: wily build and rank
-        run: make wily-build-and-rank
+        run: make -f .config/Makefile wily-build-and-rank
 
       - name: Make Wily Markdown
         run: |
@@ -105,7 +105,7 @@ jobs:
           task_name: Markdown
 
       - name: Run unit tests and make coverage report
-        run: make run-tests-and-coverage
+        run: make -f .config/Makefile run-tests-and-coverage
         env:
           PROJECT_METRICS_GITHUB_ACCESS_TOKEN: ${{ secrets.PROJECT_METRICS_GITHUB_ACCESS_TOKEN }}
 

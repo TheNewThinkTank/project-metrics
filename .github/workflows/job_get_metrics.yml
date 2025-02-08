@@ -28,7 +28,7 @@ jobs:
 
       - name: Install and cache poetry
         id: install-poetry
-        run: make install-poetry
+        run: make -f .config/Makefile install-poetry
         if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Cache poetry dependencies

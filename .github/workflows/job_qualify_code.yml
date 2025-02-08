@@ -97,7 +97,7 @@ jobs:
           file_or_dir: .
           config_file: .config/.yamllint.yml
 
-      - uses: rojopolis/spellcheck-github-actions@0.44.0
+      - uses: rojopolis/spellcheck-github-actions@0.46.0
         name: Spellcheck README
         with:
           config_path: .config/.spellcheck.yml

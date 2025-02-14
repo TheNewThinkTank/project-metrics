@@ -1,17 +1,17 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2025-02-13 00:56:13.003749
+2025-02-14 00:55:35.848965
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 63| 5555 | 673 |
+| 63| 5597 | 677 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
-| `src/combined_metrics/combined_metrics.py` |        327 |                   43 |
+| `src/combined_metrics/combined_metrics.py` |        338 |                   45 |
+| `src/crud/insert.py                      ` |        223 |                   34 |
 | `src/crud/read.py                        ` |        197 |                   18 |
-| `src/crud/insert.py                      ` |        192 |                   32 |
 | `src/model/model.py                      ` |        189 |                   14 |
 | `src/plot.py                             ` |        187 |                   10 |
 | `src/model/plot_model.py                 ` |        186 |                   24 |

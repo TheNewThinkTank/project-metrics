@@ -2,7 +2,7 @@
 name = "project-metrics"
 version = "0.0.1"
 description = "Overview of projects and their health"
-authors = ["Gustav Rasmussen"]
+authors = ["Gustav Rasmussen <TheNewThinkTank@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [

@@ -1,11 +1,11 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2025-02-14 00:55:35.848965
+2025-02-15 00:55:15.970962
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 63| 5597 | 677 |
+| 64| 5632 | 681 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ logging timestamp:
 | `test/test_get_workout_duration.py       ` |        134 |                    4 |
 | `test/test_set_db_and_table.py           ` |        129 |                   10 |
 | `src/utils/get_breath_holding.py         ` |        121 |                   17 |
-| `src/utils/set_db_and_table.py           ` |        111 |                   12 |
+| `src/utils/set_db_and_table.py           ` |        113 |                   12 |
 | `src/crud/update.py                      ` |        109 |                   10 |
 | `src/utils/get_workout_duration.py       ` |        105 |                    7 |
 | `src/main.py                             ` |        101 |                   11 |
@@ -58,6 +58,7 @@ logging timestamp:
 | `src/utils/logger_config.py              ` |         42 |                    3 |
 | `src/utils/get_bodyweight.py             ` |         39 |                    7 |
 | `features/steps/lookup.py                ` |         38 |                    6 |
+| `src/utils/create_exercise_catalog.py    ` |         33 |                    4 |
 | `features/steps/get_program.py           ` |         31 |                    5 |
 | `features/steps/validate.py              ` |         31 |                    6 |
 | `features/steps/model.py                 ` |         29 |                    6 |

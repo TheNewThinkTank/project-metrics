@@ -1,7 +1,7 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2025-03-21 00:59:32.095828
+2025-03-22 00:58:10.316387
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
@@ -54,7 +54,7 @@ logging timestamp:
 | `test/test_simulate_data.py              ` |         45 |                   11 |
 | `src/combined_metrics/get_frequency_data.py` |         45 |                    4 |
 | `src/utils/get_exercises.py              ` |         45 |                    5 |
-| `test/test_get_exercises.py              ` |         43 |                    7 |
+| `test/utils/test_get_exercises.py        ` |         43 |                    7 |
 | `src/utils/logger_config.py              ` |         42 |                    3 |
 | `src/utils/get_bodyweight.py             ` |         39 |                    7 |
 | `features/steps/lookup.py                ` |         38 |                    6 |
@@ -71,5 +71,5 @@ logging timestamp:
 | `oxygen/setup.py                         ` |         16 |                    1 |
 | `src/utils/file_conversions/load_yaml.py ` |         16 |                    2 |
 | `src/utils/get_split.py                  ` |         11 |                    2 |
-| `test/test_get_program.py                ` |          7 |                    2 |
 | `src/simulations/simulate_people.py      ` |          7 |                    1 |
+| `test/utils/test_get_program.py          ` |          7 |                    2 |

@@ -1,11 +1,11 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2025-05-01 01:08:04.957587
+2025-05-02 01:02:45.166166
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 64| 5638 | 682 |
+| 64| 5639 | 681 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -31,7 +31,7 @@ logging timestamp:
 | `src/utils/set_db_and_table.py           ` |        113 |                   12 |
 | `src/crud/update.py                      ` |        109 |                   10 |
 | `src/utils/get_workout_duration.py       ` |        105 |                    7 |
-| `src/main.py                             ` |        101 |                   11 |
+| `src/main.py                             ` |        102 |                   10 |
 | `test/test_one_rep_max_calc.py           ` |         95 |                   15 |
 | `src/one_rep_max_calc.py                 ` |         91 |                   27 |
 | `src/utils/google_sheet.py               ` |         89 |                    6 |

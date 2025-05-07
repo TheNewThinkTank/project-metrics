@@ -20,29 +20,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Setup Python and Poetry
+        uses: ./.github/actions/setup-python-poetry
         with:
           python-version: ${{ inputs.PYTHONVERSION }}
-          # cache: pip
-
-      - name: Install and cache poetry
-        run: make -f .config/Makefile install-poetry
-        # if: steps.cache.outputs.cache-hit != 'true'
-
-      # - name: Cache poetry dependencies
-      #   id: cache
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: ~/.cache/pypoetry/virtualenvs
-      #     key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-      #     restore-keys: ${{ runner.os }}-poetry-
-
-      - name: Install dependencies with poetry
-        run: poetry install
-        env:
-          POETRY_VIRTUALENVS_IN_PROJECT: true
-        # if: steps.cache.outputs.cache-hit != 'true'
 
       # TODO: if repo has tests, setup codecov badge on it's README
       # TODO: if repo has wf, setup CI badge on it's README

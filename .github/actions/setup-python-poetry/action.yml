@@ -1,0 +1,30 @@
+name: Setup Python and Poetry
+description: Sets up Python, caches dependencies, and installs Poetry.
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+        cache: pip
+
+    - name: Install Poetry
+      run: make -f .config/Makefile install-poetry
+
+    - name: Cache Poetry Dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pypoetry/virtualenvs
+        key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+        restore-keys: ${{ runner.os }}-poetry-
+
+    - name: Install Dependencies with Poetry
+      run: poetry install
+      env:
+        POETRY_VIRTUALENVS_IN_PROJECT: true
+
+inputs:
+  python-version:
+    description: Python version to use
+    required: true

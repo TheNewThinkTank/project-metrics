@@ -11,6 +11,7 @@ runs:
 
     - name: Install Poetry
       run: make -f .config/Makefile install-poetry
+      shell: bash
 
     - name: Cache Poetry Dependencies
       uses: actions/cache@v4
@@ -21,6 +22,7 @@ runs:
 
     - name: Install Dependencies with Poetry
       run: poetry install
+      shell: bash
       env:
         POETRY_VIRTUALENVS_IN_PROJECT: true
 

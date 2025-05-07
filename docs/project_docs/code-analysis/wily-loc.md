@@ -17,8 +17,8 @@
 | src/util/get_gh_repo_content.py     |              71 |
 | src/GraphQL/gh_get_popular_repos.py |              72 |
 | src/REST/group_by_tag.py            |              75 |
-| src/wily_to_md.py                   |              77 |
 | src/threading_add_gha_wf.py         |              77 |
+| src/wily_to_md.py                   |              77 |
 | src/GraphQL/gh_group_by_lang.py     |              81 |
 | src/GraphQL/gh_get_largest_repos.py |              96 |
 | src/REST/commits_over_time.py       |             110 |

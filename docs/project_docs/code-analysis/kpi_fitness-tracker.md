@@ -1,11 +1,11 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2025-06-07 01:04:12.936126
+2025-06-08 01:10:59.833057
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 64| 5639 | 681 |
+| 65| 5693 | 690 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
@@ -30,13 +30,13 @@ logging timestamp:
 | `src/utils/get_breath_holding.py         ` |        121 |                   17 |
 | `src/utils/set_db_and_table.py           ` |        113 |                   12 |
 | `src/crud/update.py                      ` |        109 |                   10 |
+| `src/utils/get_volume.py                 ` |        109 |                   11 |
 | `src/utils/get_workout_duration.py       ` |        105 |                    7 |
 | `src/main.py                             ` |        102 |                   10 |
 | `test/test_one_rep_max_calc.py           ` |         95 |                   15 |
 | `src/one_rep_max_calc.py                 ` |         91 |                   27 |
 | `src/utils/google_sheet.py               ` |         89 |                    6 |
 | `test/simulations/test_workout_simulator.py` |         87 |                   12 |
-| `src/utils/get_volume.py                 ` |         85 |                    8 |
 | `src/simulations/simulate_data.py        ` |         79 |                    9 |
 | `docs/sphinx-docs/source/conf.py         ` |         76 |                    6 |
 | `src/utils/file_conversions/json_to_csv.py` |         72 |                    5 |
@@ -61,6 +61,7 @@ logging timestamp:
 | `src/utils/create_exercise_catalog.py    ` |         33 |                    4 |
 | `features/steps/get_program.py           ` |         31 |                    5 |
 | `features/steps/validate.py              ` |         31 |                    6 |
+| `src/utils/powerbands.py                 ` |         30 |                    6 |
 | `features/steps/model.py                 ` |         29 |                    6 |
 | `test/model/test_plot_model.py           ` |         26 |                    1 |
 | `test/crud/test_training.py              ` |         22 |                    4 |

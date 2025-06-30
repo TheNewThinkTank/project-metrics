@@ -1,28 +1,28 @@
 # fitness-tracker KPIs
 
 logging timestamp:
-2025-06-29 01:13:12.220563
+2025-06-30 01:10:21.052866
 
 | Python scripts | total code lines | total PEP-8 violations |
 | --- | --- | --- |
-| 65| 5693 | 690 |
+| 65| 5749 | 693 |
 
 | Module name | lines | PEP-8 Violations |
 | --- | --- | --- |
 | `src/combined_metrics/combined_metrics.py` |        342 |                   45 |
 | `src/crud/insert.py                      ` |        223 |                   34 |
 | `src/crud/read.py                        ` |        197 |                   18 |
+| `src/utils/validate.py                   ` |        194 |                   27 |
 | `src/model/model.py                      ` |        189 |                   14 |
 | `src/plot.py                             ` |        187 |                   10 |
 | `src/model/plot_model.py                 ` |        186 |                   24 |
 | `oxygen/oxygen/cli.py                    ` |        182 |                   13 |
 | `test/model/test_model.py                ` |        182 |                    9 |
 | `src/combined_metrics/plot_frequency.py  ` |        173 |                    6 |
+| `test/utils/test_validate.py             ` |        172 |                   27 |
 | `src/one_rep_max_plot.py                 ` |        169 |                   21 |
-| `test/utils/test_validate.py             ` |        169 |                   27 |
 | `src/rep_range/rep_range.py              ` |        146 |                    5 |
 | `test/crud/test_read.py                  ` |        142 |                   14 |
-| `src/utils/validate.py                   ` |        141 |                   24 |
 | `test/utils/test_get_workout_duration.py ` |        136 |                    5 |
 | `src/simulations/workout_simulator.py    ` |        135 |                   26 |
 | `test/crud/test_insert.py                ` |        135 |                   28 |
